@@ -1,0 +1,18 @@
+# This Docker-compose manifest will run the DATABASE ONLY at port 7200
+version: '3.9'
+services:
+  graphdb:
+    build:
+      context: 'database/'
+      dockerfile: 'graphdb.Dockerfile'
+    ports:
+      - '7200:7200'
+  api:
+    depends_on: ['graphdb']
+    build:
+      context: './'
+      dockerfile: 'api.Dockerfile'
+    ports:
+      - '3001:3001'
+    environment:
+      - GRAPHDB_BASE_URL=http://graphdb:7200
