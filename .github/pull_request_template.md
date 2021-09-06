@@ -1,5 +1,5 @@
 ## Related Issue
-Closes #ID
+Closes `link to Trello issue`
 
 ## Proposed changes
 - change 1
