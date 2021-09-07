@@ -31,13 +31,15 @@ Prerequisites:
 
 2. Place your `graphdb.license` file in `backend/database/conf`
 
-3. In `backend/`, run `docker-compose -f docker-compose-backend.yml up`
+3. Copy the `backend/.env.example`-file, and rename the copy `.env`
 
-4. When the Docker-cluster is running, go to http://localhost:7200. On the left side of the screen, go to "Setup" and then "Users and Access". Click "Create new user" and make a user with credentials matching the `GRAPHDB_USERNAME` and `GRAPHDB_PASSWORD` fields in `backend/.env`. Make sure the user has Read-access to the TK_SDG-repository.
+4. In `backend/`, run `docker-compose -f docker-compose-backend.yml up`
 
-5. Stop the docker-compose cluster, and repeat step 2.
+5. When the Docker-cluster is running, go to http://localhost:7200. On the left side of the screen, go to "Setup" and then "Users and Access". Click "Create new user" and make a user with credentials matching the `GRAPHDB_USERNAME` and `GRAPHDB_PASSWORD` fields in `backend/.env`. Make sure the user has Read-access to the TK_SDG-repository.
 
-6. The backend should now be running, and accessible at http://localhost:3001
+6. Stop the docker-compose cluster, and repeat step 2.
+
+7. The backend should now be running, and accessible at http://localhost:3001
 
 If you only want to run the GraphDB-database, replace `docker-compose-backend.yml` with `docker-compose-db.yml` in step 2.
 
@@ -45,6 +47,8 @@ If you only want to run the GraphDB-database, replace `docker-compose-backend.ym
 
 1. Make sure the API is available on http://localhost:3001 (follow the steps above)
 
-2. In `frontend/`, run `docker-compose up`
+2. Copy the `frontend/.env.example`-file, and rename the copy `.env`
 
-3. The app should now be accesible at https://localhost:3000
+3. In `frontend/`, run `docker-compose up`
+
+4. The app should now be accesible at https://localhost:5000
