@@ -25,6 +25,8 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
+    // Disabled due to conflict between ESLint and Prettier
     '@typescript-eslint/lines-between-class-members': 'off',
+    '@typescript-eslint/indent': 'off',
   },
 };
