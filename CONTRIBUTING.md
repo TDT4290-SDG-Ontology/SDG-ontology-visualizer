@@ -32,11 +32,3 @@ Development usually goes something like this:
 4. The rest of the team reviews the code, discusses it, and alters it. A minimum of **1** person must review and approve of the PR before it can be merged into `main`. The commits should be squashed and a good commit message should be written (see [Commits](#commits)).
 
 5. The developer merges the pull request into the repository and moves the corresponding issue into the _Done_-column in the Trello board.
-
-## How to tag a new release of SDG Ontology Visualizer
-
-1. `git fetch origin`
-2. `git checkout main`
-3. `git tag -a vX.X -m "Release name vX.X"`
-4. `git push origin tag vX.X` 
-5. Check that everything looks okay! 
