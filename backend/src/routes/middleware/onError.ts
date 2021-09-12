@@ -19,8 +19,7 @@ const resolveGraphDBErrorMessage = (err: GraphDBError): string => {
   return err.message;
 };
 
-// @TODO: "any" is a quick fix
-export default (err: Error | ApiError | GraphDBError | any, req: AnyRequest, res: AnyResponse) => {
+export default (err: Error | ApiError | GraphDBError, req: AnyRequest, res: AnyResponse) => {
   if (isGraphDBError(err)) {
     const typedErr = err as GraphDBError;
     res.status(typedErr.statusCode);
