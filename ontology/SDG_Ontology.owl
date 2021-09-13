@@ -11610,7 +11610,7 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#User"/>
         <SDG:userHasRole rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.userrole.dataentry"/>
         <SDG:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</SDG:createdAt>
-        <SDG:passwordHash rdf:datatype="http://www.w3.org/2001/XMLSchema#string">100$JDJiJDEyJC93WmZaRjVTbTFLSnY4NWE5bzhkZk8=$C0QV3bM4Wdsob2puXCP5dbhwJ1Fo+HZD9DeTNzIM97LzDwqgNsplQOOwxnxSjxouJMAAZoegiQoHtZcHz0qaPQ==</SDG:passwordHash>
+        <SDG:passwordHash rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10$JDJiJDEyJGFGc2FKRTQvTi5aUG92RjhwRnAwb08=$yMmWbQlT/4kFZp+bPlsKbqUsjjCkuW3F51+4FYqBVGRFmLIgrC+hL3XuVBXfdhxhO2InUiJxJkrnAapLYMOZ1A==</SDG:passwordHash>
         <SDG:username>test</SDG:username>
     </owl:NamedIndividual>
     
