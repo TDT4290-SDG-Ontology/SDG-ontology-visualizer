@@ -1,5 +1,5 @@
 import DB from './index';
-import { HashEntry } from '../types/userTypes'
+import { HashEntry } from '../types/userTypes';
 import getUserPasswordHash from './queries/getUserPasswordHash';
 
 export default async (username: string): Promise<Array<HashEntry>> => {

@@ -1,3 +1,3 @@
-export type HashEntry {
-	hash: string;
-}
+export type HashEntry = {
+  hash: string;
+};
