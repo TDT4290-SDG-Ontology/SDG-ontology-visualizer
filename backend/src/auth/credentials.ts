@@ -3,8 +3,6 @@ import { pbkdf } from 'bcrypt-pbkdf';
 import * as jwt from 'jsonwebtoken';
 import config from '../config';
 
-import 'jest';
-
 /* Checks if a password matches a provided hash, returning true if it did.
  * 'password' *must* be a utf-8 encoded string, whilst 'existing_hash' *must* be an ascii encoded string.
  */
@@ -80,18 +78,3 @@ const isExpiredToken = (token: string) => {
     return true;
   }
 };
-
-/*
-describe('Password Hash test' () => {
-	const pw_hash1 = "100$JDJiJDEyJFlNNThndGpsMnVPMFl2VEd0Q0wvUnU=$sTCG+aG52QgpLNQi69HP4xkiwyXhDESsHsCW96nKzbd+R1uV0Mby8impiZykRlzOA3yohARc6KCPB8nBsRyijQ==";
-	const pw_hash2 = "100$JDJiJDEyJDJmQURWbkdQc0t4V0lYL3czT0pBUi4=$UE8k6d7Ska1x8ffgrJb96FU+gLg6k3amiBxOHXcVEB/KER0UYHpUH4TkpkW0uQm3RYGn23E1stATzNy91BCguQ==";
-
-  	it('should test checkPassword for instances', () => {
-    	expect(checkPassword("123", pw_hash1)).toBe(true);
-    	expect(checkPassword("321", pw_hash1)).toBe(false);
-    	expect(checkPassword("123", pw_hash2)).toBe(false);
-    	expect(checkPassword("321", pw_hash2)).toBe(true);
-  	})
-})
-
-*/
