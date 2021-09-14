@@ -70,10 +70,10 @@ const decodePasswordHash = (encodedHash: string) => {
   return { rounds: rounds, salt: salt, hash: hashed_bytes };
 };
 
-const isExpiredToken = (token: string) => {
+export const verifyToken = (token: string) => {
   try {
-    const { exp } = jwt.decode(token) as { exp };
-    return Date.now() >= exp * 1000;
+    const { exp } = jwt.verify(token, config.JWT_SECRET_TOKEN) as { exp };
+    return Date.now() < exp * 1000;
   } catch {
     return true;
   }

@@ -5,17 +5,20 @@ import onError from './onError';
 
 export default (req: Request, res: Response, next: NextFunction) => {
   try {    
-    if (req.body === undefined || req.body === null) throw new ApiError(401, 'Missing body');
+    if (req.body === undefined || req.body === null) throw new ApiError(400, 'Missing body');
 
     if (req.body.token === undefined)
-      throw new ApiError(401, "Missing auth token");
+      throw new ApiError(400, "Missing auth token");
+
+    if (!(typeof req.body.token === "string" || req.body.token instanceof String))
+      throw new ApiError(400, "Token has wrong type.");      
 
     if (verifyToken(req.body.token)) {
       next();
     } else {
-      onError(new Error('Server could not verify token'), req, res);
+      throw new ApiError(400, "Server could not verify token.");
     }
   } catch (e) {
-    onError(new Error('Server could not verify token'), req, res);
+    onError(e, req, res);
   }
 };

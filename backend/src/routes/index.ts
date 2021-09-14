@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 import ontologies from './ontologies';
 import authorization from './authorization';
 
