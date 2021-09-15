@@ -26,7 +26,7 @@ const getRelationsFromClass = async (req: ClassIdRequest, res: OntologyArrayResp
   try {
     const data = await getRelations(req.params.classId);
     res.json(data);
-  } catch (e) {
+  } catch (e: any) {
     onError(e, req, res);
   }
 };
@@ -35,7 +35,7 @@ const getSubclassesFromClass = async (req: ClassIdRequest, res: NodeArrayRespons
   try {
     const data = await getSubclasses(req.params.classId);
     res.json(data);
-  } catch (e) {
+  } catch (e: any) {
     onError(e, req, res);
   }
 };
@@ -44,7 +44,7 @@ const getAnnotationsFromClass = async (req: ClassIdRequest, res: AnnotationRespo
   try {
     const data = await getAnnotations(req.params.classId);
     res.json(data);
-  } catch (e) {
+  } catch (e: any) {
     onError(e, req, res);
   }
 };
@@ -53,7 +53,7 @@ const getSustainabilityGoalsFromOntology = async (req: EmptyRequest, res: NodeAr
   try {
     const data = await getSustainabilityGoals();
     res.json(data);
-  } catch (e) {
+  } catch (e: any) {
     onError(e, req, res);
   }
 };
@@ -62,7 +62,7 @@ const getContributionsToNodes = async (req: ClassIdRequest, res: NodeArrayRespon
   try {
     const data = await getContributions(req.params.classId);
     res.json(data);
-  } catch (e) {
+  } catch (e: any) {
     onError(e, req, res);
   }
 };
@@ -71,7 +71,7 @@ const getTradeOffToNodes = async (req: ClassIdRequest, res: NodeArrayResponse) =
   try {
     const data = await getTradeOff(req.params.classId);
     res.json(data);
-  } catch (e) {
+  } catch (e: any) {
     onError(e, req, res);
   }
 };
@@ -80,7 +80,7 @@ const getDevelopmentAreaToNodes = async (req: ClassIdRequest, res: NodeArrayResp
   try {
     const data = await getDevelopmentArea(req.params.classId);
     res.json(data);
-  } catch (e) {
+  } catch (e: any) {
     onError(e, req, res);
   }
 };
@@ -89,7 +89,7 @@ const getSubGoalsfromSDG = async (req: ClassIdRequest, res: NodeArrayResponse) =
   try {
     const data = await getSubGoals(req.params.classId);
     res.json(data);
-  } catch (e) {
+  } catch (e: any) {
     onError(e, req, res);
   }
 };
@@ -101,7 +101,7 @@ const regexSearch = async (req: RegexRequest, res: NodeArrayResponse) => {
     verifyRequestQueryParams(searchTerm);
     const data = await getClassesByString(searchTerm!, limitResults);
     res.json(data);
-  } catch (e) {
+  } catch (e: any) {
     onError(e, req, res);
   }
 };
