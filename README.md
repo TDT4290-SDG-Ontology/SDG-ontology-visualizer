@@ -49,6 +49,6 @@ If you only want to run the GraphDB-database, replace `docker-compose-backend.ym
 
 2. Copy the `frontend/.env.example`-file, and rename the copy `.env`
 
-3. In `frontend/`, run `docker-compose up`
+3. In `frontend/`, run `docker-compose up --build`
 
-4. The app should now be accesible at https://localhost:5000
+4. The app should now be accesible at https://localhost
