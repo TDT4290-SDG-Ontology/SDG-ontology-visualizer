@@ -37,7 +37,7 @@ Prerequisites:
 
 5. When the Docker-cluster is running, go to http://localhost:7200. On the left side of the screen, go to "Setup" and then "Users and Access". Click "Create new user" and make a user with credentials matching the `GRAPHDB_USERNAME` and `GRAPHDB_PASSWORD` fields in `backend/.env`. Make sure the user has Read-access to the TK_SDG-repository.
 
-6. Stop the docker-compose cluster, and repeat step 2.
+6. Stop the docker-compose cluster, and repeat step 4.
 
 7. The backend should now be running, and accessible at http://localhost:3001
 
