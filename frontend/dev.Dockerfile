@@ -3,4 +3,4 @@ ENV DISABLE_ESLINT_PLUGIN=true
 WORKDIR /app
 COPY package*.json ./
 RUN npm i
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
