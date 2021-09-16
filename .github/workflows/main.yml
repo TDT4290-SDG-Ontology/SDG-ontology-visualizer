@@ -18,7 +18,7 @@ jobs:
         run: |
           yarn add
           yarn lint
-        working-directory: frontend
+        working-directory: ./frontend
 
       - name: Lint backend
         run: |
