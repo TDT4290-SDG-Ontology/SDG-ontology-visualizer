@@ -12,9 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Lint frontend
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
         run: |
-          yarn add eslint-plugin-react eslint-config-airbnb-base eslint-config-airbnb-typescript --save-dev 
-          yarn upgrade
+          yarn add
           yarn lint
         working-directory: frontend
 
