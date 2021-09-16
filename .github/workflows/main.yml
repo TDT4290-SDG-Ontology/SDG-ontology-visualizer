@@ -14,6 +14,7 @@ jobs:
       - name: Lint frontend
         run: |
           yarn add eslint-plugin-react eslint-config-airbnb-base eslint-config-airbnb-typescript --save-dev 
+          yarn upgrade
           yarn lint
         working-directory: frontend
 
