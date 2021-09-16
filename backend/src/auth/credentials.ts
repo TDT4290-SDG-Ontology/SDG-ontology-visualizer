@@ -1,54 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, no-plusplus -- no-unused-vars disabled in order to help further development by having the inverse of 'decodeHash' available, no-plusplus disabled due to loops */
+
 import { Buffer } from 'buffer';
 import { pbkdf } from 'bcrypt-pbkdf';
 import * as jwt from 'jsonwebtoken';
 import config from '../config';
 
-/* Checks if a password matches a provided hash, returning true if it did.
- * 'password' *must* be a utf-8 encoded string, whilst 'existing_hash' *must* be an ascii encoded string.
- */
-export const checkPassword = (password: string, existing_hash: string) => {
-  // This is *meant* to be slow. In fact, the slowness is built into the algorithm.
-  // The reason this is slow is because it is used in order to reduce the efficacy of
-  // brute force attacks. The slowness is controlled by the 'rounds' parameter.
-
-  const decoded_hash = decodePasswordHash(existing_hash);
-
-  var new_hash: Uint8Array = new Uint8Array(decoded_hash.hash.length);
-  const password_bytes: Uint8Array = new Uint8Array(Buffer.from(password, 'utf-8'));
-
-  pbkdf(
-    password_bytes,
-    password_bytes.length,
-    decoded_hash.salt,
-    decoded_hash.salt.length,
-    new_hash,
-    new_hash.length,
-    decoded_hash.rounds,
-  );
-
-  // This comparison is done somewhat obtusely in order to thwart timing attacks
-  // against the password comparison which earlying-out would allow. With a vulnerable
-  // comparison, an attacker could, by timing the differences in response time, derive
-  // passwords one character at a time.
-  //
-  // As it stands, the only length dependent operation in this comparison is
-  // generating the hash for the password being tested.
-
-  const existing_hashed_bytes = decoded_hash.hash;
-  var diff = new_hash.length ^ existing_hashed_bytes.length; // This *should* be 0, as we use a
-  for (var i = 0; i < existing_hashed_bytes.length; i++) {
-    // The bitwise XOR finds the bitwise difference between the
-    // characters being compared.
-    diff |= existing_hashed_bytes[i] ^ new_hash[i];
-  }
-
-  return diff === 0;
-};
-
 /* Composes a hashed password, salt, and number of rounds into one string suitable
  * for storage in databases.
  */
 const encodePasswordHash = (passwordHash: Uint8Array, salt: Uint8Array, rounds: number) => {
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   const hashString = Buffer.from(passwordHash).toString('base64');
   const saltString = Buffer.from(salt).toString('base64');
 
@@ -63,11 +24,56 @@ const decodePasswordHash = (encodedHash: string) => {
 
   const parts: string[] = encodedHash.split('$');
 
-  const rounds: number = parseInt(parts[0]);
+  const rounds: number = parseInt(parts[0], 10);
   const salt: Uint8Array = Buffer.from(parts[1], 'base64');
-  const hashed_bytes: Uint8Array = Buffer.from(parts[2], 'base64');
+  const hashedBytes: Uint8Array = Buffer.from(parts[2], 'base64');
 
-  return { rounds: rounds, salt: salt, hash: hashed_bytes };
+  return { rounds, salt, hash: hashedBytes };
+};
+
+/* Checks if a password matches a provided hash, returning true if it did.
+ * 'password' *must* be a utf-8 encoded string, whilst 'existingHash' *must* be an ascii encoded string.
+ */
+export const checkPassword = (password: string, existingHash: string) => {
+  // This is *meant* to be slow. In fact, the slowness is built into the algorithm.
+  // The reason this is slow is because it is used in order to reduce the efficacy of
+  // brute force attacks. The slowness is controlled by the 'rounds' parameter.
+
+  const decodedHash = decodePasswordHash(existingHash);
+
+  const newHash: Uint8Array = new Uint8Array(decodedHash.hash.length);
+  const passwordBytes: Uint8Array = new Uint8Array(Buffer.from(password, 'utf-8'));
+
+  pbkdf(
+    passwordBytes,
+    passwordBytes.length,
+    decodedHash.salt,
+    decodedHash.salt.length,
+    newHash,
+    newHash.length,
+    decodedHash.rounds,
+  );
+
+  // This comparison is done somewhat obtusely in order to thwart timing attacks
+  // against the password comparison which earlying-out would allow. With a vulnerable
+  // comparison, an attacker could, by timing the differences in response time, derive
+  // passwords one character at a time.
+  //
+  // As it stands, the only length dependent operation in this comparison is
+  // generating the hash for the password being tested.
+
+  const existingHashedBytes = decodedHash.hash;
+  let diff = newHash.length ^ existingHashedBytes.length; // eslint-disable-line no-bitwise
+  for (let i = 0; i < existingHashedBytes.length; i++) {
+    // eslint-disable-line no-plusplus
+    // eslint-disable-line no-plusplus
+    // eslint-disable-line no-plusplus
+    // The bitwise XOR finds the bitwise difference between the
+    // characters being compared.
+    diff |= existingHashedBytes[i] ^ newHash[i]; // eslint-disable-line no-bitwise
+  }
+
+  return diff === 0;
 };
 
 export const verifyToken = (token: string) => {

@@ -6,7 +6,6 @@ import { HashEntry } from '../types/userTypes';
 
 import onError from './middleware/onError';
 import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
-import verifyToken from './middleware/verifyToken';
 
 import getUserPasswordHash from '../database/getUserPasswordHash';
 import { checkPassword } from '../auth/credentials';
@@ -26,14 +25,14 @@ const login = async (req: Request, res: Response) => {
     // NOTE: This is structured a bit weirdly in order to prevent attackers from
     // enumerating all usernames in the database. We purposefully don't give them
     // information in order to avoid the previously mentioned enumeration attack.
-    if (records === null || records === undefined || records.length != 1) {      
-      throw new ApiError(401, "Invalid username or password");
+    if (records === null || records === undefined || records.length !== 1) {
+      throw new ApiError(401, 'Invalid username or password');
     } else {
-      const hash: string = records[0].hash;
+      const { hash } = records[0];
       if (checkPassword(req.body.password, hash)) {
         // TODO: tune token expiration, currently 24h.
-        const expiry: number = Math.floor(Date.now() / 1000) + (24 * 60 * 60);
-        const jwt_token = jwt.sign(
+        const expiry: number = Math.floor(Date.now() / 1000) + 24 * 60 * 60;
+        const jwtToken = jwt.sign(
           {
             exp: expiry,
             username: req.body.username,
@@ -41,9 +40,9 @@ const login = async (req: Request, res: Response) => {
           },
           config.JWT_SECRET_TOKEN,
         );
-        res.json({ token: jwt_token });
+        res.json({ token: jwtToken });
       } else {
-        throw new ApiError(401, "Invalid username or password");
+        throw new ApiError(401, 'Invalid username or password');
       }
     }
   } catch (e) {
