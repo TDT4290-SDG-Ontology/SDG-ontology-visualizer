@@ -52,3 +52,17 @@ If you only want to run the GraphDB-database, replace `docker-compose-backend.ym
 3. In `frontend/`, run `docker-compose up --build`
 
 4. The app should now be accesible at https://localhost
+
+### Frontend (development)
+
+You can also develop using a devserver on a Docker container. It uses Docker-volumes to ensure that the container's workspace matches the codebase on your computer. This means that hot-reloading will work the same way as if you ran the devserver locally.
+
+To use the development container, follow these steps:
+
+1. Make sure the API is available on http://localhost:3001 (follow the steps above)
+
+2. Copy the `frontend/.env.example`-file, and rename the copy `.env` (if you haven't done so already).
+
+3. In `frontend/`, run `docker-compose -f docker-compose-dev.yml up --build`
+
+4. The app should now be accesible at https://localhost:3000S
