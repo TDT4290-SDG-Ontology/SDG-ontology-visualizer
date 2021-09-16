@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Lint frontend
         run: |
-          yarn add eslint-plugin-react eslint-config-airbnb-typescript --save-dev 
+          yarn add eslint-plugin-react eslint-config-airbnb-base eslint-config-airbnb-typescript --save-dev 
           yarn lint
         working-directory: frontend
 
