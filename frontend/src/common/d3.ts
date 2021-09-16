@@ -65,21 +65,21 @@ export const changeColorBasedOnType = (type: string) => {
   if (type.includes('Utviklingsområde')) nodeColor = '#FC8181';
   return nodeColor;
 };
-export const mapNodeToGraphNodeAtDefaultPosition = (x?: number, y?: number) => (
-  node: GraphNode,
-) => {
-  if (node.x) return node; // if node is already a GraphNode, just return it
-  const newNode: GraphNode = node;
-  newNode.x = x;
-  newNode.y = y;
-  newNode.vx = 0;
-  newNode.vy = 0;
-  return newNode;
-};
+export const mapNodeToGraphNodeAtDefaultPosition =
+  (x?: number, y?: number) => (node: GraphNode) => {
+    if (node.x) return node; // if node is already a GraphNode, just return it
+    const newNode: GraphNode = node;
+    newNode.x = x;
+    newNode.y = y;
+    newNode.vx = 0;
+    newNode.vy = 0;
+    return newNode;
+  };
 
-export const mapOntologyToNonClickedGraphNode = (clickedNode: GraphNode) => (
-  ontology: Ontology,
-): GraphNode => (ontology.Subject.id === clickedNode.id ? ontology.Object : ontology.Subject);
+export const mapOntologyToNonClickedGraphNode =
+  (clickedNode: GraphNode) =>
+  (ontology: Ontology): GraphNode =>
+    ontology.Subject.id === clickedNode.id ? ontology.Object : ontology.Subject;
 
 export const isD3Edge = (edge: GraphEdge | D3Edge) => typeof edge.target === 'string';
 export const isGraphEdge = (edge: GraphEdge | D3Edge) => typeof edge.target !== 'string';

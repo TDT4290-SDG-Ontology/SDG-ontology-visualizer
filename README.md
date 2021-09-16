@@ -8,12 +8,47 @@ A tool for visualizing ontologies related to UN's sustainable development goals
 
 [Deployed project](https://epic-ardinghelli-d1ee4d.netlify.app/)
 
-
-
-
 ## How to setup
 
 1. Clone the repo
 2. Run `yarn` in **both** backend and frontend folders
 3. Create a file named _.env_ in the backend folder and paste your credentials as well as the IP of the server running GraphDB with port 7200. The structure of your _.env_ file can be copied from _.env.example_.
-5. Run `yarn start` both in frontend and backend folders to start both the web application as well as the Express server.
+4. Run `yarn start` both in frontend and backend folders to start both the web application as well as the Express server.
+
+## Setting up the dockerized environment
+
+Prerequisites:
+
+- Docker
+
+- NodeJS
+
+- Valid GraphDB license-file
+
+### Backend
+
+1. Make sure your Docker-daemon is running.
+
+2. Place your `graphdb.license` file in `backend/database/conf`
+
+3. Copy the `backend/.env.example`-file, and rename the copy `.env`
+
+4. In `backend/`, run `docker-compose -f docker-compose-backend.yml up`
+
+5. When the Docker-cluster is running, go to http://localhost:7200. On the left side of the screen, go to "Setup" and then "Users and Access". Click "Create new user" and make a user with credentials matching the `GRAPHDB_USERNAME` and `GRAPHDB_PASSWORD` fields in `backend/.env`. Make sure the user has Read-access to the TK_SDG-repository.
+
+6. Stop the docker-compose cluster, and repeat step 4.
+
+7. The backend should now be running, and accessible at http://localhost:3001
+
+If you only want to run the GraphDB-database, replace `docker-compose-backend.yml` with `docker-compose-db.yml` in step 2.
+
+### Frontend
+
+1. Make sure the API is available on http://localhost:3001 (follow the steps above)
+
+2. Copy the `frontend/.env.example`-file, and rename the copy `.env`
+
+3. In `frontend/`, run `docker-compose up --build`
+
+4. The app should now be accesible at https://localhost

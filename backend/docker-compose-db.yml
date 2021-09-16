@@ -1,0 +1,9 @@
+# This Docker-compose manifest will run the DATABASE ONLY at port 7200
+version: '3.9'
+services:
+  graphdb:
+    build:
+      context: 'database/'
+      dockerfile: 'graphdb.Dockerfile'
+    ports:
+      - '7200:7200'

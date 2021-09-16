@@ -1,3 +1,4 @@
+/*  eslint func-names: "off" */
 /*
   This file handles the entire simulation and rendering of the ontology graph.
   The entire state is managed by an ordinary JavaScript class, i.e. not a React component, as the only DOM element
