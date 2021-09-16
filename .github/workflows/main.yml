@@ -16,6 +16,8 @@ jobs:
           node-version: 14.x
       - name: Lint frontend
         run: |
+          pwd
+          ls
           yarn add
           yarn lint
         working-directory: ./frontend
