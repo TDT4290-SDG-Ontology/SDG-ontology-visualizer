@@ -34844,6 +34844,134 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#test -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#test">
+        <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#Target"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.change_ntpov -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.change_ntpov">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C010301</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Decrease in poverty rates (national poverty line) due to transfers and taxes (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.chcropl -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.chcropl">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C020401a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Change in cropland (from 1992 to 2015, percentage points)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.childmort -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.childmort">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C030201a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mortality rates for the 0 to 4 years old population (deaths per 10 000 people)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.cropl -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.cropl">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C020401b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cropland as a percentage of total area in 2015</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.doct -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.doct">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C030c01</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Active physicians rate (active physicians per 1 000 people)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.effortpov -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.effortpov">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C010b01a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population satisfied with efforts to deal with poverty</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.enroll -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.enroll">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C040101</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population from 15 to 19 years old enrolled in public or private institutions</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.food_walk -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.food_walk">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C020100a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of people with access to at least one food shop within 15 minutes of walking</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gvapwagri -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gvapwagri">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C020301</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Productivity (Gross Value Added per worker) in agriculture, forestry and fishing (ISIC rev4) (in constant 2010 USD PPP)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.healthcsat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.healthcsat">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C030802a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of people satisfied with the availability or quality of healthcare</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.hosp_car -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.hosp_car">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C030802b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of people with access to at least one hospital within 20 minutes of driving</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.hospbed -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.hospbed">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C030c01a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hospital beds rate (hospital beds per 10 000 people)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.inc1quint -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.inc1quint">
@@ -34854,12 +34982,62 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.infmort -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.infmort">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C030202a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Infant mortality rate (number of deaths of children one year old or younger per 1 000 live births)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.lexp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.lexp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C030400b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Life expectancy at birth (years)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.lsat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.lsat">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C030400a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Satisfaction with life as a whole (from 0 to 10)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.ntpov_disp -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.ntpov_disp">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
         <SDG:indicatorID>C010201</SDG:indicatorID>
         <rdfs:comment>Percentage of population with a disposable income below the 60% of national median disposable income</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.rooms -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.rooms">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C010400a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rooms per person</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.inidcators.traffmort -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.inidcators.traffmort">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C030601</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport-related mortality rates (deaths per 100 000 people)</rdfs:comment>
     </owl:NamedIndividual>
     
 
