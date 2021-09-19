@@ -34852,12 +34852,102 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.affordh -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.affordh">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C110100b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population satisfied with affordability of housing</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.airp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.airp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C110602</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Exposure to PM2.5 in µg/m³, population weighted (micrograms per cubic metre)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.airsat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.airsat">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C110602a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population satisfied with quality of air</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.assaulted -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.assaulted">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C160103</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population that have been assaulted or mugged in the previous 12 months</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.builtup -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.builtup">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C110301</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Difference between built-up area growth rate and population growth rate (percentage points)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.cars -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.cars">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C120801a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of motor road vehicles per 100 people</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.change_gini -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.change_gini">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C100400a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Decrease in Gini index due to transfers and taxes (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.change_ntpov -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.change_ntpov">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
         <SDG:indicatorID>C010301</SDG:indicatorID>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Decrease in poverty rates (national poverty line) due to transfers and taxes (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.change_rgpov -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.change_rgpov">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C100400b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Decrease in poverty rates (regional poverty line) due to transfers and taxes (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.chcoolingdd -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.chcoolingdd">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C130201a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Change in cooling degree-days needed to maintain an average building indoor temperature of 22 degree Celsius, from 1970-1984 to 2004-2018</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -34872,12 +34962,112 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.chforest -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.chforest">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C150101a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Change in tree cover (from 1992 to 2015, percentage points)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.chheatingdd -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.chheatingdd">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C130201c</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Change in heating degree-days needed to maintain an average building indoor temperature of 15.5 degree Celsius, from 1970-1984 to 2004-2018</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.childmort -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.childmort">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
         <SDG:indicatorID>C030201a</SDG:indicatorID>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mortality rates for the 0 to 4 years old population (deaths per 10 000 people)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.churban -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.churban">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C150301a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Increase in artificial areas (from 1992 to 2015, percentage points)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.chwater -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.chwater">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C060601</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Change in water bodies (from 1992 to 2015, percentage points)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.co2electric -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.co2electric">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C200300b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CO2 emissions per electricity production (in tons of CO2 equivalent per gigawatt hours)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.coast -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.coast">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C140501a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Coastal area as a percentage of total area</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.coastpa -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.coastpa">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C140501</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protected coastal area as a percentage of total coastal area</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.coolingdd -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.coolingdd">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C130201b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cooling degree-days needed to maintain an average building indoor temperature of 22 degree Celsius, 2004-2018</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.coppatent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.coppatent">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C170600a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Share of PCT co-patent applications that are done with foreign regions (in % of co-patent applications)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.corrupgov -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.corrupgov">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C160500a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population that believe corruption is spread throughout the government in the country</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -34902,12 +35092,82 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.edulfsec -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.edulfsec">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080300a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of labour force with at least secondary education</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.edulfter -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.edulfter">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C090500b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of labour force with at least tertiary education</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.edutertiary -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.edutertiary">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C040300a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population from 25 to 64 years old with at least tertiary education</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.effortenv -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.effortenv">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C200300a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population satisfied with efforts to preserve the environment</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.effortpov -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.effortpov">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
         <SDG:indicatorID>C010b01a</SDG:indicatorID>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population satisfied with efforts to deal with poverty</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.emp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.emp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080502d</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Employment rate (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.empforeign -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.empforeign">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080800a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Employment rate of the foreign-born (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.empmanuf -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.empmanuf">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C090202</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manufacturing employment as a percentage of total employment</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -34922,12 +35182,182 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.fiber -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.fiber">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C170801b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of houses and buildings connected to optical fibre</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.firmbremp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.firmbremp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080300c</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Employment rate associated to newly created firms (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.firmsurvival -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.firmsurvival">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080300d</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3-year survival rate of firms (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.food_walk -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.food_walk">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
         <SDG:indicatorID>C020100a</SDG:indicatorID>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of people with access to at least one food shop within 15 minutes of walking</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.foreign -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.foreign">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080800e</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of foreign-born among the total population</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.forest -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.forest">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C150101b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tree cover as a percentage of total area in 2015</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gapdropout -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gapdropout">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C040501a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gender gap in the rate of early leavers (male-female, percentage points)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gapemp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gapemp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C050401a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gender gap in employment rate (male-female, percentage points)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gapempforeign -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gapempforeign">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080800d</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gender gap in employment rate for the foreign-born (male-female, percentage points)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gapneet -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gapneet">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C040501b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gender gap in the rate of young population (from 18 to 24 years old) not in education, employment or training (NEET) (female-male, percentage points)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gapptjob -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gapptjob">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C050401b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gender gap in part-time employment incidence (female-male, percentage points)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gapunemp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gapunemp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080502a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gender gap in unemployment rate (female-male, percentage points)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gdppcgr -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gdppcgr">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080101</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annual growth rate of real GDP per capita (%, from to 2008 to 2016-17)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gini_disp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gini_disp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C100100a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gini index of disposable income (after taxes and transfers) (from 0 to 1)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.goodracial -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.goodracial">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C200204a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population that believes their place of residence is a good place to live for migrants</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.goodsexual -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.goodsexual">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C200204b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population that believes their place of residence is a good place to live for gay or lesbian people</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.green_walk -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.green_walk">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C110701a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population with access to at least 1 hectare of green urban areas (parks) and forests within 15 minutes of walking</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gvamanufgdp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gvamanufgdp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C090201a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gross Value Added (GVA) in Manufacture (ISIC rev4) as a percentage of GDP</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -34942,12 +35372,52 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gvapwgr -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gvapwgr">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080201</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annual growth rate of real GVA per worker (%, from to 2008 to 2016-17)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gvapwmanuf -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gvapwmanuf">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C090201</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Productivity (Gross Value Added per worker) in Manufacture (ISIC rev4) (in constant 2010 USD PPP)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.healthcsat -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.healthcsat">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
         <SDG:indicatorID>C030802a</SDG:indicatorID>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of people satisfied with the availability or quality of healthcare</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.heatingdd -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.heatingdd">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C130201d</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heating degree-days needed to maintain an average building indoor temperature of 15.5 degree Celsius, 2004-2018</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.highmanu -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.highmanu">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C090202a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Employment in high-technology manufacturing as a percentage of total manufacturing employment</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -34972,6 +35442,16 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.inc -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.inc">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C100101a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Average disposable income per equivalised household (in USD PPP, constant prices of 2010)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.inc1quint -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.inc1quint">
@@ -34982,12 +35462,62 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.incmedian -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.incmedian">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C100100c</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Median disposable income per equivalised household (in USD PPP, constant prices of 2010)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.incomegr -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.incomegr">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C100101</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Growth in disposable income per capita (%, from 2008 to 2016-17)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.infmort -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.infmort">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
         <SDG:indicatorID>C030202a</SDG:indicatorID>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Infant mortality rate (number of deaths of children one year old or younger per 1 000 live births)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.inter -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.inter">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C170801a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of households with broadband internet access</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.judisat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.judisat">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C160300a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population that have confidence in judicial system and courts</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.knowlemp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.knowlemp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080200a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Employment in knowledge-intensive services as a percentage of total employment</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -35012,6 +35542,46 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.ltunemp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.ltunemp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080502b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Long term unemployment incidence (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.murd -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.murd">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C160101</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Homicides per 100 000 persons</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.neet -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.neet">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080601</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of young population (from 18 to 24 years old) not in education, employment or training (NEET)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.netfirmbr -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.netfirmbr">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080300e</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Net firm creation rate (%) (firm birth rate minus firm death rate)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.ntpov_disp -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.ntpov_disp">
@@ -35022,12 +35592,342 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.overqforeign -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.overqforeign">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080800c</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Over-qualification rates for the foreign-born (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.pa -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.pa">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C150501a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Terrestrial protected areas as a percentage of total area</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.patent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.patent">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C090500a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Patent applications (PCT) per 1 000 000 people</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.perfhosp_car -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.perfhosp_car">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C110201b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Performance of car transport network, ratio between accessibility and proximity to hospitals</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.perfhosp_pt -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.perfhosp_pt">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C110201a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Performance of public transport network, ratio between accessibility and proximity to hospitals</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.perfpop_car -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.perfpop_car">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C090100b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Performance of car transport network, ratio between accessibility and proximity to people</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.perfpop_pt -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.perfpop_pt">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C090100a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Performance of public transport network, ratio between accessibility and proximity to people</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.ptjob -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.ptjob">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080502c</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Part-time employment incidence (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.quintratio -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.quintratio">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C100100b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ratio between average disposable income of top and bottom quintiles</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.rdemp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.rdemp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C090502</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Research and development personnel as a share of total employment</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.rdempf -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.rdempf">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C050500a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Female research and development personnel as a percentage of total research and development employment</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.rdexp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.rdexp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C090501</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Research and Development expenditure as a proportion of GDP (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.recre_bike -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.recre_bike">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C110701b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population with access to at least one recreational opportunity (theatres, museums, cinemas, stadiums or cultural attractions) within 15 minutes of cycling</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.respwomen -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.respwomen">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C050101a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population that believe women are treated with respect and dignity in their country</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.rgpov_disp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.rgpov_disp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C100201</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population with a disposable income below the 60% of regional median disposable income</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.roadsat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.roadsat">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C090101a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population satisfied with roads and highways</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.rooms -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.rooms">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
         <SDG:indicatorID>C010400a</SDG:indicatorID>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rooms per person</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.safewalk -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.safewalk">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C160104</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population that feel safe walking alone at night around the area they live</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.school_pt -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.school_pt">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C040200a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of people with access to at least one school within 15 minutes of public transport</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.school_walk -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.school_walk">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C040200b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of people with access to at least one school within 20 minutes of walking</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.sh_exppm25 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.sh_exppm25">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C110602b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of people exposed to more than 10 µg/m³ (micrograms per cubic metre) of PM2.5</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shcoal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shcoal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C070201b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of total electricity production that comes from coal</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shfossil -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shfossil">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C070201c</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of total electricity production that comes from fossil fuels (natural gas and oil, excluding coal)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shnuclear -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shnuclear">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C070201d</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of total electricity production that comes from nuclear power</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shrenewable -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shrenewable">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C070201a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of total electricity production that comes from renewable sources</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transpsat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transpsat">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C110200a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population satisfied with the quality of public transportation systems</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.trustgov -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.trustgov">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C160602</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population that have confidence in the national government</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.trustpolice -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.trustpolice">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C160602a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population that have confidence in the local police force</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.unemp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.unemp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080502</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Unemployment rate (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.unempforeign -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.unempforeign">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C080800b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Unemployment rate of the foreign-born (%)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C150301b</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Artificial areas as a percentage of total area in 2015</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.waste -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.waste">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C120501</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Municipal waste rate (kilos per capita)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C060601a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Water bodies as percentage of total area in 2015</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.watersat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.watersat">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
+        <SDG:indicatorID>C06300a</SDG:indicatorID>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of population satisfied with quality of water</rdfs:comment>
     </owl:NamedIndividual>
     
 
