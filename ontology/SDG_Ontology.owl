@@ -757,6 +757,20 @@
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isDataPointFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isDataPointFor">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isDataSeriesFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isDataSeriesFor"/>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isIndicatorFor -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isIndicatorFor"/>
@@ -2646,6 +2660,22 @@
                 </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataPoint -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataPoint">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     </owl:Class>
     
 
@@ -34828,6 +34858,14 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.household_internet_access -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.household_internet_access">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipality.no.trondelag.trondheim -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipality.no.trondelag.trondheim">
@@ -36282,6 +36320,17 @@ dynamically available to the public in real time</rdfs:comment>
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.household_internet_access -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.household_internet_access">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.household_internet_access"/>
+        <SDG:kpiNumber>EC: ICT: ICT: 1C</SDG:kpiNumber>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of households with Internet access</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.household_sanitation -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.household_sanitation">
@@ -36328,16 +36377,6 @@ dynamically available to the public in real time</rdfs:comment>
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
         <SDG:kpiNumber>EC: I: B: 2A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of public buildings using integrated ICT systems to automate building management and create flexible, effective, comfortable and secure environment</rdfs:comment>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.internet -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.internet">
-        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
-        <SDG:kpiNumber>EC: ICT: ICT: 1C</SDG:kpiNumber>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of households with Internet access</rdfs:comment>
     </owl:NamedIndividual>
     
 
