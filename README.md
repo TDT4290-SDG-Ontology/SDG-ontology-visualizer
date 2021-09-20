@@ -66,3 +66,13 @@ To use the development container, follow these steps:
 3. In `frontend/`, run `docker-compose -f docker-compose-dev.yml up --build`
 
 4. The app should now be accesible at https://localhost:3000S
+
+### If changes are made to the ontology
+
+Sometimes, changes to the `/backend/database/ontology/SDG_Ontology.owl` file are made. To implement these into your database, you have to do the following:
+
+1. Before composing the backend Docker containers in Backend step 4, run `docker-compose -f docker-compose-backend.yml build --no-cache`.
+
+This forces the containers to rebuild with the new ontology.
+
+2. Continue with step 5 to 7 in the backend setup guide.
