@@ -777,6 +777,18 @@
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#linkedSDGIndicator -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#linkedSDGIndicator"/>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#linkedSDGSubgoal -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#linkedSDGSubgoal"/>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#userHasRole -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#userHasRole"/>
@@ -12710,6 +12722,18 @@ English: (For inital development, expansion of this class along with possible co
     
 
 
+    <!-- http://metadata.un.org/sdg/C010501 -->
+
+    <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/C010501">
+        <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#SDGIndicator"/>
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <ontology:isIndicatorOf rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#1.5"/>
+        <rdfs:comment xml:lang="en">TODO: Add data series links</rdfs:comment>
+        <skos:prefLabel xml:lang="en">Number of deaths, missing persons and directly affected persons attributed to disasters per 100,000 population</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://metadata.un.org/sdg/C010502 -->
 
     <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/C010502">
@@ -12755,6 +12779,18 @@ English: (For inital development, expansion of this class along with possible co
         <skos:prefLabel xml:lang="en">Direct economic loss attributed to disasters in relation to global gross domestic product (GDP)</skos:prefLabel>
         <skos:prefLabel xml:lang="fr">Pertes économiques directement attribuables à des catastrophes par rapport au produit intérieur brut mondial (PIB)</skos:prefLabel>
         <skos:prefLabel xml:lang="es">Pérdidas económicas directas atribuidas a los desastres en relación con el producto interno bruto (PIB) mundial</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://metadata.un.org/sdg/C010503 -->
+
+    <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/C010503">
+        <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#SDGIndicator"/>
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <SDG:isIndicatorFor rdf:resource="http://metadata.un.org/sdg/1.5"/>
+        <rdfs:comment xml:lang="en">TODO: add dataseries links</rdfs:comment>
+        <skos:prefLabel xml:lang="en">umber of countries that adopt and implement national disaster risk reduction strategies in line with the Sendai Framework for Disaster Risk Reduction 2015–2030</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -16390,6 +16426,18 @@ English: (For inital development, expansion of this class along with possible co
     
 
 
+    <!-- http://metadata.un.org/sdg/C110501 -->
+
+    <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/C110501">
+        <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#SDGIndicator"/>
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <SDG:isIndicatorFor rdf:resource="http://metadata.un.org/sdg/11.5"/>
+        <rdfs:comment xml:lang="en">Number of deaths, missing persons and directly affected persons attributed to disasters per 100,000 population</rdfs:comment>
+        <rdfs:comment xml:lang="en">TODO: dataseries links</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://metadata.un.org/sdg/C110502 -->
 
     <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/C110502">
@@ -16575,6 +16623,18 @@ English: (For inital development, expansion of this class along with possible co
         <skos:prefLabel xml:lang="es">Proporción de la población residente en ciudades que aplican planes de desarrollo urbano y regional que tienen en cuenta las previsiones demográficas y las necesidades de recursos, desglosada por tamaño de ciudad</skos:prefLabel>
         <skos:prefLabel xml:lang="fr">Proportion d’habitants vivant dans des villes qui mettent en œuvre des plans de développement urbains et régionaux tenant compte des projections démographiques et des ressources nécessaires, selon la taille de la ville</skos:prefLabel>
         <skos:prefLabel xml:lang="en">Proportion of population living in cities that implement urban and regional development plans integrating population projections and resource needs, by size of city</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://metadata.un.org/sdg/C110b01 -->
+
+    <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/C110b01">
+        <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#SDGIndicator"/>
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <SDG:isIndicatorFor rdf:resource="http://metadata.un.org/sdg/11.b"/>
+        <rdfs:comment xml:lang="en">Number of countries that adopt and implement national disaster risk reduction strategies in line with the Sendai Framework for Disaster Risk Reduction 2015–2030</rdfs:comment>
+        <rdfs:comment xml:lang="en">TODO: dataseries links</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -16892,6 +16952,30 @@ English: (For inital development, expansion of this class along with possible co
         <skos:prefLabel xml:lang="en">Amount of fossil-fuel subsidies per unit of GDP (production and consumption) and as a proportion of total national expenditure on fossil fuels</skos:prefLabel>
         <skos:prefLabel xml:lang="es">Cuantía de los subsidios a los combustibles fósiles por unidad de PIB (producción y consumo) y en proporción al total de los gastos nacionales en combustibles fósiles</skos:prefLabel>
         <skos:prefLabel xml:lang="fr">Montant des subventions aux combustibles fossiles par unité de PIB (production et consommation) et en proportion des dépenses nationales totales consacrées à ces combustibles</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://metadata.un.org/sdg/C130101 -->
+
+    <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/C130101">
+        <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#SDGIndicator"/>
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <SDG:isIndicatorFor rdf:resource="http://metadata.un.org/sdg/13.1"/>
+        <rdfs:comment xml:lang="en">TODO: dataseries links</rdfs:comment>
+        <skos:prefLabel xml:lang="en">Number of deaths, missing persons and directly affected persons attributed to disasters per 100,000 population</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://metadata.un.org/sdg/C130102 -->
+
+    <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/C130102">
+        <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#SDGIndicator"/>
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <SDG:isIndicatorFor rdf:resource="http://metadata.un.org/sdg/13.1"/>
+        <rdfs:comment xml:lang="en">Number of countries that adopt and implement national disaster risk reduction strategies in line with the Sendai Framework for Disaster Risk Reduction 2015–2030</rdfs:comment>
+        <rdfs:comment xml:lang="en">TODO: dataseries links</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -34862,6 +34946,7 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.household_internet_access">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.household_internet_access"/>
     </owl:NamedIndividual>
     
 
@@ -36017,6 +36102,7 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.EMF_exposure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/16.b"/>
         <SDG:kpiNumber>EN: EN: EQ: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of mobile network antenna sites in compliance with WHO endorsed Electromagnetic Fields (EMF) exposure guidelines</rdfs:comment>
     </owl:NamedIndividual>
@@ -36027,6 +36113,10 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.GHG_emissions">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C130201"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C130b01"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.6"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#13.2"/>
         <SDG:kpiNumber>EN: EN: AQ: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Greenhouse gas (GHG) emissions per capita</rdfs:comment>
     </owl:NamedIndividual>
@@ -36037,6 +36127,8 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.access_electricity">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C070101"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/7.1"/>
         <SDG:kpiNumber>EC: I: ES: 3C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of households with authorized access to electricity</rdfs:comment>
     </owl:NamedIndividual>
@@ -36047,6 +36139,8 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.adult_literacy">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C040601"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/4.6"/>
         <SDG:kpiNumber>SC: EH: ED: 4C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Adult literacy rate</rdfs:comment>
     </owl:NamedIndividual>
@@ -36057,6 +36151,8 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C110602"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.6"/>
         <SDG:kpiNumber>EN: EN: AQ: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Air quality index (AQI) based on reported value for:
 Particulate matter (PM10, and PM2.5),
@@ -36073,6 +36169,7 @@ O3 (ozone).</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.bicycle_network">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.2"/>
         <SDG:kpiNumber>EC: I: T: 3C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Length of bicycle paths and lanes per 100,000 population</rdfs:comment>
     </owl:NamedIndividual>
@@ -36083,6 +36180,9 @@ O3 (ozone).</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.child_care_availability">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/10.4"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/4.2"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/5.5"/>
         <SDG:kpiNumber>SC: SH: SI: 5A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of pre-school age children (0-3) covered by (public and private) day-care centres</rdfs:comment>
     </owl:NamedIndividual>
@@ -36093,6 +36193,7 @@ O3 (ozone).</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.cultural_expenditure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.4"/>
         <SDG:kpiNumber>SA: EH: C: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage expenditure on city cultural heritage</rdfs:comment>
     </owl:NamedIndividual>
@@ -36103,6 +36204,7 @@ O3 (ozone).</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.cultural_infrastructure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.4"/>
         <SDG:kpiNumber>SC: EH: C: 2A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of the cultural institutions per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36113,6 +36215,7 @@ O3 (ozone).</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.demand_response_penetration">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/7.3"/>
         <SDG:kpiNumber>EC: ICT: ES: 3A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of electricity customers with demand response capabilities</rdfs:comment>
     </owl:NamedIndividual>
@@ -36123,6 +36226,8 @@ O3 (ozone).</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.disaster_related_economic_loss">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C010502"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/1.5"/>
         <SDG:kpiNumber>SC: SH: SA: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Economic losses (related to natural disasters) as a percentage of the city’s gross domestic product (GDP)</rdfs:comment>
     </owl:NamedIndividual>
@@ -36133,6 +36238,8 @@ O3 (ozone).</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.drinking_water_quality">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C060101"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/6.1"/>
         <SDG:kpiNumber>EN: EN: WS: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of households covered by an audited Water Safety Plan</rdfs:comment>
     </owl:NamedIndividual>
@@ -36143,6 +36250,7 @@ O3 (ozone).</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.dynamic_public_trans_inf">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.2"/>
         <SDG:kpiNumber>EC: ICT: T: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of urban public transport stops for which traveller information is
 dynamically available to the public in real time</rdfs:comment>
@@ -36154,6 +36262,8 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.e_government">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/16.6"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#16.7"/>
         <SDG:kpiNumber>EC: ICT: PS: 2A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of public services delivered through electronic means</rdfs:comment>
     </owl:NamedIndividual>
@@ -36164,6 +36274,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electricity_consumption">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/7.3"/>
         <SDG:kpiNumber>EN: E: E: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Electricity consumption per capita</rdfs:comment>
     </owl:NamedIndividual>
@@ -36174,6 +36285,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electricity_outage_time">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#7.1"/>
         <SDG:kpiNumber>EC: I: ES: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Average length of electrical interruptions</rdfs:comment>
     </owl:NamedIndividual>
@@ -36184,6 +36296,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electricity_supply_ict_mon">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#7.3"/>
         <SDG:kpiNumber>EC: ICT: ES: 2A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of electricity supply system monitored by ICT</rdfs:comment>
     </owl:NamedIndividual>
@@ -36194,6 +36307,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electricity_system_outage_freq">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/7.1"/>
         <SDG:kpiNumber>EC: I: ES: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Average number of electrical interruptions per customer per year</rdfs:comment>
     </owl:NamedIndividual>
@@ -36204,6 +36318,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electronic_health_records">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/3.d"/>
         <SDG:kpiNumber>SC: EH: ED: 5A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The percentage of city inhabitants with complete health records electronically accessible to all health providers</rdfs:comment>
     </owl:NamedIndividual>
@@ -36214,6 +36329,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.emergency_response_time">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/3.d"/>
         <SDG:kpiNumber>SC: SH: SA: 5C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Average response time for Emergency Services</rdfs:comment>
     </owl:NamedIndividual>
@@ -36224,6 +36340,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.expenditure_housing">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/11.1"/>
         <SDG:kpiNumber>SC: SH: HO: 2A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage share of income expenditure for housing</rdfs:comment>
     </owl:NamedIndividual>
@@ -36234,6 +36351,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.fire_service">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/3.d"/>
         <SDG:kpiNumber>SC: SH: SA: 7C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of firefighters per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36244,6 +36362,10 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.fixed_broadband">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C170602"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C170801"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#17.6"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#17.8"/>
         <SDG:kpiNumber>EC: ICT: ICT: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of households with fixed (wired) broadband</rdfs:comment>
     </owl:NamedIndividual>
@@ -36254,6 +36376,8 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.food_production">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/2.4"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#2.c"/>
         <SDG:kpiNumber>SC: SH: FS: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of local food supplied from within 100 km of the urban area</rdfs:comment>
     </owl:NamedIndividual>
@@ -36264,6 +36388,8 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.freshwater_consumption">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C060402"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/6.4"/>
         <SDG:kpiNumber>EN: EN: WS: 3C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of water consumed from freshwater sources</rdfs:comment>
     </owl:NamedIndividual>
@@ -36274,6 +36400,8 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gender_income_equality">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C080501"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/8.5"/>
         <SDG:kpiNumber>SC: SH: SI: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ratio of average hourly earnings of female to male workers</rdfs:comment>
     </owl:NamedIndividual>
@@ -36284,6 +36412,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gini_coefficient">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/10.2"/>
         <SDG:kpiNumber>SC: SH: SI: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Income distribution in accordance with Gini coefficient</rdfs:comment>
     </owl:NamedIndividual>
@@ -36294,6 +36423,8 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.green_area_accessibility">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C110701"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/11.7"/>
         <SDG:kpiNumber>EN: EN: PSN: 2A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of inhabitants with accessibility to green areas</rdfs:comment>
     </owl:NamedIndividual>
@@ -36304,6 +36435,8 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.green_areas">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C110701"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/11.7"/>
         <SDG:kpiNumber>EN: EN: PSN: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Green area per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36314,6 +36447,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.higher_education_degrees">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/4.3"/>
         <SDG:kpiNumber>SC: EH: ED: 3C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Higher level education degrees per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36324,7 +36458,8 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.household_internet_access">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
-        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.household_internet_access"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C170801"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#17.8"/>
         <SDG:kpiNumber>EC: ICT: ICT: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of households with Internet access</rdfs:comment>
     </owl:NamedIndividual>
@@ -36335,6 +36470,8 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.household_sanitation">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C060201"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/6.2"/>
         <SDG:kpiNumber>EC: I: WS: 5C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of the city households with access to basic sanitation facilities</rdfs:comment>
     </owl:NamedIndividual>
@@ -36345,6 +36482,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.ict_sector_employment">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/8.3"/>
         <SDG:kpiNumber>EC: P: EM: 4C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of employees involved with ICT</rdfs:comment>
     </owl:NamedIndividual>
@@ -36355,6 +36493,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.in_patient_hospital_beds">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#3.8"/>
         <SDG:kpiNumber>SC: EH: H: 4A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of in-patient public hospital beds per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36365,6 +36504,8 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.informal_settlements">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C110101"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/11.1"/>
         <SDG:kpiNumber>SC: SH: HO: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of city inhabitants living in slums, informal settlements or inadequate housing</rdfs:comment>
     </owl:NamedIndividual>
@@ -36375,6 +36516,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.integrated_building_management_systems">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/11.c"/>
         <SDG:kpiNumber>EC: I: B: 2A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of public buildings using integrated ICT systems to automate building management and create flexible, effective, comfortable and secure environment</rdfs:comment>
     </owl:NamedIndividual>
@@ -36385,6 +36527,7 @@ dynamically available to the public in real time</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.intersection_control">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.2"/>
         <SDG:kpiNumber>EC: ICT: T: 3A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of road intersections using adaptive traffic control or prioritization
 measures</rdfs:comment>
@@ -36396,6 +36539,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.life_expectancy">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/3.4"/>
         <SDG:kpiNumber>SC: EH: H:1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Average life expectancy</rdfs:comment>
     </owl:NamedIndividual>
@@ -36406,6 +36550,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.low_carbon_passenger_vehicles">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.2"/>
         <SDG:kpiNumber>EC: I: T: 8A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of low-carbon emission passenger vehicles</rdfs:comment>
     </owl:NamedIndividual>
@@ -36416,6 +36561,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.maternal_mortality_rate">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C030101"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#3.1"/>
         <SDG:kpiNumber>SC: EH: H: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Maternal deaths per 100,000 live births</rdfs:comment>
     </owl:NamedIndividual>
@@ -36426,6 +36573,11 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.natural_disaster_related_deaths">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C010501"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C110501"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C130101"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/13.1"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#1.5"/>
         <SDG:kpiNumber>SC: SH: SA: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of natural disaster related deaths per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36436,6 +36588,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.nopise_exposure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.6"/>
         <SDG:kpiNumber>EN: EN: EQ: 2A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of city inhabitants exposed to excessive noise levels</rdfs:comment>
     </owl:NamedIndividual>
@@ -36446,6 +36599,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.open_data">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/16.6"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#16.7"/>
         <SDG:kpiNumber>EC: ICT: PS: 1A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage and number of inventoried open datasets that are published</rdfs:comment>
     </owl:NamedIndividual>
@@ -36456,6 +36611,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.patents">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#9.b"/>
         <SDG:kpiNumber>EC: P: IN: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of new patents granted per 100,000 inhabitants per year</rdfs:comment>
     </owl:NamedIndividual>
@@ -36466,6 +36622,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.pedestrian_infrastructure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/11.3"/>
         <SDG:kpiNumber>EC: I: UP: 1A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of the city designated as a pedestrian/car free zone</rdfs:comment>
     </owl:NamedIndividual>
@@ -36476,6 +36633,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.physicians">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C030c01"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/3.1"/>
         <SDG:kpiNumber>SC: EH: H:3C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of physicians per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36486,6 +36645,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.police_service">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/3.d"/>
         <SDG:kpiNumber>SC: SH: SA: 6C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of police officers per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36496,6 +36656,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.population_disaster_prone_areas">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/1.5"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/11.b"/>
         <SDG:kpiNumber>SC: SH: SA: 4A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of inhabitants living in natural hazards prone areas</rdfs:comment>
     </owl:NamedIndividual>
@@ -36506,6 +36668,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.potable_water_supply">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C060101"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#6.1"/>
         <SDG:kpiNumber>EC: I: WS: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of households with a safely managed drinking water service</rdfs:comment>
     </owl:NamedIndividual>
@@ -36516,6 +36680,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.poverty_share">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/1.1"/>
         <SDG:kpiNumber>SC: SH: SI: 3C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of city inhabitants living in income poverty</rdfs:comment>
     </owl:NamedIndividual>
@@ -36526,6 +36691,9 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.protected_natural_areas">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C150102"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/15.1"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#14.5"/>
         <SDG:kpiNumber>EN: EN: PSN: 3A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of city area protected as natural sites</rdfs:comment>
     </owl:NamedIndividual>
@@ -36536,6 +36704,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_building_energy_consumption">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/7.3"/>
         <SDG:kpiNumber>EN: E: E: 4A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annual energy consumption of public buildings</rdfs:comment>
     </owl:NamedIndividual>
@@ -36546,6 +36715,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_building_sustainability">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/11.3"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#7.3"/>
         <SDG:kpiNumber>EC: I: B: 1A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage area of public buildings with recognized sustainability certifications for ongoing operations</rdfs:comment>
     </owl:NamedIndividual>
@@ -36556,6 +36727,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_health_coverage">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/3.8"/>
         <SDG:kpiNumber>SA: EH: H: 5A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of city inhabitants covered by basic health insurance program or a public health system</rdfs:comment>
     </owl:NamedIndividual>
@@ -36566,6 +36738,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_sector_e_procurement">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/16.6"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#16.7"/>
         <SDG:kpiNumber>EC: ICT: PS: 3A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of public sector procurement activities that are conducted electronically</rdfs:comment>
     </owl:NamedIndividual>
@@ -36576,6 +36750,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_transport_convenience">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.2"/>
         <SDG:kpiNumber>EC: I: T: 2A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of the city population that has convenient access (within 0.5 km) to public transport</rdfs:comment>
     </owl:NamedIndividual>
@@ -36586,6 +36761,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_transport_network">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.2"/>
         <SDG:kpiNumber>EC: I: T: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Length of public transport network per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36596,6 +36772,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.r_d_expenditure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C090501"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/9.5"/>
         <SDG:kpiNumber>EC: P: IN: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Research and Development expenditure as a percentage of city GDP</rdfs:comment>
     </owl:NamedIndividual>
@@ -36606,6 +36784,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.recreational_facilities">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C110701"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/11.7"/>
         <SDG:kpiNumber>EN: EN: PSN: 4A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Area of total public recreational facilities per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36616,6 +36796,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.renewable_energy_consumption">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C070201"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/7.2"/>
         <SDG:kpiNumber>EN: E: E: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of renewable energy consumed in the city</rdfs:comment>
     </owl:NamedIndividual>
@@ -36626,6 +36808,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.residential_thermal_energy_consumption">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#7.3"/>
         <SDG:kpiNumber>EN: E: E: 3C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Residential thermal energy consumption per capita</rdfs:comment>
     </owl:NamedIndividual>
@@ -36636,6 +36819,10 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.resilience_plans">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C010503"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C110b01"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C130102"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.b"/>
         <SDG:kpiNumber>SC: SH: SA: 3A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This involves implementation of risk and vulnerability assessments, financial (capital and operating) plans and technical systems for disaster mitigation addressing natural and human induced disasters and hazards</rdfs:comment>
     </owl:NamedIndividual>
@@ -36646,6 +36833,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.school_enrolment">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/4.1"/>
         <SDG:kpiNumber>SC: EH: ED:2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of school-aged population enrolled in schools</rdfs:comment>
     </owl:NamedIndividual>
@@ -36656,6 +36844,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shared_bicycles">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.2"/>
         <SDG:kpiNumber>EC: I: T: 6A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of shared bicycles per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36666,6 +36855,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shared_vehicles">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.2"/>
         <SDG:kpiNumber>EC: I: T: 7A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of shared vehicles per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36676,6 +36866,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.small_medium_enterprises">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C090301"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/9.3"/>
         <SDG:kpiNumber>EC: P: IN: 3A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of small and medium-sized enterprises (SMEs)</rdfs:comment>
     </owl:NamedIndividual>
@@ -36686,6 +36878,7 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.smart_electricity_meters">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/7.3"/>
         <SDG:kpiNumber>EC: ICT: ES: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage implementation of smart electricity meters</rdfs:comment>
     </owl:NamedIndividual>
@@ -36696,6 +36889,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.smart_water_meters">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C060401"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/6.4"/>
         <SDG:kpiNumber>EC: ICT: WS: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage implementation of smart water meters</rdfs:comment>
     </owl:NamedIndividual>
@@ -36706,6 +36901,10 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_collection">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C110601"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C120402"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/12.4"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.6"/>
         <SDG:kpiNumber>EC: I: WA: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of city households with regular solid waste collection</rdfs:comment>
     </owl:NamedIndividual>
@@ -36716,6 +36915,8 @@ measures</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C110601"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.6"/>
         <SDG:kpiNumber>EN: EN: WA: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The percentage of solid waste dealt with in the following ways should be reported
 on:
@@ -36734,6 +36935,11 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.student_ICT_access">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C040401"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C040a01"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/4.4"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#4.a"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#5.b"/>
         <SDG:kpiNumber>SC: EH: ED:1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of students with classroom access to ICT facilities</rdfs:comment>
     </owl:NamedIndividual>
@@ -36744,6 +36950,8 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.tourism_industry_employment">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C080901"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/8.9"/>
         <SDG:kpiNumber>EC: P: EM: 3C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of the city-related labour force working in the tourism industry</rdfs:comment>
     </owl:NamedIndividual>
@@ -36754,6 +36962,8 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.traffic_fatalities">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C030601"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/3.6"/>
         <SDG:kpiNumber>SC: SH: SA: 9C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Traffic fatalities per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36764,6 +36974,7 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.traffic_mon">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.2"/>
         <SDG:kpiNumber>EC: ICT: T: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of major streets monitored by ICT</rdfs:comment>
     </owl:NamedIndividual>
@@ -36774,6 +36985,7 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.2"/>
         <SDG:kpiNumber>EC: I: T: 4A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The percentage of people using various forms of transportation to travel to work</rdfs:comment>
     </owl:NamedIndividual>
@@ -36784,6 +36996,7 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.travel_time_index">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.2"/>
         <SDG:kpiNumber>EC: I: T: 5A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ratio of travel time during peak periods to travel time at free flow periods</rdfs:comment>
     </owl:NamedIndividual>
@@ -36794,6 +37007,8 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.unemployment_rate">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C080502"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/8.5"/>
         <SDG:kpiNumber>EC: P: EM: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of the total city labour force that is unemployed</rdfs:comment>
     </owl:NamedIndividual>
@@ -36804,6 +37019,8 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C110a01"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/11.3"/>
         <SDG:kpiNumber>EC: I: UP: 2A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Existence of urban development and spatial planning strategies or documents at the city level</rdfs:comment>
     </owl:NamedIndividual>
@@ -36814,6 +37031,9 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.violent_crime_rate">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C160301"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#16.1"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#16.3"/>
         <SDG:kpiNumber>SC: SH: SA: 8C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Violent crime rate per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36824,6 +37044,9 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.voter_participation">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C110302"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/11.3"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#16.7"/>
         <SDG:kpiNumber>SC: SH: SI: 4C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of the eligible population that voted during the last municipal election</rdfs:comment>
     </owl:NamedIndividual>
@@ -36834,6 +37057,7 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_collection">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#6.3"/>
         <SDG:kpiNumber>EC: I: WS: 4C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of households served by wastewater collection</rdfs:comment>
     </owl:NamedIndividual>
@@ -36844,6 +37068,8 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_treatment">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C060301"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/6.3"/>
         <SDG:kpiNumber>EN: EN: WS: 3C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of wastewater receiving treatment (Primary, Secondary, Tertiary)</rdfs:comment>
     </owl:NamedIndividual>
@@ -36854,6 +37080,8 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_consumption">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C060401"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#6.4"/>
         <SDG:kpiNumber>EN: EN: WS: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Total water consumption per capita</rdfs:comment>
     </owl:NamedIndividual>
@@ -36864,6 +37092,8 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_supply">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C060101"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/6.1"/>
         <SDG:kpiNumber>EC: I: WS: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of city households with access to a basic water supply</rdfs:comment>
     </owl:NamedIndividual>
@@ -36874,6 +37104,8 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_supply_ict_mon">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C060401"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#6.4"/>
         <SDG:kpiNumber>EC: ICT: WS: 2A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of the water distribution system monitored by ICT</rdfs:comment>
     </owl:NamedIndividual>
@@ -36884,6 +37116,7 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_supply_loss">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/6.4"/>
         <SDG:kpiNumber>EC: I: WS: 3C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of water loss in the water distribution system</rdfs:comment>
     </owl:NamedIndividual>
@@ -36894,6 +37127,7 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_system_ict_mon">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#6.2"/>
         <SDG:kpiNumber>EC: ICT: D: 1A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of drainage / storm water system monitored by ICT</rdfs:comment>
     </owl:NamedIndividual>
@@ -36904,6 +37138,7 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wifi_public_areas">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/9.c"/>
         <SDG:kpiNumber>EC: ICT: ICT: 5C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of (public) WIFI hotspots in the city</rdfs:comment>
     </owl:NamedIndividual>
@@ -36914,6 +37149,12 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wireless_broadband">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C090c01"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C150801"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C170801"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/9.c"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#15.8"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#17.8"/>
         <SDG:kpiNumber>EC: ICT: ICT: 3C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wireless broadband subscriptions per 100,000 inhabitants</rdfs:comment>
     </owl:NamedIndividual>
@@ -36924,6 +37165,12 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wireless_broadband_coverage">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C090c01"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C150801"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C170801"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/9.c"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#15.8"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#17.8"/>
         <SDG:kpiNumber>EC: ICT: ICT: 4C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of the city served by wireless broadband (by technology)</rdfs:comment>
     </owl:NamedIndividual>
@@ -36934,6 +37181,8 @@ Each treatment should be reported separately.</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.youth_unemployment_rate">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
+        <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C080502"/>
+        <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#8.5"/>
         <SDG:kpiNumber>EC: P: EM: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of the city youth labour force that is unemployed</rdfs:comment>
     </owl:NamedIndividual>
