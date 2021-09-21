@@ -42,3 +42,7 @@ export type OntologyArrayResponse = Response<Array<Ontology>>;
 export type SingleOntologyResponse = Response<Ontology>;
 
 export type AnnotationResponse = Response<Annotation>;
+
+export type ClassRequest = Request<{}>;
+
+export type SetResponse = Response<string>;
