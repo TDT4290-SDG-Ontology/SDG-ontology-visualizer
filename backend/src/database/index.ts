@@ -15,6 +15,10 @@ export const PREFIXES = {
     prefix: 'schema',
     iri: 'http://schema.org/',
   },
+  UNSDG: {
+    prefix: 'unsdg',
+    iri: 'http://metadata.un.org/sdg/',
+  },
 };
 
 export default new EnapsoGraphDBClient.Endpoint({

@@ -1,13 +1,14 @@
+import { DataPoint } from 'types/ontologyTypes';
 import { ApiError } from '../types/errorTypes';
 import DB from './index';
 import setData from './queries/setData';
 
-
-export default async (newClass: any): Promise<string> => {
-  const query = setData(newClass);
-  if (!newClass) {
+export default async (newDataPoint: DataPoint): Promise<any> => {
+  if (!newDataPoint) {
     throw new ApiError(400, 'Could not parse ontology entity from the given class ID');
   }
-  const response = await DB.query(query, { transform: 'toString' });
-  return response;
+
+  const query = setData(newDataPoint);
+  const resp = await DB.update(query, { transform: 'toJSON' });
+  return resp;
 };

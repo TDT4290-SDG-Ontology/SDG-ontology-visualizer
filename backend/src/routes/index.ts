@@ -2,12 +2,12 @@ import { Router } from 'express';
 
 import ontologies from './ontologies';
 import authorization from './authorization';
-import dataEntry from './dataEntry';
+import data from './data';
 
 const router = Router();
 
 router.use('/ontologies', ontologies);
 router.use('/auth', authorization);
-router.use('/dataEntry', dataEntry);
+router.use('/data', data);
 
 export default router;

@@ -13,7 +13,7 @@
  */
 
 import { Request, Response } from 'express';
-import { Annotation, Node, Ontology } from './ontologyTypes';
+import { Annotation, Node, Ontology, DataPoint } from './ontologyTypes';
 
 type RegexQueryParams = {
   search?: string;
@@ -22,6 +22,10 @@ type RegexQueryParams = {
 
 type ClassIdParams = {
   classId: string;
+};
+
+type DataSeriesParams = {
+  kpiNumber: string;
 };
 
 export type EmptyRequest = Request;
@@ -35,6 +39,8 @@ export type RegexRequest = Request<{}, {}, {}, RegexQueryParams>;
 
 export type ClassIdRequest = Request<ClassIdParams>;
 
+export type DataSeriesRequest = Request<DataSeriesParams>;
+
 export type NodeArrayResponse = Response<Array<Node>>;
 
 export type OntologyArrayResponse = Response<Array<Ontology>>;
@@ -43,6 +49,6 @@ export type SingleOntologyResponse = Response<Ontology>;
 
 export type AnnotationResponse = Response<Annotation>;
 
-export type ClassRequest = Request<{}>;
+export type DataPointRequest = Request<DataPoint>;
 
 export type SetResponse = Response<string>;
