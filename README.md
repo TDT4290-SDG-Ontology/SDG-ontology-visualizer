@@ -52,3 +52,27 @@ If you only want to run the GraphDB-database, replace `docker-compose-backend.ym
 3. In `frontend/`, run `docker-compose up --build`
 
 4. The app should now be accesible at https://localhost
+
+### Frontend (development)
+
+You can also develop using a devserver on a Docker container. It uses Docker-volumes to ensure that the container's workspace matches the codebase on your computer. This means that hot-reloading will work the same way as if you ran the devserver locally.
+
+To use the development container, follow these steps:
+
+1. Make sure the API is available on http://localhost:3001 (follow the steps above)
+
+2. Copy the `frontend/.env.example`-file, and rename the copy `.env` (if you haven't done so already).
+
+3. In `frontend/`, run `docker-compose -f docker-compose-dev.yml up --build`
+
+4. The app should now be accesible at http://localhost:3000
+
+### If changes are made to the ontology
+
+Sometimes, changes to the `/backend/database/ontology/SDG_Ontology.owl` file are made. To implement these into your database, you have to do the following:
+
+1. Before composing the backend Docker containers in Backend step 4, run `docker-compose -f docker-compose-backend.yml build --no-cache`.
+
+This forces the containers to rebuild with the new ontology.
+
+2. Continue with step 5 to 7 in the backend setup guide.
