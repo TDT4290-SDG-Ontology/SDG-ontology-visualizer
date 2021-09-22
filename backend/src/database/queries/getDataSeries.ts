@@ -9,7 +9,7 @@ export default (kpiNumber: string): string => {
         SELECT *
         WHERE {
             ?ind rdf:type SDG:U4SSCIndicator.
-            ?ind SDG:kpiNumber ${kpiNumber}.
+            ?ind SDG:kpiNumber "${kpiNumber}".
             ?ds SDG:isDataSeriesFor ?ind.
             ?dp SDG:datapointForSeries ?ds.
             ?dp SDG:datapointValue ?value.
