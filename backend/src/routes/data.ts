@@ -14,8 +14,8 @@ const insertData = async (req: Request, res: Response) => {
     const year = parseInt(req.body.year, 10);
     if (Number.isNaN(year)) throw new ApiError(400, 'Year not an int.');
 
-    const indicatorName:string | undefined = u4sscKpiMap.get(req.body.indicator);
-    if (indicatorName === undefined || !(typeof indicatorName === "string"))
+    const indicatorName: string | undefined = u4sscKpiMap.get(req.body.indicator);
+    if (indicatorName === undefined || !(typeof indicatorName === 'string'))
       throw new ApiError(400, 'Unknown indicator');
 
     const newDataPoint = {
@@ -28,7 +28,7 @@ const insertData = async (req: Request, res: Response) => {
       dataseries: req.body.dataseries,
     };
 
-    const promise = await setData(newDataPoint);
+    await setData(newDataPoint);
     res.status(200).json({});
   } catch (e: any) {
     onError(e, req, res);

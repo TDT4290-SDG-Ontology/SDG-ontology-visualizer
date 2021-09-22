@@ -1,9 +1,5 @@
-import {
-  mapIdToOntologyEntity,
-  parseOntologyEntityToQuery,
-  parsePrefixesToQuery,
-} from '../../common/database';
 import { DataPoint } from 'types/ontologyTypes';
+import { parsePrefixesToQuery } from '../../common/database';
 import { PREFIXES } from '../index';
 
 export default (obj: DataPoint): string => {

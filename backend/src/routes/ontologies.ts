@@ -17,7 +17,6 @@ import {
   NodeArrayResponse,
   OntologyArrayResponse,
   RegexRequest,
-  DataSeriesRequest
 } from '../types/routerTypes';
 import onError from './middleware/onError';
 import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
@@ -108,7 +107,7 @@ const regexSearch = async (req: RegexRequest, res: NodeArrayResponse) => {
   }
 };
 
-const getDataPointsForDataSeries= async (req: Request, res: Response) => {
+const getDataPointsForDataSeries = async (req: Request, res: Response) => {
   try {
     const data = await getDataSeries(req.body.kpiNumber);
     res.json(data);
@@ -127,6 +126,5 @@ router.get('/tradeoff/:classId', verifyDatabaseAccess, getTradeOffToNodes);
 router.get('/developmentarea/:classId', verifyDatabaseAccess, getDevelopmentAreaToNodes);
 router.get('/subgoals/:classId', verifyDatabaseAccess, getSubGoalsfromSDG);
 router.get('/dataseries', verifyDatabaseAccess, getDataPointsForDataSeries); // TODO: Make a proper get endpoint instead
-
 
 export default router;

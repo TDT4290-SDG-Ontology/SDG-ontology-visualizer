@@ -17,8 +17,8 @@ export const PREFIXES = {
   },
   UNSDG: {
     prefix: 'unsdg',
-    iri: 'http://metadata.un.org/sdg/'
-  }
+    iri: 'http://metadata.un.org/sdg/',
+  },
 };
 
 export default new EnapsoGraphDBClient.Endpoint({
