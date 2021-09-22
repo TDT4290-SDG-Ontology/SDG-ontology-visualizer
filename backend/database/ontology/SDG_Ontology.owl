@@ -862,6 +862,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapointYear -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapointYear">
+        <rdfs:comment>Year for which the datapoint is valid.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#harKorrelasjonsIndex -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#harKorrelasjonsIndex">
@@ -888,6 +896,12 @@
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#kpiNumber -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#kpiNumber"/>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipalityCode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipalityCode"/>
     
 
 
@@ -35138,6 +35152,7 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipality.no.trondelag.trondheim">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#Municipality"/>
         <SDG:inRegion rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#region.no.trondelag"/>
+        <SDG:municipalityCode>no.5001</SDG:municipalityCode>
     </owl:NamedIndividual>
     
 
