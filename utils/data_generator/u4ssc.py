@@ -45,7 +45,7 @@ def pct(id, name, desc = "", **kwargs):
 	return IndicatorGenerator(id, kwargs.get("datasets", ["main"]), 0, 100)
 
 def pct_abs(id, name, desc = "", **kwargs):
-	return IndicatorGeneratorSet(id, [IndicatorGenerator(id, ["percentage"], 0, 100), IndicatorGenerator(id, ["number"], 0, ABS_LIMIT)])
+	return IndicatorGeneratorSet(id, [IndicatorGenerator(id, ["percent"], 0, 100), IndicatorGenerator(id, ["number"], 0, ABS_LIMIT)])
 
 # n
 def abs(id, name, desc = "", **kwargs):
@@ -70,7 +70,7 @@ indicators = [
 	pct("EC: ICT: ICT: 1C", 	"Household internet access"),
 	pct("EC: ICT: ICT: 2C", 	"Fixed broadband subscriptions", "Percentage of households with fixed (wired) broadband"),
 	rel("EC: ICT: ICT: 3C", 	"Wireless broadband subscriptions"),
-	pct("EC: ICT: ICT: 4C", 	"Wireless broadband coverage", "Percentage of city served by wireless broadband, per tech", datasets = ["3G", "4G"]),
+	pct("EC: ICT: ICT: 4C", 	"Wireless broadband coverage", "Percentage of city served by wireless broadband, per tech", datasets = ["3g", "4g"]),
 	abs("EC: ICT: ICT: 5C", 	"Availability of WIFI in public areas", "Number of public WIFI hotspots in city"),
 	pct("EC: ICT: WS: 1C", 		"Smart water meters", "Percentage implementation of smart water meters"),
 	pct("EC: ICT: WS: 2A",  	"Water and sanitation", "Percentage of water distribution system monitored by ICT"),
@@ -103,7 +103,7 @@ indicators = [
 	rel("EC: I: T: 1C",			"Public transport network", "Length of public transport network per 100,000 inhabitants"),
 	pct("EC: I: T: 2A",			"Public transport network convenience", "Percentage of the city population that has convenient access (within 0.5 km) to public transport"),
 	rel("EC: I: T: 3C",			"Bicycle network", "Length of bicycle paths and lanes per 100,000 population"),
-	pct("EC: I: T: 4A",			"Transportation mode share", "The percentage of people using various forms of transportation to travel to work", datasets = ["public transport", "personal vehicles", "bicyles", "walking", "paratransit"]),
+	pct("EC: I: T: 4A",			"Transportation mode share", "The percentage of people using various forms of transportation to travel to work", datasets = ["public", "personal", "cycling", "walking", "para"]),
 	ratio("EC: I: T: 5A",		"Travel time index", "Ratio of travel time during peak periods to travel time at free flow periods"),
 	rel("EC: I: T: 6A", 		"Shared bicyles"),
 	rel("EC: I: T: 7A",			"Shared vehicles"),
@@ -111,17 +111,17 @@ indicators = [
 	pct("EC: I: B: 1A",			"Public building sustainability", "Percentage area of public buildings with recognized sustainability certifications for ongoing operations"),
 	pct("EC: I: B: 2A", 		"Integrated building management systems in public buildings", "Percentage of public buildings using integrated ICT systems to automate building management and create flexible, effective, comfortable and secure environment"),
 	pct("EC: I: UP: 1A",		"Pedestrian infrastructure", "Percentage of the city designated as a pedestrian/car free zone"),
-	yes_no("EC: I: UP: 2A",		"Urban development and spatial planning", "Existence of urban development and spatial planning strategies or documents at the city level", datasets = ["Compact", "Connectivity", "Integration", "Socially inclusive", "Resilient to climate change"]),
+	yes_no("EC: I: UP: 2A",		"Urban development and spatial planning", "Existence of urban development and spatial planning strategies or documents at the city level", datasets = ["compact", "connected", "integrated", "inclusive", "resilient"]),
 
 
 	# Environmental
-	avg("EN: EN: AQ: 1C",		"Air Pollution", "Air quality index (AQI) based on reported value", datasets = ["PM10", "PM2.5", "NO2", "SO2", "O3"]),
+	avg("EN: EN: AQ: 1C",		"Air Pollution", "Air quality index (AQI) based on reported value", datasets = ["pm_10", "pm_2.5", "no2", "so2", "o3"]),
 	avg("EN: EN: EQ: 2C",		"Greenhouse gas emissions", "Greenhouse gas (GHG) emissions per capita (Tonnes eCO2 / capita)"),
 	pct("EN: EN: WS: 1C",		"Drinking water quality", "Percentage of households covered by an audited Water Safety Plan"),
 	avg("EN: EN: WS: 2C",		"Water consumption", "Total water consumption per capita"),
 	pct("EN: EN: WS: 3C",		"Fresh water consumption", "Percentage of water consumed from freshwater sources"),
 	pct("EN: EN: WS: 3C?",		"Wastewater treatment", "Percentage of wastewater receiving treatment (Primary, Secondary, Tertiary)", datasets=["primary", "secondary", "tertiary"]),
-	pct("EN: EN: WA: 1C",		"Solid waste treatment", "Percentage of solid waste dealt with, according to disposal method", datasets = ["sanitary", "burnt in open", "incinerated", "open dump", "recycled", "other"]),
+	pct("EN: EN: WA: 1C",		"Solid waste treatment", "Percentage of solid waste dealt with, according to disposal method", datasets = ["landfill", "burnt", "incinerated", "open_dump", "recycled", "other"]),
 	pct("EN: EN: EQ: 1C",		"EMF exposure", "Percentage of mobile network antenna sites in compliance with WHO endorsed Electromagnetic Fields (EMF) exposure guidelines"),
 	pct("EN: EN: EQ: 2A",		"Noise exposure", "Percentage of city inhabitants exposed to excessive noise levels"),
 	rel("EN: EN: PSN: 1C",		"Green areas"),
@@ -156,7 +156,7 @@ indicators = [
 	pct("SC: SH: SI: 5A",		"Child care availability", "Percentage of pre-school age children (0-3) covered by (public and private) day-care centres"),
 	rel("SC: SH: SA: 1C", 		"Natural disaster related deaths"),
 	pct("SC: SH: SA: 2C",		"Disaster-related economic losses", "Economic losses (related to natural disasters) as a percentage of the city’s gross domestic product (GDP)"),
-	yes_no("SC: SH: SA: 3A", 	"Resilience plans", "This involves implementation of risk and vulnerability assessments, financial (capital and operating) plans and technical systems for disaster mitigation addressing natural and human induced disasters and hazards", datasets = ["city infrastructure", "risk assessment", "financial plans", "technical systems"]),
+	yes_no("SC: SH: SA: 3A", 	"Resilience plans", "This involves implementation of risk and vulnerability assessments, financial (capital and operating) plans and technical systems for disaster mitigation addressing natural and human induced disasters and hazards"),
 	pct("SC: SH: SA: 4A",		"Population living in disaster prone areas"),
 	abs("SC: SH: SA: 5C", 		"Emergency service response time"),
 	rel("SC: SH: SA: 6C", 		"Police service", "Number of police officers per 100,000 inhabitants"),

@@ -10,13 +10,20 @@ def login(username, password):
 	print(req.text)
 	return json.loads(req.text)
 
-def insert_data(token, kpi, value, municipality, year):
-	req = requests.post(BASE_URL + "/dataEntry/testInput", json={'token': token, 'indicator': kpi, 'data': value, 'municipality': municipality, 'year': year, 'isDummy': true })
+def insert_data(token, kpi, value, municipality, year, dataseries = None):
+	if dataseries:
+		req = requests.post(BASE_URL + "/data/insert", json={'token': token, 'indicator': kpi, 'data': value, 'municipality': municipality, 'year': year, 'isDummy': true, 'dataseries': dataseries })
+	else:
+		req = requests.post(BASE_URL + "/data/insert", json={'token': token, 'indicator': kpi, 'data': value, 'municipality': municipality, 'year': year, 'isDummy': true })
 	print(req.status_code, req.reason)
 	return json.loads(req.text)
 
 token = login("test", "123");
 
 for ind in u4ssc.indicators:
-	print("{}: {}".format(ind.id, ind.produce()))
+	for ds in ind.produce():
+		if ds[0] == 'main':
+			insert_data(token, ind.id, ds[1], "no.5001", 2014)
+		else:
+			insert_data(token, ind.id, ds[1], "no.5001", ds[0])
 
