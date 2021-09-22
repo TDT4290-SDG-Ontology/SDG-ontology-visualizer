@@ -17,7 +17,7 @@ export default (obj: DataPoint): string => {
   const dataseriesVariant =
     obj.dataseries === undefined || obj.dataseries === 'main'
       ? ''
-      : `?dataseries SDG:dataseriesVariant "${obj.dataseries}"`;
+      : `?dataseries SDG:dataseriesVariant "${obj.dataseries}".`;
 
   return `
     ${prefixString}
@@ -28,7 +28,7 @@ export default (obj: DataPoint): string => {
       ?uri SDG:datapointYear ${obj.year}.
       ?uri SDG:datapointValue ${obj.data}.
 
-      ${dummyDataString}.
+      ${dummyDataString}
    }
    where {
       BIND(IRI(CONCAT("http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapoint.u4ssc.${obj.indicatorName}.", strUUID())) as ?uri)
@@ -37,7 +37,7 @@ export default (obj: DataPoint): string => {
 
       ?dataseries SDG:isDataSeriesFor ?indicator.
 
-      ${dataseriesVariant}.
+      ${dataseriesVariant}
 
       ?indicator SDG:kpiNumber "${obj.indicatorId}".
    }`;
