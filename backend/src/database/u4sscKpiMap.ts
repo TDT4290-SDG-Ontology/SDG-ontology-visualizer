@@ -89,6 +89,8 @@ const u4sscKpiMap = new Map([
   ['EC: ICT: ICT: 3C', 'wireless_broadband'],
   ['EC: ICT: ICT: 4C', 'wireless_broadband_coverage'],
   ['EC: P: EM: 2C', 'youth_unemployment_rate'],
+  ['EN: EN: WS: 3C', 'freshwater_consumption'],
+  
 ]);
 
 export default u4sscKpiMap;
