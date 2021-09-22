@@ -75,7 +75,7 @@ indicators = [
 	pct("EC: ICT: WS: 1C", 		"Smart water meters", "Percentage implementation of smart water meters"),
 	pct("EC: ICT: WS: 2A",  	"Water and sanitation", "Percentage of water distribution system monitored by ICT"),
 	pct("EC: ICT: D: 1A",		"Drainage / storm water system ICT monitoring"),
-	pct("EC: ICT: ES: 1A",  	"Smart electricity meters"),
+	pct("EC: ICT: ES: 1C",  	"Smart electricity meters"),
 	pct("EC: ICT: ES: 2A", 		"Electricty supply ICT monitoring"),
 	pct("EC: ICT: ES: 3A", 		"Demand response penetration", "Percentage of electricity customers with demand response capabilities"),
 	pct("EC: ICT: T: 1C", 		"Dynamic public transport information", "Percentage of urban public transport stops for which traveller information is dynamically available to the public in real time."),
@@ -116,11 +116,11 @@ indicators = [
 
 	# Environmental
 	avg("EN: EN: AQ: 1C",		"Air Pollution", "Air quality index (AQI) based on reported value", datasets = ["pm_10", "pm_2.5", "no2", "so2", "o3"]),
-	avg("EN: EN: EQ: 2C",		"Greenhouse gas emissions", "Greenhouse gas (GHG) emissions per capita (Tonnes eCO2 / capita)"),
+	avg("EN: EN: AQ: 2C",		"Greenhouse gas emissions", "Greenhouse gas (GHG) emissions per capita (Tonnes eCO2 / capita)"),
 	pct("EN: EN: WS: 1C",		"Drinking water quality", "Percentage of households covered by an audited Water Safety Plan"),
 	avg("EN: EN: WS: 2C",		"Water consumption", "Total water consumption per capita"),
 	pct("EN: EN: WS: 3C",		"Fresh water consumption", "Percentage of water consumed from freshwater sources"),
-	pct("EN: EN: WS: 3C?",		"Wastewater treatment", "Percentage of wastewater receiving treatment (Primary, Secondary, Tertiary)", datasets=["primary", "secondary", "tertiary"]),
+	pct("EN: EN: WS: 4C",		"Wastewater treatment", "Percentage of wastewater receiving treatment (Primary, Secondary, Tertiary)", datasets=["primary", "secondary", "tertiary"]),
 	pct("EN: EN: WA: 1C",		"Solid waste treatment", "Percentage of solid waste dealt with, according to disposal method", datasets = ["landfill", "burnt", "incinerated", "open_dump", "recycled", "other"]),
 	pct("EN: EN: EQ: 1C",		"EMF exposure", "Percentage of mobile network antenna sites in compliance with WHO endorsed Electromagnetic Fields (EMF) exposure guidelines"),
 	pct("EN: EN: EQ: 2A",		"Noise exposure", "Percentage of city inhabitants exposed to excessive noise levels"),
@@ -166,4 +166,16 @@ indicators = [
 	pct("SC: SH: FS: 1C",		"Local food production", "Percentage of local food supplied from within 100 km of the urban area"),
 
 
+]
+
+# wrongly entered in airtable:
+# SC: EH: ED: 1C
+# SC: EH: ED: 2C
+# SC: EH: H: 1C
+# SC: EH: H: 3C
+# SC: EH: C: 1C
+
+erroring1 = [
+	pct("EN: EN: WS: 3C",		"Fresh water consumption", "Percentage of water consumed from freshwater sources"),
+	pct("EC: ICT: ES: 1C",  	"Smart electricity meters"),
 ]
