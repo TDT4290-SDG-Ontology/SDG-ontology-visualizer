@@ -65,4 +65,4 @@ To use the development container, follow these steps:
 
 3. In `frontend/`, run `docker-compose -f docker-compose-dev.yml up --build`
 
-4. The app should now be accesible at https://localhost:3000S
+4. The app should now be accesible at http://localhost:3000
