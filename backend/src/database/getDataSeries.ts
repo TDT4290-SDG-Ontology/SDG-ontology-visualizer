@@ -1,7 +1,7 @@
 import DB from './index';
 import getDataSeries from './queries/getDataSeries';
 
-// TODO: Remove any once looking at the return types a bit
+// TODO: Remove any
 export default async (kpiNumber: string): Promise<any> => {
   const query = getDataSeries(kpiNumber);
   console.log('Query: ', query);
