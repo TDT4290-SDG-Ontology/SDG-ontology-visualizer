@@ -42,3 +42,13 @@ export type Annotation = {
   description: string;
   moreInformation: string | null;
 };
+
+export type DataPoint = {
+  indicatorId: string;
+  indicatorName: string;
+  year: number;
+  municipality: string;
+  data: string | number;
+  isDummy: boolean;
+  dataseries?: string;
+};
