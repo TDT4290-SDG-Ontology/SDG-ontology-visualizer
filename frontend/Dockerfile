@@ -2,8 +2,8 @@ FROM node:14
 ENV DISABLE_ESLINT_PLUGIN=true
 WORKDIR /app
 COPY . .
-RUN npm i --production
-RUN npm run-script build
+RUN yarn --production
+RUN yarn run build
 
 FROM node:14
 COPY --from=0 /app/build /build
