@@ -37540,7 +37540,7 @@ O3 (ozone).</rdfs:comment>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.cultural_expenditure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
         <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.4"/>
-        <SDG:kpiNumber>SA: EH: C: 1C</SDG:kpiNumber>
+        <SDG:kpiNumber>SC: EH: C: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage expenditure on city cultural heritage</rdfs:comment>
     </owl:NamedIndividual>
     
@@ -37886,7 +37886,7 @@ measures</rdfs:comment>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.life_expectancy">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
         <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/3.4"/>
-        <SDG:kpiNumber>SC: EH: H:1C</SDG:kpiNumber>
+        <SDG:kpiNumber>SC: EH: H: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Average life expectancy</rdfs:comment>
     </owl:NamedIndividual>
     
@@ -38074,7 +38074,7 @@ measures</rdfs:comment>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_health_coverage">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
         <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/3.8"/>
-        <SDG:kpiNumber>SA: EH: H: 5A</SDG:kpiNumber>
+        <SDG:kpiNumber>SC: EH: H: 5A</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of city inhabitants covered by basic health insurance program or a public health system</rdfs:comment>
     </owl:NamedIndividual>
     
@@ -38180,7 +38180,7 @@ measures</rdfs:comment>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.school_enrolment">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
         <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/4.1"/>
-        <SDG:kpiNumber>SC: EH: ED:2C</SDG:kpiNumber>
+        <SDG:kpiNumber>SC: EH: ED: 2C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of school-aged population enrolled in schools</rdfs:comment>
     </owl:NamedIndividual>
     
@@ -38286,7 +38286,7 @@ Each treatment should be reported separately.</rdfs:comment>
         <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/4.4"/>
         <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#4.a"/>
         <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#5.b"/>
-        <SDG:kpiNumber>SC: EH: ED:1C</SDG:kpiNumber>
+        <SDG:kpiNumber>SC: EH: ED: 1C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of students with classroom access to ICT facilities</rdfs:comment>
     </owl:NamedIndividual>
     
