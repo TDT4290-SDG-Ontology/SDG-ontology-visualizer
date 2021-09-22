@@ -876,6 +876,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesVariant -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesVariant"/>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#harKorrelasjonsIndex -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#harKorrelasjonsIndex">
@@ -35180,11 +35186,52 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
-    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution -->
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.no2 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.no2">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesVariant>no2</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.o3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.o3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesVariant>o3</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.pm_10 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.pm_10">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesVariant>pm_10</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.pm_2.5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.pm_2.5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesVariant>pm_2.5</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.so2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.so2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesVariant>so2</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
 
@@ -35521,11 +35568,22 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
-    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.open_data -->
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.open_data.number -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.open_data">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.open_data.number">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.open_data"/>
+        <SDG:dataseriesVariant>number</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.open_data.percent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.open_data.percent">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.open_data"/>
+        <SDG:dataseriesVariant>percent</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
 
@@ -35764,11 +35822,62 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
-    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment -->
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.burnt -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.burnt">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesVariant>burnt</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.incinerated -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.incinerated">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesVariant>incinerated</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.landfill -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.landfill">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesVariant>landfill</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.open_dump -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.open_dump">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesVariant>open_dump</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.other -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.other">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesVariant>other</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.recycled -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.recycled">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesVariant>recycled</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
 
@@ -35809,11 +35918,52 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
-    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share -->
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.cycling -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.cycling">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesVariant>cycling</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.para -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.para">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesVariant>para</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.private -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.private">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesVariant>private</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.public -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.public">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesVariant>public</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.walking -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.walking">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesVariant>walking</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
 
@@ -35836,11 +35986,52 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
-    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development -->
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.compact -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.compact">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesVariant>compact</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.connected -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.connected">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesVariant>connected</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.inclusive -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.inclusive">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesVariant>inclusive</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.integrated -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.integrated">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesVariant>integrated</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.resilient -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.resilient">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesVariant>resilient</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
 
@@ -35872,11 +36063,32 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
-    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment -->
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.primary -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.primary">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_treatment"/>
+        <SDG:dataseriesVariant>primary</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.secondary -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.secondary">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_treatment"/>
+        <SDG:dataseriesVariant>secondary</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.tertiary -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.tertiary">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_treatment"/>
+        <SDG:dataseriesVariant>tertiary</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
 
@@ -35944,11 +36156,22 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
-    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband_coverage -->
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband_coverage.3g -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband_coverage">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband_coverage.3g">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wireless_broadband_coverage"/>
+        <SDG:dataseriesVariant>3g</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband_coverage.4g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband_coverage.4g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wireless_broadband_coverage"/>
+        <SDG:dataseriesVariant>4g</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
 
@@ -38193,7 +38416,7 @@ Each treatment should be reported separately.</rdfs:comment>
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
         <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C060301"/>
         <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/6.3"/>
-        <SDG:kpiNumber>EN: EN: WS: 3C</SDG:kpiNumber>
+        <SDG:kpiNumber>EN: EN: WS: 4C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of wastewater receiving treatment (Primary, Secondary, Tertiary)</rdfs:comment>
     </owl:NamedIndividual>
     
