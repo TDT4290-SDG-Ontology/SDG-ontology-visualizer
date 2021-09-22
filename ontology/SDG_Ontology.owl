@@ -482,6 +482,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#userHasRole -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#userHasRole"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -504,6 +510,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#createdAt -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#createdAt">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#harKorrelasjonsIndex -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#harKorrelasjonsIndex">
@@ -512,6 +527,34 @@
         <rdfs:isDefinedBy rdf:resource="https://www.mdpi.com/2071-1050/12/8/3359"/>
         <rdfs:label>Korrelasjons index</rdfs:label>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#passwordHash -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#passwordHash">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#username -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#username">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topDataProperty -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#topDataProperty">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </rdf:Description>
     
 
 
@@ -8836,6 +8879,22 @@ English: (For inital development, expansion of this class along with possible co
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#User -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#User">
+        <owl:hasKey rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#username"/>
+        </owl:hasKey>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#UserRole -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#UserRole"/>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#Utviklingsområde -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#Utviklingsområde">
@@ -11544,6 +11603,36 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
         <SDG:erUtviklingsområdeFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#Miljø"/>
         <SDG:erUtviklingsområdeFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#Nærmiljø_og_stedsutvikling"/>
         <rdfs:label>Vann og søppel</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.user.testUser -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.user.testUser">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#User"/>
+        <SDG:userHasRole rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.userrole.dataentry"/>
+        <SDG:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</SDG:createdAt>
+        <SDG:passwordHash rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10$JDJiJDEyJGFGc2FKRTQvTi5aUG92RjhwRnAwb08=$yMmWbQlT/4kFZp+bPlsKbqUsjjCkuW3F51+4FYqBVGRFmLIgrC+hL3XuVBXfdhxhO2InUiJxJkrnAapLYMOZ1A==</SDG:passwordHash>
+        <SDG:username>test</SDG:username>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.userrole.admin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.userrole.admin">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#UserRole"/>
+        <rdfs:comment>Administrator role allowing this user to add other users, and otherwise administrate system.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.userrole.dataentry -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.userrole.dataentry">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#UserRole"/>
+        <rdfs:comment>Role where user&apos;s main task is data entry.</rdfs:comment>
     </owl:NamedIndividual>
     
 
