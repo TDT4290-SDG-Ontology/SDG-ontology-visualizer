@@ -862,6 +862,26 @@
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapointValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapointValue"/>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapointYear -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapointYear">
+        <rdfs:comment>Year for which the datapoint is valid.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesVariant -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesVariant"/>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#harKorrelasjonsIndex -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#harKorrelasjonsIndex">
@@ -888,6 +908,12 @@
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#kpiNumber -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#kpiNumber"/>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipalityCode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipalityCode"/>
     
 
 
@@ -35124,6 +35150,317 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.EMF_exposure -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.EMF_exposure">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.EMF_exposure"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.GHG_emissions -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.GHG_emissions">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.GHG_emissions"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.access_electricity -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.access_electricity">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.access_electricity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.adult_literacy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.adult_literacy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.adult_literacy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.no2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.no2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesVariant>no2</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.o3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.o3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesVariant>o3</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.pm_10 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.pm_10">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesVariant>pm_10</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.pm_2.5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.pm_2.5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesVariant>pm_2.5</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.so2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.so2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesVariant>so2</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.bicycle_network -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.bicycle_network">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.bicycle_network"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.child_care_availability -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.child_care_availability">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.child_care_availability"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.cultural_expenditure -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.cultural_expenditure">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.cultural_expenditure"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.cultural_infrastructure -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.cultural_infrastructure">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.cultural_infrastructure"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.demand_response_penetration -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.demand_response_penetration">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.demand_response_penetration"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.disaster_related_economic_loss -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.disaster_related_economic_loss">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.disaster_related_economic_loss"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.drinking_water_quality -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.drinking_water_quality">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.drinking_water_quality"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.dynamic_public_trans_inf -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.dynamic_public_trans_inf">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.dynamic_public_trans_inf"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.e_government -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.e_government">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.e_government"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electricity_consumption -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electricity_consumption">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electricity_consumption"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electricity_outage_time -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electricity_outage_time">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electricity_outage_time"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electricity_supply_ict_mon -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electricity_supply_ict_mon">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electricity_supply_ict_mon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electricity_system_outage_freq -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electricity_system_outage_freq">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electricity_system_outage_freq"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electronic_health_records -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electronic_health_records">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electronic_health_records"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.emergency_response_time -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.emergency_response_time">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.emergency_response_time"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.expenditure_housing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.expenditure_housing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.expenditure_housing"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.fire_service -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.fire_service">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.fire_service"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.fixed_broadband -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.fixed_broadband">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.fixed_broadband"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.food_production -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.food_production">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.food_production"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.freshwater_consumption -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.freshwater_consumption">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.freshwater_consumption"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.gender_income_equality -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.gender_income_equality">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gender_income_equality"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.gini_coefficient -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.gini_coefficient">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gini_coefficient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.green_area_accessibility -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.green_area_accessibility">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.green_area_accessibility"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.green_areas -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.green_areas">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.green_areas"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.higher_education_degrees -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.higher_education_degrees">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.higher_education_degrees"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.household_internet_access -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.household_internet_access">
@@ -35133,11 +35470,727 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.household_sanitation -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.household_sanitation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.household_sanitation"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.ict_sector_employment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.ict_sector_employment">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.ict_sector_employment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.in_patient_hospital_beds -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.in_patient_hospital_beds">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.in_patient_hospital_beds"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.informal_settlements -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.informal_settlements">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.informal_settlements"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.integrated_building_management_systems -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.integrated_building_management_systems">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.intersection_control -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.intersection_control">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.intersection_control"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.life_expectancy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.life_expectancy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.life_expectancy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.low_carbon_passenger_vehicles -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.low_carbon_passenger_vehicles">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.low_carbon_passenger_vehicles"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.maternal_mortality_rate -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.maternal_mortality_rate">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.maternal_mortality_rate"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.natural_disaster_related_deaths -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.natural_disaster_related_deaths">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.natural_disaster_related_deaths"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.noise_exposure -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.noise_exposure">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.noise_exposure"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.open_data.number -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.open_data.number">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.open_data"/>
+        <SDG:dataseriesVariant>number</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.open_data.percent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.open_data.percent">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.open_data"/>
+        <SDG:dataseriesVariant>percent</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.patents -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.patents">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.patents"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.pedestrian_infrastructure -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.pedestrian_infrastructure">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.pedestrian_infrastructure"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.physicians -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.physicians">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.physicians"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.police_service -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.police_service">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.police_service"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.population_disaster_prone_areas -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.population_disaster_prone_areas">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.population_disaster_prone_areas"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.portable_water_supply -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.portable_water_supply">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.portable_water_supply"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.poverty_share -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.poverty_share">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.poverty_share"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.protected_natural_areas -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.protected_natural_areas">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.protected_natural_areas"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_building_energy_consumption -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_building_energy_consumption">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_building_energy_consumption"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_building_sustainability -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_building_sustainability">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_building_sustainability"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_health_coverage -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_health_coverage">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_health_coverage"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_sector_e_procurement -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_sector_e_procurement">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_sector_e_procurement"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_transport_convenience -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_transport_convenience">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_transport_convenience"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_transport_network -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_transport_network">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_transport_network"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.r_d_expenditure -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.r_d_expenditure">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.r_d_expenditure"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.recreational_facilities -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.recreational_facilities">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.recreational_facilities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.renewable_energy_consumption -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.renewable_energy_consumption">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.renewable_energy_consumption"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.residential_thermal_energy_consumption -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.residential_thermal_energy_consumption">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.residential_thermal_energy_consumption"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.resilience_plans -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.resilience_plans">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.resilience_plans"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.school_enrolment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.school_enrolment">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.school_enrolment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.shared_bicycles -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.shared_bicycles">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shared_bicycles"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.shared_vehicles -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.shared_vehicles">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shared_vehicles"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.small_medium_enterprises -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.small_medium_enterprises">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.small_medium_enterprises"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.smart_electricity_meters -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.smart_electricity_meters">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.smart_electricity_meters"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.smart_water_meters -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.smart_water_meters">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.smart_water_meters"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_collection -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_collection">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_collection"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.burnt -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.burnt">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesVariant>burnt</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.incinerated -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.incinerated">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesVariant>incinerated</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.landfill -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.landfill">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesVariant>landfill</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.open_dump -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.open_dump">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesVariant>open_dump</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.other -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.other">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesVariant>other</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.recycled -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.recycled">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesVariant>recycled</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.student_ICT_access -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.student_ICT_access">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.student_ICT_access"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.tourism_industry_employment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.tourism_industry_employment">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.tourism_industry_employment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.traffic_fatalities -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.traffic_fatalities">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.traffic_fatalities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.traffic_mon -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.traffic_mon">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.traffic_mon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.cycling -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.cycling">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesVariant>cycling</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.para -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.para">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesVariant>para</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.private -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.private">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesVariant>private</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.public -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.public">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesVariant>public</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.walking -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.walking">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesVariant>walking</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.travel_time_index -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.travel_time_index">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.travel_time_index"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.unemployment_rate -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.unemployment_rate">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.unemployment_rate"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.compact -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.compact">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesVariant>compact</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.connected -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.connected">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesVariant>connected</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.inclusive -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.inclusive">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesVariant>inclusive</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.integrated -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.integrated">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesVariant>integrated</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.resilient -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.resilient">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesVariant>resilient</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.violent_crime_rate -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.violent_crime_rate">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.violent_crime_rate"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.voter_participation -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.voter_participation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.voter_participation"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_collection -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_collection">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_collection"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.primary -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.primary">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_treatment"/>
+        <SDG:dataseriesVariant>primary</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.secondary -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.secondary">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_treatment"/>
+        <SDG:dataseriesVariant>secondary</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.tertiary -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.tertiary">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_treatment"/>
+        <SDG:dataseriesVariant>tertiary</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_consumption -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_consumption">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_consumption"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_supply -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_supply">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_supply"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_supply_ict_mon -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_supply_ict_mon">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_supply_ict_mon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_supply_loss -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_supply_loss">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_supply_loss"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_system_ict_mon -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_system_ict_mon">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_system_ict_mon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wifi_public_areas -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wifi_public_areas">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wifi_public_areas"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wireless_broadband"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband_coverage.3g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband_coverage.3g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wireless_broadband_coverage"/>
+        <SDG:dataseriesVariant>3g</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband_coverage.4g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband_coverage.4g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wireless_broadband_coverage"/>
+        <SDG:dataseriesVariant>4g</SDG:dataseriesVariant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.youth_unemployment_rate -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.youth_unemployment_rate">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.youth_unemployment_rate"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipality.no.trondelag.trondheim -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipality.no.trondelag.trondheim">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#Municipality"/>
         <SDG:inRegion rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#region.no.trondelag"/>
+        <SDG:municipalityCode>no.5001</SDG:municipalityCode>
     </owl:NamedIndividual>
     
 
@@ -36877,9 +37930,9 @@ measures</rdfs:comment>
     
 
 
-    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.nopise_exposure -->
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.noise_exposure -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.nopise_exposure">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.noise_exposure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
         <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#11.6"/>
         <SDG:kpiNumber>EN: EN: EQ: 2A</SDG:kpiNumber>
@@ -36957,9 +38010,9 @@ measures</rdfs:comment>
     
 
 
-    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.potable_water_supply -->
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.portable_water_supply -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.potable_water_supply">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.portable_water_supply">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
         <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C060101"/>
         <SDG:linkedSDGSubgoal rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#6.1"/>
@@ -37363,7 +38416,7 @@ Each treatment should be reported separately.</rdfs:comment>
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicator"/>
         <SDG:linkedSDGIndicator rdf:resource="http://metadata.un.org/sdg/C060301"/>
         <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/6.3"/>
-        <SDG:kpiNumber>EN: EN: WS: 3C</SDG:kpiNumber>
+        <SDG:kpiNumber>EN: EN: WS: 4C</SDG:kpiNumber>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentage of wastewater receiving treatment (Primary, Secondary, Tertiary)</rdfs:comment>
     </owl:NamedIndividual>
     
