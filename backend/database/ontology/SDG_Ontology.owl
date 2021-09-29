@@ -892,6 +892,22 @@
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesMaximumValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesMaximumValue">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesMinimumValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesMinimumValue">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesVariant -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesVariant"/>
