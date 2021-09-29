@@ -17,6 +17,12 @@ export default (obj: DataPoint): string => {
 
   return `
     ${prefixString}
+    delete {
+      ?oldUri rdf:type SDG:Datapoint .
+      ?oldUri SDG:datapointForMunicipality ?municipality.
+      ?oldUri SDG:datapointYear ?year.
+      ?oldUri SDG:datapointForSeries ?ds.
+    }
     insert {
       ?uri rdf:type SDG:Datapoint .
       ?uri SDG:datapointForSeries ?dataseries.
@@ -35,7 +41,6 @@ export default (obj: DataPoint): string => {
       ?oldUri SDG:datapointForSeries ?ds.
 
       ?ds SDG:isDataSeriesFor ?indicator.
-      ?ds SDG:dataseriesVariant "${obj.dataseries}".
 
 
       ?municipality SDG:municipalityCode "${obj.municipality}".
