@@ -21,7 +21,8 @@ export default (obj: DataPoint): string => {
       ?oldUri rdf:type SDG:Datapoint .
       ?oldUri SDG:datapointForMunicipality ?municipality.
       ?oldUri SDG:datapointYear ?year.
-      ?oldUri SDG:datapointForSeries ?ds.
+      ?oldUri SDG:datapointForSeries ?dataseries.
+      ?oldUri SDG:datapointValue ?value.
     }
     insert {
       ?uri rdf:type SDG:Datapoint .
@@ -34,14 +35,13 @@ export default (obj: DataPoint): string => {
    }
    where {
       BIND(IRI(CONCAT("http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapoint.u4ssc.${obj.indicatorName}.", strUUID())) as ?uri)
+      BIND(${obj.year} as ?year)
 
       ?oldUri rdf:type SDG:Datapoint .
       ?oldUri SDG:datapointForMunicipality ?municipality.
       ?oldUri SDG:datapointYear ?year.
-      ?oldUri SDG:datapointForSeries ?ds.
-
-      ?ds SDG:isDataSeriesFor ?indicator.
-
+      ?oldUri SDG:datapointForSeries ?dataseries.
+      ?oldUri SDG:datapointValue ?value.
 
       ?municipality SDG:municipalityCode "${obj.municipality}".
 
