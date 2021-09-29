@@ -29,6 +29,15 @@ export default (obj: DataPoint): string => {
    where {
       BIND(IRI(CONCAT("http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapoint.u4ssc.${obj.indicatorName}.", strUUID())) as ?uri)
 
+      ?oldUri rdf:type SDG:Datapoint .
+      ?oldUri SDG:datapointForMunicipality ?municipality.
+      ?oldUri SDG:datapointYear ?year.
+      ?oldUri SDG:datapointForSeries ?ds.
+
+      ?ds SDG:isDataSeriesFor ?indicator.
+      ?ds SDG:dataseriesVariant "${obj.dataseries}".
+
+
       ?municipality SDG:municipalityCode "${obj.municipality}".
 
       ?dataseries SDG:isDataSeriesFor ?indicator.

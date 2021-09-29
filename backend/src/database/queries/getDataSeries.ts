@@ -6,7 +6,7 @@ export default (kpiNumber: string, municipality: string, year: number): string =
 
   return `
         ${prefixString}
-        SELECT ?value ?dataseries
+        SELECT ?value ?dataseriesVariant
         WHERE {
             ?ind rdf:type SDG:U4SSCIndicator.
             ?ind SDG:kpiNumber "${kpiNumber}".
@@ -19,7 +19,7 @@ export default (kpiNumber: string, municipality: string, year: number): string =
             ?dp SDG:datapointForMunicipality ?municipality.
 
             OPTIONAL {
-              ?ds SDG:dataseriesVariant ?dataseries.
+              ?ds SDG:dataseriesVariant ?dataseriesVariant.
             }
         }`;
 };
