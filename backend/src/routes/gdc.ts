@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import setData from '../database/setData';
 import getDataSeries from '../database/getDataSeries';
-import u4sscKpiMap from '../database/u4sscKpiMap';
+import { u4sscKpiToCategory, u4sscCategoryToSubdomain, u4sscSubdomainToDomain } from '../database/u4sscKpiMap';
 import { ApiError } from '../types/errorTypes';
 import onError from './middleware/onError';
 import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
@@ -9,7 +9,7 @@ import verifyToken from './middleware/verifyToken';
 
 const router = Router();
 
-export type IndicatorScore = {
+type IndicatorScore = {
 	kpi: string;
 	score: number;
 	goalDistance: number;
@@ -73,6 +73,20 @@ const computeScore = (kpi: string, current, goal) : IndicatorScore => {
 	};
 }
 
+type CumulativeScore = {
+	entry: string;
+	cumulative: number;
+	average: number;
+	count: number;
+	projectedCompletion: number;
+};
+
+type Score = {
+	entry: string;
+	score: number;
+	projectedCompletion: number;
+};
+
 const getGoalDistance = async (req: Request, res: Response) => {
   try {
     const dataseriesPromise = getAllDataSeries(req.body.municipality, req.body.year);
@@ -83,7 +97,10 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const dataseries = data[0];
     const goals = data[1];
 
-    const categoryMap: Map<string, IndicatorScore[]> = new Map<string, IndicatorScore[]>();
+    const categoryScores = new Map<string, IndicatorScore[]>();
+    const subdomainScores = new Map<string, CumulativeScore[]>();
+    const domainScores = new Map<string, CumulativeScore[]>();
+    const toplevelScores = new Map<string, Score[]>();
 
     for (var i = 0; i < dataseries.length; i++)
     {
@@ -95,14 +112,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
     	const score = computeScore(displayKPI, series, goal);
 
-    	// All U4SSC KPIs are structured like this: "EC: ICT: ICT: 4C", 
-    	// so the hierarchy can be extracted.
-    	const kpiParts = series.kpi.split(": ");
-
-    	const domain = kpiParts[0];
-    	const subdomain = `${domain}: ${kpiParts[1]}`;
-    	const category = `${subdomain}: ${kpiParts[2]}`;
-
+    	const category = u4sscKpiToCategory.get(series.kpi);
     	const arr = categoryScores.get(category);
     	if (arr === undefined)
     		categoryScores.set(category, [ score ]);
@@ -120,12 +130,12 @@ const getGoalDistance = async (req: Request, res: Response) => {
     	const longestCompletion = scores.reduce((acc, score) => max(acc, score.projectedCompletion));
     	const avgPoints = cumulativePoints / scores.length;
 
-    	const subdomain = categoriesToSubdomains.get(category);
+    	const subdomain = u4sscCategoryToSubdomain.get(category);
     	const arr = subdomainScores.get(subdomain)
     	if (arr === undefined)
-    		subdomainScores.set(subdomain, [ { cumulative: cumulativePoints, average: avgScore, count: scores.length, projectedCompletion: longestCompletion } ])
+    		subdomainScores.set(subdomain, [ { entry: category, cumulative: cumulativePoints, average: avgScore, count: scores.length, projectedCompletion: longestCompletion } ])
     	else
-    		arr.push({ cumulative: cumulativePoints, average: avgScore, count: scores.length, projectedCompletion: longestCompletion });
+    		arr.push({ entry: category, cumulative: cumulativePoints, average: avgScore, count: scores.length, projectedCompletion: longestCompletion });
     }
 
     // Compute subdomain scores
@@ -136,12 +146,12 @@ const getGoalDistance = async (req: Request, res: Response) => {
     	const totalNumber = scores.reduce((acc, cat) => acc + cat.count);
     	const avgPoints = cumulativePoints / totalNumber;
 
-    	const domain = subdomainsToDomains.get(subdomain);
+    	const domain = u4sscSubdomainToDomain.get(subdomain);
     	const arr = domainScores.get(domain)
     	if (arr === undefined)
-    		domainScores.set(subdomain, [ { cumulative: cumulativePoints, average: avgScore, count: totalNumber, projectedCompletion: longestCompletion } ])
+    		domainScores.set(subdomain, [ { entry: subdomain, cumulative: cumulativePoints, average: avgScore, count: totalNumber, projectedCompletion: longestCompletion } ])
     	else
-    		arr.push({ cumulative: cumulativePoints, average: avgScore, count: totalNumber, projectedCompletion: longestCompletion });
+    		arr.push({ entry: subdomain, cumulative: cumulativePoints, average: avgScore, count: totalNumber, projectedCompletion: longestCompletion });
     }
 
     // Compute domain scores
@@ -154,9 +164,9 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
     	const arr = toplevelScores.get(domain)
     	if (arr === undefined)
-    		toplevelScores.set(domain, [ { score: avgScore, projectedCompletion: longestCompletion } ])
+    		toplevelScores.set(domain, [ { entry: domain, score: avgScore, projectedCompletion: longestCompletion } ])
     	else
-    		arr.push({ score: avgScore, projectedCompletion: longestCompletion });
+    		arr.push({ entry: domain, score: avgScore, projectedCompletion: longestCompletion });
     }
 
     res.json(data);

@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import setData from '../database/setData';
 import getDataSeries from '../database/getDataSeries';
-import u4sscKpiMap from '../database/u4sscKpiMap';
+import { u4sscKpiMap } from '../database/u4sscKpiMap';
 import { ApiError } from '../types/errorTypes';
 import onError from './middleware/onError';
 import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
