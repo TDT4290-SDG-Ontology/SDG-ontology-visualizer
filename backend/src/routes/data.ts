@@ -52,12 +52,22 @@ const getData = async (req: Request, res: Response) => {
   try {
     let test = await getDataSeriesForMunicipality(req.body.municipality);
     test = _.chain(test)
-      // Group the elements of Array based on `color` property
       .groupBy('kpiNumber')
-      // `key` is group's name (color), `value` is the array of objects
-      .map((value, key) => ({ kpiNumber: key, data: value }))
+      .map((value, key) => {
+        if (value[0].dataseriesVariant === undefined) {
+          return { kpiNumber: key, data: value.map(({ kpiNumber, ...item }) => item) };
+        }
+        const data2 = _.groupBy(value, 'dataseriesVariant');
+
+        Object.keys(data2).map((key2) => {
+          data2[key2] = data2[key2].map(({ kpiNumber, dataseriesVariant, ...item }) => item);
+        });
+        console.log(data2);
+
+        return { kpiNumber: key, data: data2 };
+      })
       .value();
-    console.log(test[0]);
+
     const data = await getDataSeries(req.body.indicator, req.body.municipality, req.body.year);
     res.json(data);
   } catch (e: any) {
