@@ -6,6 +6,7 @@ import { ApiError } from '../types/errorTypes';
 import onError from './middleware/onError';
 import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
 import verifyToken from './middleware/verifyToken';
+import deleteDataPoint from '../database/deleteDataPoint';
 
 const router = Router();
 
@@ -27,6 +28,16 @@ const insertData = async (req: Request, res: Response) => {
       isDummy: req.body.isDummy !== undefined && req.body.isDummy,
       dataseries: req.body.dataseries,
     };
+    const data = await getDataSeries(
+      newDataPoint.indicatorId,
+      newDataPoint.municipality,
+      newDataPoint.year,
+      newDataPoint.dataseries,
+    );
+    console.log(data);
+    if (data.length > 0) {
+      await deleteDataPoint(newDataPoint);
+    }
 
     await setData(newDataPoint);
     res.status(200).json({});
