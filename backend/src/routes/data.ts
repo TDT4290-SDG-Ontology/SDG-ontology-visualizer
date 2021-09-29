@@ -1,6 +1,8 @@
 import { Router, Request, Response } from 'express';
+import _ from 'lodash';
 import setData from '../database/setData';
 import getDataSeries from '../database/getDataSeries';
+import getDataSeriesForMunicipality from '../database/getDataSeriesForMunicipality';
 import u4sscKpiMap from '../database/u4sscKpiMap';
 import { ApiError } from '../types/errorTypes';
 import onError from './middleware/onError';
@@ -48,6 +50,14 @@ const insertData = async (req: Request, res: Response) => {
 
 const getData = async (req: Request, res: Response) => {
   try {
+    let test = await getDataSeriesForMunicipality(req.body.municipality);
+    test = _.chain(test)
+      // Group the elements of Array based on `color` property
+      .groupBy('kpiNumber')
+      // `key` is group's name (color), `value` is the array of objects
+      .map((value, key) => ({ kpiNumber: key, data: value }))
+      .value();
+    console.log(test[0]);
     const data = await getDataSeries(req.body.indicator, req.body.municipality, req.body.year);
     res.json(data);
   } catch (e: any) {

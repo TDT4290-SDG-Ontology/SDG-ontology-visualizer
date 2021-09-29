@@ -71,5 +71,5 @@ def insert_data_for_indicators(token, indicators, municipality, year):
 
 token = login("test", "123")
 
-insert_data_for_indicators(token, u4ssc.indicators, "no.5001", 2015)
+#insert_data_for_indicators(token, u4ssc.indicators, "no.5001", 2016)
 print(get_data(u4ssc.indicators[0].id, "no.5001", 2015))
