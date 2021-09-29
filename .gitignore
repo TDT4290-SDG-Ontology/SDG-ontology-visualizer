@@ -1,1 +1,2 @@
 backend/database/conf/graphdb.license
+*.pyc
