@@ -119,3 +119,24 @@ describe('Insertion test without token', () => {
         });
     });
 })
+
+describe('Insertion test with invalid user', () => {
+    it('POST', () => {
+        cy.request({
+            method: 'POST',
+            url: 'http://localhost:3001/api/data/insert',
+            failOnStatusCode: false,
+            body: {"indicator": "EC: ICT: ICT: 1C",
+                "municipality": "no.5001",
+                "data": "1",
+                "dataseries": "dataseries",
+                "year": "2020",
+                "isDummy": true,
+                "token": "123"
+            }
+        }).then((response) => {
+            expect(response.status).equal(500)
+            expect(response.body.message).have.string('Server could not verify token.')
+        });
+    });
+})
