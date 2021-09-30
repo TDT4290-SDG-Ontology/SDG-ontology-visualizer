@@ -31,18 +31,7 @@ const insertData = async (req: Request, res: Response) => {
       dataseries: req.body.dataseries,
     };
 
-    // Check if this datapoint already exists
-    const data = await getDataSeries(
-      newDataPoint.indicatorId,
-      newDataPoint.municipality,
-      newDataPoint.year,
-      newDataPoint.dataseries,
-    );
-
-    // If it does we delete it.
-    if (data.length > 0) {
-      await deleteDataPoint(newDataPoint);
-    }
+    await deleteDataPoint(newDataPoint);
 
     // Insert new datapoint.
     await setData(newDataPoint);
