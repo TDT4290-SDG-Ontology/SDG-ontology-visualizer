@@ -81,6 +81,6 @@ export const verifyToken = (token: string) => {
     const { exp } = jwt.verify(token, config.JWT_SECRET_TOKEN) as { exp };
     return Date.now() < exp * 1000;
   } catch {
-    return true;
+    return false;
   }
 };
