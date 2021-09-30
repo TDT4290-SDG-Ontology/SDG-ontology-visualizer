@@ -83,6 +83,6 @@ export const verifyToken = (token: string) => {
     console.log(token);
     return Date.now() < exp * 1000;
   } catch {
-    return true;
+    return false;
   }
 };
