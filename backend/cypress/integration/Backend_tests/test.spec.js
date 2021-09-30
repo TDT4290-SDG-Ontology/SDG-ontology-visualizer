@@ -1,3 +1,4 @@
+
 describe('Run backend', () => {
     beforeEach(() => {
         cy.visit('http://localhost:3001')
@@ -22,6 +23,7 @@ describe('Login test with invalid user', () => {
 });
 
 let token = '';
+const value = 6;
 describe('Login test with valid user', () => {
     it('POST', () => {
         cy.request({
@@ -44,10 +46,10 @@ describe('Insertion test with valid values', () => {
         cy.request({
             method: 'POST',
             url: 'http://localhost:3001/api/data/insert',
-            body: {"indicator": "EC: ICT: ICT: 1C",
+            body: {
+                "indicator": "EC: ICT: ICT: 1C",
                 "municipality": "no.5001",
-                "data": "1",
-                "dataseries": "dataseries",
+                "data": 1,
                 "year": "2020",
                 "isDummy": true,
                 "token": token
@@ -56,7 +58,39 @@ describe('Insertion test with valid values', () => {
             expect(response.status).equal(200)
         });
     });
-})
+});
+
+describe('Insertion test with valid values without dataseries defined in the insert query, then test get data series with the value inserted', () => {
+    it('POST', () => {
+        cy.request({
+            method: 'POST',
+            url: 'http://localhost:3001/api/data/insert',
+            body: {"indicator": "EC: ICT: ICT: 1C",
+                "municipality": "no.5001",
+                "data": value,
+                "year": "2020",
+                "isDummy": true,
+                "token": token
+            }
+        }).then((response) => {
+            expect(response.status).equal(200)
+            cy.request({
+                method: 'POST',
+                url: 'http://localhost:3001/api/data/get',
+                body: {
+                    "indicator": "EC: ICT: ICT: 1C",
+                    "municipality": "no.5001",
+                    "year": "2020"
+                }
+            }).then((response) => {
+                expect(response.status).equal(200);
+                expect(response.body).to.not.be.empty;
+                expect(response.body[0]).have.property('value');
+                expect(response.body[0].value).equal(value);
+            })
+        });
+    });
+});
 
 describe('Insertion test with invalid indicator', () => {
     it('POST', () => {
