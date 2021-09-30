@@ -6,6 +6,7 @@ import { ApiError } from '../types/errorTypes';
 import onError from './middleware/onError';
 import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
 import verifyToken from './middleware/verifyToken';
+import CheckMunicipalityByCode from '../database/CheckMunicipalityByCode';
 
 const router = Router();
 
@@ -17,7 +18,10 @@ const insertData = async (req: Request, res: Response) => {
     const indicatorName: string | undefined = u4sscKpiMap.get(req.body.indicator);
     if (indicatorName === undefined || !(typeof indicatorName === 'string'))
       throw new ApiError(400, 'Unknown indicator');
-
+    const municipalityCheck = await CheckMunicipalityByCode(req.body.municipality);
+    if (municipalityCheck === 0) {
+      throw new ApiError(400, 'Unknown Municipality Code');
+    }
     const newDataPoint = {
       indicatorId: req.body.indicator,
       indicatorName,

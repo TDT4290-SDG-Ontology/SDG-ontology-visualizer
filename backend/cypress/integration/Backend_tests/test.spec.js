@@ -45,7 +45,7 @@ describe('Insertion test with valid values', () => {
             method: 'POST',
             url: 'http://localhost:3001/api/data/insert',
             body: {"indicator": "EC: ICT: ICT: 1C",
-                "municipality": "Trondheim",
+                "municipality": "no.5001",
                 "data": "1",
                 "dataseries": "dataseries",
                 "year": "2020",
@@ -58,14 +58,14 @@ describe('Insertion test with valid values', () => {
     });
 })
 
-describe('Insertion test with invalid values', () => {
+describe('Insertion test with invalid indicator', () => {
     it('POST', () => {
         cy.request({
             method: 'POST',
             url: 'http://localhost:3001/api/data/insert',
             failOnStatusCode: false,
-            body: {"indicator": "EC: ICT: 1C",
-                "municipality": "Trondheim",
+            body: {"indicator": "undefined indicator",
+                "municipality": "no.5001",
                 "data": "1",
                 "dataseries": "dataseries",
                 "year": "2020",
@@ -75,6 +75,27 @@ describe('Insertion test with invalid values', () => {
         }).then((response) => {
             expect(response.status).equal(500)
             expect(response.body.message).have.string('Unknown indicator')
+        });
+    });
+})
+
+describe('Insertion test with invalid mmunicipality name', () => {
+    it('POST', () => {
+        cy.request({
+            method: 'POST',
+            url: 'http://localhost:3001/api/data/insert',
+            failOnStatusCode: false,
+            body: {"indicator": "EC: ICT: ICT: 1C",
+                "municipality": "undefined",
+                "data": "1",
+                "dataseries": "dataseries",
+                "year": "2020",
+                "isDummy": true,
+                "token": token
+            }
+        }).then((response) => {
+            expect(response.status).equal(500)
+            expect(response.body.message).have.string('Unknown Municipality Code')
         });
     });
 })

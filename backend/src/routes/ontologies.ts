@@ -10,6 +10,7 @@ import getSubGoals from '../database/getSubGoals';
 import getSustainabilityGoals from '../database/getSustainabilityGoals';
 import getDataSeries from '../database/getDataSeries';
 import getTradeOff from '../database/getTradeOffTo';
+import CheckMunicipalityByCode from '../database/CheckMunicipalityByCode';
 import {
   AnnotationResponse,
   ClassIdRequest,
@@ -116,6 +117,15 @@ const getDataPointsForDataSeries = async (req: Request, res: Response) => {
   }
 };
 
+const checkMunicipalityByCode = async (req: Request, res: Response) => {
+  try {
+    const data = await CheckMunicipalityByCode(req.body.municipalityCode);
+    res.json(data);
+  } catch (e: any) {
+    onError(e, req, res);
+  }
+};
+
 router.get('/relations/:classId', verifyDatabaseAccess, getRelationsFromClass);
 router.get('/subclasses/:classId', verifyDatabaseAccess, getSubclassesFromClass);
 router.get('/annotations/:classId', verifyDatabaseAccess, getAnnotationsFromClass);
@@ -126,5 +136,6 @@ router.get('/tradeoff/:classId', verifyDatabaseAccess, getTradeOffToNodes);
 router.get('/developmentarea/:classId', verifyDatabaseAccess, getDevelopmentAreaToNodes);
 router.get('/subgoals/:classId', verifyDatabaseAccess, getSubGoalsfromSDG);
 router.get('/dataseries', verifyDatabaseAccess, getDataPointsForDataSeries); // TODO: Make a proper get endpoint instead
+router.get('/checkMunicipalityByCode', verifyDatabaseAccess, checkMunicipalityByCode);
 
 export default router;
