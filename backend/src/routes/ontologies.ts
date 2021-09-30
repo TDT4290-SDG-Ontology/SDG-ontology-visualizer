@@ -108,15 +108,6 @@ const regexSearch = async (req: RegexRequest, res: NodeArrayResponse) => {
   }
 };
 
-const getDataPointsForDataSeries = async (req: Request, res: Response) => {
-  try {
-    const data = await getDataSeries(req.body.kpiNumber);
-    res.json(data);
-  } catch (e: any) {
-    onError(e, req, res);
-  }
-};
-
 const checkMunicipalityByCode = async (req: Request, res: Response) => {
   try {
     const data = await CheckMunicipalityByCode(req.body.municipalityCode);
@@ -135,7 +126,6 @@ router.get('/contributions/:classId', verifyDatabaseAccess, getContributionsToNo
 router.get('/tradeoff/:classId', verifyDatabaseAccess, getTradeOffToNodes);
 router.get('/developmentarea/:classId', verifyDatabaseAccess, getDevelopmentAreaToNodes);
 router.get('/subgoals/:classId', verifyDatabaseAccess, getSubGoalsfromSDG);
-router.get('/dataseries', verifyDatabaseAccess, getDataPointsForDataSeries); // TODO: Make a proper get endpoint instead
 router.get('/checkMunicipalityByCode', verifyDatabaseAccess, checkMunicipalityByCode);
 
 export default router;

@@ -17,18 +17,22 @@ export default (obj: DataPoint): string => {
 
   return `
     ${prefixString}
-    insert {
+    delete {
       ?uri rdf:type SDG:Datapoint .
       ?uri SDG:datapointForSeries ?dataseries.
       ?uri SDG:datapointForMunicipality ?municipality.
-      ?uri SDG:datapointYear ${obj.year}.
-      ?uri SDG:datapointValue ${obj.data}.
+      ?uri SDG:datapointYear ?year.
+      ?uri SDG:datapointValue ?value.
 
       ${dummyDataString}
    }
    where {
-      BIND(IRI(CONCAT("http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapoint.u4ssc.${obj.indicatorName}.", strUUID())) as ?uri)
       BIND(${obj.year} as ?year)
+      ?uri rdf:type SDG:Datapoint .
+      ?uri SDG:datapointForSeries ?dataseries.
+      ?uri SDG:datapointForMunicipality ?municipality.
+      ?uri SDG:datapointYear ?year.
+      ?uri SDG:datapointValue ?value.
 
       ?municipality SDG:municipalityCode "${obj.municipality}".
 
