@@ -30,17 +30,21 @@ const insertData = async (req: Request, res: Response) => {
       isDummy: req.body.isDummy !== undefined && req.body.isDummy,
       dataseries: req.body.dataseries,
     };
+
+    // Check if this datapoint already exists
     const data = await getDataSeries(
       newDataPoint.indicatorId,
       newDataPoint.municipality,
       newDataPoint.year,
       newDataPoint.dataseries,
     );
-    console.log(data);
+
+    // If it does we delete it.
     if (data.length > 0) {
       await deleteDataPoint(newDataPoint);
     }
 
+    // Insert new datapoint.
     await setData(newDataPoint);
     res.status(200).json({});
   } catch (e: any) {
@@ -50,8 +54,25 @@ const insertData = async (req: Request, res: Response) => {
 
 const getData = async (req: Request, res: Response) => {
   try {
-    let test = await getDataSeriesForMunicipality(req.body.municipality);
-    test = _.chain(test)
+    const data = await getDataSeries(req.body.indicator, req.body.municipality, req.body.year);
+    res.json(data);
+  } catch (e: any) {
+    onError(e, req, res);
+  }
+};
+
+/**
+ * Endpoint for
+ * @param req
+ * @param res
+ */
+const getAllData = async (req: Request, res: Response) => {
+  try {
+    let data = await getDataSeriesForMunicipality(req.body.municipality);
+
+    // Group by kpiNumber and then potentially dataseriesVariant
+    // Also removes all properties but value and year from the datapoints themselves
+    data = _.chain(data)
       .groupBy('kpiNumber')
       .map((value, key) => {
         if (value[0].dataseriesVariant === undefined) {
@@ -59,16 +80,13 @@ const getData = async (req: Request, res: Response) => {
         }
         const data2 = _.groupBy(value, 'dataseriesVariant');
 
+        // eslint-disable-next-line array-callback-return
         Object.keys(data2).map((key2) => {
           data2[key2] = data2[key2].map(({ kpiNumber, dataseriesVariant, ...item }) => item);
         });
-        console.log(data2);
-
         return { kpiNumber: key, data: data2 };
       })
       .value();
-
-    const data = await getDataSeries(req.body.indicator, req.body.municipality, req.body.year);
     res.json(data);
   } catch (e: any) {
     onError(e, req, res);
@@ -77,5 +95,6 @@ const getData = async (req: Request, res: Response) => {
 
 router.post('/insert', verifyDatabaseAccess, verifyToken, insertData);
 router.post('/get', verifyDatabaseAccess, getData);
+router.post('/get-all-dataseries', verifyDatabaseAccess, getAllData);
 
 export default router;
