@@ -79,7 +79,7 @@ describe('Insertion test with invalid indicator', () => {
     });
 })
 
-describe('Insertion test with invalid mmunicipality name', () => {
+describe('Insertion test with invalid municipality name', () => {
     it('POST', () => {
         cy.request({
             method: 'POST',
@@ -96,6 +96,26 @@ describe('Insertion test with invalid mmunicipality name', () => {
         }).then((response) => {
             expect(response.status).equal(500)
             expect(response.body.message).have.string('Unknown Municipality Code')
+        });
+    });
+})
+
+describe('Insertion test without token', () => {
+    it('POST', () => {
+        cy.request({
+            method: 'POST',
+            url: 'http://localhost:3001/api/data/insert',
+            failOnStatusCode: false,
+            body: {"indicator": "EC: ICT: ICT: 1C",
+                "municipality": "no.5001",
+                "data": "1",
+                "dataseries": "dataseries",
+                "year": "2020",
+                "isDummy": true
+            }
+        }).then((response) => {
+            expect(response.status).equal(500)
+            expect(response.body.message).have.string('Missing auth token')
         });
     });
 })
