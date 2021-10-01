@@ -43,7 +43,6 @@ const insertData = async (req: Request, res: Response) => {
 const getData = async (req: Request, res: Response) => {
   try {
     const data = await getDataSeries(req.body.indicator, req.body.municipality, req.body.year);
-    console.log(data)
     res.json(data);
   } catch (e: any) {
     onError(e, req, res);
