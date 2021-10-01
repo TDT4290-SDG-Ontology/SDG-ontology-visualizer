@@ -1,3 +1,5 @@
+import deleteDataPoint from "../../../src/database/deleteDataPoint";
+import getDataSeries from "../../../src/database/getDataSeries";
 
 describe('Run backend', () => {
     beforeEach(() => {
@@ -128,8 +130,8 @@ describe('Insertion test with invalid municipality name', () => {
                 "token": token
             }
         }).then((response) => {
-            expect(response.status).equal(500)
-            expect(response.body.message).have.string('Unknown Municipality Code')
+            expect(response.status).equal(200)
+            expect(response.body).to.be.empty
         });
     });
 })
