@@ -8,7 +8,7 @@ import config from '../config';
 /* Composes a hashed password, salt, and number of rounds into one string suitable
  * for storage in databases.
  */
-const encodePasswordHash = (passwordHash: Uint8Array, salt: Uint8Array, rounds: number) => {
+export const encodePasswordHash = (passwordHash: Uint8Array, salt: Uint8Array, rounds: number) => {
   // eslint-disable-line @typescript-eslint/no-unused-vars
   const hashString = Buffer.from(passwordHash).toString('base64');
   const saltString = Buffer.from(salt).toString('base64');
@@ -18,7 +18,7 @@ const encodePasswordHash = (passwordHash: Uint8Array, salt: Uint8Array, rounds: 
 
 /* Decomposes a stored hash-string into its component rounds, salt, and hash.
  */
-const decodePasswordHash = (encodedHash: string) => {
+export const decodePasswordHash = (encodedHash: string) => {
   // Hash format: {rounds}${salt}${hash}
   // both salt and hash are base64 encoded, so there's no crash with the separators!
 
@@ -39,19 +39,21 @@ export const checkPassword = (password: string, existingHash: string) => {
   // The reason this is slow is because it is used in order to reduce the efficacy of
   // brute force attacks. The slowness is controlled by the 'rounds' parameter.
 
-  const decodedHash = decodePasswordHash(existingHash);
 
-  const newHash: Uint8Array = new Uint8Array(decodedHash.hash.length);
+  // Destructured object for better readability
+  const { rounds, salt, hash: existingHashedBytes } = decodePasswordHash(existingHash);
+
+  const newHash: Uint8Array = new Uint8Array(existingHashedBytes.length);
   const passwordBytes: Uint8Array = new Uint8Array(Buffer.from(password, 'utf-8'));
 
   pbkdf(
     passwordBytes,
     passwordBytes.length,
-    decodedHash.salt,
-    decodedHash.salt.length,
+    salt,
+    salt.length,
     newHash,
     newHash.length,
-    decodedHash.rounds,
+    rounds,
   );
 
   // This comparison is done somewhat obtusely in order to thwart timing attacks
@@ -62,7 +64,6 @@ export const checkPassword = (password: string, existingHash: string) => {
   // As it stands, the only length dependent operation in this comparison is
   // generating the hash for the password being tested.
 
-  const existingHashedBytes = decodedHash.hash;
   let diff = newHash.length ^ existingHashedBytes.length; // eslint-disable-line no-bitwise
   for (let i = 0; i < existingHashedBytes.length; i++) {
     // eslint-disable-line no-plusplus
@@ -70,7 +71,7 @@ export const checkPassword = (password: string, existingHash: string) => {
     // eslint-disable-line no-plusplus
     // The bitwise XOR finds the bitwise difference between the
     // characters being compared.
-    diff |= existingHashedBytes[i] ^ newHash[i]; // eslint-disable-line no-bitwise
+    diff |= existingHashedBytes[i] ^ newHash[i];
   }
 
   return diff === 0;

@@ -18,6 +18,14 @@ describe('GET /isAlive', () => {
   });
 });
 
+describe('GET /isLoggedIn', () => {
+  it('should return "true"', async () => {
+    const response = await agent.get('/api/isLoggedIn');
+    expect(response.statusCode).to.eq(200)
+    expect(response.text).to.eq('true')
+  });
+});
+
 describe('Login test with invalid user', () => {
   it('should return "400: Bad Request"', async () => {
     agent
