@@ -6,7 +6,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "ts-node-dev src/index.ts",
-    "test": "mocha -r ts-node/register cypress/**/*.spec.*s",
+    "test": "mocha -r ts-node/register src/tests/*.spec.*s",
     "lint": "npx eslint --ext .ts,.tsx src/",
     "lint-fix": "npx eslint --fix --ext .ts,.tsx src/"
   },
@@ -30,8 +30,10 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.22",
     "@types/cors": "^2.8.9",
     "@types/express": "^4.17.11",
+    "@types/jest": "^27.0.2",
     "@types/mocha": "^9.0.0",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
