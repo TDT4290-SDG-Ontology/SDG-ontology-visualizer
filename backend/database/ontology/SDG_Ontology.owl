@@ -908,6 +908,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesScoreCalculationMethod -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesScoreCalculationMethod">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesVariant -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesVariant"/>
@@ -35227,6 +35235,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.EMF_exposure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.EMF_exposure"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35236,6 +35247,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.GHG_emissions">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.GHG_emissions"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35245,6 +35259,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.access_electricity">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.access_electricity"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35254,6 +35271,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.adult_literacy">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.adult_literacy"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35263,6 +35283,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.no2">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>no2</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35273,6 +35296,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.o3">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>o3</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35283,6 +35309,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.pm_10">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>pm_10</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35293,6 +35322,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.pm_2.5">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>pm_2.5</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35303,6 +35335,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.air_pollution.so2">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.air_pollution"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>so2</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35313,6 +35348,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.bicycle_network">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.bicycle_network"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35322,6 +35360,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.child_care_availability">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.child_care_availability"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35331,6 +35372,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.cultural_expenditure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.cultural_expenditure"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35340,6 +35384,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.cultural_infrastructure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.cultural_infrastructure"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35349,6 +35396,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.demand_response_penetration">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.demand_response_penetration"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35358,6 +35408,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.disaster_related_economic_loss">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.disaster_related_economic_loss"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35367,6 +35420,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.drinking_water_quality">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.drinking_water_quality"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35376,6 +35432,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.dynamic_public_trans_inf">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.dynamic_public_trans_inf"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35385,6 +35444,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.e_government">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.e_government"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35394,6 +35456,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electricity_consumption">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electricity_consumption"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35403,6 +35468,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electricity_outage_time">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electricity_outage_time"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35412,6 +35480,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electricity_supply_ict_mon">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electricity_supply_ict_mon"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35421,6 +35492,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electricity_system_outage_freq">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electricity_system_outage_freq"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35430,6 +35504,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.electronic_health_records">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.electronic_health_records"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35439,6 +35516,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.emergency_response_time">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.emergency_response_time"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35448,6 +35528,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.expenditure_housing">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.expenditure_housing"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35457,6 +35540,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.fire_service">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.fire_service"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35466,6 +35552,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.fixed_broadband">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.fixed_broadband"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35475,6 +35564,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.food_production">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.food_production"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35484,6 +35576,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.freshwater_consumption">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.freshwater_consumption"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35493,6 +35588,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.gender_income_equality">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gender_income_equality"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35502,6 +35600,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.gini_coefficient">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.gini_coefficient"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35511,6 +35612,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.green_area_accessibility">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.green_area_accessibility"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35520,6 +35624,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.green_areas">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.green_areas"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35529,6 +35636,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.higher_education_degrees">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.higher_education_degrees"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35538,6 +35648,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.household_internet_access">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.household_internet_access"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35547,6 +35660,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.household_sanitation">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.household_sanitation"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35556,6 +35672,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.ict_sector_employment">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.ict_sector_employment"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35565,6 +35684,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.in_patient_hospital_beds">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.in_patient_hospital_beds"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35574,6 +35696,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.informal_settlements">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.informal_settlements"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35582,6 +35707,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.integrated_building_management_systems">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35591,6 +35719,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.intersection_control">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.intersection_control"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35600,6 +35731,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.life_expectancy">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.life_expectancy"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35609,6 +35743,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.low_carbon_passenger_vehicles">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.low_carbon_passenger_vehicles"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35618,6 +35755,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.maternal_mortality_rate">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.maternal_mortality_rate"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35627,6 +35767,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.natural_disaster_related_deaths">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.natural_disaster_related_deaths"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35636,6 +35779,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.noise_exposure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.noise_exposure"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35645,6 +35791,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.open_data.number">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.open_data"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>number</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35655,6 +35804,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.open_data.percent">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.open_data"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>percent</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35665,6 +35817,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.patents">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.patents"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35674,6 +35829,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.pedestrian_infrastructure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.pedestrian_infrastructure"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35683,6 +35841,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.physicians">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.physicians"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35692,6 +35853,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.police_service">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.police_service"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35701,6 +35865,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.population_disaster_prone_areas">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.population_disaster_prone_areas"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35710,6 +35877,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.portable_water_supply">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.portable_water_supply"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35719,6 +35889,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.poverty_share">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.poverty_share"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35728,6 +35901,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.protected_natural_areas">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.protected_natural_areas"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35737,6 +35913,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_building_energy_consumption">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_building_energy_consumption"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35746,6 +35925,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_building_sustainability">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_building_sustainability"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35755,6 +35937,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_health_coverage">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_health_coverage"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35764,6 +35949,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_sector_e_procurement">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_sector_e_procurement"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35773,6 +35961,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_transport_convenience">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_transport_convenience"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35782,6 +35973,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.public_transport_network">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.public_transport_network"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35791,6 +35985,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.r_d_expenditure">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.r_d_expenditure"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35800,6 +35997,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.recreational_facilities">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.recreational_facilities"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35809,6 +36009,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.renewable_energy_consumption">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.renewable_energy_consumption"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35818,6 +36021,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.residential_thermal_energy_consumption">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.residential_thermal_energy_consumption"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35827,6 +36033,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.resilience_plans">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.resilience_plans"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35836,6 +36045,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.school_enrolment">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.school_enrolment"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35845,6 +36057,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.shared_bicycles">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shared_bicycles"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35854,6 +36069,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.shared_vehicles">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.shared_vehicles"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35863,6 +36081,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.small_medium_enterprises">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.small_medium_enterprises"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35872,6 +36093,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.smart_electricity_meters">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.smart_electricity_meters"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35881,6 +36105,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.smart_water_meters">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.smart_water_meters"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35890,6 +36117,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_collection">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_collection"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35899,6 +36129,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.burnt">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>burnt</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35909,6 +36142,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.incinerated">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>incinerated</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35919,6 +36155,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.landfill">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>landfill</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35929,6 +36168,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.open_dump">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>open_dump</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35939,6 +36181,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.other">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>other</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35949,6 +36194,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.solid_waste_treatment.recycled">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.solid_waste_treatment"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>recycled</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -35959,6 +36207,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.student_ICT_access">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.student_ICT_access"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35968,6 +36219,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.tourism_industry_employment">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.tourism_industry_employment"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35977,6 +36231,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.traffic_fatalities">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.traffic_fatalities"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35986,6 +36243,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.traffic_mon">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.traffic_mon"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -35995,6 +36255,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.cycling">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>cycling</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36005,6 +36268,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.para">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>para</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36015,6 +36281,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.private">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>private</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36025,6 +36294,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.public">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>public</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36035,6 +36307,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.transportation_mode_share.walking">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.transportation_mode_share"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>walking</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36045,6 +36320,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.travel_time_index">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.travel_time_index"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -36054,6 +36332,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.unemployment_rate">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.unemployment_rate"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -36063,6 +36344,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.compact">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>compact</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36073,6 +36357,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.connected">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>connected</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36083,6 +36370,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.inclusive">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>inclusive</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36093,6 +36383,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.integrated">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>integrated</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36103,6 +36396,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.urban_development.resilient">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.urban_development"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>resilient</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36113,6 +36409,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.violent_crime_rate">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.violent_crime_rate"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -36122,6 +36421,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.voter_participation">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.voter_participation"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -36131,6 +36433,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_collection">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_collection"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -36140,6 +36445,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.primary">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_treatment"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>primary</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36150,6 +36458,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.secondary">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_treatment"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>secondary</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36160,6 +36471,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wastewater_treatment.tertiary">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wastewater_treatment"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>tertiary</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36170,6 +36484,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_consumption">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_consumption"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -36179,6 +36496,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_supply">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_supply"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -36188,6 +36508,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_supply_ict_mon">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_supply_ict_mon"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -36197,6 +36520,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_supply_loss">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_supply_loss"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -36206,6 +36532,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.water_system_ict_mon">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.water_system_ict_mon"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -36215,6 +36544,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wifi_public_areas">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wifi_public_areas"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -36224,6 +36556,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wireless_broadband"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
@@ -36233,6 +36568,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband_coverage.3g">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wireless_broadband_coverage"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>3g</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36243,6 +36581,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.wireless_broadband_coverage.4g">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.wireless_broadband_coverage"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
         <SDG:dataseriesVariant>4g</SDG:dataseriesVariant>
     </owl:NamedIndividual>
     
@@ -36253,6 +36594,9 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.youth_unemployment_rate">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <SDG:isDataSeriesFor rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.youth_unemployment_rate"/>
+        <SDG:dataseriesMaximumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">100.0</SDG:dataseriesMaximumValue>
+        <SDG:dataseriesMinimumValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</SDG:dataseriesMinimumValue>
+        <SDG:dataseriesScoreCalculationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERCENT</SDG:dataseriesScoreCalculationMethod>
     </owl:NamedIndividual>
     
 
