@@ -880,13 +880,16 @@
 
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapointValue -->
 
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapointValue"/>
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapointValue">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapointYear -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapointYear">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
         <rdfs:comment>Year for which the datapoint is valid.</rdfs:comment>
     </owl:DatatypeProperty>
     
@@ -895,6 +898,7 @@
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesMaximumValue -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesMaximumValue">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
     </owl:DatatypeProperty>
     
@@ -903,6 +907,7 @@
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesMinimumValue -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesMinimumValue">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
     </owl:DatatypeProperty>
     
@@ -918,7 +923,10 @@
 
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesVariant -->
 
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesVariant"/>
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseriesVariant">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#DataSeries"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -926,6 +934,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#goalBaseline">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#IndicatorGoals"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
     </owl:DatatypeProperty>
     
 
@@ -935,6 +944,15 @@
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#goalBaselineYear">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#IndicatorGoals"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#goalBenchmarkRangeStart -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#goalBenchmarkRangeStart">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#IndicatorGoals"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
     </owl:DatatypeProperty>
     
 
@@ -952,6 +970,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#goalTarget">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#IndicatorGoals"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
     </owl:DatatypeProperty>
     
 
@@ -969,25 +988,33 @@
 
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#indicatorID -->
 
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#indicatorID"/>
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#indicatorID">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isDummy -->
 
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isDummy"/>
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isDummy">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#kpiNumber -->
 
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#kpiNumber"/>
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#kpiNumber">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
     
 
 
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipalityCode -->
 
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipalityCode"/>
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipalityCode">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
     
 
 
