@@ -994,9 +994,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isDummy -->
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isDummyData -->
 
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isDummy">
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#isDummyData">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     </owl:DatatypeProperty>
     
@@ -30412,6 +30412,7 @@ English: (For inital development, expansion of this class along with possible co
     <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/2">
         <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#Goal"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#B2"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/2.a"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/2.b"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/2.c"/>
@@ -30667,6 +30668,7 @@ English: (For inital development, expansion of this class along with possible co
     <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/3">
         <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#Goal"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#B3"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/3.a"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/3.b"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/3.c"/>
@@ -31103,6 +31105,7 @@ English: (For inital development, expansion of this class along with possible co
     <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/4">
         <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#Goal"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#B4"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/4.a"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/4.b"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/4.c"/>
@@ -31406,6 +31409,7 @@ English: (For inital development, expansion of this class along with possible co
     <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/5">
         <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#Goal"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#B5"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/5.a"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/5.b"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/5.c"/>
@@ -31689,6 +31693,7 @@ English: (For inital development, expansion of this class along with possible co
     <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/6">
         <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#Goal"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#B6"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/6.a"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/6.b"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/6.1"/>
@@ -31938,6 +31943,7 @@ English: (For inital development, expansion of this class along with possible co
     <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/7">
         <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#Goal"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#B7"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/7.a"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/7.b"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/7.1"/>
@@ -32107,6 +32113,7 @@ English: (For inital development, expansion of this class along with possible co
     <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/8">
         <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#Goal"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#B8"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/8.a"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/8.b"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/8.1"/>
@@ -32474,6 +32481,7 @@ English: (For inital development, expansion of this class along with possible co
     <owl:NamedIndividual rdf:about="http://metadata.un.org/sdg/9">
         <rdf:type rdf:resource="http://metadata.un.org/sdg/ontology#Goal"/>
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#B9"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/9.a"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/9.b"/>
         <ontology:hasTarget rdf:resource="http://metadata.un.org/sdg/9.c"/>
@@ -37500,7 +37508,6 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#oecd.indicators.patent">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#OECDIndicator"/>
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#u4ssc.indicators.patents"/>
         <SDG:linkedSDGSubgoal rdf:resource="http://metadata.un.org/sdg/9.5"/>
         <SDG:indicatorID>C090500a</SDG:indicatorID>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Patent applications (PCT) per 1 000 000 people</rdfs:comment>
