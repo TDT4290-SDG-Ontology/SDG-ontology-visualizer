@@ -8,6 +8,8 @@ export default (municipality: string, year: number): string => {
         ${prefixString}
         SELECT ?kpi ?year ?value ?dataseries
         WHERE {
+            BIND(${year} as ?year).
+
             ?ind rdf:type SDG:U4SSCIndicator.
             ?ind SDG:kpiNumber ?kpi.
             
@@ -15,7 +17,7 @@ export default (municipality: string, year: number): string => {
             
             ?dp SDG:datapointForSeries ?ds.
             ?dp SDG:datapointValue ?value.
-            ?dp SDG:datapointYear ?${year}.
+            ?dp SDG:datapointYear ?year.
 
             ?dp SDG:datapointForMunicipality ?mun.
             ?mun SDG:municipalityCode "${municipality}".

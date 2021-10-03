@@ -6,7 +6,7 @@ export default (municipality: string): string => {
 
   return `
         ${prefixString}
-        SELECT ?kpi ?baseline ?baselineYear ?target ?deadline ?startRange
+        SELECT ?kpi ?baseline ?baselineYear ?target ?deadline ?startRange ?dataseries
         WHERE {
             ?indicator rdf:type SDG:U4SSCIndicator.
             ?indicator SDG:kpiNumber ?kpi.
@@ -16,9 +16,16 @@ export default (municipality: string): string => {
             ?goal SDG:goalBaselineYear ?baselineYear.
             ?goal SDG:goalDeadline ?deadline.
             ?goal SDG:goalTarget ?target.
+            ?goal SDG:goalStartRange ?startRange.
 
             ?goal SDG:isGoalForMunicipality ?municipality.
-            ?goal SDG:isGoalForIndicator ?indicator.
+            ?goal SDG:isGoalForDataseries ?ds.
+
+            ?ds SDG:isDataSeriesFor ?indicator.
+
+            OPTIONAL {
+              ?ds SDG:dataseriesVariant ?dataseries.
+            }
 
             ?municipality SDG:municipalityCode "${municipality}".
         }`;

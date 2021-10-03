@@ -5,6 +5,7 @@ export type Goal = {
   target: number;
   deadline: number;
   startRange: number;
+  dataseries: string?;
 };
 
 export type Dataseries = {

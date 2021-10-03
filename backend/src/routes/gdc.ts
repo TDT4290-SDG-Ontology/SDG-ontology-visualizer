@@ -43,7 +43,7 @@ const computeScore = (current: Dataseries, goal: Goal) : IndicatorScore => {
 
   if (Math.abs(goal.target - current.value) < 0.01)
   {
-    // goal equal enough to target -- assume it's fulfilled.
+    // current value equal enough to target -- assume it's fulfilled.
     return {
       score: 4,
       points: 100,
@@ -96,6 +96,8 @@ const computeScore = (current: Dataseries, goal: Goal) : IndicatorScore => {
   const fractCompare = Math.abs(currentFraction);
   if (fractCompare <= 1.0 + CMP_EPSILON || indicatorScore <= 0.0)
   {
+    // TODO: handle inverse calculation...
+
     // One of: 
     //  1.  Current value is baseline (either no progress, or values have returned to baseline).
     //      This needs better modeling in order to handle, outside the scope of this project, TODO for later projects!
@@ -104,10 +106,14 @@ const computeScore = (current: Dataseries, goal: Goal) : IndicatorScore => {
     //      This requires better modeling, as CAGR based projections will indicate completion dates before
     //      the datapoint was measured.
 
+    console.log(current.kpi)
+    console.log(fractCompare)
+    console.log(indicatorScore)
+
     return { 
       score: indicatorScore,
       points,
-      projectedCompletion: Infinity,
+      projectedCompletion: -1,
       currentCAGR,
       requiredCAGR,
     };
@@ -119,7 +125,7 @@ const computeScore = (current: Dataseries, goal: Goal) : IndicatorScore => {
   //
   // There should be an investigation into whether or not a logistics function might model this better wrt.
   // long completion tails.
-  const projectedCompletion = goal.baselineYear + ((indicatorScore >= 100) ? (current.year - goal.baselineYear) : 
+  const projectedCompletion = current.year + ((indicatorScore >= 100) ? (current.year - goal.baselineYear) : 
                   (current.year - goal.baselineYear) * (Math.log(targetFraction) / Math.log(currentFraction)));
 
   // TODO: consider if we should round the projected completion year to the nearest integer (or upwards).
@@ -156,7 +162,15 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const data = await Promise.all([dataseriesPromise, goalsPromise]);
     const dataseries: Dataseries[] = data[0];
 
-    const goals: Map<string, Goal> = new Map<string, Goal>(data[1].map(x => [ x.kpi, x ]));
+    const goals: Map<string, Goal> = new Map<string, Goal>();
+    for (var i = 0; i < data[1].length; i++)
+    {
+      const goal = data[1][i];
+
+      const isVariant = goal.dataseries !== undefined;
+      const displayKPI = goal.kpi + (isVariant ? " - " + goal.dataseries : "");
+      goals.set(displayKPI, goal);
+    }
 
     const outputIndicatorScores = new Map<string, IndicatorScore>();
     const outputCategoryScores = new Map<string, Score>();
@@ -173,18 +187,17 @@ const getGoalDistance = async (req: Request, res: Response) => {
     for (var i = 0; i < dataseries.length; i++)
     {
       const series = dataseries[i];
-      const goal = goals.get(series.kpi);
+      const isVariant = series.dataseries !== undefined;
+      const displayKPI = series.kpi + (isVariant ? " - " + series.dataseries : "");
 
+      const goal = goals.get(displayKPI);
       unreportedIndicators.delete(series.kpi);
 
-      if (goal === undefined || goal === null)
+      if (goal === undefined)
       {
         indicatorsWithoutGoals.push(series.kpi);
         continue;
       }
-
-      const isVariant = series.dataseries !== undefined || series.dataseries !== null;
-      const displayKPI = series.kpi + (isVariant) ? " - " + series.dataseries : "";
 
       const score = computeScore(series, goal);
 
@@ -242,7 +255,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
       const arr = domainScores.get(domain);
       if (arr === undefined)
-        domainScores.set(subdomain, [ { cumulative: cumulativePoints, average: avgPoints, count: totalNumber, projectedCompletion: longestCompletion } ])
+        domainScores.set(domain, [ { cumulative: cumulativePoints, average: avgPoints, count: totalNumber, projectedCompletion: longestCompletion } ])
       else
         arr.push({ cumulative: cumulativePoints, average: avgPoints, count: totalNumber, projectedCompletion: longestCompletion });
     }
@@ -275,10 +288,10 @@ const getGoalDistance = async (req: Request, res: Response) => {
       averageScore,
       projectedCompletion,
 
-      domains: outputDomainScores,
-      subdomains: outputSubdomainScores,
-      categories: outputCategoryScores,
-      indicators: outputIndicatorScores,
+      domains:    [ ...outputDomainScores ],
+      subdomains: [ ...outputSubdomainScores ],
+      categories: [ ...outputCategoryScores ],
+      indicators: [ ...outputIndicatorScores ],
       indicatorsWithoutGoals,
       unreportedIndicators: Array.from(unreportedIndicators),
     });
@@ -292,9 +305,13 @@ const setGoal = async (req: Request, res: Response) => {
     const isDummy = (req.body.isDummy !== undefined) && req.body.isDummy;
     const dataseries = (req.body.dataseries === undefined || req.body.dataseries === null) ? "main" : req.body.dataseries;
 
+    const indicatorName = u4sscKpiMap.get(req.body.indicator);
+    if (indicatorName === undefined)
+      throw new ApiError(400, "!");
+
     // TODO: figure out how to do this properly, as a DELETE/INSERT query instead...
     await deleteGDCGoal(req.body.municipality, req.body.indicator, dataseries, isDummy);
-    await setGDCGoal(req.body.municipality, req.body.indicator, u4sscKpiMap[req.body.indicator], dataseries, req.body.target, req.body.deadline, req.body.baseline, req.body.baselineYear, req.body.startRange, isDummy);
+    await setGDCGoal(req.body.municipality, req.body.indicator, indicatorName, dataseries, req.body.target, req.body.deadline, req.body.baseline, req.body.baselineYear, req.body.startRange, isDummy);
     res.json({});
   } catch (e: any) {
     onError(e, req, res);
