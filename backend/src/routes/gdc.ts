@@ -6,6 +6,8 @@ import setGDCGoal from '../database/setGDCGoal';
 import deleteGDCGoal from '../database/deleteGDCGoal';
 import getCorrelatedKPIs from '../database/getCorrelatedKPIs';
 
+import { Goal, Dataseries } from '../types/gdcTypes';
+
 import { u4sscKpiToCategory, u4sscCategoryToSubdomain, u4sscSubdomainToDomain, u4sscKpis, u4sscKpiMap } from '../database/u4sscKpiMap';
 import { ApiError } from '../types/errorTypes';
 import onError from './middleware/onError';
@@ -22,10 +24,10 @@ type IndicatorScore = {
   requiredCAGR: number;
 };
 
-const computeScore = (current, goal) : IndicatorScore => {
+const computeScore = (current: Dataseries, goal: Goal) : IndicatorScore => {
 
   const CMP_EPSILON = 0.0001; // TODO: tune the epsilon
-  const absGoalBaselineDiff = abs(goal.target - goal.baseline);
+  const absGoalBaselineDiff = Math.abs(goal.target - goal.baseline);
   if (absGoalBaselineDiff < CMP_EPSILON)
   {
     // Goal equal to baseline -- assume it's fulfilled.
@@ -39,7 +41,7 @@ const computeScore = (current, goal) : IndicatorScore => {
     };
   }
 
-  if (abs(goal.target - current.value) < 0.01)
+  if (Math.abs(goal.target - current.value) < 0.01)
   {
     // goal equal enough to target -- assume it's fulfilled.
     return {
@@ -84,15 +86,15 @@ const computeScore = (current, goal) : IndicatorScore => {
                   (indicatorScore >= 33.0) ? 2 : 
                   (indicatorScore >=  0.0) ? 1 : 0;
 
-  const baselineComp = max(goal.baseline, 0.1); // Guard against division by 0. TODO: check for better solutions for this.
+  const baselineComp = Math.max(goal.baseline, 0.1); // Guard against division by 0. TODO: check for better solutions for this.
   const targetFraction = goal.target / baselineComp;
   const currentFraction = current.value / baselineComp;
   
-  const currentCAGR  = pow(fractCompare, 1.0 / (current.year - goal.baselineYear)) - 1.0;
-  const requiredCAGR = pow((goal.target / current.value), 1.0 / (goal.deadline - current.year)) - 1.0;
+  const currentCAGR  = Math.pow(currentFraction, 1.0 / (current.year - goal.baselineYear)) - 1.0;
+  const requiredCAGR = Math.pow((goal.target / current.value), 1.0 / (goal.deadline - current.year)) - 1.0;
 
-  const fractCompare = abs(currentFraction);
-  if (fractCompare <== 1.0 + CMP_EPSILON || indicatorScore <== 0.0)
+  const fractCompare = Math.abs(currentFraction);
+  if (fractCompare <= 1.0 + CMP_EPSILON || indicatorScore <= 0.0)
   {
     // One of: 
     //  1.  Current value is baseline (either no progress, or values have returned to baseline).
@@ -103,8 +105,8 @@ const computeScore = (current, goal) : IndicatorScore => {
     //      the datapoint was measured.
 
     return { 
-      score,
-      points
+      score: indicatorScore,
+      points,
       projectedCompletion: Infinity,
       currentCAGR,
       requiredCAGR,
@@ -118,12 +120,12 @@ const computeScore = (current, goal) : IndicatorScore => {
   // There should be an investigation into whether or not a logistics function might model this better wrt.
   // long completion tails.
   const projectedCompletion = goal.baselineYear + ((indicatorScore >= 100) ? (current.year - goal.baselineYear) : 
-                  (current.year - goal.baselineYear) * (log(targetFraction) / log(currentFraction)));
+                  (current.year - goal.baselineYear) * (Math.log(targetFraction) / Math.log(currentFraction)));
 
   // TODO: consider if we should round the projected completion year to the nearest integer (or upwards).
 
   return {
-    score,
+    score: indicatorScore,
     points,
     projectedCompletion,
     currentCAGR,
@@ -145,20 +147,20 @@ type Score = {
 
 const getGoalDistance = async (req: Request, res: Response) => {
   try {
-    const dataseriesPromise = getAllDataSeries(req.body.municipality, req.body.year);
-    const goalsPromise = getAllGoals(req.body.municipality);
+    const dataseriesPromise = getGDCDataSeries(req.body.municipality, req.body.year);
+    const goalsPromise = getGDCGoals(req.body.municipality);
 
     // It's should be more efficient to wait on both promises at the same time.
     const data = await Promise.all([dataseriesPromise, goalsPromise]);
-    const dataseries = data[0];
-    const goals = data[1];
+    const dataseries: Dataseries[] = data[0];
+    const goals: Map<string, Goal> = new Map<string, Goal>(data[1].map(x => [ x.kpi, x ]));
 
     const outputIndicatorScores = new Map<string, IndicatorScore>();
     const outputCategoryScores = new Map<string, Score>();
     const outputSubdomainScores = new Map<string, Score>();
     const outputDomainScores = new Map<string, Score>();
 
-    const indicatorsWithoutGoals = [];
+    const indicatorsWithoutGoals: string[] = [];
     const unreportedIndicators = new Set(u4sscKpis);
 
     const categoryScores = new Map<string, IndicatorScore[]>();
@@ -174,7 +176,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
       if (goal === undefined || goal === null)
       {
-        outputIndicatorsWithoutGoals.push(series.kpi);
+        indicatorsWithoutGoals.push(series.kpi);
         continue;
       }
 
@@ -186,6 +188,9 @@ const getGoalDistance = async (req: Request, res: Response) => {
       outputIndicatorScores.set(displayKPI, score);
 
       const category = u4sscKpiToCategory.get(series.kpi);
+      if (category === undefined)
+        throw new ApiError(400, "WUT");
+
       const arr = categoryScores.get(category);
       if (arr === undefined)
         categoryScores.set(category, [ score ]);
@@ -199,13 +204,16 @@ const getGoalDistance = async (req: Request, res: Response) => {
     // Compute category score (average of indicators)
     for (let [category, scores] of categoryScores)
     {
-      const cumulativePoints = scores.reduce((acc, score) => acc + score.points);
-      const longestCompletion = scores.reduce((acc, score) => max(acc, score.projectedCompletion));
+      const cumulativePoints = scores.map(x => x.points).reduce((acc, score) => acc + score);
+      const longestCompletion = scores.map(x => x.projectedCompletion).reduce((acc, score) => Math.max(acc, score));
       const avgPoints = cumulativePoints / scores.length;
 
       outputCategoryScores.set(category, { score: avgPoints, projectedCompletion: longestCompletion });
 
       const subdomain = u4sscCategoryToSubdomain.get(category);
+      if (subdomain === undefined)
+        throw new ApiError(400, "WUT?");
+
       const arr = subdomainScores.get(subdomain);
       if (arr === undefined)
         subdomainScores.set(subdomain, [ { cumulative: cumulativePoints, average: avgPoints, count: scores.length, projectedCompletion: longestCompletion } ])
@@ -216,14 +224,17 @@ const getGoalDistance = async (req: Request, res: Response) => {
     // Compute subdomain scores
     for (let [subdomain, scores] of subdomainScores)
     {
-      const cumulativePoints = scores.reduce((acc, cat) => acc + cat.cumulative);
-      const longestCompletion = scores.reduce((acc, cat) => max(acc, cat.projectedCompletion));     
-      const totalNumber = scores.reduce((acc, cat) => acc + cat.count);
+      const cumulativePoints = scores.map(x => x.cumulative).reduce((acc, score) => acc + score);
+      const longestCompletion = scores.map(x => x.projectedCompletion).reduce((acc, score) => Math.max(acc, score));     
+      const totalNumber = scores.map(x => x.count).reduce((acc, cat) => acc + cat);
       const avgPoints = cumulativePoints / totalNumber;
 
       outputSubdomainScores.set(subdomain, { score: avgPoints, projectedCompletion: longestCompletion });
 
       const domain = u4sscSubdomainToDomain.get(subdomain);
+      if (domain === undefined)
+        throw new ApiError(400, "WUT???");
+
       const arr = domainScores.get(domain);
       if (arr === undefined)
         domainScores.set(subdomain, [ { cumulative: cumulativePoints, average: avgPoints, count: totalNumber, projectedCompletion: longestCompletion } ])
@@ -238,14 +249,14 @@ const getGoalDistance = async (req: Request, res: Response) => {
     // Compute domain scores
     for (let [domain, scores] of domainScores)
     {
-      const cumulativePoints = scores.reduce((acc, cat) => acc + cat.cumulative);
-      const longestCompletion = scores.reduce((acc, cat) => max(acc, cat.projectedCompletion));     
-      const totalNumber = scores.reduce((acc, cat) => acc + cat.count);
+      const cumulativePoints = scores.map(x => x.cumulative).reduce((acc, score) => acc + score);
+      const longestCompletion = scores.map(x => x.projectedCompletion).reduce((acc, score) => Math.max(acc, score));    
+      const totalNumber = scores.map(x => x.count).reduce((acc, cat) => acc + cat);
       const avgPoints = cumulativePoints / totalNumber;
 
       cumulativeScore += cumulativePoints;
       numberOfPosts += totalNumber;
-      projectedCompletion = max(projectedCompletion, longestCompletion);
+      projectedCompletion = Math.max(projectedCompletion, longestCompletion);
 
       outputDomainScores.set(domain, { score: avgPoints, projectedCompletion: longestCompletion });
     }
@@ -289,7 +300,7 @@ const correlatedKPIs = async (req: Request, res: Response) => {
   try {
     
     const resp = await getCorrelatedKPIs("kr", req.body.kpi);
-    res.json(resp);
+    res.json(resp.records);
   } catch (e: any) {
     onError(e, req, res);
   }
