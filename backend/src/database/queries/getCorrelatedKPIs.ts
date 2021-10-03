@@ -11,8 +11,8 @@ export default (correlationCountry: string, kpi: string): string => {
           ?fromKpi SDG:kpiNumber "${kpi}".
           ?fromKpi SDG:linkedSDGSubgoal ?fromSubgoal.
 
-          ?corrUri SDG:subgoalCorrelationFrom ?fromSubgoal.
-          ?corrUri SDG:subgoalCorrelationTo ?toSubgoal.
+          ?corrUri SDG:subgoalCorrelationTo ?fromSubgoal.
+          ?corrUri SDG:subgoalCorrelationFrom ?toSubgoal.
 
           ?toSubgoal rdfs:label ?subgoal.
 
