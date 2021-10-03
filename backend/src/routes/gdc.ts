@@ -204,6 +204,8 @@ const getGoalDistance = async (req: Request, res: Response) => {
     // NOTE: we store the cumulative points and number of indicators in order to avoid problems with using
     // the average of averages.
 
+    // The following is just computing the hierarcical scores. Should probably be extracted into a helper function, but eh...
+
     // Compute category score (average of indicators)
     for (let [category, scores] of categoryScores)
     {
@@ -290,7 +292,7 @@ const setGoals = async (req: Request, res: Response) => {
     const isDummy = (req.body.isDummy !== undefined) && req.body.isDummy;
     const dataseries = (req.body.dataseries === undefined || req.body.dataseries === null) ? "main" : req.body.dataseries;
 
-    // TODO: figure out how to do this properly, as a DELTE/INSERT query instead...
+    // TODO: figure out how to do this properly, as a DELETE/INSERT query instead...
     await deleteGDCGoal(req.body.municipality, req.body.kpi, dataseries, isDummy);
     await setGDCGoal(req.body.municipality, req.body.kpi, u4sscKpiMap[req.body.kpi], dataseries, req.body.target, req.body.deadline, req.body.baseline, req.body.baselineYear, req.body.startRange, isDummy);
     res.json({});
@@ -301,6 +303,12 @@ const setGoals = async (req: Request, res: Response) => {
 
 const correlatedKPIs = async (req: Request, res: Response) => {
   try {
+
+    // NOTE: we currently have correlation data for south korea and japan loaded,
+    // which were the "most" developed countries we could get data for. 
+    // A SDG target correlation mapping should be extant, but we did not have access to it,
+    // and this could be a good use case.
+
     const resp = await getCorrelatedKPIs("kr", req.body.kpi);
     res.json(resp);
   } catch (e: any) {
