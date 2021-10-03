@@ -23,6 +23,7 @@ def generate_correlation_rdf(cc):
         <SDG:subgoalCorrelationTo rdf:resource="http://metadata.un.org/sdg/{to_target}"/>
         <SDG:subgoalCorrelationCountry rdf:datatype="http://www.w3.org/2001/XMLSchema#string">{cc}</SDG:subgoalCorrelationCountry>
         <SDG:subgoalCorrelationFactor rdf:datatype="http://www.w3.org/2001/XMLSchema#double">{factor}</SDG:subgoalCorrelationFactor>
+        <SDG:isDummyData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</SDG:isDummyData>
     </owl:NamedIndividual>
 """.format(cc = cc, from_target = from_target, to_target = to_target, factor = factor)
 
