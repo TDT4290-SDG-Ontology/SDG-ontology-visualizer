@@ -1,7 +1,11 @@
 import { Router, Request, Response } from 'express';
-import setData from '../database/setData';
-import getDataSeries from '../database/getDataSeries';
-import { u4sscKpiToCategory, u4sscCategoryToSubdomain, u4sscSubdomainToDomain, u4sscKpis } from '../database/u4sscKpiMap';
+
+import getGDCDataSeries from '../database/getGDCDataSeries';
+import getGDCGoals from '../database/getGDCGoals';
+import setGDCGoal from '../database/setGDCGoal';
+import deleteGDCGoal from '../database/deleteGDCGoal';
+
+import { u4sscKpiToCategory, u4sscCategoryToSubdomain, u4sscSubdomainToDomain, u4sscKpis, u4sscKpiMap } from '../database/u4sscKpiMap';
 import { ApiError } from '../types/errorTypes';
 import onError from './middleware/onError';
 import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
@@ -266,8 +270,30 @@ const getGoalDistance = async (req: Request, res: Response) => {
   }
 };
 
+const setGoals = async (req: Request, res: Response) => {
+  try {    
+    const isDummy = (req.body.isDummy !== undefined) && req.body.isDummy;
+    const dataseries = (req.body.dataseries === undefined || req.body.dataseries === null) ? "main" : req.body.dataseries;
+    await deleteGDCGoal(req.body.municipality, req.body.kpi, dataseries, isDummy);
+    await setGDCGoal(req.body.municipality, req.body.kpi, u4sscKpiMap[req.body.kpi], dataseries, req.body.target, req.body.deadline, req.body.baseline, req.body.baselineYear, req.body.startRange, isDummy);
+    res.json({});
+  } catch (e: any) {
+    onError(e, req, res);
+  }
+};
+
+const correlatedKPIs = async (req: Request, res: Response) => {
+  try {
+    
+
+    res.json({});
+  } catch (e: any) {
+    onError(e, req, res);
+  }
+};
 
 router.post('/get', verifyDatabaseAccess, getGoalDistance);
 router.post('/set-goals', verifyDatabaseAccess, verifyToken, setGoals);
+router.post('/correlated-kpis', verifyDatabaseAccess, correlatedKPIs);
 
 export default router;

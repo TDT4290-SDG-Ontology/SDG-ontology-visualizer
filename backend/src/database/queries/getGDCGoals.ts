@@ -6,7 +6,7 @@ export default (municipality: string): string => {
 
   return `
         ${prefixString}
-        SELECT ?kpi ?baseline ?baselineYear ?target ?deadline ?minValue
+        SELECT ?kpi ?baseline ?baselineYear ?target ?deadline ?startRange
         WHERE {
             ?indicator rdf:type SDG:U4SSCIndicator.
             ?indicator SDG:kpiNumber ?kpi.
