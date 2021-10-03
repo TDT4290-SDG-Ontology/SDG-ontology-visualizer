@@ -4,6 +4,7 @@ import getGDCDataSeries from '../database/getGDCDataSeries';
 import getGDCGoals from '../database/getGDCGoals';
 import setGDCGoal from '../database/setGDCGoal';
 import deleteGDCGoal from '../database/deleteGDCGoal';
+import getCorrelatedKPIs from '../database/getCorrelatedKPIs';
 
 import { u4sscKpiToCategory, u4sscCategoryToSubdomain, u4sscSubdomainToDomain, u4sscKpis, u4sscKpiMap } from '../database/u4sscKpiMap';
 import { ApiError } from '../types/errorTypes';
@@ -274,6 +275,8 @@ const setGoals = async (req: Request, res: Response) => {
   try {    
     const isDummy = (req.body.isDummy !== undefined) && req.body.isDummy;
     const dataseries = (req.body.dataseries === undefined || req.body.dataseries === null) ? "main" : req.body.dataseries;
+
+    // TODO: figure out how to do this properly, as a DELTE/INSERT query instead...
     await deleteGDCGoal(req.body.municipality, req.body.kpi, dataseries, isDummy);
     await setGDCGoal(req.body.municipality, req.body.kpi, u4sscKpiMap[req.body.kpi], dataseries, req.body.target, req.body.deadline, req.body.baseline, req.body.baselineYear, req.body.startRange, isDummy);
     res.json({});
@@ -285,8 +288,8 @@ const setGoals = async (req: Request, res: Response) => {
 const correlatedKPIs = async (req: Request, res: Response) => {
   try {
     
-
-    res.json({});
+    const resp = await getCorrelatedKPIs("kr", req.body.kpi);
+    res.json(resp);
   } catch (e: any) {
     onError(e, req, res);
   }
