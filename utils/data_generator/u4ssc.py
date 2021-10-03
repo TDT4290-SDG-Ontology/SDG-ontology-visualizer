@@ -223,7 +223,7 @@ class dataseries:
 			self.end_range = 1.0
 
 	def generate_goal(self, goodness):
-		baseline_pct = max(goodness - 1 / GOODNESS_COUNT, 1)
+		baseline_pct = max((goodness - 1) / GOODNESS_COUNT, 0.01)
 		min_score_pct = goodness / GOODNESS_COUNT
 		goal_pct = (goodness + 1) / GOODNESS_COUNT
 
@@ -236,7 +236,7 @@ class dataseries:
 		if self.calc == BOOL:
 			return False # TODO: something better....
 
-		baseline_pct = max(goodness / GOODNESS_COUNT, 0.01)
+		baseline_pct = max((goodness - 1) / GOODNESS_COUNT, 0.01)
 		goal_pct = (goodness + 1) / GOODNESS_COUNT
 
 		goal = goal_pct * (self.end_range - self.start_range) + self.start_range
@@ -246,7 +246,7 @@ class dataseries:
 			print("WTF MAN")
 			baseline = 0.01
 
-		return baseline * (pow((goal / baseline), (year - 2015) / (2030 - 2015)) + random.uniform(-0.1, 0.1))
+		return baseline * (pow((goal / baseline), (year - 2015) / (2030 - 2015)) + random.uniform(-0.025, 0.025))
 
 all_dataseries = [
 	dataseries("EN: EN: EQ: 1C", 	PERCENT),
