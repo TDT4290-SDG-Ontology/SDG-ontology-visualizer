@@ -293,8 +293,8 @@ const setGoals = async (req: Request, res: Response) => {
     const dataseries = (req.body.dataseries === undefined || req.body.dataseries === null) ? "main" : req.body.dataseries;
 
     // TODO: figure out how to do this properly, as a DELETE/INSERT query instead...
-    await deleteGDCGoal(req.body.municipality, req.body.kpi, dataseries, isDummy);
-    await setGDCGoal(req.body.municipality, req.body.kpi, u4sscKpiMap[req.body.kpi], dataseries, req.body.target, req.body.deadline, req.body.baseline, req.body.baselineYear, req.body.startRange, isDummy);
+    await deleteGDCGoal(req.body.municipality, req.body.indicator, dataseries, isDummy);
+    await setGDCGoal(req.body.municipality, req.body.indicator, u4sscKpiMap[req.body.indicator], dataseries, req.body.target, req.body.deadline, req.body.baseline, req.body.baselineYear, req.body.startRange, isDummy);
     res.json({});
   } catch (e: any) {
     onError(e, req, res);
@@ -309,7 +309,7 @@ const correlatedKPIs = async (req: Request, res: Response) => {
     // A SDG target correlation mapping should be extant, but we did not have access to it,
     // and this could be a good use case.
 
-    const resp = await getCorrelatedKPIs("kr", req.body.kpi);
+    const resp = await getCorrelatedKPIs("kr", req.body.indicator);
     res.json(resp);
   } catch (e: any) {
     onError(e, req, res);
