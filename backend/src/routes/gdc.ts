@@ -147,12 +147,15 @@ type Score = {
 
 const getGoalDistance = async (req: Request, res: Response) => {
   try {
+    console.log('mun: ' + req.body.municipality + ', year: ' + req.body.year)
+
     const dataseriesPromise = getGDCDataSeries(req.body.municipality, req.body.year);
     const goalsPromise = getGDCGoals(req.body.municipality);
 
     // It's should be more efficient to wait on both promises at the same time.
     const data = await Promise.all([dataseriesPromise, goalsPromise]);
     const dataseries: Dataseries[] = data[0];
+
     const goals: Map<string, Goal> = new Map<string, Goal>(data[1].map(x => [ x.kpi, x ]));
 
     const outputIndicatorScores = new Map<string, IndicatorScore>();
@@ -242,7 +245,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
         arr.push({ cumulative: cumulativePoints, average: avgPoints, count: totalNumber, projectedCompletion: longestCompletion });
     }
 
-    var projectedCompletion = 0.0;
+    var projectedCompletion = -Infinity;
     var cumulativeScore = 0;
     var numberOfPosts = 0;
 
@@ -261,7 +264,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
       outputDomainScores.set(domain, { score: avgPoints, projectedCompletion: longestCompletion });
     }
 
-    const averageScore = cumulativeScore / numberOfPosts;
+    const averageScore = cumulativeScore / Math.max(numberOfPosts, 1);
 
     res.json({
       municipality: req.body.municipality,
@@ -298,9 +301,8 @@ const setGoals = async (req: Request, res: Response) => {
 
 const correlatedKPIs = async (req: Request, res: Response) => {
   try {
-    
     const resp = await getCorrelatedKPIs("kr", req.body.kpi);
-    res.json(resp.records);
+    res.json(resp);
   } catch (e: any) {
     onError(e, req, res);
   }

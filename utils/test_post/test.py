@@ -10,11 +10,16 @@ def login(username, password):
 	return json.loads(req.text)
 
 def correlated_kpis(kpi):
-	endpoint_url = URL + "/gdc/correlated-kpis"
-	print(endpoint_url)
-	req = requests.post(endpoint_url, json={'kpi': kpi })
+	req = requests.post(URL + "/gdc/correlated-kpis", json={'kpi': kpi })
 	print(req.status_code, req.reason)
 	print(req.text)
 
+def gdc(municipality, year):
+	req = requests.post(URL + "/gdc/get", json={'municipality': municipality, 'year': year })
+	print(req.status_code, req.reason)
+	print(req.text)
+
+
 # body = login(sys.argv[1], sys.argv[2])
-correlated_kpis("EC: ICT: T: 3A")
+# correlated_kpis("EC: ICT: T: 3A")
+gdc("no.5001", 2014)
