@@ -287,7 +287,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
   }
 };
 
-const setGoals = async (req: Request, res: Response) => {
+const setGoal = async (req: Request, res: Response) => {
   try {    
     const isDummy = (req.body.isDummy !== undefined) && req.body.isDummy;
     const dataseries = (req.body.dataseries === undefined || req.body.dataseries === null) ? "main" : req.body.dataseries;
@@ -317,7 +317,7 @@ const correlatedKPIs = async (req: Request, res: Response) => {
 };
 
 router.post('/get', verifyDatabaseAccess, getGoalDistance);
-router.post('/set-goals', verifyDatabaseAccess, verifyToken, setGoals);
+router.post('/set-goal', verifyDatabaseAccess, verifyToken, setGoal);
 router.post('/correlated-kpis', verifyDatabaseAccess, correlatedKPIs);
 
 export default router;
