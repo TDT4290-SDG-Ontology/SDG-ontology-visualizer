@@ -9,4 +9,12 @@ def login(username, password):
 	print(req.text)
 	return json.loads(req.text)
 
-body = login(sys.argv[1], sys.argv[2])
+def correlated_kpis(kpi):
+	endpoint_url = URL + "/gdc/correlated-kpis"
+	print(endpoint_url)
+	req = requests.post(endpoint_url, json={'kpi': kpi })
+	print(req.status_code, req.reason)
+	print(req.text)
+
+# body = login(sys.argv[1], sys.argv[2])
+correlated_kpis("EC: ICT: T: 3A")
