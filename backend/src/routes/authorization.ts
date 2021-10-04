@@ -38,7 +38,7 @@ const login = async (req: Request, res: Response) => {
             username: req.body.username,
             apiAvailable: true,
           },
-          config.JWT_SECRET_TOKEN,
+          config.JWT_SECRET_TOKEN!,
         );
         res.json({ token: jwtToken });
       } else {
