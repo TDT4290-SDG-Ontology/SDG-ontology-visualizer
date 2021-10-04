@@ -79,8 +79,6 @@ export const checkPassword = (password: string, existingHash: string) => {
 export const verifyToken = (token: string) => {
   try {
     const { exp } = jwt.verify(token, config.JWT_SECRET_TOKEN!) as { exp };
-    console.log('TOKEN:');
-    console.log(token);
     return Date.now() < exp * 1000;
   } catch {
     return false;
