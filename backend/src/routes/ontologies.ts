@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import { Router, Request } from 'express';
 import { verifyRequestQueryParams } from '../common/router';
 import getAnnotations from '../database/getAnnotations';
 import getClassesByString from '../database/getClassesByString';
@@ -8,7 +8,6 @@ import getRelations from '../database/getRelations';
 import getSubclasses from '../database/getSubclasses';
 import getSubGoals from '../database/getSubGoals';
 import getSustainabilityGoals from '../database/getSustainabilityGoals';
-import getDataSeries from '../database/getDataSeries';
 import getTradeOff from '../database/getTradeOffTo';
 import {
   AnnotationResponse,
