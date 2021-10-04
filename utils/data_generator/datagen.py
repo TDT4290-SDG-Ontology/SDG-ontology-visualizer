@@ -62,6 +62,6 @@ generate_goals(token, "no.5001", u4ssc.GOOD)
 # generate_goals(token, "no.1301", u4ssc.GOOD)
 
 print("Generating data")
-for year in range(2015, 2021):
+for year in range(2015, 2030 + 1):
 	print(year, " data")
 	generate_data(token, "no.5001", u4ssc.GOOD, year)
