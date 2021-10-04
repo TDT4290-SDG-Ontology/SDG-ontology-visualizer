@@ -79,14 +79,13 @@ export const checkPassword = (password: string, existingHash: string) => {
 export const verifyAdminToken = (token: string) => {
   try {
     const { exp } = jwt.verify(token, config.JWT_SECRET_TOKEN) as { exp };
-    const result = jwt.decode(token, config.JWT_SECRET_TOKEN);
-    console.log('Decoded: ', result);
-    if (!result.isAdmin) {
+    const { isAdmin } = jwt.decode(token, config.JWT_SECRET_TOKEN);
+    if (isAdmin) {
       return false;
     }
     return Date.now() < exp * 1000;
   } catch {
-    return true;
+    return false;
   }
 };
 

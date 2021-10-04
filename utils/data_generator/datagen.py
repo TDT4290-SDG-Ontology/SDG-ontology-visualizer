@@ -45,18 +45,19 @@ def insert_data(token, kpi, value, municipality, year, dataseries=None):
         print("kpi: {}, val: {}, ds: {}".format(kpi, value, dataseries))
     return json.loads(req.text)
 
-def insert_user(token, username, password):
+
+def insert_user(token, username, password, role):
     req = requests.post(
-            BASE_URL + "/auth/add-user",
-            json={
-                "token": token["token"],
-                "username": username,
-                "password": password,
-            },
-        )
+        BASE_URL + "/auth/add-user",
+        json={
+            "token": token["token"],
+            "username": username,
+            "password": password,
+            "role": role,
+        },
+    )
     print(req.status_code, req.reason)
     return json.loads(req.text)
-
 
 
 def get_data(kpi, municipality, year):
@@ -95,7 +96,14 @@ def insert_data_for_indicators(token, indicators, municipality, year):
 
 
 token = login("test", "123")
-print(insert_user(token, "test1", "test222"))
+print(
+    insert_user(
+        token,
+        "test2",
+        "10$JDJiJDEyJEIxSHNlbW1lT1N0RE4yOWtjOURGb3U=$QO7SziCPCZ1utv1vkL6Pz+mxh5Qi97OW1/P6M3l139onT87hp8V4Q2YG+5BA9u0aJak/3yRo9LMfaJfuzO/sHQ==",
+        "http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.userrole.admin",
+    )
+)
 # insert_data_for_indicators(token, u4ssc.indicators, "no.5001", 2016)
 # print(get_data(u4ssc.indicators[0].id, "no.5001", 2015))
 # print(get_all_data("no.5001"))

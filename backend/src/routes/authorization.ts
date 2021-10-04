@@ -12,6 +12,8 @@ import getUserPasswordHash from '../database/getUserPasswordHash';
 import { checkPassword } from '../auth/credentials';
 import config from '../config';
 import verifyAdminToken from './middleware/verifyAdminToken';
+import getUser from '../database/getUser';
+import setUser from '../database/setUser';
 
 const router = Router();
 
@@ -35,6 +37,7 @@ const login = async (req: Request, res: Response) => {
         const roles: Role[] = await getUserRole(req.body.username);
         const { role } = roles[0];
         const isAdmin = role.includes('admin');
+        console.log(role);
 
         // TODO: tune token expiration, currently 24h.
         const expiry: number = Math.floor(Date.now() / 1000) + 24 * 60 * 60;
@@ -61,9 +64,23 @@ const addUser = async (req: Request, res: Response) => {
   try {
     if (req.body === undefined || req.body === null) throw new ApiError(401, 'Missing body');
 
-    if (req.body.username === undefined || req.body.password === undefined)
-      throw new ApiError(400, "Missing one or more of required fields 'username' and 'password'!");
-    return;
+    if (
+      req.body.username === undefined ||
+      req.body.password === undefined ||
+      req.body.role === undefined
+    )
+      throw new ApiError(
+        400,
+        "Missing one or more of required fields 'username', 'password' or 'role'!",
+      );
+
+    const users: string[] = await getUser(req.body.username);
+    if (users.length > 0) {
+      throw new ApiError(400, 'Username already taken!');
+    }
+
+    const result = await setUser(req.body.username, req.body.password, req.body.role);
+    res.status(result.statusCode).json({});
   } catch (e) {
     onError(e, req, res);
   }
