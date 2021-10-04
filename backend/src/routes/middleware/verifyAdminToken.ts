@@ -17,7 +17,10 @@ export default (req: Request, res: Response, next: NextFunction) => {
     if (verifyAdminToken(req.body.token)) {
       next();
     } else {
-      throw new ApiError(400, 'Server could not verify token.');
+      throw new ApiError(
+        400,
+        'Server could not verify token. You must be an admin to access this endpoint.',
+      );
     }
   } catch (e) {
     onError(e, req, res);
