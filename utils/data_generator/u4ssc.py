@@ -237,16 +237,19 @@ class dataseries:
 			return False # TODO: something better....
 
 		baseline_pct = max((goodness - 1) / GOODNESS_COUNT, 0.01)
+		min_score_pct = goodness / GOODNESS_COUNT
 		goal_pct = (goodness + 1) / GOODNESS_COUNT
 
 		goal = goal_pct * (self.end_range - self.start_range) + self.start_range
 		baseline = baseline_pct * (self.end_range - self.start_range) + self.start_range
+		min_score = min_score_pct * (self.end_range - self.start_range) + self.start_range
 
 		if (baseline == 0):
 			print("WTF MAN")
 			baseline = 0.01
 
-		return baseline * (pow((goal / baseline), (year - 2015) / (2030 - 2015)) + random.uniform(-0.025, 0.025))
+		return min_score * (pow((goal / baseline), (year - 2015) / (2030 - 2015)) + random.uniform(-0.025, 0.025)) 
+
 
 all_dataseries = [
 	dataseries("EN: EN: EQ: 1C", 	PERCENT),
@@ -270,6 +273,7 @@ all_dataseries = [
 	dataseries("EN: E: E: 2C", 		INV_ABSOLUTE),
 	dataseries("EC: I: ES: 2C", 	INV_ABSOLUTE),
 	dataseries("EC: ICT: ES: 2A", 	PERCENT),
+	dataseries("EC: I: B: 2A", 		PERCENT),
 	dataseries("EC: I: ES: 1C", 	INV_ABSOLUTE),
 	dataseries("SC: EH: ED: 5A", 	PERCENT),
 	dataseries("SC: SH: SA: 5C", 	INV_ABSOLUTE),
