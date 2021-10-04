@@ -12,7 +12,7 @@ export default (username: string, password: string, role: string): string => {
       ?uri SDG:userHasRole ?role.
    }
    where {
-    BIND(IRI("http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapoint.u4ssc.${username}") as ?uri)
+    BIND(IRI("http://www.semanticweb.org/aga/ontologies/2017/9/SDG#user.${username}") as ?uri)
     BIND(IRI("${role}") as ?role)
    }`;
 };
