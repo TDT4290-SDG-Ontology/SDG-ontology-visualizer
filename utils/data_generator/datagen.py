@@ -5,6 +5,7 @@ import uuid
 
 BASE_URL = "http://localhost:3001/api"
 
+
 def login(username, password):
 	req = requests.post(BASE_URL + "/auth/login", json={'username': username, 'password': password })
 	print(req.status_code, req.reason)
@@ -35,15 +36,18 @@ def get_data(kpi):
 	print(req.status_code, req.reason)
 	return json.loads(req.text)
 
-def insert_data_for_indicators(token, indicators, municipality, year):
-	for ind in indicators:
-		for ds in ind.produce():
-			if ds[0] == 'main':
-				insert_data(token, ind.id, ds[1], municipality, year)
-			else:
-				insert_data(token, ind.id, ds[1], municipality, year, ds[0])
-
-token = login("test", "123");
+def get_data(kpi, municipality, year):
+    req = requests.post(
+        BASE_URL + "/data/get",
+        json={
+            "token": token,
+            "indicator": kpi,
+            "municipality": municipality,
+            "year": year,
+        },
+    )
+    print(req.status_code, req.reason)
+    return json.loads(req.text)
 
 # print(get_data(u4ssc.indicators[0].id))
 
@@ -61,11 +65,13 @@ generate_goals(token, "no.5001", u4ssc.GOOD)
 generate_goals(token, "no.0301", u4ssc.GOOD)
 # generate_goals(token, "no.1301", u4ssc.GOOD)
 
+
 print("Generating data for Trondheim")
 for year in range(2015, 2030 + 1):
 	print(year, " data")
 	generate_data(token, "no.5001", u4ssc.GOOD, year)
 
+token = login("test", "123")
 
 print("Generating data for Oslo")
 for year in range(2015, 2030 + 1):
