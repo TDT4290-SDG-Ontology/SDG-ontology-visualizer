@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+
 import { Router, Request, Response } from 'express';
 
 import getGDCDataSeries from '../database/getGDCDataSeries';
@@ -86,24 +88,21 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
   //  [66, 95): 3
   //  [33, 66): 2
   //  [ 0, 33): 1 (I'm a bit unsure if this bottoms out at 0.0 or if it encompasses all scores below...)
+
+  // prettier-ignore
   const points =
-    indicatorScore >= 95.0
-      ? 4
-      : indicatorScore >= 66.0
-      ? 3
-      : indicatorScore >= 33.0
-      ? 2
-      : indicatorScore >= 0.0
-      ? 1
-      : 0;
+        indicatorScore >= 95.0 ? 4 : 
+          indicatorScore >= 66.0 ? 3 : 
+            indicatorScore >= 33.0 ? 2 : 
+              indicatorScore >=  0.0 ? 1 : 0;
 
   const baselineComp = Math.max(goal.baseline, 0.1); // Guard against division by 0. TODO: check for better solutions for this.
   const targetFraction = goal.target / baselineComp;
   const currentFraction = current.value / baselineComp;
 
-  const currentCAGR = Math.pow(currentFraction, 1.0 / (current.year - goal.baselineYear)) - 1.0;
+  const currentCAGR = currentFraction ** (1.0 / (current.year - goal.baselineYear)) - 1.0;
   const requiredCAGR =
-    Math.pow(goal.target / current.value, 1.0 / (goal.deadline - current.year)) - 1.0;
+    (goal.target / current.value) ** (1.0 / (goal.deadline - current.year)) - 1.0;
 
   const fractCompare = Math.abs(currentFraction);
   if (fractCompare <= 1.0 + CMP_EPSILON || indicatorScore <= 0.0) {
@@ -178,13 +177,14 @@ const getGoalDistance = async (req: Request, res: Response) => {
     // It's should be more efficient to wait on both promises at the same time.
     const data = await Promise.all([dataseriesPromise, goalsPromise]);
     const dataseries: Dataseries[] = data[0];
+    const goalArray: Goal[] = data[1];
 
     const goals: Map<string, Goal> = new Map<string, Goal>();
-    for (var i = 0; i < data[1].length; i++) {
-      const goal = data[1][i];
 
+    /* eslint-disable-next-line no-restricted-syntax */
+    for (const goal of goalArray.values()) {
       const isVariant = goal.dataseries !== undefined;
-      const displayKPI = goal.kpi + (isVariant ? ' - ' + goal.dataseries : '');
+      const displayKPI = goal.kpi + (isVariant ? ` - ${goal.dataseries}` : '');
       goals.set(displayKPI, goal);
     }
 
@@ -200,16 +200,18 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const subdomainScores = new Map<string, CumulativeScore[]>();
     const domainScores = new Map<string, CumulativeScore[]>();
 
-    for (var i = 0; i < dataseries.length; i++) {
-      const series = dataseries[i];
+    /* eslint-disable-next-line no-restricted-syntax */
+    for (const series of dataseries.values()) {
       const isVariant = series.dataseries !== undefined;
-      const displayKPI = series.kpi + (isVariant ? ' - ' + series.dataseries : '');
+      const displayKPI = series.kpi + (isVariant ? ` - ${series.dataseries}` : '');
 
       const goal = goals.get(displayKPI);
       unreportedIndicators.delete(series.kpi);
 
       if (goal === undefined) {
         indicatorsWithoutGoals.push(series.kpi);
+
+        /* eslint-disable-next-line no-continue */
         continue;
       }
 
@@ -231,7 +233,8 @@ const getGoalDistance = async (req: Request, res: Response) => {
     // The following is just computing the hierarcical scores. Should probably be extracted into a helper function, but eh...
 
     // Compute category score (average of indicators)
-    for (let [category, scores] of categoryScores) {
+    /* eslint-disable-next-line no-restricted-syntax */
+    for (const [category, scores] of categoryScores) {
       const cumulativePoints = scores.map((x) => x.points).reduce((acc, score) => acc + score);
       const longestCompletion = scores
         .map((x) => x.projectedCompletion)
@@ -266,7 +269,8 @@ const getGoalDistance = async (req: Request, res: Response) => {
     }
 
     // Compute subdomain scores
-    for (let [subdomain, scores] of subdomainScores) {
+    /* eslint-disable-next-line no-restricted-syntax */
+    for (const [subdomain, scores] of subdomainScores) {
       const cumulativePoints = scores.map((x) => x.cumulative).reduce((acc, score) => acc + score);
       const longestCompletion = scores
         .map((x) => x.projectedCompletion)
@@ -301,12 +305,13 @@ const getGoalDistance = async (req: Request, res: Response) => {
         });
     }
 
-    var projectedCompletion = -Infinity;
-    var cumulativeScore = 0;
-    var numberOfPosts = 0;
+    let projectedCompletion = -Infinity;
+    let cumulativeScore = 0;
+    let numberOfPosts = 0;
 
     // Compute domain scores
-    for (let [domain, scores] of domainScores) {
+    /* eslint-disable-next-line no-restricted-syntax */
+    for (const [domain, scores] of domainScores) {
       const cumulativePoints = scores.map((x) => x.cumulative).reduce((acc, score) => acc + score);
       const longestCompletion = scores
         .map((x) => x.projectedCompletion)

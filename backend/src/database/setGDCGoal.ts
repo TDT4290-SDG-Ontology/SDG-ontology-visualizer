@@ -26,7 +26,5 @@ export default async (
     startRange,
     isDummy,
   );
-  return DB.update(query, { transform: 'toJSON' }).then((resp) => {
-    return resp;
-  });
+  return DB.update(query, { transform: 'toJSON' }).then((resp) => resp);
 };

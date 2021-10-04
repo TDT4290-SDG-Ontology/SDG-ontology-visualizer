@@ -1,5 +1,3 @@
-import { DataPoint } from 'types/ontologyTypes';
-import { ApiError } from '../types/errorTypes';
 import DB from './index';
 import deleteGDCGoal from './queries/deleteGDCGoal';
 
