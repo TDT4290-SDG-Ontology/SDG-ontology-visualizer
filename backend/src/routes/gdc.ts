@@ -30,6 +30,7 @@ type IndicatorScore = {
   projectedCompletion: number;
   currentCAGR: number;
   requiredCAGR: number;
+  targetCAGR: number;
   willCompleteBeforeDeadline: boolean;
 };
 
@@ -46,6 +47,7 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
       willCompleteBeforeDeadline: true,
       currentCAGR: 0.0,
       requiredCAGR: 0.0,
+      targetCAGR: 0.0,
     };
   }
 
@@ -58,6 +60,7 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
       willCompleteBeforeDeadline: true,
       currentCAGR: 0.0,
       requiredCAGR: 0.0,
+      targetCAGR: 0.0,
     };
   }
 
@@ -103,6 +106,7 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
   const currentCAGR = currentFraction ** (1.0 / (current.year - goal.baselineYear)) - 1.0;
   const requiredCAGR =
     (goal.target / current.value) ** (1.0 / (goal.deadline - current.year)) - 1.0;
+  const targetCAGR = targetFraction ** (1.0 / (goal.deadline - goal.baselineYear)) - 1.0;
 
   const fractCompare = Math.abs(currentFraction);
   if (fractCompare <= 1.0 + CMP_EPSILON || indicatorScore <= 0.0) {
@@ -126,6 +130,7 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
         willCompleteBeforeDeadline: false,
         currentCAGR,
         requiredCAGR,
+        targetCAGR,
       };
     }
   }
@@ -154,6 +159,7 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
     willCompleteBeforeDeadline: willComplete,
     currentCAGR,
     requiredCAGR,
+    targetCAGR,
   };
 };
 
