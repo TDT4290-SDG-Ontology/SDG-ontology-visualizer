@@ -110,8 +110,6 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
 
   const fractCompare = Math.abs(currentFraction);
   if (fractCompare <= 1.0 + CMP_EPSILON || indicatorScore <= 0.0) {
-    // TODO: handle inverse calculation...
-
     // One of:
     //  1.  Current value is baseline (either no progress, or values have returned to baseline).
     //      This needs better modeling in order to handle, outside the scope of this project, TODO for later projects!
@@ -121,7 +119,9 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
     //      the datapoint was measured.
     //      NOTE: this requires separate handling in order to support the inverse calculations (DONE!)
 
-    // Handle non-INV_... calculation predictions, where decrease from baseline is expected
+    // Handle non-INV_... calculation predictions by giving up, as the model year-calculation doesn't really
+    // support this, and will result in predictions of completion year before the baseline year, which doesn't 
+    // make any sense...
     if (!goal.calculationMethod.startsWith('INV_')) {
       return {
         score: indicatorScore,
