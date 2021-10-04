@@ -329,8 +329,13 @@ const correlatedKPIs = async (req: Request, res: Response) => {
 
     // NOTE: we currently have correlation data for south korea and japan loaded,
     // which were the "most" developed countries we could get data for. 
-    // A SDG target correlation mapping should be extant, but we did not have access to it,
-    // and this could be a good use case.
+    // A SDG target correlation mapping for Norway should be extant, but we did not have access to it,
+    // and this could be a good use case for publishing these.
+    //
+    // Further, as the correlations are approximated through the SDG targets, they will be somewhat
+    // crude, but should be useful enough to distinguish rough categories of synergies / tradeoffs.
+    // Someone might want to investigate the correlations between U4SSC KPIs in order to map this more
+    // accurately.
 
     const resp = await getCorrelatedKPIs("kr", req.body.indicator);
     res.json(resp);
