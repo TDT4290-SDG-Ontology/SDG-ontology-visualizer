@@ -1,6 +1,7 @@
 import request from 'supertest';
-import app from '../index';
 import { expect } from 'chai';
+import app from '../index';
+
 const agent = request.agent(app);
 
 // Wait until API is connected before running tests
@@ -59,7 +60,7 @@ describe('Insertion test with valid values', () => {
       dataseries: 'dataseries',
       year: 2020,
       isDummy: true,
-      token: token,
+      token,
     });
     expect(response.status).equal(200);
   });
@@ -71,7 +72,7 @@ describe('Insertion test with valid values', () => {
       dataseries: 'dataseries',
       year: 2020,
       isDummy: true,
-      token: token,
+      token,
     });
     expect(response.status).equal(500);
     expect(response.body.message).have.string('Unknown indicator');
@@ -83,7 +84,7 @@ describe('Insertion test with valid values', () => {
       data: value,
       year: 2020,
       isDummy: true,
-      token: token,
+      token,
     });
 
     expect(response.status).equal(200);
@@ -96,7 +97,7 @@ describe('Insertion test with valid values', () => {
     });
 
     expect(response.status).equal(200);
-    expect(response.body).to.not.be.empty;
+    expect(response.body).not.eq({});
     expect(response.body[0]).have.property('value');
     expect(response.body[0].value).equal(value);
   });
@@ -111,7 +112,7 @@ describe('Insertion test with invalid indicator', () => {
       dataseries: 'dataseries',
       year: 2020,
       isDummy: true,
-      token: token,
+      token,
     });
 
     expect(response.status).equal(500);
@@ -128,11 +129,11 @@ describe('Insertion test with invalid municipality name', () => {
       dataseries: 'dataseries',
       year: 2020,
       isDummy: true,
-      token: token,
+      token,
     });
 
     expect(response.status).equal(200);
-    expect(response.body).to.be.empty;
+    expect(response.body).not.eq({});
   });
 });
 

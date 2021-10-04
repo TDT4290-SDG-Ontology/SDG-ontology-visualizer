@@ -1,8 +1,9 @@
-import { expect, assert } from 'chai';
-import { checkPassword, verifyToken } from '../auth/credentials';
+import { assert } from 'chai';
 import * as jwt from 'jsonwebtoken';
+import { checkPassword, verifyToken } from '../auth/credentials';
 
 import config from '../config';
+
 const testUserHash =
   '10$JDJiJDEyJGFGc2FKRTQvTi5aUG92RjhwRnAwb08=$yMmWbQlT/4kFZp+bPlsKbqUsjjCkuW3F51+4FYqBVGRFmLIgrC+hL3XuVBXfdhxhO2InUiJxJkrnAapLYMOZ1A==';
 describe('checkPassword method', () => {

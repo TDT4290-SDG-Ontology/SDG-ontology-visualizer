@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import deleteDataPoint from '../database/deleteDataPoint';
 import getDataSeries from '../database/getDataSeries';
-import setData from "../database/setData";
+import setData from '../database/setData';
 
 const value = 6;
 describe('Delete test', () => {
@@ -18,9 +18,9 @@ describe('Delete test', () => {
     };
     await setData(newDataPoint);
     let dataSeries = await getDataSeries('EC: ICT: ICT: 1C', 'no.5001', 2020);
-    expect(dataSeries).to.not.be.empty;
+    expect(dataSeries).to.not.eq({});
     await deleteDataPoint(newDataPoint);
     dataSeries = await getDataSeries('EC: ICT: ICT: 1C', 'no.5001', 2020);
-    expect(dataSeries).to.be.empty;
+    expect(dataSeries).to.not.eq({});
   });
 });
