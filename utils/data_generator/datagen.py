@@ -58,10 +58,16 @@ def generate_data(token, municipality, goodness, year):
 
 print("Generating goals")
 generate_goals(token, "no.5001", u4ssc.GOOD)
-# generate_goals(token, "no.0301", u4ssc.GOOD)
+generate_goals(token, "no.0301", u4ssc.GOOD)
 # generate_goals(token, "no.1301", u4ssc.GOOD)
 
-print("Generating data")
+print("Generating data for Trondheim")
 for year in range(2015, 2030 + 1):
 	print(year, " data")
 	generate_data(token, "no.5001", u4ssc.GOOD, year)
+
+
+print("Generating data for Oslo")
+for year in range(2015, 2030 + 1):
+	print(year, " data")
+	generate_data(token, "no.0301", u4ssc.ACCEPTABLE, year)
