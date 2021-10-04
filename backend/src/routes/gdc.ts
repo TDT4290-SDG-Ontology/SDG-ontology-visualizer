@@ -22,6 +22,7 @@ type IndicatorScore = {
   projectedCompletion: number;
   currentCAGR: number;
   requiredCAGR: number;
+  willCompleteBeforeDeadline: boolean;
 };
 
 const computeScore = (current: Dataseries, goal: Goal) : IndicatorScore => {
@@ -36,6 +37,7 @@ const computeScore = (current: Dataseries, goal: Goal) : IndicatorScore => {
       score: 4,
       points: 100,
       projectedCompletion: current.year,
+      willCompleteBeforeDeadline: true,
       currentCAGR: 0.0,
       requiredCAGR: 0.0,
     };
@@ -48,6 +50,7 @@ const computeScore = (current: Dataseries, goal: Goal) : IndicatorScore => {
       score: 4,
       points: 100,
       projectedCompletion: current.year,
+      willCompleteBeforeDeadline: true,
       currentCAGR: 0.0,
       requiredCAGR: 0.0,
     };
@@ -105,18 +108,24 @@ const computeScore = (current: Dataseries, goal: Goal) : IndicatorScore => {
     //  2.  Values have regressed from baseline, projection will never reach goal, return inf.
     //      This requires better modeling, as CAGR based projections will indicate completion dates before
     //      the datapoint was measured.
+    //      NOTE: this requires separate handling in order to support the inverse calculations
 
-    console.log(current.kpi)
-    console.log(fractCompare)
-    console.log(indicatorScore)
+    // Handle non-INV_... calculation predictions, where decrease from baseline is expected
+    if (!goal.calculationMethod.startsWith("INV_"))
+    {
+      console.log(goal.calculationMethod);
+      console.log(current.kpi + " - " + goal.dataseries + " : " + fractCompare + " : " + indicatorScore);
+      console.log(currentCAGR + " : " + requiredCAGR);
 
-    return { 
-      score: indicatorScore,
-      points,
-      projectedCompletion: -1,
-      currentCAGR,
-      requiredCAGR,
-    };
+      return { 
+        score: indicatorScore,
+        points,
+        projectedCompletion: -1,
+        willCompleteBeforeDeadline: false,
+        currentCAGR,
+        requiredCAGR,
+      };
+    }
   } 
 
   // This value is projected based on an assumption of compounding annual growth rate, which is used
@@ -125,15 +134,18 @@ const computeScore = (current: Dataseries, goal: Goal) : IndicatorScore => {
   //
   // There should be an investigation into whether or not a logistics function might model this better wrt.
   // long completion tails.
-  const projectedCompletion = current.year + ((indicatorScore >= 100) ? (current.year - goal.baselineYear) : 
+  const projectedCompletion = goal.baselineYear + ((indicatorScore >= 100) ? (current.year - goal.baselineYear) : 
                   (current.year - goal.baselineYear) * (Math.log(targetFraction) / Math.log(currentFraction)));
 
   // TODO: consider if we should round the projected completion year to the nearest integer (or upwards).
+
+  const willComplete = projectedCompletion < goal.deadline;
 
   return {
     score: indicatorScore,
     points,
     projectedCompletion,
+    willCompleteBeforeDeadline: willComplete,
     currentCAGR,
     requiredCAGR,
   };
