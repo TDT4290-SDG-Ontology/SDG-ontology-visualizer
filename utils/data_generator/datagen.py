@@ -45,6 +45,19 @@ def insert_data(token, kpi, value, municipality, year, dataseries=None):
         print("kpi: {}, val: {}, ds: {}".format(kpi, value, dataseries))
     return json.loads(req.text)
 
+def insert_user(token, username, password):
+    req = requests.post(
+            BASE_URL + "/auth/add-user",
+            json={
+                "token": token["token"],
+                "username": username,
+                "password": password,
+            },
+        )
+    print(req.status_code, req.reason)
+    return json.loads(req.text)
+
+
 
 def get_data(kpi, municipality, year):
     req = requests.post(
@@ -82,8 +95,7 @@ def insert_data_for_indicators(token, indicators, municipality, year):
 
 
 token = login("test", "123")
-print(token)
-
+print(insert_user(token, "test1", "test222"))
 # insert_data_for_indicators(token, u4ssc.indicators, "no.5001", 2016)
-print(get_data(u4ssc.indicators[0].id, "no.5001", 2015))
-print(get_all_data("no.5001"))
+# print(get_data(u4ssc.indicators[0].id, "no.5001", 2015))
+# print(get_all_data("no.5001"))

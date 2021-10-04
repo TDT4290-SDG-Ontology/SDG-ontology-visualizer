@@ -11,6 +11,7 @@ import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
 import getUserPasswordHash from '../database/getUserPasswordHash';
 import { checkPassword } from '../auth/credentials';
 import config from '../config';
+import verifyAdminToken from './middleware/verifyAdminToken';
 
 const router = Router();
 
@@ -58,13 +59,17 @@ const login = async (req: Request, res: Response) => {
 
 const addUser = async (req: Request, res: Response) => {
   try {
-    console.log('hello world');
+    if (req.body === undefined || req.body === null) throw new ApiError(401, 'Missing body');
+
+    if (req.body.username === undefined || req.body.password === undefined)
+      throw new ApiError(400, "Missing one or more of required fields 'username' and 'password'!");
+    return;
   } catch (e) {
     onError(e, req, res);
   }
 };
 
 router.post('/login', verifyDatabaseAccess, login);
-router.post('/add-user', verifyDatabaseAccess, addUser);
+router.post('/add-user', verifyDatabaseAccess, verifyAdminToken, addUser);
 
 export default router;
