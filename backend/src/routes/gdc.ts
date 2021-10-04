@@ -119,7 +119,7 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
     //  2.  Values have regressed from baseline, projection will never reach goal, return inf.
     //      This requires better modeling, as CAGR based projections will indicate completion dates before
     //      the datapoint was measured.
-    //      NOTE: this requires separate handling in order to support the inverse calculations
+    //      NOTE: this requires separate handling in order to support the inverse calculations (DONE!)
 
     // Handle non-INV_... calculation predictions, where decrease from baseline is expected
     if (!goal.calculationMethod.startsWith('INV_')) {
@@ -141,6 +141,19 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
   //
   // There should be an investigation into whether or not a logistics function might model this better wrt.
   // long completion tails.
+
+  // Derivation of projected completion year:
+  //
+  //  baseline * (current.value / goal.baseline) ** ((end_year - goal.baselineYear) / (current.year - goal.baselineYear)) = target
+  //
+  //  (current.value / goal.baseline) ** ((end_year - goal.baselineYear) / (current.year - goal.baselineYear)) = target / baseline
+  //
+  //  log(current.value / goal.baseline) * (end_year - goal.baselineYear) / (current.year - goal.baselineYear) = log(target / baseline)
+  //
+  //  (end_year - goal.baselineYear) = (current.year - goal.baselineYear) * log(target / baseline) / log(current.value / goal.baseline)
+  //
+  //  end_year = goal.baselineYear + (current.year - goal.baselineYear) * log(target / baseline) / log(current.value / goal.baseline)
+
   const projectedCompletion =
     goal.baselineYear +
     (indicatorScore >= 100
