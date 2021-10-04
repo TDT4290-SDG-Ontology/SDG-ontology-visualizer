@@ -67,7 +67,8 @@ describe('Insertion test with valid values without dataseries defined in the ins
         cy.request({
             method: 'POST',
             url: 'http://localhost:3001/api/data/insert',
-            body: {"indicator": "EC: ICT: ICT: 1C",
+            body: {
+                "indicator": "EC: ICT: ICT: 1C",
                 "municipality": "no.5001",
                 "data": value,
                 "year": "2020",
@@ -100,7 +101,8 @@ describe('Insertion test with invalid indicator', () => {
             method: 'POST',
             url: 'http://localhost:3001/api/data/insert',
             failOnStatusCode: false,
-            body: {"indicator": "undefined indicator",
+            body: {
+                "indicator": "undefined indicator",
                 "municipality": "no.5001",
                 "data": "1",
                 "dataseries": "dataseries",
@@ -121,7 +123,8 @@ describe('Insertion test with invalid municipality name', () => {
             method: 'POST',
             url: 'http://localhost:3001/api/data/insert',
             failOnStatusCode: false,
-            body: {"indicator": "EC: ICT: ICT: 1C",
+            body: {
+                "indicator": "EC: ICT: ICT: 1C",
                 "municipality": "undefined",
                 "data": "1",
                 "dataseries": "dataseries",
@@ -142,7 +145,8 @@ describe('Insertion test without token', () => {
             method: 'POST',
             url: 'http://localhost:3001/api/data/insert',
             failOnStatusCode: false,
-            body: {"indicator": "EC: ICT: ICT: 1C",
+            body: {
+                "indicator": "EC: ICT: ICT: 1C",
                 "municipality": "no.5001",
                 "data": "1",
                 "dataseries": "dataseries",
@@ -162,7 +166,8 @@ describe('Insertion test with invalid user', () => {
             method: 'POST',
             url: 'http://localhost:3001/api/data/insert',
             failOnStatusCode: false,
-            body: {"indicator": "EC: ICT: ICT: 1C",
+            body: {
+                "indicator": "EC: ICT: ICT: 1C",
                 "municipality": "no.5001",
                 "data": "1",
                 "dataseries": "dataseries",

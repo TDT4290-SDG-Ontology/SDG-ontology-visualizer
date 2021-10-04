@@ -3,7 +3,7 @@ import { Router } from 'express';
 import ontologies from './ontologies';
 import authorization from './authorization';
 import data from './data';
-import { getLoginStatus } from 'database/login';
+import { getLoginStatus } from '../database/login';
 
 const router = Router();
 
