@@ -22,5 +22,11 @@ def gdc(municipality, year):
 	print(json.dumps(parsed, indent = 4))
 
 # body = login(sys.argv[1], sys.argv[2])
+print("Some correlated kpis:")
+print("EC: ICT: T: 3A")
 correlated_kpis("EC: ICT: T: 3A")
-# gdc("no.5001", 2018)
+print("SC: EH: ED: 2C")
+correlated_kpis("SC: EH: ED: 2C")
+
+print("GDC output:")
+gdc("no.5001", sys.argv[1])
