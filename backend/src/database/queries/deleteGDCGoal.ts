@@ -1,12 +1,17 @@
 import { parsePrefixesToQuery } from '../../common/database';
 import { PREFIXES } from '../index';
 
-export default (municipality: string, kpi: string, dataseries: string, isDummy: boolean): string => {
+export default (
+  municipality: string,
+  kpi: string,
+  dataseries: string,
+  isDummy: boolean,
+): string => {
   const prefixString = parsePrefixesToQuery(PREFIXES.SDG, PREFIXES.SCHEMA, PREFIXES.RDFS);
 
   const dummyDataString = isDummy ? '?uri SDG:isDummyData true.' : '';
   const dataseriesVariant =
-      dataseries === undefined || dataseries === 'main'
+    dataseries === undefined || dataseries === 'main'
       ? ''
       : `?dataseries SDG:dataseriesVariant "${dataseries}".`;
 

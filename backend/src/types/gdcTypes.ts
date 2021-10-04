@@ -5,7 +5,7 @@ export type Goal = {
   target: number;
   deadline: number;
   startRange: number;
-  dataseries: string?;
+  dataseries: ?string;
   calculationMethod: string;
 };
 
@@ -13,5 +13,5 @@ export type Dataseries = {
   kpi: string;
   year: number;
   value: number;
-  dataseries: string?;
+  dataseries: ?string;
 };
