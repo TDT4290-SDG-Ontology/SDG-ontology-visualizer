@@ -8,7 +8,7 @@ import config from '../config';
 /* Composes a hashed password, salt, and number of rounds into one string suitable
  * for storage in databases.
  */
-const encodePasswordHash = (passwordHash: Uint8Array, salt: Uint8Array, rounds: number) => {
+export const encodePasswordHash = (passwordHash: Uint8Array, salt: Uint8Array, rounds: number) => {
   // eslint-disable-line @typescript-eslint/no-unused-vars
   const hashString = Buffer.from(passwordHash).toString('base64');
   const saltString = Buffer.from(salt).toString('base64');
@@ -18,7 +18,7 @@ const encodePasswordHash = (passwordHash: Uint8Array, salt: Uint8Array, rounds: 
 
 /* Decomposes a stored hash-string into its component rounds, salt, and hash.
  */
-const decodePasswordHash = (encodedHash: string) => {
+export const decodePasswordHash = (encodedHash: string) => {
   // Hash format: {rounds}${salt}${hash}
   // both salt and hash are base64 encoded, so there's no crash with the separators!
 
@@ -78,7 +78,7 @@ export const checkPassword = (password: string, existingHash: string) => {
 
 export const verifyToken = (token: string) => {
   try {
-    const { exp } = jwt.verify(token, config.JWT_SECRET_TOKEN) as { exp };
+    const { exp } = jwt.verify(token, config.JWT_SECRET_TOKEN!) as { exp };
     console.log('TOKEN:');
     console.log(token);
     return Date.now() < exp * 1000;
