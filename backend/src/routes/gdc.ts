@@ -113,10 +113,6 @@ const computeScore = (current: Dataseries, goal: Goal) : IndicatorScore => {
     // Handle non-INV_... calculation predictions, where decrease from baseline is expected
     if (!goal.calculationMethod.startsWith("INV_"))
     {
-      console.log(goal.calculationMethod);
-      console.log(current.kpi + " - " + goal.dataseries + " : " + fractCompare + " : " + indicatorScore);
-      console.log(currentCAGR + " : " + requiredCAGR);
-
       return { 
         score: indicatorScore,
         points,
@@ -165,8 +161,6 @@ type Score = {
 
 const getGoalDistance = async (req: Request, res: Response) => {
   try {
-    console.log('mun: ' + req.body.municipality + ', year: ' + req.body.year)
-
     const dataseriesPromise = getGDCDataSeries(req.body.municipality, req.body.year);
     const goalsPromise = getGDCGoals(req.body.municipality);
 
