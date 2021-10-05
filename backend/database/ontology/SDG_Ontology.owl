@@ -927,6 +927,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#rolename -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#rolename"/>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#username -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#username">
@@ -37498,6 +37504,17 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
     
 
 
+    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.user.adminUser -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.user.adminUser">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#User"/>
+        <SDG:userHasRole rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.userrole.admin"/>
+        <SDG:passwordHash rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10$JDJiJDEyJGE2anNNNnFvaEI0MTdjTThLQkxGZ2U=$uPcNW3haJ7dzT7lL/lyu9Q5eDNVcau/Sb7kS4mRbL8hfXqELAR/pNYscO0gZPcGp6laA64UC6zVFhAa6wV+4aA==</SDG:passwordHash>
+        <SDG:username rdf:datatype="http://www.w3.org/2001/XMLSchema#string">admin</SDG:username>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.user.testUser -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.user.testUser">
@@ -37514,6 +37531,7 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.userrole.admin">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#UserRole"/>
+        <SDG:rolename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">admin</SDG:rolename>
         <rdfs:comment>Administrator role allowing this user to add other users, and otherwise administrate system.</rdfs:comment>
     </owl:NamedIndividual>
     
@@ -37523,6 +37541,7 @@ Trondheim Kommune har utviklet en nettside for å vise luftkvalitetsverdier.</SD
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#sdg.userrole.dataentry">
         <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#UserRole"/>
+        <SDG:rolename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dataentry</SDG:rolename>
         <rdfs:comment>Role where user&apos;s main task is data entry.</rdfs:comment>
     </owl:NamedIndividual>
     
