@@ -14,6 +14,7 @@ import config from '../config';
 import verifyAdminToken from './middleware/verifyAdminToken';
 import getUser from '../database/getUser';
 import setUser from '../database/setUser';
+import getRoles from '../database/getRoles';
 
 const router = Router();
 
@@ -77,6 +78,12 @@ const addUser = async (req: Request, res: Response) => {
     const users: string[] = await getUser(req.body.username);
     if (users.length > 0) {
       throw new ApiError(400, 'Username already taken!');
+    }
+
+    const roles = await getRoles();
+    const rolenames = roles.map((val) => val.role);
+    if (!rolenames.includes(req.body.role)) {
+      throw new ApiError(400, 'This role does not exist in the database!');
     }
 
     const result = await setUser(req.body.username, req.body.password, req.body.role);
