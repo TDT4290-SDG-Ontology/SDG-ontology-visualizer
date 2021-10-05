@@ -25,6 +25,8 @@ import verifyToken from './middleware/verifyToken';
 const router = Router();
 
 type IndicatorScore = {
+  kpi: string;
+  dataseries: string | null;
   score: number;
   points: number;
   projectedCompletion: number;
@@ -34,16 +36,18 @@ type IndicatorScore = {
   willCompleteBeforeDeadline: boolean;
 };
 
-const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
+const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorScore => {
   const CMP_EPSILON = 0.0001; // TODO: tune the epsilon
   const absGoalBaselineDiff = Math.abs(goal.target - goal.baseline);
   if (absGoalBaselineDiff < CMP_EPSILON) {
     // Goal equal to baseline -- assume it's fulfilled.
     // TODO: Check if assumption holds.
     return {
+      kpi,
+      dataseries: current.dataseries,
       score: 4,
       points: 100,
-      projectedCompletion: current.year,
+      projectedCompletion: goal.baselineYear,
       willCompleteBeforeDeadline: true,
       currentCAGR: 0.0,
       requiredCAGR: 0.0,
@@ -54,6 +58,8 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
   if (Math.abs(goal.target - current.value) < 0.01) {
     // current value equal enough to target -- assume it's fulfilled.
     return {
+      kpi,
+      dataseries: current.dataseries,
       score: 4,
       points: 100,
       projectedCompletion: current.year,
@@ -130,6 +136,8 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
     // make any sense...
     if (!goal.calculationMethod.startsWith('INV_')) {
       return {
+        kpi,
+        dataseries: current.dataseries,
         score: indicatorScore,
         points,
         projectedCompletion: -1,
@@ -172,6 +180,8 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
   const willComplete = projectedCompletion < goal.deadline;
 
   return {
+    kpi,
+    dataseries: current.dataseries,
     score: indicatorScore,
     points,
     projectedCompletion,
@@ -240,7 +250,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
         continue;
       }
 
-      const score = computeScore(series, goal);
+      const score = computeScore(series.kpi, series, goal);
 
       outputIndicatorScores.set(displayKPI, score);
 
