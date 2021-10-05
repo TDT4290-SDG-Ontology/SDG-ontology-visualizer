@@ -109,7 +109,11 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
   const targetCAGR = targetFraction ** (1.0 / (goal.deadline - goal.baselineYear)) - 1.0;
 
   const fractCompare = Math.abs(currentFraction);
-  if (fractCompare <= 1.0 + CMP_EPSILON || indicatorScore <= 0.0 || goal.calculationMethod == "BOOL") {
+  if (
+    fractCompare <= 1.0 + CMP_EPSILON ||
+    indicatorScore <= 0.0 ||
+    goal.calculationMethod == 'BOOL'
+  ) {
     // One of:
     //  1.  Current value is baseline (either no progress, or values have returned to baseline).
     //      This needs better modeling in order to handle, outside the scope of this project, TODO for later projects!
@@ -122,7 +126,7 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
     // We don't support completion estimation for BOOL values, as we don't have enough data to do this.
 
     // Handle non-INV_... calculation predictions by giving up, as the model year-calculation doesn't really
-    // support this, and will result in predictions of completion year before the baseline year, which doesn't 
+    // support this, and will result in predictions of completion year before the baseline year, which doesn't
     // make any sense...
     if (!goal.calculationMethod.startsWith('INV_')) {
       return {
