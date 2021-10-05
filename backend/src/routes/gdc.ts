@@ -403,6 +403,26 @@ const setGoal = async (req: Request, res: Response) => {
   }
 };
 
+const getGoals = async (req: Request, res: Response) => {
+  try {
+    const goalsData = await getGDCGoals(req.body.municipality);
+    const goals: Map<string, Goal> = new Map<string, Goal>();
+
+    /* eslint-disable-next-line no-restricted-syntax */
+    for (const goal of goalsData.values()) {
+      const isVariant = goal.dataseries !== undefined;
+      const displayKPI = goal.kpi + (isVariant ? ` - ${goal.dataseries}` : '');
+      goals.set(displayKPI, goal);
+    }
+
+    res.json({
+      goals: [...goals],
+    });
+  } catch (e: any) {
+    onError(e, req, res);
+  }
+};
+
 const correlatedKPIs = async (req: Request, res: Response) => {
   try {
     // NOTE: we currently have correlation data for south korea and japan loaded,
@@ -424,6 +444,7 @@ const correlatedKPIs = async (req: Request, res: Response) => {
 
 router.post('/get', verifyDatabaseAccess, getGoalDistance);
 router.post('/set-goal', verifyDatabaseAccess, verifyToken, setGoal);
+router.post('/goals', verifyDatabaseAccess, getGoals);
 router.post('/correlated-kpis', verifyDatabaseAccess, correlatedKPIs);
 
 export default router;
