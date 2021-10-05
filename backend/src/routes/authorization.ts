@@ -11,7 +11,8 @@ import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
 import getUserPasswordHash from '../database/getUserPasswordHash';
 import { checkPassword } from '../auth/credentials';
 import config from '../config';
-import verifyAdminToken from './middleware/verifyAdminToken';
+import verifyAdmin from './middleware/verifyAdmin';
+import verifyToken from './middleware/verifyToken';
 import getUser from '../database/getUser';
 import setUser from '../database/setUser';
 import getRoles from '../database/getRoles';
@@ -83,7 +84,7 @@ const addUser = async (req: Request, res: Response) => {
     const roles = await getRoles();
     const rolenames = roles.map((val) => val.role);
     if (!rolenames.includes(req.body.role)) {
-      throw new ApiError(400, 'This role does not exist in the database!');
+      throw new ApiError(400, `The role ${req.body.role} does not exist in the database!`);
     }
 
     const result = await setUser(req.body.username, req.body.password, req.body.role);
@@ -94,6 +95,6 @@ const addUser = async (req: Request, res: Response) => {
 };
 
 router.post('/login', verifyDatabaseAccess, login);
-router.post('/add-user', verifyDatabaseAccess, verifyAdminToken, addUser);
+router.post('/add-user', verifyDatabaseAccess, verifyToken, verifyAdmin, addUser);
 
 export default router;
