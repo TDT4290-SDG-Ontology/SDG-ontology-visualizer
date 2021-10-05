@@ -29,10 +29,28 @@ type IndicatorScore = {
   dataseries: string | null;
   score: number;
   points: number;
+
+  // estimated year of completion
   projectedCompletion: number;
+
+  // CAGR -- Compound Annual Growth Rate
+  // is the rate of return that is required for an investment to grow from its
+  // starting balance to its ending balance, assuming profits were reinvested
+  // each period of the lifespan of the investment. A classic use for this is
+  // to see how much the investment grows after n periods.
+  //
+  // The way its used here is basically to calculate the achieved "interest",
+  // which is then used to extrapolate the current trajectory, allowing us to
+  // estimate future values, check if we're ahead of the required trajectory,
+  // see how we can modulate the efforts required to reach the target within
+  // the set deadline, and estimate the year of completion.
+  //
+  // One major advantage of using this measure is that it's smooth, as we're
+  // computing the measures based on one data point and the goal parameters.
   currentCAGR: number;
   requiredCAGR: number;
   targetCAGR: number;
+
   willCompleteBeforeDeadline: boolean;
 };
 
@@ -209,7 +227,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const dataseriesPromise = getGDCDataSeries(req.body.municipality, req.body.year);
     const goalsPromise = getGDCGoals(req.body.municipality);
 
-    // It's should be more efficient to wait on both promises at the same time.
+    // It should be more efficient to wait on both promises at the same time.
     const data = await Promise.all([dataseriesPromise, goalsPromise]);
     const dataseries: Dataseries[] = data[0];
     const goalArray: Goal[] = data[1];
