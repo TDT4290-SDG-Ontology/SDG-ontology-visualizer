@@ -112,7 +112,7 @@ const computeScore = (current: Dataseries, goal: Goal): IndicatorScore => {
   if (
     fractCompare <= 1.0 + CMP_EPSILON ||
     indicatorScore <= 0.0 ||
-    goal.calculationMethod == 'BOOL'
+    goal.calculationMethod === 'BOOL'
   ) {
     // One of:
     //  1.  Current value is baseline (either no progress, or values have returned to baseline).
