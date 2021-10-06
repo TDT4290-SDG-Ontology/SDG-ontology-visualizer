@@ -1,4 +1,5 @@
 import random
+import math
 
 class Generator:
 	def __init__(self, lower_limit, upper_limit, dataset):
@@ -65,7 +66,6 @@ def yes_no(id, name, desc = "", **kwargs):
 	return IndicatorGenerator(id, kwargs.get("datasets", ["main"]), 0, 1, True)
 
 indicators = [
-	
 	# Economics
 	pct("EC: ICT: ICT: 1C", 	"Household internet access"),
 	pct("EC: ICT: ICT: 2C", 	"Fixed broadband subscriptions", "Percentage of households with fixed (wired) broadband"),
@@ -155,7 +155,7 @@ indicators = [
 	pct("SC: SH: SI: 4C", 		"Voter participation", "Percentage of the eligible population that voted during the last municipal election"),
 	pct("SC: SH: SI: 5A",		"Child care availability", "Percentage of pre-school age children (0-3) covered by (public and private) day-care centres"),
 	rel("SC: SH: SA: 1C", 		"Natural disaster related deaths"),
-	pct("SC: SH: SA: 2C",		"Disaster-related economic losses", "Economic losses (related to natural disasters) as a percentage of the city’s gross domestic product (GDP)"),
+	pct("SC: SH: SA: 2C",		"Disaster-related economic losses", "Economic losses (related to natural disasters) as a percentage of the city's gross domestic product (GDP)"),
 	yes_no("SC: SH: SA: 3A", 	"Resilience plans", "This involves implementation of risk and vulnerability assessments, financial (capital and operating) plans and technical systems for disaster mitigation addressing natural and human induced disasters and hazards"),
 	pct("SC: SH: SA: 4A",		"Population living in disaster prone areas"),
 	abs("SC: SH: SA: 5C", 		"Emergency service response time"),
@@ -164,8 +164,6 @@ indicators = [
 	rel("SC: SH: SA: 8C", 		"Violent crime rate"),
 	rel("SC: SH: SA: 9C",		"Traffic fatailities"),
 	pct("SC: SH: FS: 1C",		"Local food production", "Percentage of local food supplied from within 100 km of the urban area"),
-
-
 ]
 
 # wrongly entered in airtable:
@@ -175,7 +173,289 @@ indicators = [
 # SC: EH: H: 3C
 # SC: EH: C: 1C
 
-erroring1 = [
-	pct("EN: EN: WS: 3C",		"Fresh water consumption", "Percentage of water consumed from freshwater sources"),
-	pct("EC: ICT: ES: 1C",  	"Smart electricity meters"),
+PERCENT = 0
+INV_PERCENT = 1
+
+ABSOLUTE = 2
+INV_ABSOLUTE = 3
+
+RELATIVE = 4
+INV_RELATIVE = 5
+
+BOOL = 6
+RATIO = 8
+INV_RATIO = 9
+
+TERRIBLE = 0
+BAD = 1
+ACCEPTABLE = 2
+GOOD = 3
+BEST = 4
+GOODNESS_COUNT = 5
+
+class dataseries:
+	def __init__(self, kpi, calc, variant = None, target = None, min_range = None, max_range = None):
+		self.kpi = kpi
+		self.calc = calc
+		self.variant = variant
+		self.target = target
+
+		if calc == PERCENT:
+			self.start_range = 0
+			self.end_range = 100
+		elif calc == INV_PERCENT:
+			self.start_range = 100
+			self.end_range = 0
+		elif calc == ABSOLUTE or calc == RELATIVE:
+			self.start_range = 0
+			self.end_range = 100000
+		elif calc == INV_ABSOLUTE or calc == INV_RELATIVE:
+			self.start_range = 100000
+			self.end_range = 0
+		elif calc == RATIO:
+			self.start_range = min_range
+			self.end_range = max_range
+		elif calc == INV_RATIO: 
+			self.start_range = max_range
+			self.end_range = min_range
+		elif calc == BOOL:
+			self.start_range = 0.0
+			self.end_range = 1.0
+
+	def generate_goal(self, goodness):
+		baseline_pct = max((goodness - 1) / GOODNESS_COUNT, 0.01)
+		min_score_pct = goodness / GOODNESS_COUNT
+		goal_pct = (goodness + 1) / GOODNESS_COUNT
+
+		goal = goal_pct * (self.end_range - self.start_range) + self.start_range
+		baseline = baseline_pct * (self.end_range - self.start_range) + self.start_range		
+
+		return (goal, 2030, baseline, 2015, self.start_range)
+
+	def produce_data(self, goodness, year):
+		if self.calc == BOOL:
+			return False # TODO: something better....
+
+		baseline_pct = max((goodness - 1) / GOODNESS_COUNT, 0.01)
+		min_score_pct = goodness / GOODNESS_COUNT
+		goal_pct = (goodness + 1) / GOODNESS_COUNT
+
+		goal = goal_pct * (self.end_range - self.start_range) + self.start_range
+		baseline = baseline_pct * (self.end_range - self.start_range) + self.start_range
+		min_score = min_score_pct * (self.end_range - self.start_range) + self.start_range
+
+		if (baseline == 0):
+			print("WTF MAN")
+			baseline = 0.01
+
+		return min_score * (pow((goal / baseline), (year - 2015) / (2030 - 2015)) + random.uniform(-0.025, 0.025)) 
+
+
+all_dataseries = [
+	dataseries("EN: EN: EQ: 1C", 	PERCENT),
+	dataseries("EN: EN: AQ: 2C", 	INV_ABSOLUTE),
+	dataseries("EC: I: ES: 3C", 	PERCENT),
+	dataseries("SC: EH: ED: 4C", 	PERCENT),
+	dataseries("EN: EN: AQ: 1C", 	INV_ABSOLUTE, variant = "no2"),
+	dataseries("EN: EN: AQ: 1C", 	INV_ABSOLUTE, variant = "o3"),
+	dataseries("EN: EN: AQ: 1C", 	INV_ABSOLUTE, variant = "pm_10"),
+	dataseries("EN: EN: AQ: 1C", 	INV_ABSOLUTE, variant = "pm_2.5"),
+	dataseries("EN: EN: AQ: 1C", 	INV_ABSOLUTE, variant = "so2"),
+	dataseries("EC: I: T: 3C", 		RELATIVE),
+	dataseries("SC: SH: SI: 5A", 	PERCENT),
+	dataseries("SC: EH: C: 1C", 	PERCENT),
+	dataseries("SC: EH: C: 2A", 	RELATIVE),
+	dataseries("EC: ICT: ES: 3A", 	PERCENT),
+	dataseries("SC: SH: SA: 2C", 	INV_PERCENT),
+	dataseries("EN: EN: WS: 1C", 	PERCENT),
+	dataseries("EC: ICT: T: 1C", 	PERCENT),
+	dataseries("EC: ICT: PS: 2A", 	ABSOLUTE),
+	dataseries("EN: E: E: 2C", 		INV_ABSOLUTE),
+	dataseries("EC: I: ES: 2C", 	INV_ABSOLUTE),
+	dataseries("EC: ICT: ES: 2A", 	PERCENT),
+	dataseries("EC: I: B: 2A", 		PERCENT),
+	dataseries("EC: I: ES: 1C", 	INV_ABSOLUTE),
+	dataseries("SC: EH: ED: 5A", 	PERCENT),
+	dataseries("SC: SH: SA: 5C", 	INV_ABSOLUTE),
+	dataseries("SC: SH: HO: 2A", 	INV_PERCENT),
+	dataseries("SC: SH: SA: 7C", 	RELATIVE),
+	dataseries("EC: ICT: ICT: 2C", 	PERCENT),
+	dataseries("SC: SH: FS: 1C", 	PERCENT),
+	dataseries("EN: EN: WS: 3C", 	INV_PERCENT),
+	dataseries("SC: SH: SI: 1C", 	RATIO, target = 1.0, min_range = 0.0, max_range = 2.0),
+	dataseries("SC: SH: SI: 2C", 	INV_RATIO, target = 0.0, min_range = 0.0, max_range = 1.0),
+	dataseries("EN: EN: PSN: 2A", 	PERCENT),
+	dataseries("EN: EN: PSN: 1C", 	ABSOLUTE),
+	dataseries("SC: EH: ED: 3C", 	RELATIVE),
+	dataseries("EC: ICT: ICT: 1C", 	PERCENT),
+	dataseries("EC: I: WS: 5C", 	PERCENT),
+	dataseries("EC: P: EM: 4C", 	PERCENT),
+	dataseries("SC: EH: H: 4A", 	RELATIVE),
+	dataseries("SC: SH: HO: 1C", 	INV_PERCENT),
+	dataseries("EC: ICT: T: 3A", 	PERCENT),
+	dataseries("SC: EH: H: 1C", 	ABSOLUTE),
+	dataseries("EC: I: T: 8A", 		PERCENT),
+	dataseries("SC: EH: H: 2C", 	INV_RELATIVE),
+	dataseries("SC: SH: SA: 1C", 	INV_RELATIVE),
+	dataseries("EN: EN: EQ: 2A", 	INV_PERCENT),
+	dataseries("EC: ICT: PS: 1A", 	ABSOLUTE, variant = "number"),
+	dataseries("EC: ICT: PS: 1A", 	PERCENT, variant = "percent"),
+	dataseries("EC: P: IN: 2C", 	RELATIVE),
+	dataseries("EC: I: UP: 1A", 	PERCENT),
+	dataseries("SC: EH: H: 3C", 	RELATIVE),
+	dataseries("SC: SH: SA: 6C", 	RELATIVE),
+	dataseries("SC: SH: SA: 4A", 	INV_PERCENT),
+	dataseries("EC: I: WS: 2C", 	PERCENT),
+	dataseries("SC: SH: SI: 3C", 	INV_PERCENT),
+	dataseries("EN: EN: PSN: 3A", 	PERCENT),
+	dataseries("EN: E: E: 4A", 		INV_ABSOLUTE),
+	dataseries("EC: I: B: 1A", 		PERCENT),
+	dataseries("SC: EH: H: 5A", 	PERCENT),
+	dataseries("EC: ICT: PS: 3A", 	PERCENT),
+	dataseries("EC: I: T: 2A", 		PERCENT),
+	dataseries("EC: I: T: 1C", 		RELATIVE),
+	dataseries("EC: P: IN: 1C", 	PERCENT),
+	dataseries("EN: EN: PSN: 4A", 	ABSOLUTE),
+	dataseries("EN: E: E: 1C", 		PERCENT),
+	dataseries("EN: E: E: 3C", 		INV_ABSOLUTE),
+	dataseries("SC: SH: SA: 3A", 	BOOL),
+	dataseries("SC: EH: ED: 2C", 	PERCENT),
+	dataseries("EC: I: T: 6A", 		RELATIVE),
+	dataseries("EC: I: T: 7A", 		RELATIVE),
+	dataseries("EC: P: IN: 3A", 	PERCENT),
+	dataseries("EC: ICT: ES: 1C", 	PERCENT),
+	dataseries("EC: ICT: WS: 1C", 	PERCENT),
+	dataseries("EC: I: WA: 1C", 	PERCENT),
+	dataseries("EN: EN: WA: 1C", 	PERCENT, variant = "burnt"),
+	dataseries("EN: EN: WA: 1C", 	PERCENT, variant = "incinerated"),
+	dataseries("EN: EN: WA: 1C", 	PERCENT, variant = "landfill"),
+	dataseries("EN: EN: WA: 1C", 	PERCENT, variant = "open_dump"),
+	dataseries("EN: EN: WA: 1C", 	PERCENT, variant = "other"),
+	dataseries("EN: EN: WA: 1C", 	PERCENT, variant = "recycled"),
+	dataseries("SC: EH: ED: 1C", 	PERCENT),
+	dataseries("EC: P: EM: 3C", 	PERCENT),
+	dataseries("SC: SH: SA: 9C", 	INV_RELATIVE),
+	dataseries("EC: ICT: T: 2C", 	PERCENT),
+	dataseries("EC: I: T: 4A", 		PERCENT, variant = "cycling"),
+	dataseries("EC: I: T: 4A", 		PERCENT, variant = "para"),
+	dataseries("EC: I: T: 4A", 		PERCENT, variant = "private"),
+	dataseries("EC: I: T: 4A", 		PERCENT, variant = "public"),
+	dataseries("EC: I: T: 4A", 		PERCENT, variant = "walking"),
+	dataseries("EC: I: T: 5A", 		INV_RATIO, target = 1.5, min_range = 0.0, max_range = 20),
+	dataseries("EC: P: EM: 1C", 	INV_PERCENT),
+	dataseries("EC: I: UP: 2A", 	BOOL, variant = "compact"),
+	dataseries("EC: I: UP: 2A", 	BOOL, variant = "connected"),
+	dataseries("EC: I: UP: 2A", 	BOOL, variant = "inclusive"),
+	dataseries("EC: I: UP: 2A", 	BOOL, variant = "integrated"),
+	dataseries("EC: I: UP: 2A", 	BOOL, variant = "resilient"),
+	dataseries("SC: SH: SA: 8C", 	INV_RELATIVE),
+	dataseries("SC: SH: SI: 4C", 	PERCENT),
+	dataseries("EC: I: WS: 4C", 	PERCENT),
+	dataseries("EN: EN: WS: 4C", 	PERCENT, variant = "primary"),
+	dataseries("EN: EN: WS: 4C", 	PERCENT, variant = "secondary"),
+	dataseries("EN: EN: WS: 4C", 	PERCENT, variant = "tertiary"),
+	dataseries("EN: EN: WS: 2C", 	INV_ABSOLUTE),
+	dataseries("EC: I: WS: 1C", 	PERCENT),
+	dataseries("EC: ICT: WS: 2A",	PERCENT),
+	dataseries("EC: I: WS: 3C", 	PERCENT),
+	dataseries("EC: ICT: D: 1A", 	PERCENT),
+	dataseries("EC: ICT: ICT: 5C", 	ABSOLUTE),
+	dataseries("EC: ICT: ICT: 3C", 	PERCENT),
+	dataseries("EC: ICT: ICT: 4C", 	PERCENT, variant = "3g"),
+	dataseries("EC: ICT: ICT: 4C", 	PERCENT, variant = "4g"),
+	dataseries("EC: P: EM: 2C", 	INV_PERCENT),
 ]
+
+friendly_names = dict([
+	('EC: ICT: ICT: 1C', 'household_internet_access'),
+  	('EC: P: EM: 1C', 'unemployment_rate'),
+	('EC: P: IN: 2C', 'patents'),
+	('EN: EN: EQ: 1C', 'EMF_exposure'),
+	('EN: EN: AQ: 2C', 'GHG_emissions'),
+	('EC: I: ES: 3C', 'access_electricity'),
+	('SC: EH: ED: 4C', 'adult_literacy'),
+	('EN: EN: AQ: 1C', 'air_pollution'),
+	('EC: I: T: 3C', 'bicycle_network'),
+	('SC: SH: SI: 5A', 'child_care_availability'),
+	('SC: EH: C: 1C', 'cultural_expenditure'),
+	('SC: EH: C: 2A', 'cultural_infrastructure'),
+	('EC: ICT: ES: 3A', 'demand_response_penetration'),
+	('SC: SH: SA: 2C', 'disaster_related_economic_loss'),
+	('EN: EN: WS: 1C', 'drinking_water_quality'),
+	('EC: ICT: T: 1C', 'dynamic_public_trans_inf'),
+	('EC: ICT: PS: 2A', 'e_government'),
+	('EN: E: E: 2C', 'electricity_consumption'),
+	('EC: I: ES: 2C', 'electricity_outage_time'),
+	('EC: ICT: ES: 2A', 'electricity_supply_ict_mon'),
+	('EC: I: ES: 1C', 'electricity_system_outage_freq'),
+	('SC: EH: ED: 5A', 'electronic_health_records'),
+	('SC: SH: SA: 5C', 'emergency_response_time'),
+	('SC: SH: HO: 2A', 'expenditure_housing'),
+	('SC: SH: SA: 7C', 'fire_service'),
+	('EC: ICT: ICT: 2C', 'fixed_broadband'),
+	('SC: SH: FS: 1C', 'food_production'),
+	('EN: EN: WS: 4C', 'wastewater_treatment'),
+	('SC: SH: SI: 1C', 'gender_income_equality'),
+	('SC: SH: SI: 2C', 'gini_coefficient'),
+	('EN: EN: PSN: 2A', 'green_area_accessibility'),
+	('EN: EN: PSN: 1C', 'green_areas'),
+	('SC: EH: ED: 3C', 'higher_education_degrees'),
+	('EC: I: WS: 5C', 'household_sanitation'),
+	('EC: P: EM: 4C', 'ict_sector_employment'),
+	('SC: EH: H: 4A', 'in_patient_hospital_beds'),
+	('SC: SH: HO: 1C', 'informal_settlements'),
+	('EC: I: B: 2A', 'integrated_building_management_systems'),
+	('EC: ICT: T: 3A', 'intersection_control'),
+	('SC: EH: H: 1C', 'life_expectancy'),
+	('EC: I: T: 8A', 'low_carbon_passenger_vehicles'),
+	('SC: EH: H: 2C', 'maternal_mortality_rate'),
+	('SC: SH: SA: 1C', 'natural_disaster_related_deaths'),
+	('EN: EN: EQ: 2A', 'noise_exposure'),
+	('EC: ICT: PS: 1A', 'open_data'),
+	('EC: I: UP: 1A', 'pedestrian_infrastructure'),
+	('SC: EH: H: 3C', 'physicians'),
+	('SC: SH: SA: 6C', 'police_service'),
+	('SC: SH: SA: 4A', 'population_disaster_prone_areas'),
+	('EC: I: WS: 2C', 'potable_water_supply'),
+	('SC: SH: SI: 3C', 'poverty_share'),
+	('EN: EN: PSN: 3A', 'protected_natural_areas'),
+	('EN: E: E: 4A', 'public_building_energy_consumption'),
+	('EC: I: B: 1A', 'public_building_sustainability'),
+	('SC: EH: H: 5A', 'public_health_coverage'),
+	('EC: ICT: PS: 3A', 'public_sector_e_procurement'),
+	('EC: I: T: 2A', 'public_transport_convenience'),
+	('EC: I: T: 1C', 'public_transport_network'),
+	('EC: P: IN: 1C', 'r_d_expenditure'),
+	('EN: EN: PSN: 4A', 'recreational_facilities'),
+	('EN: E: E: 1C', 'renewable_energy_consumption'),
+	('EN: E: E: 3C', 'residential_thermal_energy_consumption'),
+	('SC: SH: SA: 3A', 'resilience_plans'),
+	('SC: EH: ED: 2C', 'school_enrolment'),
+	('EC: I: T: 6A', 'shared_bicycles'),
+	('EC: I: T: 7A', 'shared_vehicles'),
+	('EC: P: IN: 3A', 'small_medium_enterprises'),
+	('EC: ICT: ES: 1C', 'smart_electricity_meters'),
+	('EC: ICT: WS: 1C', 'smart_water_meters'),
+	('EC: I: WA: 1C', 'solid_waste_collection'),
+	('EN: EN: WA: 1C', 'solid_waste_treatment'),
+	('SC: EH: ED: 1C', 'student_ICT_access'),
+	('EC: P: EM: 3C', 'tourism_industry_employment'),
+	('SC: SH: SA: 9C', 'traffic_fatalities'),
+	('EC: ICT: T: 2C', 'traffic_mon'),
+	('EC: I: T: 4A', 'transportation_mode_share'),
+	('EC: I: T: 5A', 'travel_time_index'),
+	('EC: I: UP: 2A', 'urban_development'),
+	('SC: SH: SA: 8C', 'violent_crime_rate'),
+	('SC: SH: SI: 4C', 'voter_participation'),
+	('EC: I: WS: 4C', 'wastewater_collection'),
+	('EN: EN: WS: 2C', 'water_consumption'),
+	('EC: I: WS: 1C', 'water_supply'),
+	('EC: ICT: WS: 2A', 'water_supply_ict_mon'),
+	('EC: I: WS: 3C', 'water_supply_loss'),
+	('EC: ICT: D: 1A', 'water_system_ict_mon'),
+	('EC: ICT: ICT: 5C', 'wifi_public_areas'),
+	('EC: ICT: ICT: 3C', 'wireless_broadband'),
+	('EC: ICT: ICT: 4C', 'wireless_broadband_coverage'),
+	('EC: P: EM: 2C', 'youth_unemployment_rate'),
+	('EN: EN: WS: 3C', 'freshwater_consumption'),
+])

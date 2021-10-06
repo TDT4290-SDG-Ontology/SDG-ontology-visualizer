@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import { Router, Request } from 'express';
 import { verifyRequestQueryParams } from '../common/router';
 import getAnnotations from '../database/getAnnotations';
 import getClassesByString from '../database/getClassesByString';

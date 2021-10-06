@@ -9,4 +9,37 @@ def login(username, password):
 	print(req.text)
 	return json.loads(req.text)
 
-body = login(sys.argv[1], sys.argv[2])
+def correlated_kpis(kpi):
+	req = requests.post(URL + "/gdc/correlated-kpis", json={'indicator': kpi })
+	print(req.status_code, req.reason)
+	parsed = json.loads(req.text)
+	print(json.dumps(parsed, indent = 4))
+
+def gdc(municipality, year):
+	req = requests.post(URL + "/gdc/get", json={ 'municipality': municipality, 'year': year })
+	print(req.status_code, req.reason)
+	parsed = json.loads(req.text)
+	print(json.dumps(parsed, indent = 4))
+
+def goals(municipality):
+	req = requests.post(URL + "/gdc/goals", json={ 'municipality': municipality })
+	print(req.status_code, req.reason)
+	parsed = json.loads(req.text)
+	print(json.dumps(parsed, indent = 4))
+
+# body = login(sys.argv[1], sys.argv[2])
+print("Some correlated kpis:")
+print("EC: ICT: T: 3A")
+correlated_kpis("EC: ICT: T: 3A")
+print("SC: EH: ED: 2C")
+correlated_kpis("SC: EH: ED: 2C")
+
+cities = { "osl": "no.0301", "trd": "no.5001" }
+
+municipality = cities[sys.argv[1]]
+
+print("GDC output:")
+gdc(municipality, sys.argv[2])
+
+print("Goals:")
+goals(municipality)
