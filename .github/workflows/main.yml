@@ -42,6 +42,12 @@ jobs:
           yarn
           yarn add @types/jsonwebtoken
           yarn test
+        env:
+          GRAPHDB_BASE_URL: http://stud211001.idi.ntnu.no:7200
+          GRAPHDB_REPOSITORY: TK_SDG
+          GRAPHDB_USERNAME: readAll
+          GRAPHDB_PASSWORD: readAllPassword
+          JWT_SECRET_TOKEN: insertsecrettokenhere
         working-directory: backend
   # cypress-run:
   #   runs-on: ubuntu-latest
