@@ -76,6 +76,15 @@ export const checkPassword = (password: string, existingHash: string) => {
   return diff === 0;
 };
 
+export const verifyAdminToken = (token: string) => {
+  try {
+    const { isAdmin } = jwt.decode(token, config.JWT_SECRET_TOKEN);
+    return !isAdmin;
+  } catch {
+    return false;
+  }
+};
+
 export const verifyToken = (token: string) => {
   try {
     const { exp } = jwt.verify(token, config.JWT_SECRET_TOKEN) as { exp };
