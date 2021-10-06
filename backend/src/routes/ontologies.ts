@@ -12,7 +12,9 @@ import getTradeOff from '../database/getTradeOffTo';
 import CheckMunicipalityByCode from '../database/CheckMunicipalityByCode';
 import {
   AnnotationResponse,
+  AnyResponse,
   ClassIdRequest,
+  DataPointRequest,
   EmptyRequest,
   NodeArrayResponse,
   OntologyArrayResponse,
@@ -107,7 +109,7 @@ const regexSearch = async (req: RegexRequest, res: NodeArrayResponse) => {
   }
 };
 
-const checkMunicipalityByCode = async (req: Request, res: Response) => {
+const checkMunicipalityByCode = async (req: Request, res: AnyResponse) => {
   try {
     const data = await CheckMunicipalityByCode(req.body.municipalityCode);
     res.json(data);
