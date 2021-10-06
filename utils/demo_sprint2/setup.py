@@ -46,7 +46,7 @@ class dataseries:
 		elif calc == RATIO:
 			self.start_range = min_range
 			self.end_range = max_range
-		elif calc == INV_RATIO: 
+		elif calc == INV_RATIO:
 			self.start_range = max_range
 			self.end_range = min_range
 		elif calc == BOOL:
@@ -59,7 +59,7 @@ class dataseries:
 		goal_pct = (goodness + 1) / GOODNESS_COUNT
 
 		goal = goal_pct * (self.end_range - self.start_range) + self.start_range
-		baseline = baseline_pct * (self.end_range - self.start_range) + self.start_range		
+		baseline = baseline_pct * (self.end_range - self.start_range) + self.start_range
 
 		return (goal, 2030, baseline, 2015, self.start_range)
 
@@ -79,7 +79,7 @@ class dataseries:
 			print("WTF MAN")
 			baseline = 0.01
 
-		return min_score * (pow((goal / baseline), (year - 2015) / (2030 - 2015)) + random.uniform(-0.025, 0.025)) 
+		return min_score * (pow((goal / baseline), (year - 2015) / (2030 - 2015)) + random.uniform(-0.025, 0.025))
 
 
 all_dataseries = [
@@ -217,19 +217,19 @@ def insert_data(token, kpi, value, municipality, year, dataseries = None):
 def set_goal(token, municipality, kpi, target, deadline, baseline, baselineYear, start_range, dataseries):
 	if dataseries:
 		req = requests.post(BASE_URL + "/gdc/set-goal", json = { 'token': token["token"], 'indicator': kpi, 'municipality': municipality, 'target': target, 'deadline': deadline, 'baseline': baseline, 'baselineYear': baselineYear, 'startRange': start_range, 'dataseries': dataseries, 'isDummy': True })
-	else:		
+	else:
 		req = requests.post(BASE_URL + "/gdc/set-goal", json = { 'token': token["token"], 'indicator': kpi, 'municipality': municipality, 'target': target, 'deadline': deadline, 'baseline': baseline, 'baselineYear': baselineYear, 'startRange': start_range, 'isDummy': True })
 	print(req.status_code, req.reason)
 	if req.status_code != 200:
 		print("kpi: {}".format(json["indicator"]))
 
 def generate_goals(token, municipality, goodness):
-	for ds in u4ssc.all_dataseries:
+	for ds in all_dataseries:
 		goal, deadline, baseline, baselineYear, start_range = ds.generate_goal(goodness)
 		set_goal(token, municipality, ds.kpi, goal, deadline, baseline, baselineYear, start_range, ds.variant)
 
 def generate_data(token, municipality, goodness, year):
-	for ds in u4ssc.all_dataseries:
+	for ds in all_dataseries:
 		insert_data(token, ds.kpi, ds.produce_data(goodness, year), municipality, year, ds.variant)
 
 token = login("test", "123")
@@ -237,16 +237,16 @@ token = login("test", "123")
 print("This will take a little while, we're inserting loads of data...")
 
 print("Generating goals")
-generate_goals(token, "no.5001", u4ssc.GOOD)
-generate_goals(token, "no.0301", u4ssc.GOOD)
+generate_goals(token, "no.5001", GOOD)
+generate_goals(token, "no.0301", GOOD)
 # generate_goals(token, "no.1301", u4ssc.GOOD)
 
 print("Generating data for Trondheim")
 for year in range(2015, 2030 + 1):
 	print(year, " data")
-	generate_data(token, "no.5001", u4ssc.GOOD, year)
+	generate_data(token, "no.5001", GOOD, year)
 
 print("Generating data for Oslo")
 for year in range(2015, 2030 + 1):
 	print(year, " data")
-	generate_data(token, "no.0301", u4ssc.ACCEPTABLE, year)
+	generate_data(token, "no.0301", ACCEPTABLE, year)
