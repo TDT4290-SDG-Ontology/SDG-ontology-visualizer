@@ -2,7 +2,7 @@ import request from 'supertest';
 import { expect } from 'chai';
 import app from '../index';
 
-const agent = request.agent(app);
+const agent = request.agent(app, {});
 
 // Wait until API is connected before running tests
 before((done) => {
