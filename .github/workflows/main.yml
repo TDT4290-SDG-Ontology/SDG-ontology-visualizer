@@ -40,6 +40,7 @@ jobs:
       - name: Test backend
         run: |
           yarn
+          yarn add @types/jsonwebtoken
           yarn test
         working-directory: backend
   # cypress-run:
