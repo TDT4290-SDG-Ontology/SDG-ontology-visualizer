@@ -7,7 +7,6 @@ import getGDCGoals from '../database/getGDCGoals';
 import setGDCGoal from '../database/setGDCGoal';
 import deleteGDCGoal from '../database/deleteGDCGoal';
 import getCorrelatedKPIs from '../database/getCorrelatedKPIs';
-import getSimilarlySizedMunicipalities from '../database/getSimilarlySizedMunicipalities';
 
 import { Goal, Dataseries } from '../types/gdcTypes';
 
@@ -471,19 +470,9 @@ const correlatedKPIs = async (req: Request, res: Response) => {
   }
 };
 
-const findSimilarMunicipalities = async (req: Request, res: Response) => {
-  try {
-    const resp = await getSimilarlySizedMunicipalities(req.body.municipality, 0.25);
-    res.json(resp);
-  } catch (e: any) {
-    onError(e, req, res);
-  }
-};
-
 router.post('/get', verifyDatabaseAccess, getGoalDistance);
 router.post('/set-goal', verifyDatabaseAccess, verifyToken, setGoal);
 router.post('/goals', verifyDatabaseAccess, getGoals);
 router.post('/correlated-kpis', verifyDatabaseAccess, correlatedKPIs);
-router.post('/similar', verifyDatabaseAccess, findSimilarMunicipalities);
 
 export default router;
