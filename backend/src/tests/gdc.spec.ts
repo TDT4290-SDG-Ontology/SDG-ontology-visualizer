@@ -31,4 +31,7 @@ describe('Similar municipalities', () => {
     assert(expectedSimilarToTrondheim.size === 0);
   });
 */
+  it('Placeholder to make test runner happy while we wait for test branch to be merged.', () => {
+    expect(true).toBe(true);
+  });
 });
