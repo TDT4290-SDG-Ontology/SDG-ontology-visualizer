@@ -478,7 +478,7 @@ const findSimilarMunicipalities = async (req: Request, res: Response) => {
   } catch (e: any) {
     onError(e, req, res);
   }
-}
+};
 
 router.post('/get', verifyDatabaseAccess, getGoalDistance);
 router.post('/set-goal', verifyDatabaseAccess, verifyToken, setGoal);

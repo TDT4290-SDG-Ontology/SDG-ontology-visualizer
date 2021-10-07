@@ -1,6 +1,5 @@
 import DB from './index';
 import getSimilarlySizedMunicipalities from './queries/getSimilarlySizedMunicipalities';
-import { Goal } from '../types/gdcTypes';
 
 // TODO: Remove any
 export default async (municipality: string, factor: number): Promise<any> => {
