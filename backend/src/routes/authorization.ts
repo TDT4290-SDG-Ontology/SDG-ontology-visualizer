@@ -11,7 +11,7 @@ import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
 import getUserPasswordHash from '../database/getUserPasswordHash';
 import { checkPassword } from '../auth/credentials';
 import config from '../config';
-import verifyAdmin from './middleware/verifyAdmin';
+import verifyAdminToken from './middleware/verifyAdminToken';
 import verifyToken from './middleware/verifyToken';
 import getUser from '../database/getUser';
 import setUser from '../database/setUser';
@@ -39,7 +39,6 @@ const login = async (req: Request, res: Response) => {
         const roles: Role[] = await getUserRole(req.body.username);
         const { role } = roles[0];
         const isAdmin = role.includes('admin');
-        console.log(role);
 
         // TODO: tune token expiration, currently 24h.
         const expiry: number = Math.floor(Date.now() / 1000) + 24 * 60 * 60;
@@ -95,6 +94,6 @@ const addUser = async (req: Request, res: Response) => {
 };
 
 router.post('/login', verifyDatabaseAccess, login);
-router.post('/add-user', verifyDatabaseAccess, verifyToken, verifyAdmin, addUser);
+router.post('/add-user', verifyDatabaseAccess, verifyAdminToken, addUser);
 
 export default router;

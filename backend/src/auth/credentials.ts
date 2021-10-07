@@ -76,14 +76,14 @@ export const checkPassword = (password: string, existingHash: string) => {
   return diff === 0;
 };
 
-// export const verifyAdminToken = (token: string) => {
-//   try {
-//     const { isAdmin } = jwt.decode(token, config.JWT_SECRET_TOKEN);
-//     return !isAdmin;
-//   } catch {
-//     return false;
-//   }
-// };
+export const verifyAdminToken = (token: string) => {
+  try {
+    const { payload, header, signature } = jwt.verify(token, config.JWT_SECRET_TOKEN, { complete: true, maxAge: 24 * 60 * 60 });
+    return payload.isAdmin;
+  } catch {
+    return false;
+  }
+};
 
 export const verifyToken = (token: string) => {
   try {
