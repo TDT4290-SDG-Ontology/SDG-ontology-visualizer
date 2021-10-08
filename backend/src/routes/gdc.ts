@@ -3,6 +3,8 @@
 import { Router, Request, Response } from 'express';
 
 import getGDCDataSeries from '../database/getGDCDataSeries';
+import getGDCDataSeriesUpto from '../database/getGDCDataSeriesUpto';
+
 import getGDCGoals from '../database/getGDCGoals';
 import setGDCGoal from '../database/setGDCGoal';
 import deleteGDCGoal from '../database/deleteGDCGoal';
@@ -23,6 +25,11 @@ import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
 import verifyToken from './middleware/verifyToken';
 
 const router = Router();
+
+type Datapoint = {
+  year: number;
+  value: number;
+};
 
 type IndicatorScore = {
   kpi: string;
@@ -52,6 +59,21 @@ type IndicatorScore = {
   targetCAGR: number;
 
   willCompleteBeforeDeadline: boolean;
+
+  historicalData: Datapoint[];
+
+  goal: Goal;
+
+  // Mean and standard deviation (with bessel correction) of the difference
+  // between the predicted value and the actual measured value.
+  diffMean: number;
+  diffStd: number;
+};
+
+type IndicatorWithoutGoal = {
+  kpi: string;
+  dataseries: string | null;
+  historicalData: Datapoint[];
 };
 
 const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorScore => {
@@ -70,21 +92,12 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
       currentCAGR: 0.0,
       requiredCAGR: 0.0,
       targetCAGR: 0.0,
-    };
-  }
 
-  if (Math.abs(goal.target - current.value) < 0.01) {
-    // current value equal enough to target -- assume it's fulfilled.
-    return {
-      kpi,
-      dataseries: current.dataseries,
-      score: 4,
-      points: 100,
-      projectedCompletion: current.year,
-      willCompleteBeforeDeadline: true,
-      currentCAGR: 0.0,
-      requiredCAGR: 0.0,
-      targetCAGR: 0.0,
+      historicalData: [],
+      goal,
+
+      diffMean: 0,
+      diffStd: 0,
     };
   }
 
@@ -133,6 +146,28 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
   const targetCAGR = targetFraction ** (1.0 / (goal.deadline - goal.baselineYear)) - 1.0;
 
   const fractCompare = Math.abs(currentFraction);
+
+  if (Math.abs(goal.target - current.value) < 0.01) {
+    // current value equal enough to target -- assume it's fulfilled.
+    return {
+      kpi,
+      dataseries: current.dataseries,
+      score: 4,
+      points: 100,
+      projectedCompletion: current.year,
+      willCompleteBeforeDeadline: true,
+      currentCAGR,
+      requiredCAGR,
+      targetCAGR,
+
+      historicalData: [],
+      goal,
+
+      diffMean: 0,
+      diffStd: 0,
+    };
+  }
+
   if (
     fractCompare <= 1.0 + CMP_EPSILON ||
     indicatorScore <= 0.0 ||
@@ -163,6 +198,12 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
         currentCAGR,
         requiredCAGR,
         targetCAGR,
+
+        historicalData: [],
+        goal,
+
+        diffMean: 0,
+        diffStd: 0,
       };
     }
   }
@@ -207,6 +248,12 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
     currentCAGR,
     requiredCAGR,
     targetCAGR,
+
+    historicalData: [],
+    goal,
+
+    diffMean: 0,
+    diffStd: 0,
   };
 };
 
@@ -227,6 +274,8 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const dataseriesPromise = getGDCDataSeries(req.body.municipality, req.body.year);
     const goalsPromise = getGDCGoals(req.body.municipality);
 
+    const historicalPromise = getGDCDataSeriesUpto(req.body.municipality, req.body.year);
+
     // It should be more efficient to wait on both promises at the same time.
     const data = await Promise.all([dataseriesPromise, goalsPromise]);
     const dataseries: Dataseries[] = data[0];
@@ -246,7 +295,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const outputSubdomainScores = new Map<string, Score>();
     const outputDomainScores = new Map<string, Score>();
 
-    const indicatorsWithoutGoals: string[] = [];
+    const indicatorsWithoutGoals = new Map<string, IndicatorWithoutGoal>();
     const unreportedIndicators = new Set(u4sscKpis);
 
     const categoryScores = new Map<string, IndicatorScore[]>();
@@ -254,7 +303,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const domainScores = new Map<string, CumulativeScore[]>();
 
     /* eslint-disable-next-line no-restricted-syntax */
-    for (const series of dataseries.values()) {
+    for (const series of dataseries) {
       const isVariant = series.dataseries !== undefined;
       const displayKPI = series.kpi + (isVariant ? ` - ${series.dataseries}` : '');
 
@@ -262,7 +311,11 @@ const getGoalDistance = async (req: Request, res: Response) => {
       unreportedIndicators.delete(series.kpi);
 
       if (goal === undefined) {
-        indicatorsWithoutGoals.push(series.kpi);
+        indicatorsWithoutGoals.set(displayKPI, {
+          kpi: series.kpi,
+          dataseries: series.dataseries,
+          historicalData: [],
+        });
 
         /* eslint-disable-next-line no-continue */
         continue;
@@ -278,6 +331,50 @@ const getGoalDistance = async (req: Request, res: Response) => {
       const arr = categoryScores.get(category);
       if (arr === undefined) categoryScores.set(category, [score]);
       else if (series.dataseries !== undefined) arr.push(score);
+    }
+
+    const historicalData: Dataseries[] = await historicalPromise;
+
+    // aggregate historical data
+
+    /* eslint-disable-next-line no-restricted-syntax */
+    for (const hist of historicalData) {
+      const isVariant = hist.dataseries !== undefined;
+      const displayKPI = hist.kpi + (isVariant ? ` - ${hist.dataseries}` : '');
+
+      let score: IndicatorScore | IndicatorWithoutGoal | undefined = outputIndicatorScores.get(
+        displayKPI,
+      );
+      if (score === undefined) {
+        // Did not get score from indicators with goals, try the ones without goals instead...
+        score = indicatorsWithoutGoals.get(displayKPI);
+
+        /* eslint-disable-next-line no-continue */
+        if (score === undefined) continue;
+      }
+
+      score.historicalData.push({ year: hist.year, value: hist.value });
+    }
+
+    // calculate statistical data
+    /* eslint-disable-next-line no-restricted-syntax */
+    for (const score of outputIndicatorScores.values()) {
+      const { baseline, baselineYear } = score.goal;
+
+      const predictionDiffs: number[] = score.historicalData.map((datum) => {
+        const predictedValue = baseline * (score.currentCAGR + 1.0) ** (datum.year - baselineYear);
+        return datum.value - predictedValue;
+      });
+
+      const diffMean = predictionDiffs.reduce((acc, val) => acc + val) / predictionDiffs.length;
+      const squaredDiff = predictionDiffs.reduce(
+        (acc, val) => acc + (val - diffMean) * (val - diffMean),
+      );
+      const diffStd =
+        predictionDiffs.length > 1 ? Math.sqrt(squaredDiff / (predictionDiffs.length - 1)) : 0;
+
+      score.diffMean = diffMean;
+      score.diffStd = diffStd;
     }
 
     // NOTE: we store the cumulative points and number of indicators in order to avoid problems with using
