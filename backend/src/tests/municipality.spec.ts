@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 
-// import { assert } from 'chai';
+import { expect } from 'chai';
 // import getSimilarlySizedMunicipalities from '../database/getSimilarlySizedMunicipalities';
 
 describe('Similar municipalities', () => {
@@ -32,6 +32,6 @@ describe('Similar municipalities', () => {
   });
 */
   it('Placeholder to make test runner happy while we wait for test branch to be merged.', () => {
-    expect(true).toBe(true);
+    expect(true).to.eq(true);
   });
 });
