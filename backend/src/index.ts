@@ -14,6 +14,9 @@ const init = async (): Promise<void> => {
   console.log('Initializing server...');
   await databaseLogin();
   console.log(`Ontology server listening at http://localhost:${config.PORT}`);
+  app.emit('serverStarted');
 };
 
 app.listen(config.PORT, init);
+
+export default app;

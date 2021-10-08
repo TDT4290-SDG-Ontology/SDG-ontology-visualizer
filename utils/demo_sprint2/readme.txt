@@ -1,0 +1,1 @@
+Using freshly built images, run the `setup.py` script, then run any of the demo scripts.

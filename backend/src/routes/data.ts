@@ -20,7 +20,6 @@ const insertData = async (req: Request, res: Response) => {
     const indicatorName: string | undefined = u4sscKpiMap.get(req.body.indicator);
     if (indicatorName === undefined || !(typeof indicatorName === 'string'))
       throw new ApiError(400, 'Unknown indicator');
-
     const newDataPoint = {
       indicatorId: req.body.indicator,
       indicatorName,

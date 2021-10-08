@@ -9,8 +9,10 @@ import getSubclasses from '../database/getSubclasses';
 import getSubGoals from '../database/getSubGoals';
 import getSustainabilityGoals from '../database/getSustainabilityGoals';
 import getTradeOff from '../database/getTradeOffTo';
+import CheckMunicipalityByCode from '../database/CheckMunicipalityByCode';
 import {
   AnnotationResponse,
+  AnyResponse,
   ClassIdRequest,
   EmptyRequest,
   NodeArrayResponse,
@@ -106,6 +108,15 @@ const regexSearch = async (req: RegexRequest, res: NodeArrayResponse) => {
   }
 };
 
+const checkMunicipalityByCode = async (req: Request, res: AnyResponse) => {
+  try {
+    const data = await CheckMunicipalityByCode(req.body.municipalityCode);
+    res.json(data);
+  } catch (e: any) {
+    onError(e, req, res);
+  }
+};
+
 router.get('/relations/:classId', verifyDatabaseAccess, getRelationsFromClass);
 router.get('/subclasses/:classId', verifyDatabaseAccess, getSubclassesFromClass);
 router.get('/annotations/:classId', verifyDatabaseAccess, getAnnotationsFromClass);
@@ -115,5 +126,6 @@ router.get('/contributions/:classId', verifyDatabaseAccess, getContributionsToNo
 router.get('/tradeoff/:classId', verifyDatabaseAccess, getTradeOffToNodes);
 router.get('/developmentarea/:classId', verifyDatabaseAccess, getDevelopmentAreaToNodes);
 router.get('/subgoals/:classId', verifyDatabaseAccess, getSubGoalsfromSDG);
+router.get('/checkMunicipalityByCode', verifyDatabaseAccess, checkMunicipalityByCode);
 
 export default router;
