@@ -10,9 +10,11 @@ import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
 
 import getUserPasswordHash from '../database/getUserPasswordHash';
 import { checkPassword } from '../auth/credentials';
+
 import config from '../config';
+
 import verifyAdminToken from './middleware/verifyAdminToken';
-import verifyToken from './middleware/verifyToken';
+
 import getUser from '../database/getUser';
 import setUser from '../database/setUser';
 import getRoles from '../database/getRoles';

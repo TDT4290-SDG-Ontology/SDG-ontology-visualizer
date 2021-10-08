@@ -78,8 +78,8 @@ export const checkPassword = (password: string, existingHash: string) => {
 
 export const verifyAdminToken = (token: string) => {
   try {
-    const { payload, header, signature } = jwt.verify(token, config.JWT_SECRET_TOKEN, { complete: true, maxAge: 24 * 60 * 60 });
-    return payload.isAdmin;
+    const decoded: any = jwt.verify(token, config.JWT_SECRET_TOKEN!, { maxAge: '24 hours' });
+    return decoded.isAdmin === true;
   } catch {
     return false;
   }
@@ -87,8 +87,8 @@ export const verifyAdminToken = (token: string) => {
 
 export const verifyToken = (token: string) => {
   try {
-    const { exp } = jwt.verify(token, config.JWT_SECRET_TOKEN!) as { exp };
-    return Date.now() < exp * 1000;
+    const decoded: any = jwt.verify(token, config.JWT_SECRET_TOKEN!, { maxAge: '24 hours' });
+    return true;
   } catch {
     return false;
   }

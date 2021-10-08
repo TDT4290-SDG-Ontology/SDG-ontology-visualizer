@@ -14,7 +14,6 @@ import {
   AnnotationResponse,
   AnyResponse,
   ClassIdRequest,
-  DataPointRequest,
   EmptyRequest,
   NodeArrayResponse,
   OntologyArrayResponse,
