@@ -2,6 +2,8 @@
 
 import { Router, Request, Response } from 'express';
 
+import { performance } from 'perf_hooks';
+
 import getGDCDataSeries from '../database/getGDCDataSeries';
 import getGDCDataSeriesUpto from '../database/getGDCDataSeriesUpto';
 
@@ -271,15 +273,19 @@ type Score = {
 
 const getGoalDistance = async (req: Request, res: Response) => {
   try {
+    const startTime = performance.now();
+
     const dataseriesPromise = getGDCDataSeries(req.body.municipality, req.body.year);
     const goalsPromise = getGDCGoals(req.body.municipality);
 
     const historicalPromise = getGDCDataSeriesUpto(req.body.municipality, req.body.year);
 
+    const startInitialQueries = performance.now();
     // It should be more efficient to wait on both promises at the same time.
     const data = await Promise.all([dataseriesPromise, goalsPromise]);
     const dataseries: Dataseries[] = data[0];
     const goalArray: Goal[] = data[1];
+    const endInitialQueries = performance.now();
 
     const goals: Map<string, Goal> = new Map<string, Goal>();
 
@@ -301,6 +307,8 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const categoryScores = new Map<string, IndicatorScore[]>();
     const subdomainScores = new Map<string, CumulativeScore[]>();
     const domainScores = new Map<string, CumulativeScore[]>();
+
+    const startScoreCalc = performance.now();
 
     /* eslint-disable-next-line no-restricted-syntax */
     for (const series of dataseries) {
@@ -333,10 +341,15 @@ const getGoalDistance = async (req: Request, res: Response) => {
       else if (series.dataseries !== undefined) arr.push(score);
     }
 
+    const endScoreCalc = performance.now();
+    const startHistWait = performance.now();
+
     const historicalData: Dataseries[] = await historicalPromise;
 
+    const endHistWait = performance.now();
     // aggregate historical data
 
+    const startHistAggr = performance.now();
     /* eslint-disable-next-line no-restricted-syntax */
     for (const hist of historicalData) {
       const isVariant = hist.dataseries !== undefined;
@@ -355,6 +368,8 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
       score.historicalData.push({ year: hist.year, value: hist.value });
     }
+    const endHistAggr = performance.now();
+    const startHistCalc = performance.now();
 
     // calculate statistical data
     /* eslint-disable-next-line no-restricted-syntax */
@@ -376,6 +391,10 @@ const getGoalDistance = async (req: Request, res: Response) => {
       score.diffMean = diffMean;
       score.diffStd = diffStd;
     }
+
+    const endHistCalc = performance.now();
+
+    const startScoreAggr = performance.now();
 
     // NOTE: we store the cumulative points and number of indicators in order to avoid problems with using
     // the average of averages.
@@ -478,6 +497,8 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
     const averageScore = cumulativeScore / Math.max(numberOfPosts, 1);
 
+    const endScoreAggr = performance.now();
+
     res.json({
       municipality: req.body.municipality,
       year: req.body.year,
@@ -492,6 +513,29 @@ const getGoalDistance = async (req: Request, res: Response) => {
       indicatorsWithoutGoals,
       unreportedIndicators: Array.from(unreportedIndicators),
     });
+
+    const endTime = performance.now();
+
+    const timeHistCalc = endHistCalc - startHistCalc;
+    const timeHistAggr = endHistAggr - startHistAggr;
+    const timeHistWait = endHistWait - startHistWait;
+
+    const timeScoreCalc = endScoreCalc - startScoreCalc;
+    const timeScoreAggr = endScoreAggr - startScoreAggr;
+
+    const timeQueries = endInitialQueries - startInitialQueries;
+    const timeTotal = endTime - startTime;
+
+    console.log('\n\n');
+    console.log('GDC perf:');
+    console.log(`queries: ${timeQueries} ms.`);
+    console.log(`score_calc: ${timeScoreCalc} ms.`);
+    console.log(`score_aggr: ${timeScoreAggr} ms.`);
+    console.log(`hist_wait: ${timeHistWait} ms.`);
+    console.log(`hist_aggr: ${timeHistAggr} ms.`);
+    console.log(`hist_calc: ${timeHistCalc} ms.`);
+    console.log(`total: ${timeTotal} ms.`);
+    console.log('\n\n');
   } catch (e: any) {
     onError(e, req, res);
   }
