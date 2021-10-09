@@ -527,7 +527,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const timeTotal = endTime - startTime;
 
     // As of commit fc34647065e6f6f1bb76d19598faa73bc64f1a41 (2021-10-09):
-    // About 5ms of 150-165ms is spent in our code, the rest is waiting 
+    // About 5ms of 150-165ms is spent in our code, the rest is waiting
     // on the database.
 
     console.log('\n\n');

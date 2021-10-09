@@ -9,6 +9,5 @@ export default async (newDataPoint: DataPoint): Promise<any> => {
   }
 
   const query = setData(newDataPoint);
-  const resp = await DB.update(query, { transform: 'toJSON' });
-  return resp;
+  return DB.update(query, { transform: 'toJSON' });
 };

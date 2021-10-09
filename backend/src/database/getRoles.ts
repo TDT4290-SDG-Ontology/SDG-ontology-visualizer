@@ -4,6 +4,5 @@ import { Role } from '../types/userTypes';
 
 export default async (): Promise<Array<Role>> => {
   const query = getRoles();
-  const response = await DB.query(query, { transform: 'toJSON' });
-  return response.records;
+  return DB.query(query, { transform: 'toJSON' }).then((resp) => resp.records);
 };

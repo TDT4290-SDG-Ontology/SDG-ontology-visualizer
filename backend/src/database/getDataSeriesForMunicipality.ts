@@ -6,6 +6,5 @@ import getDataSeriesForMunicipality from './queries/getDataSeriesForMunicipality
  */
 export default async (municipality: string): Promise<any> => {
   const query = getDataSeriesForMunicipality(municipality);
-  const response = await DB.query(query, { transform: 'toJSON' });
-  return response.records;
+  return DB.query(query, { transform: 'toJSON' }).then((resp) => resp.records);
 };

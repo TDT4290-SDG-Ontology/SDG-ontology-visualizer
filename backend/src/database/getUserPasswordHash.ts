@@ -4,6 +4,5 @@ import getUserPasswordHash from './queries/getUserPasswordHash';
 
 export default async (username: string): Promise<Array<HashEntry>> => {
   const query = getUserPasswordHash(username);
-  const response = await DB.query(query, { transform: 'toJSON' });
-  return response.records;
+  return DB.query(query, { transform: 'toJSON' }).then((resp) => resp.records);
 };

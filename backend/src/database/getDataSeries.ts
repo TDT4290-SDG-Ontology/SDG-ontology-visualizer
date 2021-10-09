@@ -9,6 +9,5 @@ export default async (
   dataseries?: string,
 ): Promise<any> => {
   const query = getDataSeries(kpiNumber, municipality, year, dataseries);
-  const response = await DB.query(query, { transform: 'toJSON' });
-  return response.records;
+  return DB.query(query, { transform: 'toJSON' }).then((resp) => resp.records);
 };

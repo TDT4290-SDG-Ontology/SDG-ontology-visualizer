@@ -9,6 +9,5 @@ export default async (dataPoint: DataPoint): Promise<any> => {
   }
 
   const query = deleteDataPoint(dataPoint);
-  const resp = await DB.update(query, { transform: 'toJSON' });
-  return resp;
+  return DB.update(query, { transform: 'toJSON' });
 };
