@@ -25,7 +25,7 @@ const getAll = async (req: Request, res: Response) => {
   }
 };
 
-
+// These should really be get endpoints...
 router.post('/similar', verifyDatabaseAccess, findSimilar);
 router.post('/all', verifyDatabaseAccess, getAll);
 
