@@ -1,4 +1,4 @@
-/* eslint-disable no-nested-ternary */
+/* eslint-disable no-nested-ternary, no-plusplus */
 
 import { Router, Request, Response } from 'express';
 
@@ -388,7 +388,6 @@ const getGoalDistance = async (req: Request, res: Response) => {
     // calculate statistical data
     /* eslint-disable-next-line no-restricted-syntax */
     for (const score of outputIndicatorScores.values()) {
-
       // Compute mean and std-dev of difference from predicted values.
       const { baseline, baselineYear } = score.goal;
 
@@ -416,20 +415,17 @@ const getGoalDistance = async (req: Request, res: Response) => {
       // TODO: consider doing something better than the current O(n^2) solution...
       const yearlyGrowth: YearlyGrowth[] = [];
       for (let i = 0; i < score.historicalData.length; i++) {
-        for (let j = i + 1; i < score.historicalData.length; j++)
-        {
+        for (let j = i + 1; j < score.historicalData.length; j++) {
           const prev = score.historicalData[i];
           const curr = score.historicalData[j];
-
           const CAGR = (curr.value / prev.value) ** (1 / (curr.year - prev.year)) - 1.0;
-          yearlyGrowth.push({ cagr: CAGR, startYear: prev.year, endYear: curr.year });
+          yearlyGrowth.push({ value: CAGR, startYear: prev.year, endYear: curr.year });
         }
       }
 
-      if (score.goal.calculationMethod.startsWith("INV_"))
+      if (score.goal.calculationMethod.startsWith('INV_'))
         yearlyGrowth.sort((a, b) => b.value - a.value);
-      else
-        yearlyGrowth.sort((a, b) => a.value - b.value);
+      else yearlyGrowth.sort((a, b) => a.value - b.value);
 
       score.yearlyGrowth = yearlyGrowth;
     }
@@ -579,7 +575,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
     console.log(`score_aggr: ${timeScoreAggr} ms.`);
     console.log(`hist_wait: ${timeHistWait} ms.`);
     console.log(`hist_aggr: ${timeHistAggr} ms.`);
-    console.log(`hist_calc: ${timeHistCalc} ms.`);    
+    console.log(`hist_calc: ${timeHistCalc} ms.`);
     console.log(`total: ${timeTotal} ms.`);
     console.log('\n\n');
   } catch (e: any) {
