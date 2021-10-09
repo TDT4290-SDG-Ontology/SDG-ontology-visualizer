@@ -30,6 +30,8 @@ export default (correlationCountry: string, kpi: string): string => {
             SELECT ?kpi ?correlation ?subgoal
             WHERE
             {
+              BIND(1.0 as ?correlation).
+
               ?fromKpi SDG:kpiNumber "${kpi}".
               ?fromKpi SDG:linkedSDGSubgoal ?commonSubgoal.
 
