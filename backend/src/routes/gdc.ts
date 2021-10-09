@@ -33,6 +33,12 @@ type Datapoint = {
   value: number;
 };
 
+type YearlyGrowth = {
+  value: number;
+  startYear: number;
+  endYear: number;
+};
+
 type IndicatorScore = {
   kpi: string;
   dataseries: string | null;
@@ -63,6 +69,7 @@ type IndicatorScore = {
   willCompleteBeforeDeadline: boolean;
 
   historicalData: Datapoint[];
+  yearlyGrowth: YearlyGrowth[];
 
   goal: Goal;
 
@@ -96,6 +103,8 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
       targetCAGR: 0.0,
 
       historicalData: [],
+      yearlyGrowth: [],
+
       goal,
 
       diffMean: 0,
@@ -163,6 +172,8 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
       targetCAGR,
 
       historicalData: [],
+      yearlyGrowth: [],
+
       goal,
 
       diffMean: 0,
@@ -202,6 +213,8 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
         targetCAGR,
 
         historicalData: [],
+        yearlyGrowth: [],
+
         goal,
 
         diffMean: 0,
@@ -252,6 +265,8 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
     targetCAGR,
 
     historicalData: [],
+    yearlyGrowth: [],
+
     goal,
 
     diffMean: 0,
@@ -373,6 +388,8 @@ const getGoalDistance = async (req: Request, res: Response) => {
     // calculate statistical data
     /* eslint-disable-next-line no-restricted-syntax */
     for (const score of outputIndicatorScores.values()) {
+
+      // Compute mean and std-dev of difference from predicted values.
       const { baseline, baselineYear } = score.goal;
 
       const predictionDiffs: number[] = score.historicalData.map((datum) => {
@@ -389,6 +406,32 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
       score.diffMean = diffMean;
       score.diffStd = diffStd;
+
+      // Find periods of largest and smallest growth.
+
+      // sort historical data by year
+      score.historicalData.sort((a, b) => a.year - b.year);
+
+      // compute CAGR between the different years
+      // TODO: consider doing something better than the current O(n^2) solution...
+      const yearlyGrowth: YearlyGrowth[] = [];
+      for (let i = 0; i < score.historicalData.length; i++) {
+        for (let j = i + 1; i < score.historicalData.length; j++)
+        {
+          const prev = score.historicalData[i];
+          const curr = score.historicalData[j];
+
+          const CAGR = (curr.value / prev.value) ** (1 / (curr.year - prev.year)) - 1.0;
+          yearlyGrowth.push({ cagr: CAGR, startYear: prev.year, endYear: curr.year });
+        }
+      }
+
+      if (score.goal.calculationMethod.startsWith("INV_"))
+        yearlyGrowth.sort((a, b) => b.value - a.value);
+      else
+        yearlyGrowth.sort((a, b) => a.value - b.value);
+
+      score.yearlyGrowth = yearlyGrowth;
     }
 
     const endHistCalc = performance.now();
@@ -536,7 +579,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
     console.log(`score_aggr: ${timeScoreAggr} ms.`);
     console.log(`hist_wait: ${timeHistWait} ms.`);
     console.log(`hist_aggr: ${timeHistAggr} ms.`);
-    console.log(`hist_calc: ${timeHistCalc} ms.`);
+    console.log(`hist_calc: ${timeHistCalc} ms.`);    
     console.log(`total: ${timeTotal} ms.`);
     console.log('\n\n');
   } catch (e: any) {
