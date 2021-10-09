@@ -27,19 +27,27 @@ def goals(municipality):
 	parsed = json.loads(req.text)
 	print(json.dumps(parsed, indent = 4))
 
+def similar(municipality):
+	req = requests.post(URL + "/municipality/similar", json={ 'municipality': municipality })
+	print(req.status_code, req.reason)
+	parsed = json.loads(req.text)
+	print(json.dumps(parsed, indent = 4))
+
 # body = login(sys.argv[1], sys.argv[2])
-print("Some correlated kpis:")
-print("EC: ICT: T: 3A")
-correlated_kpis("EC: ICT: T: 3A")
-print("SC: EH: ED: 2C")
-correlated_kpis("SC: EH: ED: 2C")
+#print("Some correlated kpis:")
+#print("EC: ICT: T: 3A")
+#correlated_kpis("EC: ICT: T: 3A")
+#print("SC: EH: ED: 2C")
+#correlated_kpis("SC: EH: ED: 2C")
 
 cities = { "osl": "no.0301", "trd": "no.5001" }
 
 municipality = cities[sys.argv[1]]
 
-print("GDC output:")
-gdc(municipality, sys.argv[2])
+#print("GDC output:")
+#gdc(municipality, sys.argv[2])
 
-print("Goals:")
-goals(municipality)
+#print("Goals:")
+# goals(municipality)
+
+similar(municipality)

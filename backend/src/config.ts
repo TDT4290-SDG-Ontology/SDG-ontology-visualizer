@@ -1,6 +1,8 @@
 import dotenv from 'dotenv-safe';
 
-dotenv.config();
+dotenv.config({
+  allowEmptyValues: true,
+});
 
 const PORT = process.env.PORT || 3001;
 

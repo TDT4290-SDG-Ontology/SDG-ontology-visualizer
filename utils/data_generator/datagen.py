@@ -60,18 +60,17 @@ def generate_data(token, municipality, goodness, year):
 	for ds in u4ssc.all_dataseries:
 		insert_data(token, ds.kpi, ds.produce_data(goodness, year), municipality, year, ds.variant)
 
+token = login("test", "123")
+
 print("Generating goals")
 generate_goals(token, "no.5001", u4ssc.GOOD)
 generate_goals(token, "no.0301", u4ssc.GOOD)
 # generate_goals(token, "no.1301", u4ssc.GOOD)
 
-
 print("Generating data for Trondheim")
 for year in range(2015, 2030 + 1):
 	print(year, " data")
 	generate_data(token, "no.5001", u4ssc.GOOD, year)
-
-token = login("test", "123")
 
 print("Generating data for Oslo")
 for year in range(2015, 2030 + 1):
