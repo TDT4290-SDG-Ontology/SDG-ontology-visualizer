@@ -6,10 +6,9 @@ mean = Symbol('pd_mean', real = True)
 std = Symbol('pd_std', real = True, positive = True)
 pred_diff = Normal('pred_diff', mean, std)
 
-
 # TODO: redo this so that we measure deviance from the predicted values...
-latest = Symbol('latest', real = True, positive = True)
-current_value = latest + pred_diff
+pred = Symbol('prediction', real = True, positive = True)
+current_value = pred + pred_diff
 current_year = Symbol('current_year', real = True, positive = True)
 
 target = Symbol('target', real = True)
