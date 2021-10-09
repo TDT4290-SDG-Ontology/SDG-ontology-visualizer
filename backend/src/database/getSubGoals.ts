@@ -8,6 +8,5 @@ export default async (nodeId: string): Promise<Array<Node>> => {
   if (!nodeId) {
     throw new ApiError(400, 'Could not parse ontology entity from the given class ID');
   }
-  const response = await DB.query(query, { transform: 'toJSON' });
-  return response.records;
+  return DB.query(query, { transform: 'toJSON' }).then((resp) => resp.records);
 };

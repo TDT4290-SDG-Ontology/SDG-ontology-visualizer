@@ -4,6 +4,5 @@ import getAnnotations from './queries/getAnnotations';
 
 export default async (classId: string): Promise<Annotation> => {
   const query = getAnnotations(classId);
-  const response = await DB.query(query, { transform: 'toJSON' });
-  return response.records[0];
+  return DB.query(query, { transform: 'toJSON' }).then((resp) => resp.records[0]);
 };

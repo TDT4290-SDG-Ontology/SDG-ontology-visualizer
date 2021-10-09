@@ -5,6 +5,7 @@ import { mapIdToOntologyEntity } from '../common/database';
 
 export default async (classId: string): Promise<Array<Node>> => {
   const query = getSubclasses(classId);
-  const response = await DB.query(query, { transform: 'toJSON' });
-  return response.records.map((rec) => mapIdToOntologyEntity(rec.directSub));
+  return DB.query(query, { transform: 'toJSON' }).then((resp) =>
+    resp.records.map((rec) => mapIdToOntologyEntity(rec.directSub)),
+  );
 };

@@ -4,6 +4,5 @@ import getSustainabilityGoals from './queries/getSustainabilityGoals';
 
 export default async (): Promise<Array<Node>> => {
   const query = getSustainabilityGoals();
-  const response = await DB.query(query, { transform: 'toJSON' });
-  return response.records;
+  return DB.query(query, { transform: 'toJSON' }).then((resp) => resp.records);
 };
