@@ -39,6 +39,13 @@ def muni_info(muni):
 	parsed = json.loads(req.text)
 	print(json.dumps(parsed, indent = 4))
 
+def available_years(muni):
+	req = requests.get(URL + "/data/available-years/" + municipality)
+	print(req.status_code, req.reason)
+	parsed = json.loads(req.text)
+	print(json.dumps(parsed, indent = 4))
+
+
 # body = login(sys.argv[1], sys.argv[2])
 #print("Some correlated kpis:")
 #print("EC: ICT: T: 3A")
@@ -56,4 +63,5 @@ municipality = cities[sys.argv[1]]
 #print("Goals:")
 # goals(municipality)
 
-muni_info(municipality)
+# muni_info(municipality)
+available_years(municipality)

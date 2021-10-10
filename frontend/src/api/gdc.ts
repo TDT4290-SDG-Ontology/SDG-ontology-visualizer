@@ -11,6 +11,7 @@ export const getGDCOutput = async (municipality: string, year: number): Promise<
         const indicators: Map<string, IndicatorScore> = new Map<string, IndicatorScore>(
           data.indicators,
         );
+
         const indicatorsWithoutGoals: Map<string, IndicatorWithoutGoal> = new Map<
           string,
           IndicatorWithoutGoal

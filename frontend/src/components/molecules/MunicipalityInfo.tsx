@@ -51,7 +51,7 @@ const MunicipalityInfoDisplay: React.FC<MunicipalityInfoDisplayProps> = (props: 
     >
       <Stack spacing="0">
         <Heading size="xl" color="white">
-          { `${municipalityInfo.name}.` }
+          { `${municipalityInfo.name}` }
         </Heading>
         <Text size="md" color="white">
           {`Population: ${municipalityInfo.population}`}

@@ -1,14 +1,17 @@
 import { Router, Request, Response } from 'express';
 import _ from 'lodash';
+import { u4sscKpiMap } from '../database/u4sscKpiMap';
+
 import setData from '../database/setData';
 import getDataSeries from '../database/getDataSeries';
-import { u4sscKpiMap } from '../database/u4sscKpiMap';
 import getDataSeriesForMunicipality from '../database/getDataSeriesForMunicipality';
+import deleteDataPoint from '../database/deleteDataPoint';
+import getAvailableYears from '../database/getAvailableYears';
+
 import { ApiError } from '../types/errorTypes';
 import onError from './middleware/onError';
 import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
 import verifyToken from './middleware/verifyToken';
-import deleteDataPoint from '../database/deleteDataPoint';
 
 const router = Router();
 
@@ -81,8 +84,19 @@ const getAllData = async (req: Request, res: Response) => {
   }
 };
 
+const availableYears = async (req: Request, res: Response) => {
+  try {
+    const data = await getAvailableYears(req.params.municipality);
+    res.json(data);
+  } catch (e: any) {
+    onError(e, req, res);
+  }
+};
+
 router.post('/insert', verifyDatabaseAccess, verifyToken, insertData);
 router.post('/get', verifyDatabaseAccess, getData);
 router.post('/get-all-dataseries', verifyDatabaseAccess, getAllData);
+
+router.get('/available-years/:municipality', verifyDatabaseAccess, availableYears);
 
 export default router;
