@@ -11,12 +11,15 @@ type GDCViewProps = {
 
 const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   const [gdcInfo, setGDCInfo] = useState<GDCOutput>();
+  const [indicatorArray, setIndicatorArray] = useState<Array<any>>();
 
   const { code, year } = props;
 
   const loadGDCOutput = async (muniCode: string, muniYear: number) => {
       const data = await getGDCOutput(muniCode, muniYear);
       setGDCInfo(data);
+      if (data !== undefined)
+        setIndicatorArray(Array.from(data.indicators));
   };
 
   useEffect(() => {
@@ -71,7 +74,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
               <Text>Yobbo</Text>
             </AccordionPanel>
           </AccordionItem>
-          { gdcInfo && gdcInfo.indicators && Array.from(gdcInfo.indicators).map(([key, val]) => (
+          { indicatorArray && indicatorArray.map(([key, val]) => (
             <AccordionItem key={key}>
               <AccordionButton>
                 <Box flex="1" textAlign="left">
