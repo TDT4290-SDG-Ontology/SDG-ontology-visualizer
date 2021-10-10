@@ -301,6 +301,9 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const goalArray: Goal[] = data[1];
     const endInitialQueries = performance.now();
 
+    if (dataseries === undefined || goalArray === undefined)
+      throw new ApiError(400, "Missing goals or data for municipality.");
+
     const goals: Map<string, Goal> = new Map<string, Goal>();
 
     /* eslint-disable-next-line no-restricted-syntax */
@@ -359,6 +362,8 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const startHistWait = performance.now();
 
     const historicalData: Dataseries[] = await historicalPromise;
+    if (historicalData === undefined)
+      throw new ApiError(400, "LOL");
 
     const endHistWait = performance.now();
     // aggregate historical data
