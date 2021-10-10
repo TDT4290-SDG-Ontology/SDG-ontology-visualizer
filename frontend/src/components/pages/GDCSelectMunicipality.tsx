@@ -1,13 +1,15 @@
 import { Heading, Stack, Flex } from '@chakra-ui/react';
 import React from 'react';
 
-const SelectMunicipality = () => (
+import MunicipalityList from '../molecules/MunicipalityList';
+
+const SelectMunicipality: React.FC = () => (
   <Stack spacing="10">
     <Flex
       align="center"
       justify="center"
       justifyContent="space-evenly"
-      h="350px"
+      h="150px"
       spacing="10"
       bg="cyan.700"
     >
@@ -17,9 +19,7 @@ const SelectMunicipality = () => (
         </Heading>
       </Stack>
     </Flex>
-    <Heading size="lg" align="center" color="cyan.700">
-      Bærekraftsmålene:
-    </Heading>
+    <MunicipalityList />
   </Stack>
 );
 
