@@ -28,7 +28,7 @@ def goals(municipality):
 	print(json.dumps(parsed, indent = 4))
 
 def similar(municipality):
-	req = requests.post(URL + "/municipality/similar", json={ 'municipality': municipality })
+	req = requests.get(URL + "/municipality/similar/" + municipality)
 	print(req.status_code, req.reason)
 	parsed = json.loads(req.text)
 	print(json.dumps(parsed, indent = 4))
