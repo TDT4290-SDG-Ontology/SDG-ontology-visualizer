@@ -10,7 +10,9 @@ import Frontpage from './components/pages/Frontpage';
 import About from './components/pages/About';
 import OntologyPage from './components/pages/OntologyPage';
 import NotFoundPage from './components/pages/NotFound';
-import GDCRouter from './components/pages/GDCRouter';
+
+import GDCSelectMunicipality from './components/pages/GDCSelectMunicipality';
+import GDCViewMunicipality from './components/pages/GDCViewMunicipality';
 
 const App: React.FC = () => (
   <ChakraProvider>
@@ -31,7 +33,8 @@ const App: React.FC = () => (
               <Route path="/" exact component={Frontpage} />
               <Route path="/ontology" exact component={OntologyPage} />
               <Route path="/about" exact component={About} />
-              <Route exact path="/gdc" component={GDCRouter} />
+              <Route exact path='/gdc/view/:municipality' component={GDCViewMunicipality} />
+              <Route exact path='/gdc' component={GDCSelectMunicipality} />
               <Route component={NotFoundPage} />
             </Switch>
           </Box>

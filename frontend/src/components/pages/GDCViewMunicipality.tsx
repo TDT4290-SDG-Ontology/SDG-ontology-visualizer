@@ -7,7 +7,7 @@ type GDCViewParams = {
   municipality: string;
 };
 
-const ViewMunicipality = () => {
+const ViewMunicipality: React.FC = () => {
   const { municipality } = useParams<GDCViewParams>();
 
   return (
