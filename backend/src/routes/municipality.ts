@@ -9,7 +9,7 @@ const router = Router();
 
 const findSimilar = async (req: Request, res: Response) => {
   try {
-    const resp = await getSimilarlySizedMunicipalities(req.body.municipality, 0.25);
+    const resp = await getSimilarlySizedMunicipalities(req.params.code, 0.25);
     res.json(resp);
   } catch (e: any) {
     onError(e, req, res);
@@ -26,7 +26,7 @@ const getAll = async (req: Request, res: Response) => {
 };
 
 // These should really be get endpoints...
-router.post('/similar', verifyDatabaseAccess, findSimilar);
-router.post('/all', verifyDatabaseAccess, getAll);
+router.get('/similar/:code', verifyDatabaseAccess, findSimilar);
+router.get('/all', verifyDatabaseAccess, getAll);
 
 export default router;
