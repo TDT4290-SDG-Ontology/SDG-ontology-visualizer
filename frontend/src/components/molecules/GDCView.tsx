@@ -15,8 +15,6 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   const { code, year } = props;
 
   const loadGDCOutput = async (muniCode: string, muniYear: number) => {
-      setGDCInfo(undefined);
-
       const data = await getGDCOutput(muniCode, muniYear);
       setGDCInfo(data);
   };
@@ -73,6 +71,19 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
               <Text>Yobbo</Text>
             </AccordionPanel>
           </AccordionItem>
+          { gdcInfo && gdcInfo.indicators && Array.from(gdcInfo.indicators).map(([key, val]) => (
+            <AccordionItem key={key}>
+              <AccordionButton>
+                <Box flex="1" textAlign="left">
+                  {key}
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel>
+                <Text>{val.score}</Text>
+              </AccordionPanel>
+            </AccordionItem>
+            ))}
         </Accordion>
       </Stack>
     </Flex>
