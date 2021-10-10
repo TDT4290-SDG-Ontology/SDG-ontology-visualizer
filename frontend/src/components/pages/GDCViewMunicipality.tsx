@@ -30,10 +30,6 @@ const ViewMunicipality: React.FC = () => {
     setSelectedYear(parseFloat(evt.currentTarget.value));
   };
 
-  let viewComp = <></>;
-  if (selectedYear !== -1)
-    viewComp = <GDCView code={municipality} year={selectedYear} />;
-
   return (
     <Stack spacing="10">
       <MunicipalityInfo code={municipality} />
@@ -42,7 +38,7 @@ const ViewMunicipality: React.FC = () => {
           availableYears && availableYears.map((year) => (<option key={year} value={year}>{year}</option>))
         }
       </Select>
-      { viewComp }
+      <GDCView key={selectedYear} code={municipality} year={selectedYear} />
     </Stack>
   );
 };
