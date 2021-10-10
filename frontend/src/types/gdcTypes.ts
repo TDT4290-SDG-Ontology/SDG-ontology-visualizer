@@ -9,6 +9,24 @@ export type YearlyGrowth = {
   endYear: number;
 };
 
+export type Goal = {
+  kpi: string;
+  baseline: number;
+  baselineYear: number;
+  target: number;
+  deadline: number;
+  startRange: number;
+  dataseries: string | undefined;
+  calculationMethod: string;
+};
+
+export type Dataseries = {
+  kpi: string;
+  year: number;
+  value: number;
+  dataseries: string | undefined;
+};
+
 export type IndicatorScore = {
   kpi: string;
   dataseries: string | null;

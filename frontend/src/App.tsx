@@ -31,7 +31,7 @@ const App: React.FC = () => (
               <Route path="/" exact component={Frontpage} />
               <Route path="/ontology" exact component={OntologyPage} />
               <Route path="/about" exact component={About} />
-              <Route path="/gdc" exact component={GDCRouter} />
+              <Route exact path="/gdc" component={GDCRouter} />
               <Route component={NotFoundPage} />
             </Switch>
           </Box>

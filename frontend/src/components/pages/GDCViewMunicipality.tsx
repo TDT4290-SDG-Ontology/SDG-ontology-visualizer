@@ -8,7 +8,6 @@ type GDCViewParams = {
 };
 
 const ViewMunicipality = () => {
-
   const { municipality } = useParams<GDCViewParams>();
 
   return (
@@ -23,7 +22,7 @@ const ViewMunicipality = () => {
         boxShadow="xl"
       >
         <Heading as="h2" size="lg">
-          Viewing 
+          Viewing
           {municipality}
           .
         </Heading>
@@ -44,7 +43,7 @@ const ViewMunicipality = () => {
         </Link>
       </Stack>
     </Box>
-  ); 
+  );
 };
 
 export default ViewMunicipality;

@@ -1,5 +1,5 @@
-type Municipality = {
+export type Municipality = {
   name: string;
   code: string;
-  population: number;	
+  population: number;
 };

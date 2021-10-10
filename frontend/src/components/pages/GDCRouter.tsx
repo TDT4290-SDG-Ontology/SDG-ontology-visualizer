@@ -9,8 +9,8 @@ const GDCRouter: React.FC = () => (
   <Router>
     <Box flex="1">
       <Switch>
-        <Route path="" exact component={GDCSelectMunicipality} />
-        <Route path="view/:municipality" exact component={GDCViewMunicipality} />
+        <Route exact path="" component={GDCSelectMunicipality} />
+        <Route exact path="view/:municipality" component={GDCViewMunicipality} />
       </Switch>
     </Box>
   </Router>
