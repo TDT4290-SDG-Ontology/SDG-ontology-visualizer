@@ -1,4 +1,4 @@
-import { Flex, Heading, Stack, Text, Spinner } from '@chakra-ui/react';
+import { Flex, Heading, Stack, Text, Spinner, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 import { getGDCOutput } from '../../api/gdc';
@@ -6,7 +6,7 @@ import { GDCOutput } from '../../types/gdcTypes';
 
 type GDCViewProps = {
   code: string;
-  year: number | undefined;
+  year: number;
 };
 
 const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
@@ -14,13 +14,15 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
 
   const { code, year } = props;
 
-  const loadGDCOutput = async (muniCode: string) => {
-      const data = await getGDCOutput(muniCode, (year === undefined) ? 2020 : year);
+  const loadGDCOutput = async (muniCode: string, muniYear: number) => {
+      setGDCInfo(undefined);
+
+      const data = await getGDCOutput(muniCode, muniYear);
       setGDCInfo(data);
   };
 
   useEffect(() => {
-    loadGDCOutput(code);
+    loadGDCOutput(code, year);
   }, []);
 
   if (gdcInfo === undefined || year === undefined)
@@ -57,7 +59,21 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
         </Heading>
         <Text size="md">
           LOL
+          { year }
         </Text>
+        <Accordion allowMultiple>
+          <AccordionItem key="worst">
+            <AccordionButton>
+              <Box flex="1" textAlign="left">
+                Worst performing KPIs
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+            <AccordionPanel>
+              <Text>Yobbo</Text>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
       </Stack>
     </Flex>
   );

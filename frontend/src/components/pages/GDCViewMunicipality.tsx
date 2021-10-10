@@ -14,7 +14,7 @@ type GDCViewParams = {
 const ViewMunicipality: React.FC = () => {
   const { municipality } = useParams<GDCViewParams>();
   const [availableYears, setAvailableYears] = useState<Array<number>>();
-  const [selectedYear, setSelectedYear] = useState<number>();
+  const [selectedYear, setSelectedYear] = useState<number>(-1);
 
   const loadAvailableYears = async (muniCode: string) => {
     const data = await getAvailableYears(muniCode);
@@ -30,6 +30,10 @@ const ViewMunicipality: React.FC = () => {
     setSelectedYear(parseFloat(evt.currentTarget.value));
   };
 
+  let viewComp = <></>;
+  if (selectedYear !== -1)
+    viewComp = <GDCView code={municipality} year={selectedYear} />;
+
   return (
     <Stack spacing="10">
       <MunicipalityInfo code={municipality} />
@@ -38,7 +42,7 @@ const ViewMunicipality: React.FC = () => {
           availableYears && availableYears.map((year) => (<option key={year} value={year}>{year}</option>))
         }
       </Select>
-      <GDCView code={municipality} year={selectedYear} />
+      { viewComp }
     </Stack>
   );
 };

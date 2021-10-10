@@ -547,7 +547,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
       subdomains: [...outputSubdomainScores],
       categories: [...outputCategoryScores],
       indicators: [...outputIndicatorScores],
-      indicatorsWithoutGoals,
+      indicatorsWithoutGoals: [...indicatorsWithoutGoals],
       unreportedIndicators: Array.from(unreportedIndicators),
     });
 
