@@ -144,8 +144,7 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
   const points =
         indicatorScore >= 95.0 ? 4 : 
           indicatorScore >= 66.0 ? 3 : 
-            indicatorScore >= 33.0 ? 2 : 
-              indicatorScore >=  0.0 ? 1 : 0;
+            indicatorScore >= 33.0 ? 2 : 1;
 
   const baselineComp = Math.max(goal.baseline, 0.1); // Guard against division by 0. TODO: check for better solutions for this.
   const targetFraction = goal.target / baselineComp;
