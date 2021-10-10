@@ -4,6 +4,7 @@ import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
 
 import getSimilarlySizedMunicipalities from '../database/getSimilarlySizedMunicipalities';
 import getAllMunicipalities from '../database/getAllMunicipalities';
+import getMunicipalityInfo from '../database/getMunicipalityInfo';
 
 const router = Router();
 
@@ -25,8 +26,18 @@ const getAll = async (req: Request, res: Response) => {
   }
 };
 
+const getInfo = async (req: Request, res: Response) => {
+  try {
+    const resp = await getMunicipalityInfo(req.params.code);
+    res.json(resp);
+  } catch (e: any) {
+    onError(e, req, res);
+  }
+};
+
 // These should really be get endpoints...
 router.get('/similar/:code', verifyDatabaseAccess, findSimilar);
+router.get('/info/:code', verifyDatabaseAccess, getInfo);
 router.get('/all', verifyDatabaseAccess, getAll);
 
 export default router;

@@ -1,6 +1,6 @@
 import api from './api';
 
-import { Municipality } from '../types/municipalityTypes';
+import { Municipality, MunicipalityInfo } from '../types/municipalityTypes';
 
 export const getAllMunicipalities = async (): Promise<Array<Municipality>> => {
   try {
@@ -19,5 +19,15 @@ export const getSimilarMunicipalities = async (code: string): Promise<Array<Muni
   } catch (e) {
     console.log(e);
     return [];
+  }
+};
+
+export const getMunicipalityInfo = async (code: string): Promise<MunicipalityInfo> => {
+  try {
+    const data: MunicipalityInfo = await api.GET(`municipality/info/${code}`);
+    return data;
+  } catch (e) {
+    console.log(e);
+    return { name: '', code: '', population: -1 };
   }
 };
