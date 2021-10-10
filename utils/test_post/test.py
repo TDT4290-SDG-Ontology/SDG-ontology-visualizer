@@ -33,6 +33,12 @@ def similar(municipality):
 	parsed = json.loads(req.text)
 	print(json.dumps(parsed, indent = 4))
 
+def muni_info(muni):
+	req = requests.get(URL + "/municipality/info/" + municipality)
+	print(req.status_code, req.reason)
+	parsed = json.loads(req.text)
+	print(json.dumps(parsed, indent = 4))
+
 # body = login(sys.argv[1], sys.argv[2])
 #print("Some correlated kpis:")
 #print("EC: ICT: T: 3A")
@@ -50,4 +56,4 @@ municipality = cities[sys.argv[1]]
 #print("Goals:")
 # goals(municipality)
 
-similar(municipality)
+muni_info(municipality)
