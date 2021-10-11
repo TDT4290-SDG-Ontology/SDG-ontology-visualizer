@@ -46,27 +46,27 @@ print("\n\nCompletion year:")
 print("Expected value:")
 print(simplify(E(end_year)))
 
-print("\n\nVariance:")
-print(simplify(variance(end_year)))
+print("\n\nStd-dev:")
+print(simplify(sqrt(variance(end_year))))
 
 print("\n\nCurrent CAGR:")
 print("Expected value:")
 print(simplify(E(current_cagr)))
 
-print("\n\nVariance:")
-print(simplify(variance(current_cagr)))
+print("\n\nStd-dev:")
+print(simplify(sqrt(variance(current_cagr))))
 
 print("\n\nRequired CAGR:")
 print("Expected value:")
 print(simplify(E(required_cagr)))
 
-print("\n\nVariance:")
-print(simplify(variance(required_cagr)))
+print("\n\nStd-dev:")
+print(simplify(sqrt(variance(required_cagr))))
 
 print("\n\nEstimated value:")
 print("Expected value:")
 print(simplify(E(est_value)))
 
-print("\n\nVariance:")
-print(simplify(variance(est_value)))
+print("\n\nStd-dev:")
+print(simplify(sqrt(variance(est_value))))
 	
