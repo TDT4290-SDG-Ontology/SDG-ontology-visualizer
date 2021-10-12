@@ -7,7 +7,7 @@ import {
   CartesianGrid,
   XAxis,
   YAxis,
-  // Area,
+  Area,
   Line,
   // Scatter,
 } from 'recharts';
@@ -17,13 +17,10 @@ import { IndicatorScore } from '../../types/gdcTypes';
 type Prediction = {
   year: number;
   value: number;
-  pred: number;
-  best: number;
-  worst: number;
 
-  ci1: number[];
-  ci2: number[];
-  ci3: number[];
+  predicted: number;
+  required: number;
+  bounds: number[];
 };
 
 type PlotProps = {
@@ -34,7 +31,7 @@ type PlotProps = {
 const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   const { data, currentYear } = props;
 
-  const { currentCAGR } = data;
+  const { currentCAGR, requiredCAGR } = data;
 
   const bestCAGR = data.yearlyGrowth[data.yearlyGrowth.length - 1].value;
   const worstCAGR = data.yearlyGrowth[0].value;
@@ -42,44 +39,41 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   const predictions: Prediction[] = [];
 
   // Initial dummy in order for all plots to start at the same ...
-
   for (const val of data.historicalData) {
     predictions.push({
       year: val.year,
       value: val.value,
-      best: NaN,
-      worst: NaN,
-      pred: NaN,
-      ci1: [ NaN, NaN ],
-      ci2: [ NaN, NaN ],
-      ci3: [ NaN, NaN ],
+      bounds: [ NaN, NaN ],
+      predicted: NaN,
+      required: NaN,
     });
   }
 
   const currentValue = predictions[predictions.length - 1].value;
 
   // Modify last point in predictions in order to have a common starting point...
-  predictions[predictions.length - 1].pred = currentValue;
-  predictions[predictions.length - 1].best = currentValue;
-  predictions[predictions.length - 1].worst = currentValue;
+  predictions[predictions.length - 1].predicted = currentValue;
+  predictions[predictions.length - 1].bounds = [ currentValue, currentValue ];
+  predictions[predictions.length - 1].required = currentValue;
 
-  for (let year = currentYear + 1; year <= data.goal.deadline; year++) {
-    const current = data.goal.baseline * (currentCAGR + 1.0) ** (year - data.goal.baselineYear);
-    const best = data.goal.baseline * (bestCAGR + 1.0) ** (year - data.goal.baselineYear);
-    const worst = data.goal.baseline * (worstCAGR + 1.0) ** (year - data.goal.baselineYear);
+  const { deadline } = data.goal;
+
+  for (let year = currentYear + 1; year <= deadline; year++) {
+    const prediction = currentValue * (currentCAGR + 1.0) ** (year - currentYear);
+    const best = currentValue * (bestCAGR + 1.0) ** (year - currentYear);
+    const worst = currentValue * (worstCAGR + 1.0) ** (year - currentYear);
+    const required = currentValue * (requiredCAGR + 1.0) ** (year - currentYear);
 
     predictions.push({
       year,
-      pred: current,
-      best,
-      worst,
+      predicted: prediction,
+      bounds: [best, worst],
+      required,
       value: NaN,
-      ci1: [ NaN, NaN ],
-      ci2: [ NaN, NaN ],
-      ci3: [ NaN, NaN ],
     });
   }
 
+  // TODO: different colours for required vs current trajectory
   return (
     <ResponsiveContainer
       width='100%'
@@ -101,10 +95,10 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         <CartesianGrid />
         <XAxis dataKey='year' />
         <YAxis />
+        <Area type='monotone' dataKey='bounds' fillOpacity='0.2' stroke='none' />
         <Line type='monotone' dataKey='value' />
-        <Line type='monotone' dataKey='pred' strokeDasharray='3 3' />
-        <Line type='monotone' dataKey='best' strokeDasharray='3 3' />
-        <Line type='monotone' dataKey='worst' strokeDasharray='3 3' />
+        <Line type='monotone' dataKey='predicted' strokeDasharray='3 3' />
+        <Line type='monotone' dataKey='required' strokeDasharray='3 3' />
       </ComposedChart>
     </ResponsiveContainer>
   );
