@@ -15,3 +15,18 @@ export type Dataseries = {
   value: number;
   dataseries: ?string;
 };
+
+export type GDCGoal = {
+  indicatorId: string;
+  indicatorName: string;
+  municipality: string;
+
+  baseline: number;
+  baselineYear: number;
+  target: number;
+  deadline: number;
+  startRange: number;
+
+  isDummy: boolean;
+  dataseries?: string;
+};

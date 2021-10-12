@@ -4,7 +4,7 @@ import json
 import uuid
 
 BASE_URL = "http://localhost:3001/api"
-SEND_BULK_DATA = False
+SEND_BULK_DATA = True
 
 def login(username, password):
 	req = requests.post(BASE_URL + "/auth/login", json={'username': username, 'password': password })
@@ -35,7 +35,7 @@ def set_goal(token, municipality, kpi, target, deadline, baseline, baselineYear,
 	print(req.status_code, req.reason)
 
 def set_bulk_goals(token, municipality, goals):
-	req = requests.post(BASE_URL + "/gdc/set-goals", json = { 'token': token["token"], 'municipality': municipality, 'goals': goals, 'isDummy': True })
+	req = requests.post(BASE_URL + "/gdc/set-bulk-goals", json = { 'token': token["token"], 'municipality': municipality, 'goals': goals, 'isDummy': True })
 	print(req.status_code, req.reason)
 
 def get_data(kpi):
@@ -139,7 +139,7 @@ municipalities = {
 print("Generating...")
 for code, v in municipalities.items():
  	name, goal_goodness, data_goodness = v
- 	# generate_goals(token, code, goal_goodness)
+ 	generate_goals(token, code, goal_goodness)
 
  	print("Generating data for", name)
  	for year in range(2015, 2030 + 1):

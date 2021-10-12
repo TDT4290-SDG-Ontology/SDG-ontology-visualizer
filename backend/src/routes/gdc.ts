@@ -12,7 +12,10 @@ import setGDCGoal from '../database/setGDCGoal';
 import deleteGDCGoal from '../database/deleteGDCGoal';
 import getCorrelatedKPIs from '../database/getCorrelatedKPIs';
 
-import { Goal, Dataseries } from '../types/gdcTypes';
+import bulkDeleteGDCGoals from '../database/bulkDeleteGDCGoals';
+import bulkInsertGDCGoals from '../database/bulkInsertGDCGoals';
+
+import { Goal, Dataseries, GDCGoal } from '../types/gdcTypes';
 
 import {
   u4sscKpiToCategory,
@@ -302,7 +305,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const endInitialQueries = performance.now();
 
     if (dataseries === undefined || goalArray === undefined)
-      throw new ApiError(400, "Missing goals or data for municipality.");
+      throw new ApiError(400, 'Missing goals or data for municipality.');
 
     const goals: Map<string, Goal> = new Map<string, Goal>();
 
@@ -362,8 +365,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const startHistWait = performance.now();
 
     const historicalData: Dataseries[] = await historicalPromise;
-    if (historicalData === undefined)
-      throw new ApiError(400, "LOL");
+    if (historicalData === undefined) throw new ApiError(400, 'LOL');
 
     const endHistWait = performance.now();
     // aggregate historical data
@@ -618,6 +620,49 @@ const setGoal = async (req: Request, res: Response) => {
   }
 };
 
+const setBulkGoals = async (req: Request, res: Response) => {
+  try {
+    console.log(`Bulk goal insert: ${req.body.municipality}`);
+    const isDummy = req.body.isDummy !== undefined && req.body.isDummy;
+    const { municipality } = req.body;
+
+    const goals: GDCGoal[] = [];
+
+    /* eslint-disable-next-line no-restricted-syntax */
+    for (const goal of req.body.goals) {
+      const dataseries =
+        goal.dataseries === undefined || goal.dataseries === null ? 'main' : goal.dataseries;
+
+      const indicatorName = u4sscKpiMap.get(goal.indicator);
+      if (indicatorName === undefined) throw new ApiError(400, '!');
+
+      const newGoal: GDCGoal = {
+        municipality,
+        indicatorId: goal.indicator,
+        indicatorName,
+        dataseries,
+
+        target: goal.target,
+        deadline: goal.deadline,
+        baseline: goal.baseline,
+        baselineYear: goal.baselineYear,
+        startRange: goal.startRange,
+        isDummy,
+      };
+
+      goals.push(newGoal);
+    }
+
+    await bulkDeleteGDCGoals(goals);
+    await bulkInsertGDCGoals(municipality, goals);
+
+    console.log('End bulk insert.');
+    res.json({});
+  } catch (e: any) {
+    onError(e, req, res);
+  }
+};
+
 const getGoals = async (req: Request, res: Response) => {
   try {
     const goalsData = await getGDCGoals(req.body.municipality);
@@ -659,6 +704,7 @@ const correlatedKPIs = async (req: Request, res: Response) => {
 
 router.post('/get', verifyDatabaseAccess, getGoalDistance);
 router.post('/set-goal', verifyDatabaseAccess, verifyToken, setGoal);
+router.post('/set-bulk-goals', verifyDatabaseAccess, verifyToken, setBulkGoals);
 router.post('/goals', verifyDatabaseAccess, getGoals);
 router.post('/correlated-kpis', verifyDatabaseAccess, correlatedKPIs);
 

@@ -37,7 +37,7 @@ export default (
       ${dummyDataString}
    }
    where {
-      BIND(IRI(CONCAT("http://www.semanticweb.org/aga/ontologies/2017/9/SDG#goals.u4ssc.${indicatorName}.", strUUID())) as ?uri)
+      BIND(IRI("http://www.semanticweb.org/aga/ontologies/2017/9/SDG#goals.u4ssc.${dataseries}.${municipality}") as ?uri)
 
       ?municipality SDG:municipalityCode "${municipality}".
 
