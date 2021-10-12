@@ -1,4 +1,4 @@
-import { Flex, Heading, Stack, Text, Spinner, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box } from '@chakra-ui/react';
+import { Flex, Heading, Stack, Text, Spinner, Container, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Table, Tbody, Tr, Td } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 import { getGDCOutput } from '../../api/gdc';
@@ -50,16 +50,52 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
         </AccordionButton>
         <AccordionPanel>
           <GDCPlot data={score} currentYear={year} />
-          <Text>{`Indicator score: ${score.points}`}</Text>
-          <Text>{`Raw score: ${score.score}`}</Text>
-          <Text>{`Projected completion: ${score.projectedCompletion}`}</Text>
-          <Text>{`Will complete within deadline: ${score.willCompleteBeforeDeadline}`}</Text>
-          <Text>{`Current CAGR: ${score.currentCAGR}`}</Text>
-          <Text>{`Required CAGR: ${score.requiredCAGR}`}</Text>
-          <Text>{`Mean difference from estimated value: ${score.diffMean}`}</Text>
-          <Text>{`Standard deviation of difference from estimated value: ${score.diffStd}`}</Text>
-          <Text>{`Best CAGR (from ${bestGrowth.startYear} to ${bestGrowth.endYear}): ${bestGrowth.value}`}</Text>
-          <Text>{`Worst CAGR (from ${worstGrowth.startYear} to ${worstGrowth.endYear}): ${bestGrowth.value}`}</Text>
+          <Container maxWidth={1200} minWidth={800}>
+            <Table variant="simple">
+              <Tbody>
+                <Tr>
+                  <Td>Indicator score</Td>
+                  <Td isNumeric>{score.points}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Raw score</Td>
+                  <Td isNumeric>{score.score.toFixed(2)}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Projected completion</Td>
+                  <Td isNumeric>{+score.projectedCompletion.toFixed(1)}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Will complete within deadline?</Td>
+                  <Td isNumeric>{score.willCompleteBeforeDeadline ? 'yes' : 'no'}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Current CAGR</Td>
+                  <Td isNumeric>{`${(100.0 * score.currentCAGR).toFixed(2)} %`}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Required CAGR</Td>
+                  <Td isNumeric>{`${(score.requiredCAGR) ? (100.0 * score.requiredCAGR).toFixed(2) : 0.0} %`}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Mean difference</Td>
+                  <Td isNumeric>{score.diffMean.toFixed(2)}</Td>
+                </Tr>
+                <Tr>
+                  <Td>Standard deviation of difference</Td>
+                  <Td isNumeric>{score.diffStd.toFixed(2)}</Td>
+                </Tr>
+                <Tr>
+                  <Td>{`Best CAGR (${bestGrowth.startYear} to ${bestGrowth.endYear})`}</Td>
+                  <Td isNumeric>{`${(100.0 * bestGrowth.value).toFixed(2)} %`}</Td>
+                </Tr>
+                <Tr>
+                  <Td>{`Worst CAGR (${worstGrowth.startYear} to ${worstGrowth.endYear})`}</Td>
+                  <Td isNumeric>{`${(100.0 * worstGrowth.value).toFixed(2)} %`}</Td>
+                </Tr>
+              </Tbody>
+            </Table>
+          </Container>
         </AccordionPanel>
       </AccordionItem>
     );
@@ -97,27 +133,31 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
         <Heading size="xl">
           Progress overview
         </Heading>
-        <Accordion>
-          <AccordionItem key="worst">
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                Worst performing KPIs
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-            <AccordionPanel>
-              <Accordion>
-                { worstIndicators && worstIndicators.map(([key, val]) => renderKPIAccordion(key, val))}      
-              </Accordion>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
+        <Container maxWidth={1200} minWidth={800}>
+          <Accordion>
+            <AccordionItem key='worst'>
+              <AccordionButton>
+                <Box flex='1' textAlign='left'>
+                  Worst performing KPIs
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel>
+                <Accordion>
+                  { worstIndicators && worstIndicators.map(([key, val]) => renderKPIAccordion(key, val))}      
+                </Accordion>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
+        </Container>
         <Heading>
           Per indicator breakdown
         </Heading>
-        <Accordion>
-          { indicatorArray && indicatorArray.map(([key, val]) => renderKPIAccordion(key, val))}
-        </Accordion>
+        <Container maxWidth={1200} minWidth={800}>
+          <Accordion>
+            { indicatorArray && indicatorArray.map(([key, val]) => renderKPIAccordion(key, val))}
+          </Accordion>
+        </Container>
       </Stack>
     </Flex>
   );
