@@ -19,7 +19,7 @@ export default (muniURI: string, data: DataPoint[]): string => {
       (dp.dataseries === undefined || dp.dataseries === 'main' ? '' : `.${dp.dataseries}`);
 
     const dpUri = `<http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapoint.u4ssc.${dataseries}.${dp.municipality}.${dp.year}>`;
-    const dsUri = `<http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.u4ssc.${dataseries}>`;
+    const dsUri = `<http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.${dataseries}>`;
 
     const dummyString = dp.isDummy ? '' : `${dpUri} SDG:isDummyData true.`;
 

@@ -19,7 +19,7 @@ export default (muniURI: string, goals: GDCGoal[]): string => {
       (goal.dataseries === undefined || goal.dataseries === 'main' ? '' : `.${goal.dataseries}`);
 
     const goalUri = `<http://www.semanticweb.org/aga/ontologies/2017/9/SDG#goals.u4ssc.${dataseries}.${goal.municipality}>`;
-    const dsUri = `<http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.u4ssc.${dataseries}>`;
+    const dsUri = `<http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.${dataseries}>`;
 
     const dummyString = goal.isDummy ? '' : `${goalUri} SDG:isDummyData true.`;
 
