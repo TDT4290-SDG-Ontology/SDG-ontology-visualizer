@@ -29,10 +29,8 @@ const getAll = async (req: Request, res: Response) => {
 const getInfo = async (req: Request, res: Response) => {
   try {
     const resp = await getMunicipalityInfo(req.params.code);
-    if (resp)
-      res.json(resp[0]);
-    else
-      res.json([]);
+    if (resp) res.json(resp[0]);
+    else res.json([]);
   } catch (e: any) {
     onError(e, req, res);
   }

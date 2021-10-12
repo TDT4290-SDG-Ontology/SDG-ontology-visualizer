@@ -4,5 +4,9 @@ import getSimilarlySizedMunicipalities from './queries/getSimilarlySizedMunicipa
 // TODO: Remove any
 export default async (municipality: string, factor: number): Promise<any> => {
   const query = getSimilarlySizedMunicipalities(municipality, factor);
-  return DB.query(query, { transform: 'toJSON' }).then((resp) => resp.records);
+  return DB.query(query, { transform: 'toJSON' })
+    .then((resp) => resp.records)
+    .catch((err) => {
+      console.log(err);
+    });
 };
