@@ -36,21 +36,34 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
     loadGDCOutput(code, year);
   }, []);
 
-  const renderKPIAccordion = (displayKPI: string, score: IndicatorScore) => (
-    <AccordionItem key={displayKPI}>
-      <AccordionButton>
-        <Box flex="1" textAlign="left">
-          {displayKPI}
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-      <AccordionPanel>
-        <Text>{`Current year: ${year}`}</Text>
-        <Text>{`Score: ${score.score}`}</Text>
-        <GDCPlot data={score} currentYear={year} />
-      </AccordionPanel>
-    </AccordionItem>
-  );
+  const renderKPIAccordion = (displayKPI: string, score: IndicatorScore) => {
+    const bestGrowth = score.yearlyGrowth[score.yearlyGrowth.length - 1];
+    const worstGrowth = score.yearlyGrowth[0];
+
+    return (
+      <AccordionItem key={displayKPI}>
+        <AccordionButton>
+          <Box flex="1" textAlign="left">
+            {displayKPI}
+          </Box>
+          <AccordionIcon />
+        </AccordionButton>
+        <AccordionPanel>
+          <GDCPlot data={score} currentYear={year} />
+          <Text>{`Indicator score: ${score.points}`}</Text>
+          <Text>{`Raw score: ${score.score}`}</Text>
+          <Text>{`Projected completion: ${score.projectedCompletion}`}</Text>
+          <Text>{`Will complete within deadline: ${score.willCompleteBeforeDeadline}`}</Text>
+          <Text>{`Current CAGR: ${score.currentCAGR}`}</Text>
+          <Text>{`Required CAGR: ${score.requiredCAGR}`}</Text>
+          <Text>{`Mean difference from estimated value: ${score.diffMean}`}</Text>
+          <Text>{`Standard deviation of difference from estimated value: ${score.diffStd}`}</Text>
+          <Text>{`Best CAGR (from ${bestGrowth.startYear} to ${bestGrowth.endYear}): ${bestGrowth.value}`}</Text>
+          <Text>{`Worst CAGR (from ${worstGrowth.startYear} to ${worstGrowth.endYear}): ${bestGrowth.value}`}</Text>
+        </AccordionPanel>
+      </AccordionItem>
+    );
+  };
 
   if (gdcInfo === undefined || year === undefined)
     return (
