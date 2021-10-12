@@ -9,6 +9,7 @@ import {
   YAxis,
   Area,
   Line,
+  Tooltip,
   // Scatter,
 } from 'recharts';
 
@@ -95,6 +96,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         <CartesianGrid />
         <XAxis dataKey='year' />
         <YAxis />
+        <Tooltip />
         <Area type='monotone' dataKey='bounds' fillOpacity='0.2' stroke='none' />
         <Line type='monotone' dataKey='value' />
         <Line type='monotone' dataKey='predicted' strokeDasharray='3 3' />
