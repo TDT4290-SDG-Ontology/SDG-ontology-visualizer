@@ -32,7 +32,7 @@ const ViewMunicipality: React.FC = () => {
 
   return (
     <Stack spacing="10">
-      <MunicipalityInfo code={municipality} />
+      <MunicipalityInfo code={municipality} year={selectedYear} />
       <Select value={selectedYear} onChange={onChangeYear}>
         { 
           availableYears && availableYears.map((year) => (<option key={year} value={year}>{year}</option>))
