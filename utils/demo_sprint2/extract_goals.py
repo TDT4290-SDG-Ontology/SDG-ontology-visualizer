@@ -9,7 +9,7 @@ def goals(municipality):
 	parsed = json.loads(req.text)
 	print(json.dumps(parsed, indent = 4))
 
-cities = { "osl": "no.0301", "trd": "no.5001" }
+cities = { "osl": "no.0301", "trd": "no.5001", "lnd": "se.1281" }
 municipality = cities[sys.argv[1]]
 
 print("Goals for {}:".format(municipality))

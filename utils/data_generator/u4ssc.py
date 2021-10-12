@@ -232,23 +232,38 @@ class dataseries:
 
 		return (goal, 2030, baseline, 2015, self.start_range)
 
-	def produce_data(self, goodness, year):
+	def produce_data(self, goal_goodness, data_goodness, year, growth_penalty = 0.4):
 		if self.calc == BOOL:
 			return False # TODO: something better....
 
-		baseline_pct = max((goodness - 1) / GOODNESS_COUNT, 0.01)
-		min_score_pct = goodness / GOODNESS_COUNT
-		goal_pct = (goodness + 1) / GOODNESS_COUNT
+		baseline_pct = max((goal_goodness - 1) / GOODNESS_COUNT, 0.01)
+		goal_pct = (goal_goodness + 1) / GOODNESS_COUNT
 
 		goal = goal_pct * (self.end_range - self.start_range) + self.start_range
 		baseline = baseline_pct * (self.end_range - self.start_range) + self.start_range
-		min_score = min_score_pct * (self.end_range - self.start_range) + self.start_range
+
+		penalty_pct = max((1.0 - (data_goodness + 1) / GOODNESS_COUNT), 0.0)
+		rate_penalty = 1.0 - penalty_pct * growth_penalty
+
+		if self.calc == INV_RELATIVE or self.calc == INV_ABSOLUTE or self.calc == INV_PERCENT or self.calc == INV_RATIO:
+			rate_penalty = 1.0 + penalty_pct * growth_penalty
+
+		randomness = max(penalty_pct * 0.175, 0.025)
 
 		if (baseline == 0):
 			print("WTF MAN")
 			baseline = 0.01
 
-		return min_score * (pow((goal / baseline), (year - 2015) / (2030 - 2015)) + random.uniform(-0.025, 0.025)) 
+		interest = (goal / baseline) * rate_penalty
+
+		if (interest < 0):
+			print("WTF MAN")
+			print(interest, goal, baseline, rate_penalty, penalty_pct)
+
+		if year == 2015:
+			return baseline
+
+		return baseline * (pow(interest, (year - 2015) / (2030 - 2015)) + random.uniform(-randomness, randomness))
 
 
 all_dataseries = [
