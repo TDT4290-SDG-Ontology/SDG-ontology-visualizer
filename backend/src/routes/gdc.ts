@@ -253,7 +253,7 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
 
   // TODO: consider if we should round the projected completion year to the nearest integer (or upwards).
 
-  const willComplete = projectedCompletion < goal.deadline;
+  const willComplete = projectedCompletion.toFixed(2) <= goal.deadline.toFixed(2);
 
   return {
     kpi,

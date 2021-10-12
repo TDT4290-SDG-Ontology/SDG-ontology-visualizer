@@ -40,6 +40,8 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
     const bestGrowth = score.yearlyGrowth[score.yearlyGrowth.length - 1];
     const worstGrowth = score.yearlyGrowth[0];
 
+    const projectedCompletion = +score.projectedCompletion.toFixed(1);
+
     return (
       <AccordionItem key={displayKPI}>
         <AccordionButton>
@@ -63,11 +65,11 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
                 </Tr>
                 <Tr>
                   <Td>Projected completion</Td>
-                  <Td isNumeric>{+score.projectedCompletion.toFixed(1)}</Td>
+                  <Td isNumeric>{(projectedCompletion < 0) ? 'Never' : projectedCompletion}</Td>
                 </Tr>
                 <Tr>
                   <Td>Will complete within deadline?</Td>
-                  <Td isNumeric>{score.willCompleteBeforeDeadline ? 'yes' : 'no'}</Td>
+                  <Td isNumeric>{score.willCompleteBeforeDeadline ? 'Yes' : 'No'}</Td>
                 </Tr>
                 <Tr>
                   <Td>Current CAGR</Td>
@@ -134,7 +136,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
           Progress overview
         </Heading>
         <Container maxWidth={1200} minWidth={800}>
-          <Accordion>
+          <Accordion allowToggle allowMultiple>
             <AccordionItem key='worst'>
               <AccordionButton>
                 <Box flex='1' textAlign='left'>
@@ -143,7 +145,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                <Accordion>
+                <Accordion allowToggle allowMultiple>
                   { worstIndicators && worstIndicators.map(([key, val]) => renderKPIAccordion(key, val))}      
                 </Accordion>
               </AccordionPanel>
@@ -154,7 +156,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
           Per indicator breakdown
         </Heading>
         <Container maxWidth={1200} minWidth={800}>
-          <Accordion>
+          <Accordion allowToggle allowMultiple>
             { indicatorArray && indicatorArray.map(([key, val]) => renderKPIAccordion(key, val))}
           </Accordion>
         </Container>
