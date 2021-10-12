@@ -46,7 +46,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
       </AccordionButton>
       <AccordionPanel>
         <Text>{`Score: ${score.score}`}</Text>
-        <GDCPlot data={score} currentYear={year} />
+        <GDCPlot data={score} />
       </AccordionPanel>
     </AccordionItem>
   );

@@ -24,11 +24,10 @@ type Datapoints = {
 
 type PlotProps = {
   data: IndicatorScore;
-  currentYear: number;
 };
 
 const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
-  const { data, year } = props;
+  const { data } = props;
 
   return (
     <ResponsiveContainer
