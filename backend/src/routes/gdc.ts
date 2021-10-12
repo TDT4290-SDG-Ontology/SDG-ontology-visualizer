@@ -388,6 +388,10 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
       score.historicalData.push({ year: hist.year, value: hist.value });
     }
+
+    // Ensure sorted historical data. We depend on this in the frontend...
+    score.historicalData.sort((a, b) => a.year - b.year);
+    
     const endHistAggr = performance.now();
     const startHistCalc = performance.now();
 
