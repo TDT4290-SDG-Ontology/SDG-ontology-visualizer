@@ -389,9 +389,6 @@ const getGoalDistance = async (req: Request, res: Response) => {
       score.historicalData.push({ year: hist.year, value: hist.value });
     }
 
-    // Ensure sorted historical data. We depend on this in the frontend...
-    score.historicalData.sort((a, b) => a.year - b.year);
-    
     const endHistAggr = performance.now();
     const startHistCalc = performance.now();
 
@@ -400,6 +397,9 @@ const getGoalDistance = async (req: Request, res: Response) => {
     for (const score of outputIndicatorScores.values()) {
       // Compute mean and std-dev of difference from predicted values.
       const { baseline, baselineYear } = score.goal;
+
+      // Ensure sorted historical data. We depend on this in the frontend...
+      score.historicalData.sort((a, b) => a.year - b.year);
 
       const predictionDiffs: number[] = score.historicalData.map((datum) => {
         const predictedValue = baseline * (score.currentCAGR + 1.0) ** (datum.year - baselineYear);
