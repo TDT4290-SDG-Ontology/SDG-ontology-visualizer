@@ -1,7 +1,7 @@
 import u4ssc
 import requests
 import json
-import uuid
+import time
 
 BASE_URL = "http://localhost:3001/api"
 SEND_BULK_DATA = True
@@ -137,6 +137,8 @@ municipalities = {
 }
 
 print("Generating...")
+start = time.time()
+
 for code, v in municipalities.items():
  	name, goal_goodness, data_goodness = v
  	generate_goals(token, code, goal_goodness)
@@ -145,6 +147,9 @@ for code, v in municipalities.items():
  	for year in range(2015, 2030 + 1):
  		print(year, " data")
  		generate_data(token, code, goal_goodness, data_goodness, year)
+
+duration = time.time() - start
+print("Inserted all goals / data points in {:.2f}s".format(duration))
 
 def test_data_generation():
 	def test(goal_goodness, data_goodness, start_range, end_range):
