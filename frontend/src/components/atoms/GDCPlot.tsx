@@ -88,57 +88,30 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
       const { year, value, required, predicted, bounds } = payload[0].payload;
       const [ best, worst ] = bounds;
 
-      let valueRow = null;
-      if (!Number.isNaN(value)) {
-        valueRow = (
-          <Tr>
-            <Td p='0.5em'>Value:</Td>
-            <Td p='0.5em' isNumeric>{value.toFixed(2)}</Td>
-          </Tr>
-        );
-      }
-
       let predictedRow = null;
       let requiredRow = null;
       let bestRow = null;
       let worstRow = null;
 
+      const rowify = (rowLabel: string, rowVal: number) => {
+        if (!Number.isNaN(rowVal)) {
+          return (
+            <Tr>
+              <Td p='0.5em'>{rowLabel}</Td>
+              <Td p='0.5em' isNumeric>{rowVal.toFixed(2)}</Td>
+            </Tr>
+          );
+        }
+
+        return null;
+      };
+
+      const valueRow = rowify('Value', value);
       if (year !== currentYear) {
-        if (!Number.isNaN(predicted)) {
-          predictedRow = (
-            <Tr>
-              <Td p='0.5em'>Predicted:</Td>
-              <Td p='0.5em' isNumeric>{predicted.toFixed(2)}</Td>
-            </Tr>
-          );
-        }
-
-        if (!Number.isNaN(required)) {
-          requiredRow = (
-            <Tr p='0px'>
-              <Td p='0.5em'>Required:</Td>
-              <Td p='0.5em' isNumeric>{required.toFixed(2)}</Td>
-            </Tr>
-          );
-        }
-
-        if (!Number.isNaN(best)) {
-          bestRow = (
-            <Tr>
-              <Td p='0.5em'>Best case:</Td>
-              <Td p='0.5em' isNumeric>{best.toFixed(2)}</Td>
-            </Tr>
-          );
-        }
-
-        if (!Number.isNaN(worst)) {
-          worstRow = (
-            <Tr>
-              <Td p='0.5em'>Worst case:</Td>
-              <Td p='0.5em' isNumeric>{worst.toFixed(2)}</Td>
-            </Tr>
-          );
-        }
+        predictedRow = rowify('Predicted', predicted);
+        requiredRow = rowify('Required', required);
+        bestRow = rowify('Best case', best);
+        worstRow = rowify('Worst case', worst);
       }
 
       return (
