@@ -12,7 +12,10 @@ import setGDCGoal from '../database/setGDCGoal';
 import deleteGDCGoal from '../database/deleteGDCGoal';
 import getCorrelatedKPIs from '../database/getCorrelatedKPIs';
 
-import { Goal, Dataseries } from '../types/gdcTypes';
+import bulkDeleteGDCGoals from '../database/bulkDeleteGDCGoals';
+import bulkInsertGDCGoals from '../database/bulkInsertGDCGoals';
+
+import { Goal, Dataseries, GDCGoal } from '../types/gdcTypes';
 
 import {
   u4sscKpiToCategory,
@@ -250,7 +253,7 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
 
   // TODO: consider if we should round the projected completion year to the nearest integer (or upwards).
 
-  const willComplete = projectedCompletion < goal.deadline;
+  const willComplete = projectedCompletion.toFixed(2) <= goal.deadline.toFixed(2);
 
   return {
     kpi,
@@ -302,7 +305,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const endInitialQueries = performance.now();
 
     if (dataseries === undefined || goalArray === undefined)
-      throw new ApiError(400, "Missing goals or data for municipality.");
+      throw new ApiError(400, 'Missing goals or data for municipality.');
 
     const goals: Map<string, Goal> = new Map<string, Goal>();
 
@@ -362,8 +365,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const startHistWait = performance.now();
 
     const historicalData: Dataseries[] = await historicalPromise;
-    if (historicalData === undefined)
-      throw new ApiError(400, "LOL");
+    if (historicalData === undefined) throw new ApiError(400, 'LOL');
 
     const endHistWait = performance.now();
     // aggregate historical data
@@ -386,6 +388,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
       score.historicalData.push({ year: hist.year, value: hist.value });
     }
+
     const endHistAggr = performance.now();
     const startHistCalc = performance.now();
 
@@ -394,6 +397,9 @@ const getGoalDistance = async (req: Request, res: Response) => {
     for (const score of outputIndicatorScores.values()) {
       // Compute mean and std-dev of difference from predicted values.
       const { baseline, baselineYear } = score.goal;
+
+      // Ensure sorted historical data. We depend on this in the frontend...
+      score.historicalData.sort((a, b) => a.year - b.year);
 
       const predictionDiffs: number[] = score.historicalData.map((datum) => {
         const predictedValue = baseline * (score.currentCAGR + 1.0) ** (datum.year - baselineYear);
@@ -618,9 +624,52 @@ const setGoal = async (req: Request, res: Response) => {
   }
 };
 
+const setBulkGoals = async (req: Request, res: Response) => {
+  try {
+    console.log(`Bulk goal insert: ${req.body.municipality}`);
+    const isDummy = req.body.isDummy !== undefined && req.body.isDummy;
+    const { municipality } = req.body;
+
+    const goals: GDCGoal[] = [];
+
+    /* eslint-disable-next-line no-restricted-syntax */
+    for (const goal of req.body.goals) {
+      const dataseries =
+        goal.dataseries === undefined || goal.dataseries === null ? 'main' : goal.dataseries;
+
+      const indicatorName = u4sscKpiMap.get(goal.indicator);
+      if (indicatorName === undefined) throw new ApiError(400, '!');
+
+      const newGoal: GDCGoal = {
+        municipality,
+        indicatorId: goal.indicator,
+        indicatorName,
+        dataseries,
+
+        target: goal.target,
+        deadline: goal.deadline,
+        baseline: goal.baseline,
+        baselineYear: goal.baselineYear,
+        startRange: goal.startRange,
+        isDummy,
+      };
+
+      goals.push(newGoal);
+    }
+
+    await bulkDeleteGDCGoals(goals);
+    await bulkInsertGDCGoals(municipality, goals);
+
+    console.log('End bulk insert.');
+    res.json({});
+  } catch (e: any) {
+    onError(e, req, res);
+  }
+};
+
 const getGoals = async (req: Request, res: Response) => {
   try {
-    const goalsData = await getGDCGoals(req.body.municipality);
+    const goalsData = await getGDCGoals(req.params.municipality);
     const goals: Map<string, Goal> = new Map<string, Goal>();
 
     /* eslint-disable-next-line no-restricted-syntax */
@@ -650,7 +699,7 @@ const correlatedKPIs = async (req: Request, res: Response) => {
     // Someone might want to investigate the correlations between U4SSC KPIs in order to map this more
     // accurately.
 
-    const resp = await getCorrelatedKPIs('kr', req.body.indicator);
+    const resp = await getCorrelatedKPIs('jp', req.params.indicator);
     res.json(resp);
   } catch (e: any) {
     onError(e, req, res);
@@ -659,7 +708,8 @@ const correlatedKPIs = async (req: Request, res: Response) => {
 
 router.post('/get', verifyDatabaseAccess, getGoalDistance);
 router.post('/set-goal', verifyDatabaseAccess, verifyToken, setGoal);
-router.post('/goals', verifyDatabaseAccess, getGoals);
-router.post('/correlated-kpis', verifyDatabaseAccess, correlatedKPIs);
+router.post('/set-bulk-goals', verifyDatabaseAccess, verifyToken, setBulkGoals);
+router.get('/goals/:municipality', verifyDatabaseAccess, getGoals);
+router.get('/correlated-kpis/:indicator', verifyDatabaseAccess, correlatedKPIs);
 
 export default router;

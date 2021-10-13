@@ -8,10 +8,15 @@ import getDataSeriesForMunicipality from '../database/getDataSeriesForMunicipali
 import deleteDataPoint from '../database/deleteDataPoint';
 import getAvailableYears from '../database/getAvailableYears';
 
+import bulkDeleteDataPoints from '../database/bulkDeleteDataPoints';
+import bulkInsertDataPoints from '../database/bulkInsertDataPoints';
+
 import { ApiError } from '../types/errorTypes';
 import onError from './middleware/onError';
 import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
 import verifyToken from './middleware/verifyToken';
+
+import { DataPoint } from '../types/ontologyTypes';
 
 const router = Router();
 
@@ -38,6 +43,42 @@ const insertData = async (req: Request, res: Response) => {
     // Insert new datapoint.
     await setData(newDataPoint);
     res.status(200).json({});
+  } catch (e: any) {
+    onError(e, req, res);
+  }
+};
+
+const insertBulkData = async (req: Request, res: Response) => {
+  try {
+    const isDummy = req.body.isDummy !== undefined && req.body.isDummy;
+    const { municipality } = req.body;
+    const year = parseInt(req.body.year, 10);
+    if (Number.isNaN(year)) throw new ApiError(400, 'Year not an int.');
+
+    const datapoints: DataPoint[] = [];
+
+    /* eslint-disable-next-line no-restricted-syntax */
+    for (const dp of req.body.data) {
+      const indicatorName = u4sscKpiMap.get(dp.indicator);
+      if (indicatorName === undefined) throw new ApiError(400, '!');
+
+      const datapoint: DataPoint = {
+        municipality,
+        indicatorId: dp.indicator,
+        indicatorName,
+        data: dp.data,
+        year,
+        isDummy,
+        dataseries: dp.dataseries,
+      };
+
+      datapoints.push(datapoint);
+    }
+
+    await bulkDeleteDataPoints(datapoints);
+    await bulkInsertDataPoints(municipality, datapoints);
+
+    res.json({});
   } catch (e: any) {
     onError(e, req, res);
   }
@@ -94,6 +135,7 @@ const availableYears = async (req: Request, res: Response) => {
 };
 
 router.post('/insert', verifyDatabaseAccess, verifyToken, insertData);
+router.post('/insert-bulk', verifyDatabaseAccess, verifyToken, insertBulkData);
 router.post('/get', verifyDatabaseAccess, getData);
 router.post('/get-all-dataseries', verifyDatabaseAccess, getAllData);
 

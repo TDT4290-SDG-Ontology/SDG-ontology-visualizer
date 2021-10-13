@@ -4,7 +4,7 @@ import json
 
 URL = "http://localhost:3001/api"
 def correlated_kpis(kpi):
-	req = requests.post(URL + "/gdc/correlated-kpis", json={ 'indicator': kpi })
+	req = requests.get(URL + "/gdc/correlated-kpis/{}".format(kpi))
 	print(req.status_code, req.reason)
 	parsed = json.loads(req.text)
 	print(json.dumps(parsed, indent = 4))

@@ -15,6 +15,10 @@ export default (obj: DataPoint): string => {
       ? ''
       : `?dataseries SDG:dataseriesVariant "${obj.dataseries}".`;
 
+  const dataseries =
+    obj.indicatorName +
+    (obj.dataseries === undefined || obj.dataseries === 'main' ? '' : `.${obj.dataseries}`);
+
   return `
     ${prefixString}
     insert {
@@ -27,7 +31,7 @@ export default (obj: DataPoint): string => {
       ${dummyDataString}
    }
    where {
-      BIND(IRI(CONCAT("http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapoint.u4ssc.${obj.indicatorName}.", strUUID())) as ?uri)
+      BIND(IRI(CONCAT("http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapoint.u4ssc.${dataseries}.${obj.municipality}.${obj.year}")) as ?uri)
       BIND(${obj.year} as ?year)
 
       ?municipality SDG:municipalityCode "${obj.municipality}".
