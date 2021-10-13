@@ -109,11 +109,11 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
           <Table variant="simple">
             <Tbody>
               <Tr>
-                <Td>Indicator score</Td>
+                <Td>U4SSC points</Td>
                 <Td isNumeric>{data.points}</Td>
               </Tr>
               <Tr>
-                <Td>Raw data</Td>
+                <Td>Raw score</Td>
                 <Td isNumeric>{data.score.toFixed(2)}</Td>
               </Tr>
               <Tr>
