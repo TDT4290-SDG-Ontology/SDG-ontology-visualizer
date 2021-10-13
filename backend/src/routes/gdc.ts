@@ -669,7 +669,7 @@ const setBulkGoals = async (req: Request, res: Response) => {
 
 const getGoals = async (req: Request, res: Response) => {
   try {
-    const goalsData = await getGDCGoals(req.body.municipality);
+    const goalsData = await getGDCGoals(req.params.municipality);
     const goals: Map<string, Goal> = new Map<string, Goal>();
 
     /* eslint-disable-next-line no-restricted-syntax */
@@ -699,7 +699,7 @@ const correlatedKPIs = async (req: Request, res: Response) => {
     // Someone might want to investigate the correlations between U4SSC KPIs in order to map this more
     // accurately.
 
-    const resp = await getCorrelatedKPIs('kr', req.body.indicator);
+    const resp = await getCorrelatedKPIs('jp', req.params.indicator);
     res.json(resp);
   } catch (e: any) {
     onError(e, req, res);
@@ -709,7 +709,7 @@ const correlatedKPIs = async (req: Request, res: Response) => {
 router.post('/get', verifyDatabaseAccess, getGoalDistance);
 router.post('/set-goal', verifyDatabaseAccess, verifyToken, setGoal);
 router.post('/set-bulk-goals', verifyDatabaseAccess, verifyToken, setBulkGoals);
-router.post('/goals', verifyDatabaseAccess, getGoals);
-router.post('/correlated-kpis', verifyDatabaseAccess, correlatedKPIs);
+router.get('/goals/:municipality', verifyDatabaseAccess, getGoals);
+router.get('/correlated-kpis/:indicator', verifyDatabaseAccess, correlatedKPIs);
 
 export default router;
