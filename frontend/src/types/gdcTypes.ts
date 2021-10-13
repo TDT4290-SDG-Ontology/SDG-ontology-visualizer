@@ -93,3 +93,9 @@ export type GDCOutput = {
   indicatorsWithoutGoals: Map<string, IndicatorWithoutGoal>;
   unreportedIndicators: string[];
 };
+
+export type CorrelatedKPI = {
+  kpi: string;
+  correlation: number;
+  subgoal: string;
+};
