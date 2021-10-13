@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary, no-plusplus, no-restricted-syntax */
 
 import React from 'react';
+import { Heading, Stack, Container, Table, Tr, Td, Tbody } from '@chakra-ui/react';
 import {
   ResponsiveContainer,
   ComposedChart,
@@ -74,17 +75,100 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
     });
   }
 
+  const CustomTooltip: React.FC = (arg: any) => {
+    const { active, payload, label } = arg;
+    if (active && payload && payload.length) {
+      const { year, value, required, predicted, bounds } = payload[0].payload;
+      const [ best, worst ] = bounds;
+
+      let valueRow = null;
+      if (!Number.isNaN(value)) {
+        valueRow = (
+          <Tr>
+            <Td>Value:</Td>
+            <Td isNumeric>{value.toFixed(2)}</Td>
+          </Tr>
+        );
+      }
+
+      let predictedRow = null;
+      let requiredRow = null;
+      let bestRow = null;
+      let worstRow = null;
+
+      if (year !== currentYear) {
+        if (!Number.isNaN(predicted)) {
+          predictedRow = (
+            <Tr>
+              <Td>Predicted:</Td>
+              <Td isNumeric>{predicted.toFixed(2)}</Td>
+            </Tr>
+          );
+        }
+
+        if (!Number.isNaN(required)) {
+          requiredRow = (
+            <Tr>
+              <Td>Required:</Td>
+              <Td isNumeric>{required.toFixed(2)}</Td>
+            </Tr>
+          );
+        }
+
+        if (!Number.isNaN(best)) {
+          bestRow = (
+            <Tr>
+              <Td>Best case:</Td>
+              <Td isNumeric>{best.toFixed(2)}</Td>
+            </Tr>
+          );
+        }
+
+        if (!Number.isNaN(worst)) {
+          worstRow = (
+            <Tr>
+              <Td>Worst case:</Td>
+              <Td isNumeric>{worst.toFixed(2)}</Td>
+            </Tr>
+          );
+        }
+      }
+
+      return (
+        <Container
+          bg='white'
+          borderWidth='1px'
+          borderRadius='0.5em'
+          p='0.5em'
+        >
+          <Stack>
+            <Heading size='md'>{label}</Heading>
+            <Table variant="simple">
+              <Tbody>                              
+                {valueRow}
+                {predictedRow}
+                {requiredRow}
+                {bestRow}
+                {worstRow}
+              </Tbody>
+            </Table>
+          </Stack>
+        </Container>
+      );
+    }
+
+    return null;
+  };
+
   // TODO: different colours for required vs current trajectory
   return (
     <ResponsiveContainer
       width='100%'
       height='100%'
       minWidth={800}
-      minHeight={600}
+      minHeight={500}
     >
       <ComposedChart
-        width={800}
-        height={400}
         data={predictions}
         margin={{
           top: 20,
@@ -96,7 +180,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         <CartesianGrid />
         <XAxis dataKey='year' />
         <YAxis />
-        <Tooltip />
+        <Tooltip content={<CustomTooltip />} />
         <Area type='monotone' dataKey='bounds' fillOpacity='0.2' stroke='none' />
         <Line type='monotone' dataKey='value' />
         <Line type='monotone' dataKey='predicted' strokeDasharray='3 3' />
