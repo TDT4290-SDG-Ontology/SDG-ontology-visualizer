@@ -3,7 +3,7 @@ import {
   PieChart, Pie,
   ResponsiveContainer,
 } from 'recharts';
-import { GDCScores } from '../../api/data';
+import { getGDCOutput } from '../../api/gdc';
 
 const data01 = [
   { name: 'Group A', value: 400 },
@@ -36,7 +36,8 @@ const GDCMinicipalityChart:  React.FC<ChartProps> = (props: ChartProps) => {
   console.log(code);
 
   const FindScores = async (municipalityCode: string, selectedYear: number) => {
-    const data = await GDCScores(municipalityCode, selectedYear);
+    const data = await getGDCOutput(municipalityCode, selectedYear);
+    console.log('DATA');
     console.log(data);
   };
 
