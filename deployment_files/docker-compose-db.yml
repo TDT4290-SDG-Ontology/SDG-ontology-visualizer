@@ -1,0 +1,7 @@
+# This Docker-compose manifest will run the DATABASE ONLY at port 7200
+version: '3.9'
+services:
+  graphdb:
+    image: fredrbus/tk_sdg_db:0.1
+    ports:
+      - '7200:7200'
