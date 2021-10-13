@@ -1,22 +1,22 @@
 version: '3.9'
 services:
   graphdb:
-    image: fredrbus/tk_sdg_db:0.1
-    ports:
-      - '7200:7200'
+    extends:
+      file: docker-compose-backend.yml
+      service: graphdb
   api:
     depends_on: ['graphdb']
-    image: fredrbus/tk_sdg_api:0.2
+    extends:
+      file: docker-compose-backend.yml
+      service: api
     ports:
       - '3001:3001'
     environment:
       - GRAPHDB_BASE_URL=http://graphdb:7200
   web:
     depends_on: ['api', 'graphdb']
-    image: fredrbus/tk_sdg_frontend:0.2
-    ports:
-      - '80:80'
-    environment:
-      - REACT_APP_BACKEND_URL:http://api:3001/api
+    extends:
+      file: docker-compose-frontend.yml
+      service: web
     command:
       ['./utils/await_login.sh', 'api', 'http-server', 'build', '-p', '80']

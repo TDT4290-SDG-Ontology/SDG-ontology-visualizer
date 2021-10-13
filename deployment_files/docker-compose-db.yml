@@ -2,11 +2,13 @@
 version: '3.9'
 services:
   graphdb:
-    image: fredrbus/tk_sdg_db:0.2
+    build:
+      context: '.'
+      dockerfile: 'licensed_graphdb.Dockerfile'
     ports:
       - '7200:7200'
+    environment:
+      GDB_JAVA_OPTS: -Dgraphdb.license.file=/opt/graphdb/dist/license/graphdb.license
     volumes:
       - './license/:/opt/graphdb/dist/license'
     command: '/opt/graphdb/dist/bin/loadrdf -c /opt/graphdb/dist/conf/TK_SDG-config.ttl -m parallel /opt/graphdb/home/ontology'
-    environment:
-      GDB_JAVA_OPTS: -Dgraphdb.license.file=/opt/graphdb/dist/license/graphdb.license
