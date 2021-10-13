@@ -16,7 +16,7 @@ Prerequisites:
 
 - A valid GraphDB license file
 
-### Prepping the database
+### Database, API, backend, or the whole application
 
 If you only want to run the API or frontend by itself, you can skip this step. If you do so, remember to set the correct environment variables inside their respective compose files.
 
@@ -24,15 +24,23 @@ If you only want to run the API or frontend by itself, you can skip this step. I
 
 2. Add your valid GraphDB license file to the `license` directory, naming it `graphdb.license`
 
-3. Run `docker compose -f docker-compose-db.yml up`
+3. Run either...
 
-4. When the container is running and ready, go to http://localhost:7200 (or the externally reachable URL). On the left side of the screen, go to "Setup" and then "Users and Access". Click "Create new user" and make a user with credentials matching the `GRAPHDB_USERNAME` and `GRAPHDB_PASSWORD`variables set in the compose file. Make sure the user has Read-access to the TK_SDG-repository.
+   1. **Database only:** `docker compose -f docker-compose-db.yml up`
+   2. **Whole backend:** `docker compose -f docker-compose-backend.yml up`
+   3. **Whole application:** `docker compose up`
+
+4. When the cluster is running and ready, go to http://localhost:7200 (or the externally reachable URL). On the left side of the screen, go to "Setup" and then "Users and Access". Click "Create new user" and make a user with credentials matching the `GRAPHDB_USERNAME` and `GRAPHDB_PASSWORD`variables set in the compose file. Make sure the user has Read-access to the TK_SDG-repository.
 
 5. The database is now ready for connections
 
-6. (Optional) If you want to run the backend, or the application as a whole:
-   1. Stop the database cluster
-   2. Run `docker compose -f docker-compose-backend.yml up` for the backend, or `docker compose up` for the whole application.
+6. If you're running the backend or whole application, restart the cluster.
+
+Ports:
+
+- **DB:** 7200
+- **API:** 3001
+- **Frontend:** 80
 
 ### Only API or frontend
 
