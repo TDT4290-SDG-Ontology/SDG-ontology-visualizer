@@ -85,8 +85,8 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
       if (!Number.isNaN(value)) {
         valueRow = (
           <Tr>
-            <Td>Value:</Td>
-            <Td isNumeric>{value.toFixed(2)}</Td>
+            <Td p='0.5em'>Value:</Td>
+            <Td p='0.5em' isNumeric>{value.toFixed(2)}</Td>
           </Tr>
         );
       }
@@ -100,17 +100,17 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         if (!Number.isNaN(predicted)) {
           predictedRow = (
             <Tr>
-              <Td>Predicted:</Td>
-              <Td isNumeric>{predicted.toFixed(2)}</Td>
+              <Td p='0.5em'>Predicted:</Td>
+              <Td p='0.5em' isNumeric>{predicted.toFixed(2)}</Td>
             </Tr>
           );
         }
 
         if (!Number.isNaN(required)) {
           requiredRow = (
-            <Tr>
-              <Td>Required:</Td>
-              <Td isNumeric>{required.toFixed(2)}</Td>
+            <Tr p='0px'>
+              <Td p='0.5em'>Required:</Td>
+              <Td p='0.5em' isNumeric>{required.toFixed(2)}</Td>
             </Tr>
           );
         }
@@ -118,8 +118,8 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         if (!Number.isNaN(best)) {
           bestRow = (
             <Tr>
-              <Td>Best case:</Td>
-              <Td isNumeric>{best.toFixed(2)}</Td>
+              <Td p='0.5em'>Best case:</Td>
+              <Td p='0.5em' isNumeric>{best.toFixed(2)}</Td>
             </Tr>
           );
         }
@@ -127,8 +127,8 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         if (!Number.isNaN(worst)) {
           worstRow = (
             <Tr>
-              <Td>Worst case:</Td>
-              <Td isNumeric>{worst.toFixed(2)}</Td>
+              <Td p='0.5em'>Worst case:</Td>
+              <Td p='0.5em' isNumeric>{worst.toFixed(2)}</Td>
             </Tr>
           );
         }
@@ -142,9 +142,9 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
           p='0.5em'
         >
           <Stack>
-            <Heading size='md'>{label}</Heading>
-            <Table variant="simple">
-              <Tbody>                              
+            <Heading p='0.5em' size='md'>{label}</Heading>
+            <Table variant='simple'>
+              <Tbody p='0px'>                              
                 {valueRow}
                 {predictedRow}
                 {requiredRow}

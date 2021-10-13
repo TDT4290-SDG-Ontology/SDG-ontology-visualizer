@@ -35,7 +35,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
   const loadCorrelatedKPIs = async () => {
     setLoadingCorrelated(true);
 
-    setCorrelatedKPIs(await getCorrelatedKPIs(data.kpi));
+    const correlations = await getCorrelatedKPIs(data.kpi);
+    setCorrelatedKPIs(correlations.sort((a, b) => b.correlation - a.correlation));
 
     setLoadingCorrelated(false);
   };
@@ -129,7 +130,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
               </Tr>
               <Tr>
                 <Td>Required CAGR</Td>
-                <Td isNumeric>{`${(data.requiredCAGR) ? (100.0 * data.requiredCAGR).toFixed(2) : 0.0} %`}</Td>
+                <Td isNumeric>{`${(data.requiredCAGR) ? (100.0 * data.requiredCAGR).toFixed(2) : 'N/A'} %`}</Td>
               </Tr>
               <Tr>
                 <Td>{`Best CAGR\n(${bestGrowth.startYear} to ${bestGrowth.endYear})`}</Td>
