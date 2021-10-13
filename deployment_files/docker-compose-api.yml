@@ -6,3 +6,7 @@ services:
       - '3001:3001'
     environment:
       - GRAPHDB_BASE_URL=http://localhost:7200
+      - GRAPHDB_REPOSITORY=TK_SDG
+      - GRAPHDB_USERNAME=readAll
+      - GRAPHDB_PASSWORD=readAllPassword
+      - JWT_SECRET_TOKEN=insertsecrettokenhere
