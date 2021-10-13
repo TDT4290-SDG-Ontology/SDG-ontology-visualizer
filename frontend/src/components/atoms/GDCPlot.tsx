@@ -183,10 +183,10 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         <YAxis />
         <Tooltip content={<CustomTooltip />} />
         <Legend />
-        <Area name='Bounds' type='monotone' dataKey='bounds' fillOpacity='0.15' stroke='none' />
-        <Line name='Existing values' type='monotone' dataKey='value' />
-        <Line name='Predicted values' type='monotone' dataKey='predicted' strokeDasharray='3 3' />
-        <Line name='Values required to reach target' type='monotone' dataKey='required' stroke='gray' strokeDasharray='3 3' />
+        <Area name='Bounds' type='natural' dataKey='bounds' fillOpacity='0.15' stroke='none' />
+        <Line name='Existing values' type='natural' dataKey='value' />
+        <Line name='Predicted values' type='natural' dataKey='predicted' strokeDasharray='3 3' />
+        <Line name='Values required to reach target' type='natural' dataKey='required' stroke='gray' strokeDasharray='3 3' />
       </ComposedChart>
     </ResponsiveContainer>
   );
