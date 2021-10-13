@@ -7,5 +7,7 @@ RUN yarn run build
 
 FROM node:14
 COPY --from=0 /app/build /build
+COPY --from=0 /app/utils /utils
+RUN apt-get update && apt-get install -y curl
 RUN npm i -g http-server
-ENTRYPOINT [ "http-server", "build", "-p 80" ]
+CMD [ "http-server", "build", "-p 80" ]
