@@ -8,6 +8,36 @@ A tool for visualizing ontologies related to UN's sustainable development goals
 
 [Deployed project](https://epic-ardinghelli-d1ee4d.netlify.app/)
 
+## Deploying
+
+Prerequisites:
+
+- Docker supporting compose files >= 3.9
+
+- A valid GraphDB license file
+
+### Prepping the database
+
+If you only want to run the API or frontend by itself, you can skip this step. If you do so, remember to set the correct environment variables inside their respective compose files.
+
+1. Navigate to `deployment_files/`
+
+2. Add your valid GraphDB license file to the `license` directory, naming it `graphdb.license`
+
+3. Run `docker compose -f docker-compose-db.yml up`
+
+4. When the container is running and ready, go to http://localhost:7200 (or the externally reachable URL). On the left side of the screen, go to "Setup" and then "Users and Access". Click "Create new user" and make a user with credentials matching the `GRAPHDB_USERNAME` and `GRAPHDB_PASSWORD`variables set in the compose file. Make sure the user has Read-access to the TK_SDG-repository.
+
+5. The database is now ready for connections
+
+6. (Optional) If you want to run the backend, or the application as a whole:
+   1. Stop the database cluster
+   2. Run `docker compose -f docker-compose-backend.yml up` for the backend, or `docker compose up` for the whole application.
+
+### Only API or frontend
+
+Run `docker compose -f docker-compose-api.yml up` or `docker compose -f docker-compose-frontend.yml up`
+
 ## How to setup
 
 1. Clone the repo
@@ -15,7 +45,7 @@ A tool for visualizing ontologies related to UN's sustainable development goals
 3. Create a file named _.env_ in the backend folder and paste your credentials as well as the IP of the server running GraphDB with port 7200. The structure of your _.env_ file can be copied from _.env.example_.
 4. Run `yarn start` both in frontend and backend folders to start both the web application as well as the Express server.
 
-## Setting up the dockerized environment
+## Setting up the dockerized development environment
 
 Prerequisites:
 
