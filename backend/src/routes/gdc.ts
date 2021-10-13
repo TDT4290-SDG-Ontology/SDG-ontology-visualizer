@@ -699,7 +699,7 @@ const correlatedKPIs = async (req: Request, res: Response) => {
     // Someone might want to investigate the correlations between U4SSC KPIs in order to map this more
     // accurately.
 
-    const resp = await getCorrelatedKPIs('jp', req.params.indicator);
+    const resp = await getCorrelatedKPIs('kr', req.params.indicator);
     res.json(resp);
   } catch (e: any) {
     onError(e, req, res);
