@@ -6,9 +6,7 @@ services:
       service: graphdb
   api:
     depends_on: ['graphdb']
-    extends:
-      file: docker-compose-backend.yml
-      service: api
+    image: fredrbus/tk_sdg_api:1.0
     ports:
       - '3001:3001'
     environment:
