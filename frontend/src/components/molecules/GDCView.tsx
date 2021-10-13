@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax, no-plusplus */
 
-import { Flex, Heading, Stack, Text, Spinner, Container, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box } from '@chakra-ui/react';
+import { Flex, Heading, Stack, Text, Spinner, Container, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Table, Tbody, Thead, Tr, Td, Th } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 import { getGDCOutput } from '../../api/gdc';
@@ -81,14 +81,55 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Accordion allowToggle allowMultiple>
-            { gdcInfo.unreportedIndicators.map((ind) => (
-              <Text>{ind}</Text>
-              ))}      
-          </Accordion>
+          <Table>
+            <Thead>
+              <Tr>
+                <Th>KPI</Th>
+                <Th>Name</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              { gdcInfo.unreportedIndicators.map((ind) => (
+                <Tr>
+                  <Td>{ind}</Td>
+                </Tr>
+                ))}
+            </Tbody>
+          </Table>      
         </AccordionPanel>
       </AccordionItem>
-    );
+    );    
+  }
+
+  let indicatorsWithoutGoalsPanel = null;
+  if (gdcInfo.indicatorsWithoutGoals.size > 0) {
+    indicatorsWithoutGoalsPanel = (
+      <AccordionItem key='unreported'>
+        <AccordionButton>
+          <Box flex='1' textAlign='left'>
+            KPIs without goals
+          </Box>
+          <AccordionIcon />
+        </AccordionButton>
+        <AccordionPanel>
+          <Table>
+            <Thead>
+              <Tr>
+                <Th>KPI</Th>
+                <Th>Name</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              { Array.from(gdcInfo.indicatorsWithoutGoals.keys()).map((ind) => (
+                <Tr>
+                  <Td>{ind}</Td>
+                </Tr>
+                ))}
+            </Tbody>
+          </Table>      
+        </AccordionPanel>
+      </AccordionItem>
+    );    
   }
 
   return (
@@ -106,29 +147,31 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
           borderRadius='0.5em'
           p='1.5em'
         >
-          <Heading size="xl">
-            Progress overview
-          </Heading>
-
-          <Heading size="md">
-            Issues
-          </Heading>
-          <Accordion allowToggle allowMultiple>
-            <AccordionItem key='worst'>
-              <AccordionButton>
-                <Box flex='1' textAlign='left'>
-                  Worst performing KPIs
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-              <AccordionPanel>
-                <Accordion allowToggle allowMultiple>
-                  { worstIndicators && Array.from(worstIndicators).map(([key, val]) => renderKPIAccordion(key, val))}      
-                </Accordion>
-              </AccordionPanel>
-            </AccordionItem>
-            {unreportedIndicatorsPanel}
-          </Accordion>
+          <Stack spacing='4'>
+            <Heading size="xl">
+              Progress overview
+            </Heading>
+            <Heading size="md">
+              Issues
+            </Heading>
+            <Accordion allowToggle allowMultiple>
+              <AccordionItem key='worst'>
+                <AccordionButton>
+                  <Box flex='1' textAlign='left'>
+                    Worst performing KPIs
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <Accordion allowToggle allowMultiple>
+                    { worstIndicators && Array.from(worstIndicators).map(([key, val]) => renderKPIAccordion(key, val))}      
+                  </Accordion>
+                </AccordionPanel>
+              </AccordionItem>
+              {unreportedIndicatorsPanel}
+              {indicatorsWithoutGoalsPanel}
+            </Accordion>
+          </Stack>
         </Container>
         <Container 
           maxWidth={1600}
@@ -138,12 +181,14 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
           borderRadius='0.5em'
           p='1.5em'
         >
-          <Heading>
-            Per indicator breakdown
-          </Heading>
-          <Accordion allowToggle allowMultiple>
-            { indicators && Array.from(indicators).map(([key, val]) => renderKPIAccordion(key, val))}
-          </Accordion>
+          <Stack spacing='4'>
+            <Heading>
+              Per indicator breakdown
+            </Heading>
+            <Accordion allowToggle allowMultiple>
+              { indicators && Array.from(indicators).map(([key, val]) => renderKPIAccordion(key, val))}
+            </Accordion>
+          </Stack>
         </Container>
       </Stack>
     </Flex>
