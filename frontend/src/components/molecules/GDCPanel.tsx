@@ -108,7 +108,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
           <Table variant="simple">
             <Tbody>
               <Tr>
-                <Td>Indicator data</Td>
+                <Td>Indicator score</Td>
                 <Td isNumeric>{data.points}</Td>
               </Tr>
               <Tr>
@@ -132,20 +132,20 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                 <Td isNumeric>{`${(data.requiredCAGR) ? (100.0 * data.requiredCAGR).toFixed(2) : 0.0} %`}</Td>
               </Tr>
               <Tr>
-                <Td>Mean difference</Td>
-                <Td isNumeric>{data.diffMean.toFixed(2)}</Td>
-              </Tr>
-              <Tr>
-                <Td>Standard deviation of difference</Td>
-                <Td isNumeric>{data.diffStd.toFixed(2)}</Td>
-              </Tr>
-              <Tr>
                 <Td>{`Best CAGR\n(${bestGrowth.startYear} to ${bestGrowth.endYear})`}</Td>
                 <Td isNumeric>{`${(100.0 * bestGrowth.value).toFixed(2)} %`}</Td>
               </Tr>
               <Tr>
                 <Td>{`Worst CAGR (${worstGrowth.startYear} to ${worstGrowth.endYear})`}</Td>
                 <Td isNumeric>{`${(100.0 * worstGrowth.value).toFixed(2)} %`}</Td>
+              </Tr>
+              <Tr>
+                <Td>Mean difference</Td>
+                <Td isNumeric>{data.diffMean.toFixed(2)}</Td>
+              </Tr>
+              <Tr>
+                <Td>Standard deviation of difference</Td>
+                <Td isNumeric>{data.diffStd.toFixed(2)}</Td>
               </Tr>
             </Tbody>
           </Table>

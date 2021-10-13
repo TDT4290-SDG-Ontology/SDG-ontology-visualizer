@@ -11,7 +11,7 @@ import {
   Area,
   Line,
   Tooltip,
-  // Scatter,
+  Legend,
 } from 'recharts';
 
 import { IndicatorScore } from '../../types/gdcTypes';
@@ -160,7 +160,8 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
     return null;
   };
 
-  // TODO: different colours for required vs current trajectory
+  // Default blue colour: curious blue
+  // "suitable" complement: crimson
   return (
     <ResponsiveContainer
       width='100%'
@@ -181,10 +182,11 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         <XAxis dataKey='year' />
         <YAxis />
         <Tooltip content={<CustomTooltip />} />
-        <Area type='monotone' dataKey='bounds' fillOpacity='0.2' stroke='none' />
-        <Line type='monotone' dataKey='value' />
-        <Line type='monotone' dataKey='predicted' strokeDasharray='3 3' />
-        <Line type='monotone' dataKey='required' strokeDasharray='3 3' />
+        <Legend />
+        <Area name='Bounds' type='monotone' dataKey='bounds' fillOpacity='0.15' stroke='none' />
+        <Line name='Existing values' type='monotone' dataKey='value' />
+        <Line name='Predicted values' type='monotone' dataKey='predicted' strokeDasharray='3 3' />
+        <Line name='Values required to reach target' type='monotone' dataKey='required' stroke='gray' strokeDasharray='3 3' />
       </ComposedChart>
     </ResponsiveContainer>
   );
