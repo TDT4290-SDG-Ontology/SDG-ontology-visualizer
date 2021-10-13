@@ -27,53 +27,60 @@ type Prediction = {
 
 type PlotProps = {
   data: IndicatorScore;
+  // compareData?: IndicatorScore;
   currentYear: number;
 };
 
 const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   const { data, currentYear } = props;
 
-  const { currentCAGR, requiredCAGR } = data;
+  const getPlotData = (score: IndicatorScore): Prediction[] => {
+    const { currentCAGR, requiredCAGR } = score;
 
-  const bestCAGR = data.yearlyGrowth[data.yearlyGrowth.length - 1].value;
-  const worstCAGR = data.yearlyGrowth[0].value;
+    const bestCAGR = score.yearlyGrowth[data.yearlyGrowth.length - 1].value;
+    const worstCAGR = score.yearlyGrowth[0].value;
 
-  const predictions: Prediction[] = [];
+    const predictions: Prediction[] = [];
 
-  // Initial dummy in order for all plots to start at the same ...
-  for (const val of data.historicalData) {
-    predictions.push({
-      year: val.year,
-      value: val.value,
-      bounds: [ NaN, NaN ],
-      predicted: NaN,
-      required: NaN,
-    });
-  }
+    // Initial dummy in order for all plots to start at the same ...
+    for (const val of score.historicalData) {
+      predictions.push({
+        year: val.year,
+        value: val.value,
+        bounds: [ NaN, NaN ],
+        predicted: NaN,
+        required: NaN,
+      });
+    }
 
-  const currentValue = predictions[predictions.length - 1].value;
+    const currentValue = predictions[predictions.length - 1].value;
 
-  // Modify last point in predictions in order to have a common starting point...
-  predictions[predictions.length - 1].predicted = currentValue;
-  predictions[predictions.length - 1].bounds = [ currentValue, currentValue ];
-  predictions[predictions.length - 1].required = currentValue;
+    // Modify last point in predictions in order to have a common starting point...
+    predictions[predictions.length - 1].predicted = currentValue;
+    predictions[predictions.length - 1].bounds = [ currentValue, currentValue ];
+    predictions[predictions.length - 1].required = currentValue;
 
-  const { deadline } = data.goal;
+    const { deadline } = score.goal;
 
-  for (let year = currentYear + 1; year <= deadline; year++) {
-    const prediction = currentValue * (currentCAGR + 1.0) ** (year - currentYear);
-    const best = currentValue * (bestCAGR + 1.0) ** (year - currentYear);
-    const worst = currentValue * (worstCAGR + 1.0) ** (year - currentYear);
-    const required = currentValue * (requiredCAGR + 1.0) ** (year - currentYear);
+    for (let year = currentYear + 1; year <= deadline; year++) {
+      const prediction = currentValue * (currentCAGR + 1.0) ** (year - currentYear);
+      const best = currentValue * (bestCAGR + 1.0) ** (year - currentYear);
+      const worst = currentValue * (worstCAGR + 1.0) ** (year - currentYear);
+      const required = currentValue * (requiredCAGR + 1.0) ** (year - currentYear);
 
-    predictions.push({
-      year,
-      predicted: prediction,
-      bounds: [best, worst],
-      required,
-      value: NaN,
-    });
-  }
+      predictions.push({
+        year,
+        predicted: prediction,
+        bounds: [best, worst],
+        required,
+        value: NaN,
+      });
+    }
+
+    return predictions;
+  };
+
+  const predictions = getPlotData(data);
 
   const CustomTooltip: React.FC = (arg: any) => {
     const { active, payload, label } = arg;
