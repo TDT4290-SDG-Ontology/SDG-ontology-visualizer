@@ -90,7 +90,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
             </Thead>
             <Tbody>
               { gdcInfo.unreportedIndicators.map((ind) => (
-                <Tr>
+                <Tr key={`${ind}`}>
                   <Td>{ind}</Td>
                 </Tr>
                 ))}
@@ -121,7 +121,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
             </Thead>
             <Tbody>
               { Array.from(gdcInfo.indicatorsWithoutGoals.keys()).map((ind) => (
-                <Tr>
+                <Tr key={`${ind}`}>
                   <Td>{ind}</Td>
                 </Tr>
                 ))}
