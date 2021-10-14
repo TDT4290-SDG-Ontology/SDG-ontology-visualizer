@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary, no-plusplus, no-restricted-syntax */
 
 import React from 'react';
-import { Heading, Stack, Container, Table, Tr, Td, Tbody } from '@chakra-ui/react';
+import { Heading, Stack, Container, Table, Tr, Td, Th, Thead, Tbody } from '@chakra-ui/react';
 import {
   ResponsiveContainer,
   ComposedChart,
@@ -40,9 +40,13 @@ const defaultProps = {
   compareData: undefined,
 };
 
+const max = (a: number, b: number) : number => (a > b) ? a : b;
+
 const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
 
   const { data, currentYear, compareData } = props;
+
+  const maxDeadline = (compareData === undefined) ? data.goal.deadline : max(data.goal.deadline, compareData.goal.deadline);
 
   const getPlotData = (score: IndicatorScore): Prediction[] => {
     const { currentCAGR, requiredCAGR } = score;
@@ -75,9 +79,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
     predictions[predictions.length - 1].bounds = [ currentValue, currentValue ];
     predictions[predictions.length - 1].required = currentValue;
 
-    const { deadline } = score.goal;
-
-    for (let year = currentYear + 1; year <= deadline; year++) {
+    for (let year = currentYear + 1; year <= maxDeadline; year++) {
       const prediction = currentValue * (currentCAGR + 1.0) ** (year - currentYear);
       const best = currentValue * (bestCAGR + 1.0) ** (year - currentYear);
       const worst = currentValue * (worstCAGR + 1.0) ** (year - currentYear);
@@ -147,21 +149,33 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   const CustomTooltip: React.FC = (arg: any) => {
     const { active, payload, label } = arg;
     if (active && payload && payload.length) {
-      const { year, value, required, predicted, bounds } = payload[0].payload;
+      const { year, value, required, predicted, bounds, compareValue, comparePredicted, compareRequired, compareBounds } = payload[0].payload;
       const [ best, worst ] = bounds;
+      const [ compareBest, compareWorst ] = compareBounds;
 
       let predictedRow = null;
       let requiredRow = null;
       let bestRow = null;
       let worstRow = null;
 
-      const rowify = (rowLabel: string, rowVal: number) => {
+      const rowify = (rowLabel: string, rowVal: number, compVal: number) => {
+        let compRow = null;
+        if (compareData !== undefined) {
+          if (compVal !== undefined && !Number.isNaN(compVal)) {
+            const val = (typeof compVal === 'number') ? compVal.toFixed(2) : compVal;
+            compRow = (<Td p='0.5em' isNumeric>{`${val}`}</Td>);
+          } else {
+            compRow = (<Td p='0.5em' isNumeric />);
+          }
+        }
+
         if (rowVal !== undefined && !Number.isNaN(rowVal)) {
           const val = (typeof rowVal === 'number') ? rowVal.toFixed(2) : rowVal;
           return (
             <Tr>
               <Td p='0.5em'>{`${rowLabel}:`}</Td>
               <Td p='0.5em' isNumeric>{`${val}`}</Td>
+              {compRow}
             </Tr>
           );
         }
@@ -169,12 +183,25 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         return null;
       };
 
-      const valueRow = rowify('Value', value);
+      const valueRow = rowify('Value', value, compareValue);
       if (year !== currentYear) {
-        predictedRow = rowify('Predicted', predicted);
-        requiredRow = rowify('Required', required);
-        bestRow = rowify('Best case', best);
-        worstRow = rowify('Worst case', worst);
+        predictedRow = rowify('Predicted', predicted, comparePredicted);
+        requiredRow = rowify('Required', required, compareRequired);
+        bestRow = rowify('Best case', best, compareBest);
+        worstRow = rowify('Worst case', worst, compareWorst);
+      }
+
+      let header = null;
+      if (compareData) {
+        header = (
+          <Thead>
+            <Tr>
+              <Th />
+              <Th>A</Th>
+              <Th>B</Th>
+            </Tr>
+          </Thead>
+        );
       }
 
       return (
@@ -187,6 +214,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
           <Stack>
             <Heading p='0.5em' size='md'>{label}</Heading>
             <Table variant='simple'>
+              {header}
               <Tbody p='0px'>                              
                 {valueRow}
                 {predictedRow}
@@ -229,7 +257,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
           top: 20,
           bottom: 20,
           right: 20,
-          left: 20,
+          left: 0,
         }}
       >
         <CartesianGrid />
