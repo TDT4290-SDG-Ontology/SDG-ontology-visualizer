@@ -16,11 +16,13 @@ Prerequisites:
 
 - A valid GraphDB license file
 
+**IMPORTANT**: To ease deployment, all containers are pre-built and uploaded to Docker Hub. This also includes environment variables like **access secrets, JWT-tokens and coniguration-urls**. If you want to change any of these settings, build change the environment-settings in `frontend/` or `backend/`, rebuild the images with your own tags and use these tags in the compose-files in `deployment/`.
+
 ### Database, API, backend, or the whole application
 
 If you only want to run the API or frontend by itself, you can skip this step. If you do so, remember to set the correct environment variables inside their respective compose files.
 
-1. Navigate to `deployment_files/`
+1. Navigate to `deployment/`
 
 2. Add your valid GraphDB license file to the `license` directory, naming it `graphdb.license`
 

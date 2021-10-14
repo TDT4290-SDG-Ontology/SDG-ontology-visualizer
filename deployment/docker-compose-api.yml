@@ -1,0 +1,6 @@
+version: '3.9'
+services:
+  api:
+    image: fredrbus/tk_sdg_api:1.0
+    ports:
+      - '3001:3001'

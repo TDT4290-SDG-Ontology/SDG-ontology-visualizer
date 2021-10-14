@@ -4,5 +4,3 @@ services:
     image: fredrbus/tk_sdg_frontend:1.0
     ports:
       - '80:80'
-    environment:
-      - REACT_APP_BACKEND_URL:http://localhost:3001/api
