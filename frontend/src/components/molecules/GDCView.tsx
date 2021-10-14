@@ -6,6 +6,8 @@ import React, { useEffect, useState } from 'react';
 import { getGDCOutput } from '../../api/gdc';
 import { GDCOutput, IndicatorScore } from '../../types/gdcTypes';
 
+import u4sscKPIMap from '../../common/u4sscKPIMap';
+
 import GDCPanel from './GDCPanel';
 
 type GDCViewProps = {
@@ -34,19 +36,25 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
     loadGDCOutput(code, year);
   }, []);
 
-  const renderKPIAccordion = (displayKPI: string, score: IndicatorScore) => (
-    <AccordionItem key={`${displayKPI}`}>
-      <AccordionButton>
-        <Box flex="1" textAlign="left">
-          {displayKPI}
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-      <AccordionPanel>
-        <GDCPanel data={score} year={year} />
-      </AccordionPanel>
-    </AccordionItem>
-  );
+  const renderKPIAccordion = (displayKPI: string, score: IndicatorScore) => {
+    const display = u4sscKPIMap.get(displayKPI);
+    if (display === undefined)
+      return null;
+
+    return (
+      <AccordionItem key={`${displayKPI}`}>
+        <AccordionButton>
+          <Box flex="1" textAlign="left">
+            {`${score.kpi} - ${display.eng}`}
+          </Box>
+          <AccordionIcon />
+        </AccordionButton>
+        <AccordionPanel>
+          <GDCPanel data={score} year={year} />
+        </AccordionPanel>
+      </AccordionItem>
+    );
+  };
 
   if (gdcInfo === undefined || year === undefined)
     return (
@@ -89,11 +97,16 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
               </Tr>
             </Thead>
             <Tbody>
-              { gdcInfo.unreportedIndicators.map((ind) => (
-                <Tr key={`${ind}`}>
-                  <Td>{ind}</Td>
-                </Tr>
-                ))}
+              { gdcInfo.unreportedIndicators.map((ind) => {
+                  const display = u4sscKPIMap.get(ind);
+                  const name = (display === undefined) ? null : (<Td>{display.eng}</Td>);
+                  return (
+                    <Tr key={`${ind}`}>
+                      <Td>{ind}</Td>
+                      {name}
+                    </Tr>
+                  );
+                })}
             </Tbody>
           </Table>      
         </AccordionPanel>
@@ -120,11 +133,16 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
               </Tr>
             </Thead>
             <Tbody>
-              { Array.from(gdcInfo.indicatorsWithoutGoals.keys()).map((ind) => (
-                <Tr key={`${ind}`}>
-                  <Td>{ind}</Td>
-                </Tr>
-                ))}
+              { Array.from(gdcInfo.indicatorsWithoutGoals.keys()).map((ind) => {
+                  const display = u4sscKPIMap.get(ind);
+                  const name = (display === undefined) ? null : (<Td>{display.eng}</Td>);
+                  return (
+                    <Tr key={`${ind}`}>
+                      <Td>{ind}</Td>
+                      {name}
+                    </Tr>
+                  );
+                })}
             </Tbody>
           </Table>      
         </AccordionPanel>

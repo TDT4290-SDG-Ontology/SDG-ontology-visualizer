@@ -6,13 +6,16 @@ import React, { useState } from 'react';
 import { IndicatorScore, CorrelatedKPI } from '../../types/gdcTypes';
 
 import { getCorrelatedKPIs } from '../../api/gdc';
+import u4sscKPIMap from '../../common/u4sscKPIMap';
 
 import GDCPlot from '../atoms/GDCPlot';
 
 const correlationLabel = (corr: number) => {
+  // TODO: need to invert correlation number for 'INV_...' calculations.
+
   if (corr >= 0.7) return (<Text fontWeight="bold" color="green.600">Strong synergy</Text>);
   if (corr >= 0.4) return (<Text fontWeight="bold" color="green.600">Moderate synergy</Text>);
-  if (corr > 0.1) return (<Text fontWeight="bold" color="green.600">Weak synergy</Text>);
+  if (corr >  0.1) return (<Text fontWeight="bold" color="green.600">Weak synergy</Text>);
 
   if (corr <= -0.7) return (<Text fontWeight="bold" color="red.600">Strong tradeoff</Text>);
   if (corr <= -0.4) return (<Text fontWeight="bold" color="red.600">Moderate tradeoff</Text>);
@@ -71,23 +74,29 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
       );
     } else {
       correlatedTable = (
-        <Container maxWidth={1200} minWidth={800}>
+        <Container minWidth='800px'>
           <Table variant="simple">
             <Thead>
               <Tr>
                 <Th>KPI</Th>
+                <Th>Name</Th>
                 <Th>Strength</Th>
-                <Th>From SDG target</Th>
+                <Th isNumeric>From SDG target</Th>
               </Tr>
             </Thead>
             <Tbody>
-              { correlatedKPIs.map((kpi) => (
-                <Tr>
-                  <Td>{kpi.kpi}</Td>
-                  <Td>{correlationLabel(kpi.correlation)}</Td>
-                  <Td>{kpi.subgoal}</Td>
-                </Tr>
-                ))}
+              { correlatedKPIs.map((kpi) => {
+                  const display = u4sscKPIMap.get(kpi.kpi);
+                  const name = (display === undefined) ? (<Td />) : (<Td>{display.eng}</Td>);             
+                  return (
+                    <Tr key={kpi.kpi}>
+                      <Td minWidth='175px'>{kpi.kpi}</Td>
+                      {name}
+                      <Td>{correlationLabel(kpi.correlation)}</Td>
+                      <Td isNumeric>{kpi.subgoal.replace(') Teknologi', '')}</Td>
+                    </Tr>
+                  );
+              })}
             </Tbody>
           </Table>
         </Container>
