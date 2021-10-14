@@ -23,16 +23,26 @@ type Prediction = {
   predicted: number;
   required: number;
   bounds: number[];
+
+  compareValue: number,
+  compareBounds: number[],
+  comparePredicted: number,
+  compareRequired: number,
 };
 
 type PlotProps = {
   data: IndicatorScore;
-  // compareData?: IndicatorScore;
+  compareData?: IndicatorScore;
   currentYear: number;
 };
 
+const defaultProps = {
+  compareData: undefined,
+};
+
 const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
-  const { data, currentYear } = props;
+
+  const { data, currentYear, compareData } = props;
 
   const getPlotData = (score: IndicatorScore): Prediction[] => {
     const { currentCAGR, requiredCAGR } = score;
@@ -50,6 +60,11 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         bounds: [ NaN, NaN ],
         predicted: NaN,
         required: NaN,
+
+        compareValue: NaN,
+        compareBounds: [ NaN, NaN ],
+        comparePredicted: NaN,
+        compareRequired: NaN,
       });
     }
 
@@ -74,6 +89,11 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         bounds: [best, worst],
         required,
         value: NaN,
+
+        compareValue: NaN,
+        compareBounds: [ NaN, NaN ],
+        comparePredicted: NaN,
+        compareRequired: NaN,
       });
     }
 
@@ -81,6 +101,48 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   };
 
   const predictions = getPlotData(data);
+  const compPredictions = (compareData !== undefined) ? getPlotData(compareData) : [];
+
+  if (compareData !== undefined) {
+    // Try to unify data
+    const compareByYear = new Map<number, Prediction>();
+    for (const comp of compPredictions) {
+      compareByYear.set(comp.year, comp);
+    }
+
+    for (const pred of predictions) {
+      const compPred = compareByYear.get(pred.year);
+      if (compPred !== undefined) {
+        pred.compareValue = compPred.value;
+        pred.compareBounds = compPred.bounds;
+        pred.comparePredicted = compPred.predicted;
+        pred.compareRequired = compPred.required;
+
+        compareByYear.delete(compPred.year);
+      }
+    }
+
+    // compareByYear now contains just the values / predictions not present in the initial dataset.
+    // insert these in the back, and resort the predictions array...
+    if (compareByYear.size > 0) {
+      for (const [year, comp] of compareByYear) {        
+        predictions.push({
+          year,
+          predicted: NaN,
+          bounds: [NaN, NaN],
+          required: NaN,
+          value: NaN,
+
+          compareValue: comp.value,
+          compareBounds: comp.bounds,
+          comparePredicted: comp.predicted,
+          compareRequired: comp.required,
+        });
+      }
+
+      predictions.sort((a, b) => a.year - b.year);
+    }
+  }
 
   const CustomTooltip: React.FC = (arg: any) => {
     const { active, payload, label } = arg;
@@ -141,6 +203,17 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
     return null;
   };
 
+  let compareValues = null;
+  let compareBounds = null;
+  let comparePredicted = null;
+  let compareRequired  = null;
+  if (compareData !== undefined) {
+    compareBounds = (<Area name='Bounds' type='natural' dataKey='compareBounds' fill='#990000' fillOpacity='0.15' stroke='none' />);
+    compareValues = (<Line name='Existing values' type='natural' dataKey='compareValue' stroke='#990000' />);
+    comparePredicted = (<Line name='Predicted values' type='natural' dataKey='comparePredicted' stroke='#990000' strokeDasharray='3 3' />);
+    compareRequired  = (<Line name='Values required to reach target' type='natural' dataKey='compareRequired' stroke='gray' strokeDasharray='3 3' />);
+  }
+
   // Default blue colour: curious blue
   // "suitable" complement: crimson
   return (
@@ -168,9 +241,15 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         <Line name='Existing values' type='natural' dataKey='value' />
         <Line name='Predicted values' type='natural' dataKey='predicted' strokeDasharray='3 3' />
         <Line name='Values required to reach target' type='natural' dataKey='required' stroke='gray' strokeDasharray='3 3' />
+        {compareBounds}
+        {compareValues}
+        {comparePredicted}
+        {compareRequired}
       </ComposedChart>
     </ResponsiveContainer>
   );
 };
+
+GDCPlot.defaultProps = defaultProps;
 
 export default GDCPlot;
