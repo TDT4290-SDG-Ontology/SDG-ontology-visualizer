@@ -202,7 +202,11 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
               Per indicator breakdown
             </Heading>
             <Accordion allowToggle allowMultiple>
-              { indicators && Array.from(indicators).map(([key, val]) => renderKPIAccordion(key, val))}
+              { indicators && Array.from(indicators).sort((a, b) => {
+                  if (a[0] < b[0]) return -1;
+                  if (b[0] < a[0]) return 1;
+                  return 0;
+              }).map(([key, val]) => renderKPIAccordion(key, val))}
             </Accordion>
           </Stack>
         </Container>
