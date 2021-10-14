@@ -49,21 +49,21 @@ jobs:
           GRAPHDB_PASSWORD: readAllPassword
           JWT_SECRET_TOKEN: insertsecrettokenhere
         working-directory: backend
-  # cypress-run:
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     working-directory: frontend
-  #     REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
-  #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
+  cypress-run:
+    runs-on: ubuntu-latest
+    env:
+      working-directory: frontend
+      REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-  #     - name: Cypress run
-  #       uses: cypress-io/github-action@v2
-  #       with:
-  #         build: yarn build
-  #         start: yarn start
-  #         working-directory: frontend
-  #         record: true
-  #         wait-on: 'http://localhost:3000'
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          build: yarn build
+          start: yarn start
+          working-directory: frontend
+          record: true
+          wait-on: 'http://localhost:3000'
