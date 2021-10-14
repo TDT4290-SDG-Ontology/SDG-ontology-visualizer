@@ -94,11 +94,12 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
       let worstRow = null;
 
       const rowify = (rowLabel: string, rowVal: number) => {
-        if (!Number.isNaN(rowVal)) {
+        if (rowVal !== undefined && !Number.isNaN(rowVal)) {
+          const val = (typeof rowVal === 'number') ? rowVal.toFixed(2) : rowVal;
           return (
             <Tr>
-              <Td p='0.5em'>{rowLabel}</Td>
-              <Td p='0.5em' isNumeric>{rowVal.toFixed(2)}</Td>
+              <Td p='0.5em'>{`${rowLabel}:`}</Td>
+              <Td p='0.5em' isNumeric>{`${val}`}</Td>
             </Tr>
           );
         }
