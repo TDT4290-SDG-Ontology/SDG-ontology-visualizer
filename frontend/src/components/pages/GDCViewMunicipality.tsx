@@ -1,4 +1,4 @@
-import { Stack, Select } from '@chakra-ui/react';
+import { Stack, Select, Flex, Container, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -31,14 +31,32 @@ const ViewMunicipality: React.FC = () => {
   };
 
   return (
-    <Stack spacing="10">
+    <Stack>
       <MunicipalityInfo code={municipality} />
-      <Select value={selectedYear} onChange={onChangeYear}>
-        { 
-          availableYears && availableYears.map((year) => (<option key={year} value={year}>{year}</option>))
-        }
-      </Select>
-      <GDCView key={selectedYear} code={municipality} year={selectedYear} />
+      <Flex
+        align="center"
+        justify="center"
+        justifyContent="space-evenly"        
+        m='0px'
+        p='0px'
+      >
+        <Stack 
+          w={{ base: '850px', '2xl': '1350px' }}
+          bg='white'
+          m='0px'
+          spacing='10'
+        >
+          <Container>
+            <Text size='md'>Year:</Text>
+            <Select value={selectedYear} onChange={onChangeYear}>
+              { 
+                availableYears && availableYears.map((year) => (<option key={year} value={year}>{year}</option>))
+              }
+            </Select>
+          </Container>
+          <GDCView key={selectedYear} code={municipality} year={selectedYear} />
+        </Stack>
+      </Flex>
     </Stack>
   );
 };
