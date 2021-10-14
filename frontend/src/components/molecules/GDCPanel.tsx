@@ -122,7 +122,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
             <Thead>
               <Tr>
                 <Th>Statistic</Th>
-                <Th minWidth='120px' isNumeric>Value</Th>
+                <Th minWidth='155px' isNumeric>Value</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -151,12 +151,20 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                 <Td isNumeric>{`${(data.requiredCAGR) ? (100.0 * data.requiredCAGR).toFixed(2) : 'N/A'} %`}</Td>
               </Tr>
               <Tr>
-                <Td>{`Best CAGR\n(${bestGrowth.startYear} to ${bestGrowth.endYear})`}</Td>
-                <Td isNumeric>{`${(100.0 * bestGrowth.value).toFixed(2)} %`}</Td>
+                <Td>Best CAGR</Td>
+                <Td isNumeric>
+                  {`${(100.0 * bestGrowth.value).toFixed(2)} %`}
+                  <br />
+                  {`(${bestGrowth.startYear} to ${bestGrowth.endYear})`}
+                </Td>
               </Tr>
               <Tr>
-                <Td>{`Worst CAGR (${worstGrowth.startYear} to ${worstGrowth.endYear})`}</Td>
-                <Td isNumeric>{`${(100.0 * worstGrowth.value).toFixed(2)} %`}</Td>
+                <Td>Worst CAGR</Td>
+                <Td isNumeric>
+                  {`${(100.0 * worstGrowth.value).toFixed(2)} %`}
+                  <br />
+                  {`(${worstGrowth.startYear} to ${worstGrowth.endYear})`}
+                </Td>
               </Tr>
               <Tr>
                 <Td>Mean difference</Td>
