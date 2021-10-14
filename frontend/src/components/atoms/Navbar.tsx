@@ -16,7 +16,23 @@ const Navbar = () => {
       <Box>
         <h1>
           <Link fontWeight="bold" color="cyan.700" fontSize="1.5em" as={RouteLink} to="/">
-            Trondheim kommune SDG-Ontologi
+            SDG-Ontology.no
+          </Link>
+        </h1>
+      </Box>
+      <Spacer />
+      <Box>
+        <h1>
+          <Link fontWeight="bold" color="cyan.700" fontSize="1.5em" as={RouteLink} to="/ontology">
+            Ontology
+          </Link>
+        </h1>
+      </Box>
+      <Spacer />
+      <Box>
+        <h1>
+          <Link fontWeight="bold" color="cyan.700" fontSize="1.5em" as={RouteLink} to="/gdc">
+            Goal Distance Computation
           </Link>
         </h1>
       </Box>
