@@ -146,8 +146,8 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
     <ResponsiveContainer
       width='100%'
       height='100%'
-      minWidth={800}
-      minHeight={500}
+      minWidth='800px'
+      minHeight='500px'
     >
       <ComposedChart
         data={predictions}

@@ -138,13 +138,14 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
       justify="center"
       justifyContent="space-evenly"
     >
-      <Stack spacing="4">
+      <Stack 
+        spacing="4"
+        bg='white'
+      >
         <Container 
           maxWidth={1600}
-          minWidth={800}          
-          bg='white'
-          borderWidth='1px'
-          borderRadius='0.5em'
+          minWidth={800}
+          w={{ base: '800px', '2xl': '1350px' }}          
           p='1.5em'
         >
           <Stack spacing='4'>
@@ -176,9 +177,6 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
         <Container 
           maxWidth={1600}
           minWidth={800}          
-          bg='white'
-          borderWidth='1px'
-          borderRadius='0.5em'
           p='1.5em'
         >
           <Stack spacing='4'>

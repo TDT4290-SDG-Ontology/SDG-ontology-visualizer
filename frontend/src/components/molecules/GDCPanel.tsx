@@ -50,7 +50,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
   if (correlatedKPIs !== undefined) {
     if (correlatedKPIs.length === 0) {
       correlatedTable = (
-        <Container maxWidth={1200} minWidth={800}>
+        <Container minWidth='800px'>
           <Table variant="simple">
             <Thead>
               <Tr>
@@ -61,7 +61,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
             </Thead>
             <Tbody>
               <Tr>
-                <Td>None</Td>
+                <Td>None mapped.</Td>
                 <Td />
                 <Td />
               </Tr>
@@ -102,11 +102,20 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
   }
 
   return (
-    <Stack spacing={4}> 
-      <Stack direction='row'>
+    <Stack 
+      spacing={4}
+      w={{ base: '800px', '2xl': '1250px' }}  
+    > 
+      <Stack direction={['column', 'row']}>
         <GDCPlot data={data} currentYear={year} />
-        <Container minWidth={350}>
+        <Container maxWidth='350px'>
           <Table variant="simple">
+            <Thead>
+              <Tr>
+                <Th>Statistic</Th>
+                <Th minWidth='120px' isNumeric>Value</Th>
+              </Tr>
+            </Thead>
             <Tbody>
               <Tr>
                 <Td>U4SSC points</Td>
