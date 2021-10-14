@@ -30,17 +30,12 @@ const MunicipalityList: React.FC = () => {
           municipalities.map((mun) => {
             const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
             return (
-              <Link key={mun.code} to={loc => ({ ...loc, pathname: `/gdc/view/${mun.code}` })}>
-                <Heading size="lg">
-                  {`${mun.name} (${countryCode})`}
-                </Heading>
-                <div>
-                  {`Population: ${mun.population}`}
-                </div>
+              <Link key={mun.code} to={(loc) => ({ ...loc, pathname: `/gdc/view/${mun.code}` })}>
+                <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
+                <div>{`Population: ${mun.population}`}</div>
               </Link>
-              );
-          },
-        )}
+            );
+          })}
       </SimpleGrid>
     </Stack>
   );

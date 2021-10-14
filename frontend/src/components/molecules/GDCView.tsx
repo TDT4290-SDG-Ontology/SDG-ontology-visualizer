@@ -1,6 +1,25 @@
 /* eslint-disable no-restricted-syntax, no-plusplus */
 
-import { Flex, Heading, Stack, Text, Spinner, Container, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Table, Tbody, Thead, Tr, Td, Th } from '@chakra-ui/react';
+import {
+  Flex,
+  Heading,
+  Stack,
+  Text,
+  Spinner,
+  Container,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Box,
+  Table,
+  Tbody,
+  Thead,
+  Tr,
+  Td,
+  Th,
+} from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 import { getGDCOutput } from '../../api/gdc';
@@ -11,35 +30,63 @@ import u4sscKPIMap from '../../common/u4sscKPIMap';
 import GDCPanel from './GDCPanel';
 
 type GDCViewProps = {
-  code: string;
   year: number;
+
+  municipality: string;
+  municipalityCode: string;
+
+  compareMunicipality?: string;
+  compareCode?: string;
+};
+
+const defaultProps = {
+  compareMunicipality: undefined,
+  compareCode: undefined,
 };
 
 const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   const [gdcInfo, setGDCInfo] = useState<GDCOutput>();
+  const [compareGdcInfo, setCompareGDCInfo] = useState<GDCOutput>();
   const [indicators, setIndicators] = useState<Map<string, IndicatorScore>>();
   const [worstIndicators, setWorstIndicators] = useState<Map<string, IndicatorScore>>();
 
-  const { code, year } = props;
+  const { year, municipality, municipalityCode, compareMunicipality, compareCode } = props;
   const WORST_COUNT = 5;
 
   const loadGDCOutput = async (muniCode: string, muniYear: number) => {
+    if (compareCode !== undefined) {
+      const data = await Promise.all([
+        getGDCOutput(muniCode, muniYear),
+        getGDCOutput(compareCode, muniYear),
+      ]);
+      setGDCInfo(data[0]);
+      setCompareGDCInfo(data[1]);
+    } else {
       const data = await getGDCOutput(muniCode, muniYear);
       setGDCInfo(data);
       if (data !== undefined) {
         setIndicators(data.indicators);
-        setWorstIndicators(new Map(Array.from(data.indicators).sort((a, b) => a[1].score - b[1].score).slice(0, WORST_COUNT)));
+        setWorstIndicators(
+          new Map(
+            Array.from(data.indicators)
+              .sort((a, b) => a[1].score - b[1].score)
+              .slice(0, WORST_COUNT),
+          ),
+        );
       }
+    }
   };
 
   useEffect(() => {
-    loadGDCOutput(code, year);
+    loadGDCOutput(municipalityCode, year);
   }, []);
 
   const renderKPIAccordion = (displayKPI: string, score: IndicatorScore) => {
     const display = u4sscKPIMap.get(displayKPI);
-    if (display === undefined)
-      return null;
+    if (display === undefined) return null;
+
+    const compareIndicator =
+      compareGdcInfo !== undefined ? compareGdcInfo.indicators.get(displayKPI) : undefined;
 
     return (
       <AccordionItem key={`${displayKPI}`}>
@@ -50,7 +97,13 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <GDCPanel data={score} year={year} />
+          <GDCPanel
+            municipality={municipality}
+            data={score}
+            year={year}
+            compareMunicipality={compareMunicipality}
+            compareData={compareIndicator}
+          />
         </AccordionPanel>
       </AccordionItem>
     );
@@ -58,22 +111,10 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
 
   if (gdcInfo === undefined || year === undefined)
     return (
-      <Flex
-        align="center"
-        justify="center"
-        justifyContent="space-evenly"
-      >
+      <Flex align="center" justify="center" justifyContent="space-evenly">
         <Stack>
-          <Spinner 
-            size="xl" 
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="cyan.700"
-          />
-          <Text size="md">
-            Loading...
-          </Text>
+          <Spinner size="xl" thickness="4px" speed="0.65s" emptyColor="gray.200" color="cyan.700" />
+          <Text size="md">Loading...</Text>
         </Stack>
       </Flex>
     );
@@ -81,9 +122,9 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   let unreportedIndicatorsPanel = null;
   if (gdcInfo.unreportedIndicators.length > 0) {
     unreportedIndicatorsPanel = (
-      <AccordionItem key='unreported'>
+      <AccordionItem key="unreported">
         <AccordionButton>
-          <Box flex='1' textAlign='left'>
+          <Box flex="1" textAlign="left">
             Unreported KPIs
           </Box>
           <AccordionIcon />
@@ -97,29 +138,29 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
               </Tr>
             </Thead>
             <Tbody>
-              { gdcInfo.unreportedIndicators.map((ind) => {
-                  const display = u4sscKPIMap.get(ind);
-                  const name = (display === undefined) ? null : (<Td>{display.eng}</Td>);
-                  return (
-                    <Tr key={`${ind}`}>
-                      <Td>{ind}</Td>
-                      {name}
-                    </Tr>
-                  );
-                })}
+              {gdcInfo.unreportedIndicators.map((ind) => {
+                const display = u4sscKPIMap.get(ind);
+                const name = display === undefined ? null : <Td>{display.eng}</Td>;
+                return (
+                  <Tr key={`${ind}`}>
+                    <Td>{ind}</Td>
+                    {name}
+                  </Tr>
+                );
+              })}
             </Tbody>
-          </Table>      
+          </Table>
         </AccordionPanel>
       </AccordionItem>
-    );    
+    );
   }
 
   let indicatorsWithoutGoalsPanel = null;
   if (gdcInfo.indicatorsWithoutGoals.size > 0) {
     indicatorsWithoutGoalsPanel = (
-      <AccordionItem key='unreported'>
+      <AccordionItem key="unreported">
         <AccordionButton>
-          <Box flex='1' textAlign='left'>
+          <Box flex="1" textAlign="left">
             KPIs without goals
           </Box>
           <AccordionIcon />
@@ -133,57 +174,42 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
               </Tr>
             </Thead>
             <Tbody>
-              { Array.from(gdcInfo.indicatorsWithoutGoals.keys()).map((ind) => {
-                  const display = u4sscKPIMap.get(ind);
-                  const name = (display === undefined) ? null : (<Td>{display.eng}</Td>);
-                  return (
-                    <Tr key={`${ind}`}>
-                      <Td>{ind}</Td>
-                      {name}
-                    </Tr>
-                  );
-                })}
+              {Array.from(gdcInfo.indicatorsWithoutGoals.keys()).map((ind) => {
+                const display = u4sscKPIMap.get(ind);
+                const name = display === undefined ? null : <Td>{display.eng}</Td>;
+                return (
+                  <Tr key={`${ind}`}>
+                    <Td>{ind}</Td>
+                    {name}
+                  </Tr>
+                );
+              })}
             </Tbody>
-          </Table>      
+          </Table>
         </AccordionPanel>
       </AccordionItem>
-    );    
+    );
   }
 
   return (
-    <Flex
-      align="center"
-      justify="center"
-      justifyContent="space-evenly"
-    >
-      <Stack 
-        spacing="4"
-        bg='white'
-      >
-        <Container 
-          maxWidth={1600}
-          minWidth={800}
-          w={{ base: '800px', '2xl': '1350px' }}          
-          p='1.5em'
-        >
-          <Stack spacing='4'>
-            <Heading size="xl">
-              Progress overview
-            </Heading>
-            <Heading size="md">
-              Issues
-            </Heading>
+    <Flex align="center" justify="center" justifyContent="space-evenly">
+      <Stack spacing="4" bg="white">
+        <Container maxWidth={1600} minWidth={800} w={{ base: '800px', '2xl': '1350px' }} p="1.5em">
+          <Stack spacing="4">
+            <Heading size="xl">Progress overview</Heading>
+            <Heading size="md">Issues</Heading>
             <Accordion allowToggle allowMultiple>
-              <AccordionItem key='worst'>
+              <AccordionItem key="worst">
                 <AccordionButton>
-                  <Box flex='1' textAlign='left'>
+                  <Box flex="1" textAlign="left">
                     Worst performing KPIs
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
                 <AccordionPanel>
                   <Accordion allowToggle allowMultiple>
-                    { worstIndicators && Array.from(worstIndicators).map(([key, val]) => renderKPIAccordion(key, val))}      
+                    {worstIndicators &&
+                      Array.from(worstIndicators).map(([key, val]) => renderKPIAccordion(key, val))}
                   </Accordion>
                 </AccordionPanel>
               </AccordionItem>
@@ -192,21 +218,18 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
             </Accordion>
           </Stack>
         </Container>
-        <Container 
-          maxWidth={1600}
-          minWidth={800}          
-          p='1.5em'
-        >
-          <Stack spacing='4'>
-            <Heading>
-              Per indicator breakdown
-            </Heading>
+        <Container maxWidth={1600} minWidth={800} p="1.5em">
+          <Stack spacing="4">
+            <Heading>Per indicator breakdown</Heading>
             <Accordion allowToggle allowMultiple>
-              { indicators && Array.from(indicators).sort((a, b) => {
-                  if (a[0] < b[0]) return -1;
-                  if (b[0] < a[0]) return 1;
-                  return 0;
-              }).map(([key, val]) => renderKPIAccordion(key, val))}
+              {indicators &&
+                Array.from(indicators)
+                  .sort((a, b) => {
+                    if (a[0] < b[0]) return -1;
+                    if (b[0] < a[0]) return 1;
+                    return 0;
+                  })
+                  .map(([key, val]) => renderKPIAccordion(key, val))}
             </Accordion>
           </Stack>
         </Container>
@@ -215,4 +238,5 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   );
 };
 
+GDCView.defaultProps = defaultProps;
 export default GDCView;

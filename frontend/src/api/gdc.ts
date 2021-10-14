@@ -1,5 +1,11 @@
 import api from './api';
-import { IndicatorScore, IndicatorWithoutGoal, Score, GDCOutput, CorrelatedKPI } from '../types/gdcTypes';
+import {
+  IndicatorScore,
+  IndicatorWithoutGoal,
+  Score,
+  GDCOutput,
+  CorrelatedKPI,
+} from '../types/gdcTypes';
 
 export const getGDCOutput = async (municipality: string, year: number): Promise<GDCOutput> => {
   try {
@@ -75,7 +81,7 @@ export const getGDCOutput = async (municipality: string, year: number): Promise<
 };
 
 export const getCorrelatedKPIs = async (kpi: string): Promise<CorrelatedKPI[]> => {
-    try {
+  try {
     const data: CorrelatedKPI[] = await api.GET(`gdc/correlated-kpis/${kpi}`);
     return data;
   } catch (e) {

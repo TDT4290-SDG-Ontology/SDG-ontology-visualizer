@@ -1,28 +1,18 @@
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { getMunicipalityInfo } from '../../api/municipalities';
 import { MunicipalityInfo } from '../../types/municipalityTypes';
 
 type MunicipalityInfoDisplayProps = {
-  code: string;
+  info: MunicipalityInfo | undefined;
 };
 
-const MunicipalityInfoDisplay: React.FC<MunicipalityInfoDisplayProps> = (props: MunicipalityInfoDisplayProps) => {
-  const [municipalityInfo, setMunicipalityInfo] = useState<MunicipalityInfo>();
+const MunicipalityInfoDisplay: React.FC<MunicipalityInfoDisplayProps> = (
+  props: MunicipalityInfoDisplayProps,
+) => {
+  const { info } = props;
 
-  const { code } = props;
-
-  const loadMunicipality = async (muniCode: string) => {
-    const data = await getMunicipalityInfo(muniCode);
-    setMunicipalityInfo(data);
-  };
-
-  useEffect(() => {
-    loadMunicipality(code);
-  }, []);
-
-  if (municipalityInfo === undefined)
+  if (info === undefined)
     return (
       <Flex
         align="center"
@@ -51,10 +41,10 @@ const MunicipalityInfoDisplay: React.FC<MunicipalityInfoDisplayProps> = (props: 
     >
       <Stack spacing="0">
         <Heading size="xl" color="white">
-          { `${municipalityInfo.name}` }
+          {`${info.name}`}
         </Heading>
         <Text size="md" color="white">
-          {`Population: ${municipalityInfo.population}`}
+          {`Population: ${info.population}`}
         </Text>
       </Stack>
     </Flex>
