@@ -41,18 +41,24 @@ const ViewMunicipality: React.FC = () => {
         p='0px'
       >
         <Stack 
-          w={{ base: '850px', '2xl': '1350px' }}
+          w={{ base: '900px', '2xl': '1350px' }}
           bg='white'
           m='0px'
           spacing='10'
         >
-          <Container>
-            <Text size='md'>Year:</Text>
-            <Select value={selectedYear} onChange={onChangeYear}>
-              { 
-                availableYears && availableYears.map((year) => (<option key={year} value={year}>{year}</option>))
-              }
-            </Select>
+          <Container
+            align="right"
+            justify="right"
+            justifyContent="space-evenly"        
+          >
+            <Stack direction='row'>
+              <Text size='md'>Year:</Text>
+              <Select value={selectedYear} onChange={onChangeYear} w='100px'>
+                { 
+                  availableYears && availableYears.map((year) => (<option key={year} value={year}>{year}</option>))
+                }
+              </Select>
+            </Stack>
           </Container>
           <GDCView key={selectedYear} code={municipality} year={selectedYear} />
         </Stack>
