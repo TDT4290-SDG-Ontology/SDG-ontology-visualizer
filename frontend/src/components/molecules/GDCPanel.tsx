@@ -143,15 +143,15 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                 <Td isNumeric>{data.willCompleteBeforeDeadline ? 'Yes' : 'No'}</Td>
               </Tr>
               <Tr>
-                <Td>Current CAGR</Td>
+                <Td>Current growth</Td>
                 <Td isNumeric>{`${(100.0 * data.currentCAGR).toFixed(2)} %`}</Td>
               </Tr>
               <Tr>
-                <Td>Required CAGR</Td>
+                <Td>Required growth</Td>
                 <Td isNumeric>{`${(data.requiredCAGR) ? (100.0 * data.requiredCAGR).toFixed(2) : 'N/A'} %`}</Td>
               </Tr>
               <Tr>
-                <Td>Best CAGR</Td>
+                <Td>Best growth</Td>
                 <Td isNumeric>
                   {`${(100.0 * bestGrowth.value).toFixed(2)} %`}
                   <br />
@@ -159,7 +159,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                 </Td>
               </Tr>
               <Tr>
-                <Td>Worst CAGR</Td>
+                <Td>Worst growth</Td>
                 <Td isNumeric>
                   {`${(100.0 * worstGrowth.value).toFixed(2)} %`}
                   <br />
