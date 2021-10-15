@@ -1,9 +1,9 @@
-/* eslint-disable no-restricted-syntax, no-plusplus */
+/* eslint-disable no-restricted-syntax, no-plusplus, no-nested-ternary */
 
 import { Stack, Text, Container, Button, Table, Tbody, Thead, Tr, Th, Td, Tooltip } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
-import { IndicatorScore, CorrelatedKPI } from '../../types/gdcTypes';
+import { IndicatorScore, CorrelatedKPI, IndicatorWithoutGoal } from '../../types/gdcTypes';
 
 import { getCorrelatedKPIs } from '../../api/gdc';
 import u4sscKPIMap from '../../common/u4sscKPIMap';
@@ -70,10 +70,10 @@ type GDCPanelProps = {
   year: number;
 
   municipality: string;
-  data: IndicatorScore;
+  data: IndicatorScore | IndicatorWithoutGoal;
 
   compareMunicipality?: string;
-  compareData?: IndicatorScore;
+  compareData?: IndicatorScore | IndicatorWithoutGoal;
 };
 
 const defaultProps = {
@@ -96,11 +96,14 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
     setLoadingCorrelated(false);
   };
 
+  const dataIsIndicatorScore = (data as IndicatorScore).goal !== undefined;
+  const compareIsIndicatorScore = compareData !== undefined && ((compareData as IndicatorScore).goal !== undefined);
+
   const dummyGrowth = { value: 0, startYear: year, endYear: year };
   const bestGrowth = (data.yearlyGrowth.length > 0) ? data.yearlyGrowth[data.yearlyGrowth.length - 1] : dummyGrowth;
   const worstGrowth = (data.yearlyGrowth.length > 0) ? data.yearlyGrowth[0] : dummyGrowth;
 
-  const projectedCompletion = +data.projectedCompletion.toFixed(1);
+  const projectedCompletion = (dataIsIndicatorScore) ? +(data as IndicatorScore).projectedCompletion.toFixed(1) : -1;
 
   let correlatedTable = null;
   if (correlatedKPIs !== undefined) {
@@ -177,10 +180,12 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
   let compWorstCAGR = null;
   let compMean = null;
   let compStd = null;
+  let compTrendMean = null;
+  let compTrendStd = null;
   if (compareData !== undefined) {
-    const compBestGrowth = compareData.yearlyGrowth[compareData.yearlyGrowth.length - 1];
-    const compWorstGrowth = compareData.yearlyGrowth[0];
-    const compProjectedCompletion = +compareData.projectedCompletion.toFixed(1);
+    const compBestGrowth = (compareData.yearlyGrowth.length > 0) ? compareData.yearlyGrowth[compareData.yearlyGrowth.length - 1] : dummyGrowth;
+    const compWorstGrowth = (compareData.yearlyGrowth.length > 0) ? compareData.yearlyGrowth[0] : dummyGrowth;
+    const compProjectedCompletion = (compareIsIndicatorScore) ? +(compareData as IndicatorScore).projectedCompletion.toFixed(1) : -1;
 
     statsHeaders = (
       <>
@@ -193,12 +198,21 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
       </>
                 );
 
-    compPoints = (<Td isNumeric>{compareData.points}</Td>);
-    compScore = (<Td isNumeric>{compareData.score.toFixed(2)}</Td>);
+    const compPointsOutput = compareIsIndicatorScore ? (compareData as IndicatorScore).points : 'N/A';
+    const compScoreOutput = compareIsIndicatorScore ? (compareData as IndicatorScore).score.toFixed(2) : 'N/A';
+    const compWillCompleteOutput = compareIsIndicatorScore ? ((compareData as IndicatorScore).willCompleteBeforeDeadline ? 'Yes' : 'No') : 'N/A';
+    const compCurrentCAGROutput = (100.0 * compareData.currentCAGR).toFixed(2);
+    const compRequiredCAGROutput = compareIsIndicatorScore ? (100.0 * (compareData as IndicatorScore).requiredCAGR).toFixed(2) : 'N/A';
+
+    const compDiffMeanOutput = compareIsIndicatorScore ? (compareData as IndicatorScore).diffMean.toFixed(2) : 'N/A';
+    const compDiffStdOutput = compareIsIndicatorScore ? (compareData as IndicatorScore).diffStd.toFixed(2) : 'N/A';
+
+    compPoints = (<Td isNumeric>{compPointsOutput}</Td>);
+    compScore = (<Td isNumeric>{compScoreOutput}</Td>);
     compCompletion = (<Td isNumeric>{compProjectedCompletion < 0 ? 'Never' : compProjectedCompletion}</Td>);
-    compWillComplete = (<Td isNumeric>{compareData.willCompleteBeforeDeadline ? 'Yes' : 'No'}</Td>);
-    compCurrentCAGR = (<Td isNumeric>{`${(100.0 * compareData.currentCAGR).toFixed(2)} %`}</Td>);
-    compRequiredCAGR = (<Td isNumeric>{`${(100.0 * compareData.requiredCAGR).toFixed(2)} %`}</Td>);
+    compWillComplete = (<Td isNumeric>{compWillCompleteOutput}</Td>);
+    compCurrentCAGR = (<Td isNumeric>{`${compCurrentCAGROutput} %`}</Td>);
+    compRequiredCAGR = (<Td isNumeric>{`${compRequiredCAGROutput} %`}</Td>);
     compBestCAGR = (
       <Td isNumeric>
         {`${(100.0 * compBestGrowth.value).toFixed(2)} %`}
@@ -214,9 +228,18 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
       </Td>
                     );
 
-    compMean = (<Td isNumeric>{compareData.diffMean.toFixed(2)}</Td>);
-    compStd = (<Td isNumeric>{compareData.diffStd.toFixed(2)}</Td>);
+    compMean = (<Td isNumeric>{compDiffMeanOutput}</Td>);
+    compStd = (<Td isNumeric>{compDiffStdOutput}</Td>);
+    compTrendMean = (<Td isNumeric>{`${(100.0 * compareData.trendMean).toFixed(2)} %`}</Td>);
+    compTrendStd = (<Td isNumeric>{`${(100.0 * compareData.trendStd).toFixed(2)} %`}</Td>);
   }
+
+  const pointsOutput = dataIsIndicatorScore ? (data as IndicatorScore).points : 'N/A';
+  const scoreOutput = dataIsIndicatorScore ? (data as IndicatorScore).score.toFixed(2) : 'N/A';
+  const willCompleteOutput = dataIsIndicatorScore ? ((data as IndicatorScore).willCompleteBeforeDeadline ? 'Yes' : 'No') : 'N/A';
+  const requiredOutput = dataIsIndicatorScore ? (100.0 * (data as IndicatorScore).requiredCAGR).toFixed(2) : 'N/A';
+  const diffMeanOutput = dataIsIndicatorScore ? (data as IndicatorScore).diffMean.toFixed(2) : 'N/A';
+  const diffStdOutput = dataIsIndicatorScore ? (data as IndicatorScore).diffStd.toFixed(2) : 'N/A';
 
   return (
     <Stack spacing={4} w={{ base: '800px', '2xl': '1250px' }}>
@@ -239,12 +262,12 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
             <Tbody>
               <Tr>
                 <Td>U4SSC points</Td>
-                <Td isNumeric>{data.points}</Td>
+                <Td isNumeric>{pointsOutput}</Td>
                 {compPoints}
               </Tr>
               <Tr>
                 <Td>Raw score</Td>
-                <Td isNumeric>{data.score.toFixed(2)}</Td>
+                <Td isNumeric>{scoreOutput}</Td>
                 {compScore}
               </Tr>
               <Tr>
@@ -254,7 +277,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
               </Tr>
               <Tr>
                 <Td>Will complete within deadline?</Td>
-                <Td isNumeric>{data.willCompleteBeforeDeadline ? 'Yes' : 'No'}</Td>
+                <Td isNumeric>{willCompleteOutput}</Td>
                 {compWillComplete}
               </Tr>
               <Tr>
@@ -265,9 +288,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
               <Tr>
                 <Td>Required trend</Td>
                 <Td isNumeric>
-                  {`${
-                  data.requiredCAGR ? (100.0 * data.requiredCAGR).toFixed(2) : 'N/A'
-                } %`}
+                  {`${requiredOutput} %`}
                 </Td>
                 {compRequiredCAGR}
               </Tr>
@@ -291,13 +312,23 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
               </Tr>
               <Tr>
                 <Td>Mean difference</Td>
-                <Td isNumeric>{data.diffMean.toFixed(2)}</Td>                
+                <Td isNumeric>{diffMeanOutput}</Td>                
                 {compMean}
               </Tr>
               <Tr>
                 <Td>Standard deviation of difference</Td>
-                <Td isNumeric>{data.diffStd.toFixed(2)}</Td>
+                <Td isNumeric>{diffStdOutput}</Td>
                 {compStd}
+              </Tr>
+              <Tr>
+                <Td>Mean of trends</Td>
+                <Td isNumeric>{`${(100.0 * data.trendMean).toFixed(2)} %`}</Td>
+                {compTrendMean}
+              </Tr>
+              <Tr>
+                <Td>Standard deviation of trends</Td>
+                <Td isNumeric>{`${(data.trendStd).toFixed(5)}`}</Td>
+                {compTrendStd}
               </Tr>
             </Tbody>
           </Table>

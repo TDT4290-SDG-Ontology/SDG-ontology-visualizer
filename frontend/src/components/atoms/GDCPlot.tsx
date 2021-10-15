@@ -14,7 +14,7 @@ import {
   Legend,
 } from 'recharts';
 
-import { IndicatorScore } from '../../types/gdcTypes';
+import { IndicatorScore, IndicatorWithoutGoal } from '../../types/gdcTypes';
 
 type Prediction = {
   year: number;
@@ -34,9 +34,9 @@ type PlotProps = {
   currentYear: number;
 
   municipality: string;
-  data: IndicatorScore;
+  data: IndicatorScore | IndicatorWithoutGoal;
 
-  compareData?: IndicatorScore;
+  compareData?: IndicatorScore | IndicatorWithoutGoal;
   compareMunicipality?: string;
 };
 
@@ -50,13 +50,20 @@ const max = (a: number, b: number): number => (a > b ? a : b);
 const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   const { municipality, data, currentYear, compareData, compareMunicipality } = props;
 
-  const maxDeadline =
-    compareData === undefined
-      ? data.goal.deadline
-      : max(data.goal.deadline, compareData.goal.deadline);
+  let maxDeadline = currentYear;
+  const dataIsIndicatorScore = (data as IndicatorScore).goal !== undefined;
+  const compareIsIndicatorScore = compareData !== undefined && ((compareData as IndicatorScore).goal === undefined);
+  if (dataIsIndicatorScore && compareIsIndicatorScore) {
+    maxDeadline = max((data as IndicatorScore).goal.deadline, (compareData as IndicatorScore).goal.deadline);
+  } else if (dataIsIndicatorScore) {
+    maxDeadline = (data as IndicatorScore).goal.deadline;
+  } else if (compareIsIndicatorScore) {
+    maxDeadline = (compareData as IndicatorScore).goal.deadline;
+  }
 
-  const getPlotData = (score: IndicatorScore): Prediction[] => {
-    const { currentCAGR, requiredCAGR } = score;
+  const getPlotData = (score: IndicatorScore | IndicatorWithoutGoal): Prediction[] => {
+    const { currentCAGR } = score;
+    const requiredCAGR = ((score as IndicatorScore).goal !== undefined) ? (score as IndicatorScore).requiredCAGR : NaN;
 
     const bestCAGR = (score.yearlyGrowth.length > 0) ? score.yearlyGrowth[data.yearlyGrowth.length - 1].value : 0;
     const worstCAGR = (score.yearlyGrowth.length > 0) ? score.yearlyGrowth[0].value : 0;
@@ -110,9 +117,10 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   };
 
   const predictions = getPlotData(data);
-  const compPredictions = compareData !== undefined ? getPlotData(compareData) : [];
 
   if (compareData !== undefined) {
+    const compPredictions = getPlotData(compareData);
+
     // Try to unify data
     const compareByYear = new Map<number, Prediction>();
     for (const comp of compPredictions) {
