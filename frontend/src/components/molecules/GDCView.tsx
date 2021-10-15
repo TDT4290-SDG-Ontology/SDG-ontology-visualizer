@@ -85,8 +85,12 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
     const display = u4sscKPIMap.get(displayKPI);
     if (display === undefined) return null;
 
-    const compareIndicator =
-      compareGdcInfo !== undefined ? compareGdcInfo.indicators.get(displayKPI) : undefined;
+    let compareIndicator: IndicatorScore | IndicatorWithoutGoal | undefined;
+    if (compareGdcInfo !== undefined) {
+      compareIndicator = compareGdcInfo.indicators.get(displayKPI);      
+      if (compareIndicator === undefined)
+        compareIndicator = compareGdcInfo.indicatorsWithoutGoals.get(displayKPI);
+    }
 
     return (
       <AccordionItem key={`${displayKPI}`}>
