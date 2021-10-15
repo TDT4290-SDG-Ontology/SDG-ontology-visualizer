@@ -165,6 +165,58 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
     );
   }
 
+  let statsHeaders = (<Th minWidth="155px" isNumeric>Value</Th>);
+  let compPoints = null;
+  let compScore = null;
+  let compCompletion = null;
+  let compWillComplete = null;
+  let compCurrentCAGR = null;
+  let compRequiredCAGR = null;
+  let compBestCAGR = null;
+  let compWorstCAGR = null;
+  let compMean = null;
+  let compStd = null;
+  if (compareData !== undefined) {
+    const compBestGrowth = compareData.yearlyGrowth[compareData.yearlyGrowth.length - 1];
+    const compWorstGrowth = compareData.yearlyGrowth[0];
+    const compProjectedCompletion = +compareData.projectedCompletion.toFixed(1);
+
+    statsHeaders = (
+      <>
+        <Th minWidth="155px" isNumeric>
+          {municipality}
+        </Th>
+        <Th minWidth="155px" isNumeric>
+          {compareMunicipality}
+        </Th>
+      </>
+                );
+
+    compPoints = (<Td isNumeric>{compareData.points}</Td>);
+    compScore = (<Td isNumeric>{compareData.score.toFixed(2)}</Td>);
+    compCompletion = (<Td isNumeric>{compProjectedCompletion < 0 ? 'Never' : compProjectedCompletion}</Td>);
+    compWillComplete = (<Td isNumeric>{compareData.willCompleteBeforeDeadline ? 'Yes' : 'No'}</Td>);
+    compCurrentCAGR = (<Td isNumeric>{`${(100.0 * compareData.currentCAGR).toFixed(2)} %`}</Td>);
+    compRequiredCAGR = (<Td isNumeric>{`${(100.0 * compareData.requiredCAGR).toFixed(2)} %`}</Td>);
+    compBestCAGR = (
+      <Td isNumeric>
+        {`${(100.0 * compBestGrowth.value).toFixed(2)} %`}
+        <br />
+        {`(${compBestGrowth.startYear} to ${compBestGrowth.endYear})`}
+      </Td>
+                    );
+    compWorstCAGR = (
+      <Td isNumeric>
+        {`${(100.0 * compWorstGrowth.value).toFixed(2)} %`}
+        <br />
+        {`(${compWorstGrowth.startYear} to ${compWorstGrowth.endYear})`}
+      </Td>
+                    );
+
+    compMean = (<Td isNumeric>{compareData.diffMean.toFixed(2)}</Td>);
+    compStd = (<Td isNumeric>{compareData.diffStd.toFixed(2)}</Td>);
+  }
+
   return (
     <Stack spacing={4} w={{ base: '800px', '2xl': '1250px' }}>
       <Stack direction={['column', 'row']}>
@@ -175,36 +227,39 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
           compareMunicipality={compareMunicipality}
           compareData={compareData}
         />
-        <Container maxWidth="350px">
+        <Container maxWidth="475px">
           <Table variant="simple">
             <Thead>
               <Tr>
-                <Th>Statistic</Th>
-                <Th minWidth="155px" isNumeric>
-                  Value
-                </Th>
+                <Th minWidth="165px">Statistic</Th>
+                {statsHeaders}
               </Tr>
             </Thead>
             <Tbody>
               <Tr>
                 <Td>U4SSC points</Td>
                 <Td isNumeric>{data.points}</Td>
+                {compPoints}
               </Tr>
               <Tr>
                 <Td>Raw score</Td>
                 <Td isNumeric>{data.score.toFixed(2)}</Td>
+                {compScore}
               </Tr>
               <Tr>
                 <Td>Projected completion</Td>
                 <Td isNumeric>{projectedCompletion < 0 ? 'Never' : projectedCompletion}</Td>
+                {compCompletion}
               </Tr>
               <Tr>
                 <Td>Will complete within deadline?</Td>
                 <Td isNumeric>{data.willCompleteBeforeDeadline ? 'Yes' : 'No'}</Td>
+                {compWillComplete}
               </Tr>
               <Tr>
                 <Td>Current trend</Td>
                 <Td isNumeric>{`${(100.0 * data.currentCAGR).toFixed(2)} %`}</Td>
+                {compCurrentCAGR}
               </Tr>
               <Tr>
                 <Td>Required trend</Td>
@@ -213,6 +268,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                   data.requiredCAGR ? (100.0 * data.requiredCAGR).toFixed(2) : 'N/A'
                 } %`}
                 </Td>
+                {compRequiredCAGR}
               </Tr>
               <Tr>
                 <Td>Best trend</Td>
@@ -221,6 +277,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                   <br />
                   {`(${bestGrowth.startYear} to ${bestGrowth.endYear})`}
                 </Td>
+                {compBestCAGR}
               </Tr>
               <Tr>
                 <Td>Worst trend</Td>
@@ -229,14 +286,17 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                   <br />
                   {`(${worstGrowth.startYear} to ${worstGrowth.endYear})`}
                 </Td>
+                {compWorstCAGR}
               </Tr>
               <Tr>
                 <Td>Mean difference</Td>
-                <Td isNumeric>{data.diffMean.toFixed(2)}</Td>
+                <Td isNumeric>{data.diffMean.toFixed(2)}</Td>                
+                {compMean}
               </Tr>
               <Tr>
                 <Td>Standard deviation of difference</Td>
                 <Td isNumeric>{data.diffStd.toFixed(2)}</Td>
+                {compStd}
               </Tr>
             </Tbody>
           </Table>
