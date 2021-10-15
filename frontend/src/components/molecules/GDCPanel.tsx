@@ -25,12 +25,11 @@ import u4sscKPIMap from '../../common/u4sscKPIMap';
 import GDCPlot from '../atoms/GDCPlot';
 
 const correlationLabel = (name: string, corr: number) => {
-  // TODO: need to invert correlation number for 'INV_...' calculations.
-
+  // TODO: need? to invert correlation number for 'INV_...' calculations.
   if (corr >= 0.7)
     return (
       <Tooltip label={`An improvement in the "${name}" KPI would lead to a equivalent improvement in this KPI`}>
-        <Text fontWeight="bold" color="green.600">
+        <Text fontWeight="bold" color="green.600" decoration="underline dotted">
           Strong synergy
         </Text>
       </Tooltip>
@@ -38,7 +37,7 @@ const correlationLabel = (name: string, corr: number) => {
   if (corr >= 0.4)
     return (
       <Tooltip label={`An improvement in the "${name}" KPI would lead to a moderate improvement in this KPI`}>
-        <Text fontWeight="bold" color="green.600">
+        <Text fontWeight="bold" color="green.600" decoration="underline dotted">
           Moderate synergy
         </Text>
       </Tooltip>
@@ -46,7 +45,7 @@ const correlationLabel = (name: string, corr: number) => {
   if (corr > 0.1)
     return (
       <Tooltip label={`An improvement in the "${name}" KPI would lead to a small improvement in this KPI`}>
-        <Text fontWeight="bold" color="green.600">
+        <Text fontWeight="bold" color="green.600" decoration="underline dotted">
           Weak synergy
         </Text>
       </Tooltip>
@@ -55,7 +54,7 @@ const correlationLabel = (name: string, corr: number) => {
   if (corr <= -0.7)
     return (
       <Tooltip label={`An improvement in the "${name}" KPI would lead to an equivalent regression in this KPI`}>
-        <Text fontWeight="bold" color="red.600">
+        <Text fontWeight="bold" color="red.600" decoration="underline dotted">
           Strong tradeoff
         </Text>
       </Tooltip>
@@ -63,7 +62,7 @@ const correlationLabel = (name: string, corr: number) => {
   if (corr <= -0.4)
     return (
       <Tooltip label={`An improvement in the "${name}" KPI would lead to a moderate regression in this KPI`}>
-        <Text fontWeight="bold" color="red.600">
+        <Text fontWeight="bold" color="red.600" decoration="underline dotted">
           Moderate tradeoff
         </Text>
       </Tooltip>
@@ -71,7 +70,7 @@ const correlationLabel = (name: string, corr: number) => {
   if (corr < 0.1)
     return (
       <Tooltip label={`An improvement in the "${name}" KPI would lead to a small regression in this KPI`}>
-        <Text fontWeight="bold" color="red.600">
+        <Text fontWeight="bold" color="red.600" decoration="underline dotted">
           Weak tradeoff
         </Text>
       </Tooltip>
@@ -364,16 +363,6 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                 {compWorstCAGR}
               </Tr>
               <Tr>
-                <Td>Mean difference</Td>
-                <Td isNumeric>{diffMeanOutput}</Td>
-                {compMean}
-              </Tr>
-              <Tr>
-                <Td>Standard deviation of difference</Td>
-                <Td isNumeric>{diffStdOutput}</Td>
-                {compStd}
-              </Tr>
-              <Tr>
                 <Td>Mean of trends</Td>
                 <Td isNumeric>{`${(100.0 * data.trendMean).toFixed(2)} %`}</Td>
                 {compTrendMean}
@@ -382,6 +371,28 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                 <Td>Standard deviation of trends</Td>
                 <Td isNumeric>{`${data.trendStd.toFixed(5)}`}</Td>
                 {compTrendStd}
+              </Tr>
+              <Tr>
+                <Td>
+                  <Tooltip label="Mean of difference between actual values and the projected values (measure of model suitability).">
+                    <Text decoration="underline dotted">
+                      Mean difference
+                    </Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric>{diffMeanOutput}</Td>
+                {compMean}
+              </Tr>
+              <Tr>
+                <Td>                  
+                  <Tooltip label="Standard deviation of difference between actual values and the projected values.">
+                    <Text decoration="underline dotted">
+                      Standard deviation of difference
+                    </Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric>{diffStdOutput}</Td>
+                {compStd}
               </Tr>
             </Tbody>
           </Table>
