@@ -508,7 +508,6 @@ const getGoalDistance = async (req: Request, res: Response) => {
       // Find periods of largest and smallest growth.
 
       // compute CAGR between the different years
-      // TODO: consider doing something better than the current O(n^2) solution...
       const yearlyGrowth: YearlyGrowth[] = [];
       for (let i = 1; i < score.historicalData.length; i++) {
         const prev = score.historicalData[i - 1];
