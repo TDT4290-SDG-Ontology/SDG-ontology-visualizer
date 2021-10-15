@@ -164,6 +164,32 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
           indicatorScore >= 66.0 ? 3 : 
             indicatorScore >= 33.0 ? 2 : 1;
 
+
+  if (current.year <= goal.baselineYear) {
+    // current value equal enough to target -- assume it's fulfilled.
+    return {
+      kpi,
+      dataseries: current.dataseries,
+      score: points,
+      points: indicatorScore,
+      projectedCompletion: -1,
+      willCompleteBeforeDeadline: false,
+      currentCAGR: 0.0,
+      requiredCAGR: 0.0,
+      targetCAGR: 0.0,
+
+      historicalData: [],
+      yearlyGrowth: [],
+
+      goal,
+
+      diffMean: 0,
+      diffStd: 0,
+      trendMean: 0,
+      trendStd: 0,
+    };
+  }
+
   const baselineComp = Math.max(goal.baseline, 0.1); // Guard against division by 0. TODO: check for better solutions for this.
   const targetFraction = goal.target / baselineComp;
   const currentFraction = current.value / baselineComp;

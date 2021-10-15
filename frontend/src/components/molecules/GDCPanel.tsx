@@ -96,8 +96,9 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
     setLoadingCorrelated(false);
   };
 
-  const bestGrowth = data.yearlyGrowth[data.yearlyGrowth.length - 1];
-  const worstGrowth = data.yearlyGrowth[0];
+  const dummyGrowth = { value: 0, startYear: year, endYear: year };
+  const bestGrowth = (data.yearlyGrowth.length > 0) ? data.yearlyGrowth[data.yearlyGrowth.length - 1] : dummyGrowth;
+  const worstGrowth = (data.yearlyGrowth.length > 0) ? data.yearlyGrowth[0] : dummyGrowth;
 
   const projectedCompletion = +data.projectedCompletion.toFixed(1);
 

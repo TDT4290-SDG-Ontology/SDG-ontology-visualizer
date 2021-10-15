@@ -58,8 +58,8 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   const getPlotData = (score: IndicatorScore): Prediction[] => {
     const { currentCAGR, requiredCAGR } = score;
 
-    const bestCAGR = score.yearlyGrowth[data.yearlyGrowth.length - 1].value;
-    const worstCAGR = score.yearlyGrowth[0].value;
+    const bestCAGR = (score.yearlyGrowth.length > 0) ? score.yearlyGrowth[data.yearlyGrowth.length - 1].value : 0;
+    const worstCAGR = (score.yearlyGrowth.length > 0) ? score.yearlyGrowth[0].value : 0;
 
     const predictions: Prediction[] = [];
 
