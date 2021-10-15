@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax, no-plusplus */
 
-import { Stack, Text, Container, Button, Table, Tbody, Thead, Tr, Th, Td } from '@chakra-ui/react';
+import { Stack, Text, Container, Button, Table, Tbody, Thead, Tr, Th, Td, Tooltip } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
 import { IndicatorScore, CorrelatedKPI } from '../../types/gdcTypes';
@@ -15,40 +15,52 @@ const correlationLabel = (corr: number) => {
 
   if (corr >= 0.7)
     return (
-      <Text fontWeight="bold" color="green.600">
-        Strong synergy
-      </Text>
+      <Tooltip label="An improvement in this KPI would lead to a similar improvement">
+        <Text fontWeight="bold" color="green.600">
+          Strong synergy
+        </Text>
+      </Tooltip>
     );
   if (corr >= 0.4)
     return (
-      <Text fontWeight="bold" color="green.600">
-        Moderate synergy
-      </Text>
+      <Tooltip label="An improvement in this KPI would lead to a moderate improvement">
+        <Text fontWeight="bold" color="green.600">
+          Moderate synergy
+        </Text>
+      </Tooltip>
     );
   if (corr > 0.1)
     return (
-      <Text fontWeight="bold" color="green.600">
-        Weak synergy
-      </Text>
+      <Tooltip label="An improvement in this KPI would lead to a small improvement">
+        <Text fontWeight="bold" color="green.600">
+          Weak synergy
+        </Text>
+      </Tooltip>
     );
 
   if (corr <= -0.7)
     return (
-      <Text fontWeight="bold" color="red.600">
-        Strong tradeoff
-      </Text>
+      <Tooltip label="An improvement in this KPI would lead to a similar regression">
+        <Text fontWeight="bold" color="red.600">
+          Strong tradeoff
+        </Text>
+      </Tooltip>
     );
   if (corr <= -0.4)
     return (
-      <Text fontWeight="bold" color="red.600">
-        Moderate tradeoff
-      </Text>
+      <Tooltip label="An improvement in this KPI would lead to a moderate regression">
+        <Text fontWeight="bold" color="red.600">
+          Moderate tradeoff
+        </Text>
+      </Tooltip>
     );
   if (corr < 0.1)
-    return (
-      <Text fontWeight="bold" color="red.600">
-        Weak tradeoff
-      </Text>
+    return (      
+      <Tooltip label="An improvement in this KPI would lead to a small regression">
+        <Text fontWeight="bold" color="red.600">
+          Weak tradeoff
+        </Text>
+      </Tooltip>
     );
 
   return <Text fontWeight="bold">Ambigouos</Text>;
