@@ -460,7 +460,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
       const diffMean = predictionDiffs.reduce((acc, val) => acc + val) / predictionDiffs.length;
       const squaredDiff = predictionDiffs.reduce(
-        (acc, val) => acc + (val - diffMean) * (val - diffMean),
+        (acc, val) => acc + (val - diffMean) * (val - diffMean), 0.0
       );
       const diffStd =
         predictionDiffs.length > 1 ? Math.sqrt(squaredDiff / (predictionDiffs.length - 1)) : 0;
@@ -485,8 +485,8 @@ const getGoalDistance = async (req: Request, res: Response) => {
       if (yearlyGrowth.length > 0) {        
         const trends = yearlyGrowth.map(g => g.value);
         const trendMean = trends.reduce((acc, v) => acc + v) / yearlyGrowth.length;
-        const squaredDiffTrend = trends.reduce((acc, v) => acc + (v - trendMean) * (v - trendMean));
-        const trendStd = (trends.length > 1) ? Math.sqrt(squaredDiffTrend / (trends.length - 1)) : 0; 
+        const squaredDiffTrend = trends.reduce((acc, v) => acc + (v - trendMean) * (v - trendMean), 0.0);
+        const trendStd = (trends.length > 1) ? Math.sqrt(squaredDiffTrend / (trends.length - 1)) : 0.0; 
 
         score.trendMean = trendMean;
         score.trendStd = trendStd;
@@ -525,8 +525,8 @@ const getGoalDistance = async (req: Request, res: Response) => {
       if (yearlyGrowth.length > 0) {        
         const trends = yearlyGrowth.map(g => g.value);
         const trendMean = trends.reduce((acc, v) => acc + v) / yearlyGrowth.length;
-        const squaredDiffTrend = trends.reduce((acc, v) => acc + (v - trendMean) * (v - trendMean));
-        const trendStd = (trends.length > 1) ? Math.sqrt(squaredDiffTrend / (trends.length - 1)) : 0; 
+        const squaredDiffTrend = trends.reduce((acc, v) => acc + (v - trendMean) * (v - trendMean), 0.0);
+        const trendStd = (trends.length > 1) ? Math.sqrt(squaredDiffTrend / (trends.length - 1)) : 0.0; 
 
         score.trendMean = trendMean;
         score.trendStd = trendStd;
