@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax, no-plusplus, no-nested-ternary */
 
-import { Stack, Text, Container, Button, Table, Tbody, Thead, Tr, Th, Td, Tooltip } from '@chakra-ui/react';
+import { Stack, Text, Container, Button, Table, Tbody, Thead, Tr, Th, Td, Tooltip, Wrap, WrapItem } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
 import { IndicatorScore, CorrelatedKPI, IndicatorWithoutGoal } from '../../types/gdcTypes';
@@ -243,15 +243,17 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
 
   return (
     <Stack spacing={4} w={{ base: '800px', '2xl': '1250px' }}>
-      <Stack direction={['column', 'row']}>
-        <GDCPlot
-          currentYear={year}
-          municipality={municipality}
-          data={data}
-          compareMunicipality={compareMunicipality}
-          compareData={compareData}
-        />
-        <Container maxWidth="475px">
+      <Wrap>
+        <WrapItem>
+          <GDCPlot
+            currentYear={year}
+            municipality={municipality}
+            data={data}
+            compareMunicipality={compareMunicipality}
+            compareData={compareData}
+          />
+        </WrapItem>
+        <WrapItem maxWidth="475px">
           <Table variant="simple">
             <Thead>
               <Tr>
@@ -332,8 +334,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
               </Tr>
             </Tbody>
           </Table>
-        </Container>
-      </Stack>
+        </WrapItem>
+      </Wrap>
       {correlatedTable || loadCorrelatedButton}
     </Stack>
   );
