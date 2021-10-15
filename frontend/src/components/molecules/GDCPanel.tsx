@@ -203,7 +203,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                 </Td>
               </Tr>
               <Tr>
-                <Td>Best growth</Td>
+                <Td>Best trend</Td>
                 <Td isNumeric>
                   {`${(100.0 * bestGrowth.value).toFixed(2)} %`}
                   <br />
@@ -211,7 +211,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                 </Td>
               </Tr>
               <Tr>
-                <Td>Worst growth</Td>
+                <Td>Worst trend</Td>
                 <Td isNumeric>
                   {`${(100.0 * worstGrowth.value).toFixed(2)} %`}
                   <br />
