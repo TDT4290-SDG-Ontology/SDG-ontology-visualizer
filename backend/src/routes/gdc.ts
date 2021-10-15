@@ -80,6 +80,10 @@ type IndicatorScore = {
   // between the predicted value and the actual measured value.
   diffMean: number;
   diffStd: number;
+
+  // Mean and standard deviation of trends
+  trendMean: number;
+  trendStd: number;
 };
 
 type IndicatorWithoutGoal = {
@@ -112,6 +116,8 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
 
       diffMean: 0,
       diffStd: 0,
+      trendMean: 0,
+      trendStd: 0,
     };
   }
 
@@ -180,6 +186,8 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
 
       diffMean: 0,
       diffStd: 0,
+      trendMean: 0,
+      trendStd: 0,
     };
   }
 
@@ -221,6 +229,8 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
 
         diffMean: 0,
         diffStd: 0,
+        trendMean: 0,
+        trendStd: 0,
       };
     }
   }
@@ -273,6 +283,8 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
 
     diffMean: 0,
     diffStd: 0,
+    trendMean: 0,
+    trendStd: 0,
   };
 };
 
@@ -431,6 +443,16 @@ const getGoalDistance = async (req: Request, res: Response) => {
           const CAGR = (curr.value / prev.value) ** (1 / (curr.year - prev.year)) - 1.0;
           yearlyGrowth.push({ value: CAGR, startYear: prev.year, endYear: curr.year });
         }
+      }
+
+      if (yearlyGrowth.length > 0) {        
+        const trends = yearlyGrowth.map(g => g.value);
+        const trendMean = trends.reduce((acc, v) => acc + v) / yearlyGrowth.length;
+        const squaredDiffTrend = trends.reduce((acc, v) => acc + (v - trendMean) * (v - trendMean));
+        const trendStd = (trends.length > 1) ? Math.sqrt(squaredDiffTrend / (trends.length - 1)) : 0; 
+
+        score.trendMean = trendMean;
+        score.trendStd = trendStd;
       }
 
       if (score.goal.calculationMethod.startsWith('INV_'))
