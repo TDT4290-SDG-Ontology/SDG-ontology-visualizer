@@ -471,15 +471,12 @@ const getGoalDistance = async (req: Request, res: Response) => {
       // Find periods of largest and smallest growth.
 
       // compute CAGR between the different years
-      // TODO: consider doing something better than the current O(n^2) solution...
       const yearlyGrowth: YearlyGrowth[] = [];
-      for (let i = 0; i < score.historicalData.length; i++) {
-        for (let j = i + 1; j < score.historicalData.length; j++) {
-          const prev = score.historicalData[i];
-          const curr = score.historicalData[j];
-          const CAGR = (curr.value / prev.value) ** (1 / (curr.year - prev.year)) - 1.0;
-          yearlyGrowth.push({ value: CAGR, startYear: prev.year, endYear: curr.year });
-        }
+      for (let i = 1; i < score.historicalData.length; i++) {
+        const prev = score.historicalData[i - 1];
+        const curr = score.historicalData[i];
+        const CAGR = (curr.value / prev.value) ** (1 / (curr.year - prev.year)) - 1.0;
+        yearlyGrowth.push({ value: CAGR, startYear: prev.year, endYear: curr.year });
       }
 
       if (yearlyGrowth.length > 0) {        
@@ -513,13 +510,11 @@ const getGoalDistance = async (req: Request, res: Response) => {
       // compute CAGR between the different years
       // TODO: consider doing something better than the current O(n^2) solution...
       const yearlyGrowth: YearlyGrowth[] = [];
-      for (let i = 0; i < score.historicalData.length; i++) {
-        for (let j = i + 1; j < score.historicalData.length; j++) {
-          const prev = score.historicalData[i];
-          const curr = score.historicalData[j];
-          const CAGR = (curr.value / prev.value) ** (1 / (curr.year - prev.year)) - 1.0;
-          yearlyGrowth.push({ value: CAGR, startYear: prev.year, endYear: curr.year });
-        }
+      for (let i = 1; i < score.historicalData.length; i++) {
+        const prev = score.historicalData[i - 1];
+        const curr = score.historicalData[i];
+        const CAGR = (curr.value / prev.value) ** (1 / (curr.year - prev.year)) - 1.0;
+        yearlyGrowth.push({ value: CAGR, startYear: prev.year, endYear: curr.year });
       }
 
       if (yearlyGrowth.length > 0) {        
