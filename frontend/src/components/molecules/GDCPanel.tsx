@@ -191,11 +191,11 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                 <Td isNumeric>{data.willCompleteBeforeDeadline ? 'Yes' : 'No'}</Td>
               </Tr>
               <Tr>
-                <Td>Current growth</Td>
+                <Td>Current trend</Td>
                 <Td isNumeric>{`${(100.0 * data.currentCAGR).toFixed(2)} %`}</Td>
               </Tr>
               <Tr>
-                <Td>Required growth</Td>
+                <Td>Required trend</Td>
                 <Td isNumeric>
                   {`${
                   data.requiredCAGR ? (100.0 * data.requiredCAGR).toFixed(2) : 'N/A'
