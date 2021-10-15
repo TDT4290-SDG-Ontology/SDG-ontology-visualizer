@@ -24,12 +24,12 @@ import u4sscKPIMap from '../../common/u4sscKPIMap';
 
 import GDCPlot from '../atoms/GDCPlot';
 
-const correlationLabel = (corr: number) => {
+const correlationLabel = (name: string, corr: number) => {
   // TODO: need to invert correlation number for 'INV_...' calculations.
 
   if (corr >= 0.7)
     return (
-      <Tooltip label="An improvement in this KPI would lead to a similar improvement">
+      <Tooltip label={`An improvement in the "${name}" KPI would lead to a equivalent improvement in this KPI`}>
         <Text fontWeight="bold" color="green.600">
           Strong synergy
         </Text>
@@ -37,7 +37,7 @@ const correlationLabel = (corr: number) => {
     );
   if (corr >= 0.4)
     return (
-      <Tooltip label="An improvement in this KPI would lead to a moderate improvement">
+      <Tooltip label={`An improvement in the "${name}" KPI would lead to a moderate improvement in this KPI`}>
         <Text fontWeight="bold" color="green.600">
           Moderate synergy
         </Text>
@@ -45,7 +45,7 @@ const correlationLabel = (corr: number) => {
     );
   if (corr > 0.1)
     return (
-      <Tooltip label="An improvement in this KPI would lead to a small improvement">
+      <Tooltip label={`An improvement in the "${name}" KPI would lead to a small improvement in this KPI`}>
         <Text fontWeight="bold" color="green.600">
           Weak synergy
         </Text>
@@ -54,7 +54,7 @@ const correlationLabel = (corr: number) => {
 
   if (corr <= -0.7)
     return (
-      <Tooltip label="An improvement in this KPI would lead to a similar regression">
+      <Tooltip label={`An improvement in the "${name}" KPI would lead to an equivalent regression in this KPI`}>
         <Text fontWeight="bold" color="red.600">
           Strong tradeoff
         </Text>
@@ -62,7 +62,7 @@ const correlationLabel = (corr: number) => {
     );
   if (corr <= -0.4)
     return (
-      <Tooltip label="An improvement in this KPI would lead to a moderate regression">
+      <Tooltip label={`An improvement in the "${name}" KPI would lead to a moderate regression in this KPI`}>
         <Text fontWeight="bold" color="red.600">
           Moderate tradeoff
         </Text>
@@ -70,7 +70,7 @@ const correlationLabel = (corr: number) => {
     );
   if (corr < 0.1)
     return (
-      <Tooltip label="An improvement in this KPI would lead to a small regression">
+      <Tooltip label={`An improvement in the "${name}" KPI would lead to a small regression in this KPI`}>
         <Text fontWeight="bold" color="red.600">
           Weak tradeoff
         </Text>
@@ -161,12 +161,13 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
             <Tbody>
               {correlatedKPIs.map((kpi) => {
                 const display = u4sscKPIMap.get(kpi.kpi);
+                const displayName = display === undefined ? '' : display.eng;
                 const name = display === undefined ? <Td /> : <Td>{display.eng}</Td>;
                 return (
                   <Tr key={kpi.kpi}>
                     <Td minWidth="175px">{kpi.kpi}</Td>
                     {name}
-                    <Td>{correlationLabel(kpi.correlation)}</Td>
+                    <Td>{correlationLabel(displayName, kpi.correlation)}</Td>
                     <Td isNumeric>{kpi.subgoal.replace(') Teknologi', '')}</Td>
                   </Tr>
                 );
