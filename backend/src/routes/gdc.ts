@@ -89,7 +89,16 @@ type IndicatorScore = {
 type IndicatorWithoutGoal = {
   kpi: string;
   dataseries: string | null;
+
+  currentCAGR: number;
+
   historicalData: Datapoint[];
+  yearlyGrowth: YearlyGrowth[];
+
+  trendMean: number;
+  trendStd: number;
+
+  calculationMethod: string;
 };
 
 const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorScore => {
@@ -355,6 +364,11 @@ const getGoalDistance = async (req: Request, res: Response) => {
           kpi: series.kpi,
           dataseries: series.dataseries,
           historicalData: [],
+          yearlyGrowth: [],
+          currentCAGR: 0.0,
+          trendMean: 0.0,
+          trendStd: 0.0,
+          calculationMethod: series.calculationMethod,
         });
 
         /* eslint-disable-next-line no-continue */
@@ -430,9 +444,6 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
       // Find periods of largest and smallest growth.
 
-      // sort historical data by year
-      score.historicalData.sort((a, b) => a.year - b.year);
-
       // compute CAGR between the different years
       // TODO: consider doing something better than the current O(n^2) solution...
       const yearlyGrowth: YearlyGrowth[] = [];
@@ -456,6 +467,46 @@ const getGoalDistance = async (req: Request, res: Response) => {
       }
 
       if (score.goal.calculationMethod.startsWith('INV_'))
+        yearlyGrowth.sort((a, b) => b.value - a.value);
+      else yearlyGrowth.sort((a, b) => a.value - b.value);
+
+      score.yearlyGrowth = yearlyGrowth;
+    }
+
+    // Calculate stats for indicators without goals
+    for (const score of indicatorsWithoutGoals.values()) {
+      score.historicalData.sort((a, b) => a.year - b.year);
+      
+      const first = score.historicalData[0];
+      const current = score.historicalData[score.historicalData.length - 1]; 
+      if (current.year !== first.year)
+        score.currentCAGR = (current.value / first.value) ** (1.0 / (current.year - first.year)) - 1.0;
+
+      // Find periods of largest and smallest growth.
+
+      // compute CAGR between the different years
+      // TODO: consider doing something better than the current O(n^2) solution...
+      const yearlyGrowth: YearlyGrowth[] = [];
+      for (let i = 0; i < score.historicalData.length; i++) {
+        for (let j = i + 1; j < score.historicalData.length; j++) {
+          const prev = score.historicalData[i];
+          const curr = score.historicalData[j];
+          const CAGR = (curr.value / prev.value) ** (1 / (curr.year - prev.year)) - 1.0;
+          yearlyGrowth.push({ value: CAGR, startYear: prev.year, endYear: curr.year });
+        }
+      }
+
+      if (yearlyGrowth.length > 0) {        
+        const trends = yearlyGrowth.map(g => g.value);
+        const trendMean = trends.reduce((acc, v) => acc + v) / yearlyGrowth.length;
+        const squaredDiffTrend = trends.reduce((acc, v) => acc + (v - trendMean) * (v - trendMean));
+        const trendStd = (trends.length > 1) ? Math.sqrt(squaredDiffTrend / (trends.length - 1)) : 0; 
+
+        score.trendMean = trendMean;
+        score.trendStd = trendStd;
+      }
+
+      if (score.calculationMethod.startsWith('INV_'))
         yearlyGrowth.sort((a, b) => b.value - a.value);
       else yearlyGrowth.sort((a, b) => a.value - b.value);
 
