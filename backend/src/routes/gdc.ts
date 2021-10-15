@@ -292,8 +292,10 @@ const getGoalDistance = async (req: Request, res: Response) => {
   try {
     const startTime = performance.now();
 
+    const goalMunicipality = (req.body.goalMunicipality !== undefined) ? req.body.goalMunicipality : req.body.municipality;
+
     const dataseriesPromise = getGDCDataSeries(req.body.municipality, req.body.year);
-    const goalsPromise = getGDCGoals(req.body.municipality);
+    const goalsPromise = getGDCGoals(goalMunicipality);
 
     const historicalPromise = getGDCDataSeriesUpto(req.body.municipality, req.body.year);
 
