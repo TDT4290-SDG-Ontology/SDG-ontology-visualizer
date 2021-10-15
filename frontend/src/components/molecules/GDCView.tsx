@@ -23,7 +23,7 @@ import {
 import React, { useEffect, useState } from 'react';
 
 import { getGDCOutput } from '../../api/gdc';
-import { GDCOutput, IndicatorScore } from '../../types/gdcTypes';
+import { GDCOutput, IndicatorScore, IndicatorWithoutGoal } from '../../types/gdcTypes';
 
 import u4sscKPIMap from '../../common/u4sscKPIMap';
 
@@ -81,7 +81,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
     loadGDCOutput(municipalityCode, year);
   }, []);
 
-  const renderKPIAccordion = (displayKPI: string, score: IndicatorScore) => {
+  const renderKPIAccordion = (displayKPI: string, score: IndicatorScore | IndicatorWithoutGoal) => {
     const display = u4sscKPIMap.get(displayKPI);
     if (display === undefined) return null;
 
@@ -166,26 +166,9 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Table>
-            <Thead>
-              <Tr>
-                <Th>KPI</Th>
-                <Th>Name</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {Array.from(gdcInfo.indicatorsWithoutGoals.keys()).map((ind) => {
-                const display = u4sscKPIMap.get(ind);
-                const name = display === undefined ? null : <Td>{display.eng}</Td>;
-                return (
-                  <Tr key={`${ind}`}>
-                    <Td>{ind}</Td>
-                    {name}
-                  </Tr>
-                );
-              })}
-            </Tbody>
-          </Table>
+          <Accordion allowToggle allowMultiple>
+            { Array.from(gdcInfo.indicatorsWithoutGoals).map(([key, val]) => renderKPIAccordion(key, val)) }
+          </Accordion>
         </AccordionPanel>
       </AccordionItem>
     );
