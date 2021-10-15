@@ -21,7 +21,7 @@ const ViewMunicipality: React.FC = () => {
   const [municipalityInfo, setMunicipalityInfo] = useState<MunicipalityInfo>();
 
   const loadData = async (muniCode: string) => {
-    const data = await Promise.all([ getAvailableYears(muniCode), getMunicipalityInfo(muniCode) ]);
+    const data = await Promise.all([getAvailableYears(muniCode), getMunicipalityInfo(muniCode)]);
 
     const years: number[] = data[0];
     const muniInfo: MunicipalityInfo = data[1];

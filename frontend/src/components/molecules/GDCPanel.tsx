@@ -1,6 +1,20 @@
 /* eslint-disable no-restricted-syntax, no-plusplus, no-nested-ternary */
 
-import { Stack, Text, Container, Button, Table, Tbody, Thead, Tr, Th, Td, Tooltip, Wrap, WrapItem } from '@chakra-ui/react';
+import {
+  Stack,
+  Text,
+  Container,
+  Button,
+  Table,
+  Tbody,
+  Thead,
+  Tr,
+  Th,
+  Td,
+  Tooltip,
+  Wrap,
+  WrapItem,
+} from '@chakra-ui/react';
 import React, { useState } from 'react';
 
 import { IndicatorScore, CorrelatedKPI, IndicatorWithoutGoal } from '../../types/gdcTypes';
@@ -55,7 +69,7 @@ const correlationLabel = (corr: number) => {
       </Tooltip>
     );
   if (corr < 0.1)
-    return (      
+    return (
       <Tooltip label="An improvement in this KPI would lead to a small regression">
         <Text fontWeight="bold" color="red.600">
           Weak tradeoff
@@ -97,13 +111,17 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
   };
 
   const dataIsIndicatorScore = (data as IndicatorScore).goal !== undefined;
-  const compareIsIndicatorScore = compareData !== undefined && ((compareData as IndicatorScore).goal !== undefined);
+  const compareIsIndicatorScore =
+    compareData !== undefined && (compareData as IndicatorScore).goal !== undefined;
 
   const dummyGrowth = { value: 0, startYear: year, endYear: year };
-  const bestGrowth = (data.yearlyGrowth.length > 0) ? data.yearlyGrowth[data.yearlyGrowth.length - 1] : dummyGrowth;
-  const worstGrowth = (data.yearlyGrowth.length > 0) ? data.yearlyGrowth[0] : dummyGrowth;
+  const bestGrowth =
+    data.yearlyGrowth.length > 0 ? data.yearlyGrowth[data.yearlyGrowth.length - 1] : dummyGrowth;
+  const worstGrowth = data.yearlyGrowth.length > 0 ? data.yearlyGrowth[0] : dummyGrowth;
 
-  const projectedCompletion = (dataIsIndicatorScore) ? +(data as IndicatorScore).projectedCompletion.toFixed(1) : -1;
+  const projectedCompletion = dataIsIndicatorScore
+    ? +(data as IndicatorScore).projectedCompletion.toFixed(1)
+    : -1;
 
   let correlatedTable = null;
   if (correlatedKPIs !== undefined) {
@@ -169,7 +187,11 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
     );
   }
 
-  let statsHeaders = (<Th minWidth="155px" isNumeric>Value</Th>);
+  let statsHeaders = (
+    <Th minWidth="155px" isNumeric>
+      Value
+    </Th>
+  );
   let compPoints = null;
   let compScore = null;
   let compCompletion = null;
@@ -183,9 +205,15 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
   let compTrendMean = null;
   let compTrendStd = null;
   if (compareData !== undefined) {
-    const compBestGrowth = (compareData.yearlyGrowth.length > 0) ? compareData.yearlyGrowth[compareData.yearlyGrowth.length - 1] : dummyGrowth;
-    const compWorstGrowth = (compareData.yearlyGrowth.length > 0) ? compareData.yearlyGrowth[0] : dummyGrowth;
-    const compProjectedCompletion = (compareIsIndicatorScore) ? +(compareData as IndicatorScore).projectedCompletion.toFixed(1) : -1;
+    const compBestGrowth =
+      compareData.yearlyGrowth.length > 0
+        ? compareData.yearlyGrowth[compareData.yearlyGrowth.length - 1]
+        : dummyGrowth;
+    const compWorstGrowth =
+      compareData.yearlyGrowth.length > 0 ? compareData.yearlyGrowth[0] : dummyGrowth;
+    const compProjectedCompletion = compareIsIndicatorScore
+      ? +(compareData as IndicatorScore).projectedCompletion.toFixed(1)
+      : -1;
 
     statsHeaders = (
       <>
@@ -196,49 +224,73 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
           {compareMunicipality}
         </Th>
       </>
-                );
+    );
 
-    const compPointsOutput = compareIsIndicatorScore ? (compareData as IndicatorScore).points : 'N/A';
-    const compScoreOutput = compareIsIndicatorScore ? (compareData as IndicatorScore).score.toFixed(2) : 'N/A';
-    const compWillCompleteOutput = compareIsIndicatorScore ? ((compareData as IndicatorScore).willCompleteBeforeDeadline ? 'Yes' : 'No') : 'N/A';
+    const compPointsOutput = compareIsIndicatorScore
+      ? (compareData as IndicatorScore).points
+      : 'N/A';
+    const compScoreOutput = compareIsIndicatorScore
+      ? (compareData as IndicatorScore).score.toFixed(2)
+      : 'N/A';
+    const compWillCompleteOutput = compareIsIndicatorScore
+      ? (compareData as IndicatorScore).willCompleteBeforeDeadline
+        ? 'Yes'
+        : 'No'
+      : 'N/A';
     const compCurrentCAGROutput = (100.0 * compareData.currentCAGR).toFixed(2);
-    const compRequiredCAGROutput = compareIsIndicatorScore ? (100.0 * (compareData as IndicatorScore).requiredCAGR).toFixed(2) : 'N/A';
+    const compRequiredCAGROutput = compareIsIndicatorScore
+      ? (100.0 * (compareData as IndicatorScore).requiredCAGR).toFixed(2)
+      : 'N/A';
 
-    const compDiffMeanOutput = compareIsIndicatorScore ? (compareData as IndicatorScore).diffMean.toFixed(2) : 'N/A';
-    const compDiffStdOutput = compareIsIndicatorScore ? (compareData as IndicatorScore).diffStd.toFixed(2) : 'N/A';
+    const compDiffMeanOutput = compareIsIndicatorScore
+      ? (compareData as IndicatorScore).diffMean.toFixed(2)
+      : 'N/A';
+    const compDiffStdOutput = compareIsIndicatorScore
+      ? (compareData as IndicatorScore).diffStd.toFixed(2)
+      : 'N/A';
 
-    compPoints = (<Td isNumeric>{compPointsOutput}</Td>);
-    compScore = (<Td isNumeric>{compScoreOutput}</Td>);
-    compCompletion = (<Td isNumeric>{compProjectedCompletion < 0 ? 'Never' : compProjectedCompletion}</Td>);
-    compWillComplete = (<Td isNumeric>{compWillCompleteOutput}</Td>);
-    compCurrentCAGR = (<Td isNumeric>{`${compCurrentCAGROutput} %`}</Td>);
-    compRequiredCAGR = (<Td isNumeric>{`${compRequiredCAGROutput} %`}</Td>);
+    compPoints = <Td isNumeric>{compPointsOutput}</Td>;
+    compScore = <Td isNumeric>{compScoreOutput}</Td>;
+    compCompletion = (
+      <Td isNumeric>{compProjectedCompletion < 0 ? 'Never' : compProjectedCompletion}</Td>
+    );
+    compWillComplete = <Td isNumeric>{compWillCompleteOutput}</Td>;
+    compCurrentCAGR = <Td isNumeric>{`${compCurrentCAGROutput} %`}</Td>;
+    compRequiredCAGR = <Td isNumeric>{`${compRequiredCAGROutput} %`}</Td>;
     compBestCAGR = (
       <Td isNumeric>
         {`${(100.0 * compBestGrowth.value).toFixed(2)} %`}
         <br />
         {`(${compBestGrowth.startYear} to ${compBestGrowth.endYear})`}
       </Td>
-                    );
+    );
     compWorstCAGR = (
       <Td isNumeric>
         {`${(100.0 * compWorstGrowth.value).toFixed(2)} %`}
         <br />
         {`(${compWorstGrowth.startYear} to ${compWorstGrowth.endYear})`}
       </Td>
-                    );
+    );
 
-    compMean = (<Td isNumeric>{compDiffMeanOutput}</Td>);
-    compStd = (<Td isNumeric>{compDiffStdOutput}</Td>);
-    compTrendMean = (<Td isNumeric>{`${(100.0 * compareData.trendMean).toFixed(2)} %`}</Td>);
-    compTrendStd = (<Td isNumeric>{`${(100.0 * compareData.trendStd).toFixed(2)} %`}</Td>);
+    compMean = <Td isNumeric>{compDiffMeanOutput}</Td>;
+    compStd = <Td isNumeric>{compDiffStdOutput}</Td>;
+    compTrendMean = <Td isNumeric>{`${(100.0 * compareData.trendMean).toFixed(2)} %`}</Td>;
+    compTrendStd = <Td isNumeric>{`${(100.0 * compareData.trendStd).toFixed(2)} %`}</Td>;
   }
 
   const pointsOutput = dataIsIndicatorScore ? (data as IndicatorScore).points : 'N/A';
   const scoreOutput = dataIsIndicatorScore ? (data as IndicatorScore).score.toFixed(2) : 'N/A';
-  const willCompleteOutput = dataIsIndicatorScore ? ((data as IndicatorScore).willCompleteBeforeDeadline ? 'Yes' : 'No') : 'N/A';
-  const requiredOutput = dataIsIndicatorScore ? (100.0 * (data as IndicatorScore).requiredCAGR).toFixed(2) : 'N/A';
-  const diffMeanOutput = dataIsIndicatorScore ? (data as IndicatorScore).diffMean.toFixed(2) : 'N/A';
+  const willCompleteOutput = dataIsIndicatorScore
+    ? (data as IndicatorScore).willCompleteBeforeDeadline
+      ? 'Yes'
+      : 'No'
+    : 'N/A';
+  const requiredOutput = dataIsIndicatorScore
+    ? (100.0 * (data as IndicatorScore).requiredCAGR).toFixed(2)
+    : 'N/A';
+  const diffMeanOutput = dataIsIndicatorScore
+    ? (data as IndicatorScore).diffMean.toFixed(2)
+    : 'N/A';
   const diffStdOutput = dataIsIndicatorScore ? (data as IndicatorScore).diffStd.toFixed(2) : 'N/A';
 
   return (
@@ -289,9 +341,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
               </Tr>
               <Tr>
                 <Td>Required trend</Td>
-                <Td isNumeric>
-                  {`${requiredOutput} %`}
-                </Td>
+                <Td isNumeric>{`${requiredOutput} %`}</Td>
                 {compRequiredCAGR}
               </Tr>
               <Tr>
@@ -314,7 +364,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
               </Tr>
               <Tr>
                 <Td>Mean difference</Td>
-                <Td isNumeric>{diffMeanOutput}</Td>                
+                <Td isNumeric>{diffMeanOutput}</Td>
                 {compMean}
               </Tr>
               <Tr>
@@ -329,7 +379,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
               </Tr>
               <Tr>
                 <Td>Standard deviation of trends</Td>
-                <Td isNumeric>{`${(data.trendStd).toFixed(5)}`}</Td>
+                <Td isNumeric>{`${data.trendStd.toFixed(5)}`}</Td>
                 {compTrendStd}
               </Tr>
             </Tbody>

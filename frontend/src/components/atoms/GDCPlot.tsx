@@ -45,16 +45,20 @@ const defaultProps = {
   compareMunicipality: undefined,
 };
 
-const max = (a: number, b: number): number => (a > b) ? a : b;
+const max = (a: number, b: number): number => (a > b ? a : b);
 
 const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   const { municipality, data, currentYear, compareData, compareMunicipality } = props;
 
   let maxDeadline = currentYear;
   const dataIsIndicatorScore = (data as IndicatorScore).goal !== undefined;
-  const compareIsIndicatorScore = compareData !== undefined && ((compareData as IndicatorScore).goal === undefined);
+  const compareIsIndicatorScore =
+    compareData !== undefined && (compareData as IndicatorScore).goal === undefined;
   if (dataIsIndicatorScore && compareIsIndicatorScore) {
-    maxDeadline = max((data as IndicatorScore).goal.deadline, (compareData as IndicatorScore).goal.deadline);
+    maxDeadline = max(
+      (data as IndicatorScore).goal.deadline,
+      (compareData as IndicatorScore).goal.deadline,
+    );
   } else if (dataIsIndicatorScore) {
     maxDeadline = (data as IndicatorScore).goal.deadline;
   } else if (compareIsIndicatorScore) {
@@ -63,10 +67,12 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
 
   const getPlotData = (score: IndicatorScore | IndicatorWithoutGoal): Prediction[] => {
     const { currentCAGR } = score;
-    const requiredCAGR = ((score as IndicatorScore).goal !== undefined) ? (score as IndicatorScore).requiredCAGR : NaN;
+    const requiredCAGR =
+      (score as IndicatorScore).goal !== undefined ? (score as IndicatorScore).requiredCAGR : NaN;
 
-    const bestCAGR = (score.yearlyGrowth.length > 0) ? score.yearlyGrowth[data.yearlyGrowth.length - 1].value : 0;
-    const worstCAGR = (score.yearlyGrowth.length > 0) ? score.yearlyGrowth[0].value : 0;
+    const bestCAGR =
+      score.yearlyGrowth.length > 0 ? score.yearlyGrowth[data.yearlyGrowth.length - 1].value : 0;
+    const worstCAGR = score.yearlyGrowth.length > 0 ? score.yearlyGrowth[0].value : 0;
 
     const predictions: Prediction[] = [];
 

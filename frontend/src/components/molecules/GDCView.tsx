@@ -87,7 +87,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
 
     let compareIndicator: IndicatorScore | IndicatorWithoutGoal | undefined;
     if (compareGdcInfo !== undefined) {
-      compareIndicator = compareGdcInfo.indicators.get(displayKPI);      
+      compareIndicator = compareGdcInfo.indicators.get(displayKPI);
       if (compareIndicator === undefined)
         compareIndicator = compareGdcInfo.indicatorsWithoutGoals.get(displayKPI);
     }
@@ -171,7 +171,9 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
         </AccordionButton>
         <AccordionPanel>
           <Accordion allowToggle allowMultiple>
-            { Array.from(gdcInfo.indicatorsWithoutGoals).map(([key, val]) => renderKPIAccordion(key, val)) }
+            {Array.from(gdcInfo.indicatorsWithoutGoals).map(([key, val]) =>
+              renderKPIAccordion(key, val),
+            )}
           </Accordion>
         </AccordionPanel>
       </AccordionItem>
