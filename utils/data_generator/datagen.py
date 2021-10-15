@@ -2,6 +2,7 @@ import u4ssc
 import requests
 import json
 import time
+import random
 
 BASE_URL = "http://localhost:3001/api"
 SEND_BULK_DATA = True
@@ -58,11 +59,34 @@ def get_data(kpi, municipality, year):
 
 # print(get_data(u4ssc.indicators[0].id))
 
+skip_probability = {
+	"se.1281": (0.05, 0.1, 0.05),   # goal, data series, data point
+	"no.1103": (0.05, 0.05, 0.025), 
+	"nl.0772": (0.05, 0.1, 0.1),  
+}
+
+skips = {}
+
+for mun, probs in skip_probability.items():
+	ds_skips = []
+	prob = skip_probability.get(mun, (-1, -1, -1))
+	for ds in u4ssc.all_dataseries:
+		if random.uniform(0, 1) < prob[1]:
+			ds_skips.append(ds)
+
+	skips[mun] = ds_skips
+
 def generate_goals(token, municipality, goal_goodness):
 	if SEND_BULK_DATA:
 		goals = []
 		for ds in u4ssc.all_dataseries:
-			goal, deadline, baseline, baselineYear, start_range = ds.generate_goal(goal_goodness)
+			skip_probs = skip_probability.get(municipality, (-1, -1, -1))
+			if skip_probs[0] > 0:			
+				if random.uniform(0, 1) < skip_probs[0]:
+					continue
+
+			goal, deadline, baseline, baselineYear, start_range = ds.generate_goal(goal_goodness)			
+
 			if ds.variant:
 				item = {
 					'indicator': ds.kpi, 
@@ -95,6 +119,15 @@ def generate_data(token, municipality, goal_goodness, data_goodness, year):
 	if SEND_BULK_DATA:
 		data = []
 		for ds in u4ssc.all_dataseries:
+			skip_probs = skip_probability.get(municipality, (-1, -1, -1))
+			skip_ds = skips.get(municipality, [])
+
+			if skip_probs[2] > 0:			
+				if random.uniform(0, 1) < skip_probs[2]:
+					continue
+			elif ds in skip_ds:
+				continue
+
 			dp = ds.produce_data(goal_goodness, data_goodness, year)
 			if ds.variant:
 				item = {
