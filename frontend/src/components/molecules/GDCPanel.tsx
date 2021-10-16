@@ -181,7 +181,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
   let loadCorrelatedButton = null;
   if (correlatedKPIs === undefined) {
     loadCorrelatedButton = (
-      <Button isLoading={isLoadingCorrelated} onClick={() => loadCorrelatedKPIs()}>
+      <Button isLoading={isLoadingCorrelated} onClick={() => loadCorrelatedKPIs()} p="0px" m="16">
         Load correlated KPIs
       </Button>
     );
