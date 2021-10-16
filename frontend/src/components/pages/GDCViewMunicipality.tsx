@@ -80,8 +80,6 @@ const ViewMunicipality: React.FC = () => {
             year={selectedYear}
             municipality={name}
             municipalityCode={municipality}
-            compareMunicipality='Trondheim'
-            compareCode='no.5001'
           />
         </Stack>
       </Flex>
