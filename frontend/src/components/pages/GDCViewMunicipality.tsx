@@ -45,7 +45,7 @@ const ViewMunicipality: React.FC = () => {
     <Stack>
       <MunicipalityInfoView info={municipalityInfo} />
       <Flex align="center" justify="center" justifyContent="space-evenly" m="0px" p="0px">
-        <Stack w={{ base: '900px', '2xl': '1350px' }} bg="white" m="0px" spacing="10">
+        <Stack w={{ base: '900px', '2xl': '1420px' }} bg="white" m="0px" spacing="10">
           <Container align="right" justify="right" justifyContent="space-evenly">
             <Stack direction="row">
               <Text size="md">Year:</Text>
