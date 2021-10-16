@@ -294,7 +294,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
   const diffStdOutput = dataIsIndicatorScore ? (data as IndicatorScore).diffStd.toFixed(2) : 'N/A';
 
   return (
-    <Stack spacing={4} w={{ base: '800px', '2xl': '1250px' }}>
+    <Stack spacing={4} w={{ base: '800px', '2xl': '1350px' }}>
       <Wrap>
         <WrapItem>
           <GDCPlot
