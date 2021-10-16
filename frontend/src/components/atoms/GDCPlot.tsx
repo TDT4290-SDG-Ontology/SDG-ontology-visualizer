@@ -209,6 +209,16 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
               {compRow}
             </Tr>
           );
+        } 
+
+        if (compVal !== undefined && !Number.isNaN(compVal)) {
+          return (
+            <Tr>
+              <Td p="0.5em">{`${rowLabel}:`}</Td>
+              <Td p="0.5em" isNumeric />
+              {compRow}
+            </Tr>
+            );
         }
 
         return null;
