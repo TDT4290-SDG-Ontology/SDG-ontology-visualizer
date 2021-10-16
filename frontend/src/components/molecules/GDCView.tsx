@@ -194,7 +194,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   return (
     <Flex align="center" justify="center" justifyContent="space-evenly">
       <Stack spacing="4" bg="white">
-        <Container maxWidth={1600} minWidth={800} w={{ base: '900px', '2xl': '1350px' }} p="1em">
+        <Container maxWidth={1600} minWidth={800} w={{ base: '900px', '2xl': '1420px' }} p="1em">
           <Stack spacing="4">
             <Heading size="xl">Progress overview</Heading>
             <Heading size="md">Issues</Heading>
