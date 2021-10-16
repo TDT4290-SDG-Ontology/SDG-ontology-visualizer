@@ -335,7 +335,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                 {compWillComplete}
               </Tr>
               <Tr>
-                <Td>Current trend</Td>
+                <Td>Overall trend</Td>
                 <Td isNumeric>{`${(100.0 * data.currentCAGR).toFixed(2)} %`}</Td>
                 {compCurrentCAGR}
               </Tr>
