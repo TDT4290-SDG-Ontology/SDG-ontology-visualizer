@@ -8,13 +8,16 @@ import { Stack, Select, Flex, Container, Text, Spacer, Button, Modal, ModalOverl
   TabList,
   TabPanels,
   Tab,
-  TabPanel } from '@chakra-ui/react';
+  TabPanel,
+  SimpleGrid,
+  Link,
+  Heading } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { MunicipalityInfo } from '../../types/municipalityTypes';
+import { MunicipalityInfo, Municipality } from '../../types/municipalityTypes';
 import { getAvailableYears } from '../../api/data';
-import { getMunicipalityInfo } from '../../api/municipalities';
+import { getMunicipalityInfo, getAllMunicipalities, getSimilarMunicipalities } from '../../api/municipalities';
 
 import MunicipalityInfoView from '../molecules/MunicipalityInfo';
 import GDCView from '../molecules/GDCView';
@@ -30,6 +33,9 @@ const ViewMunicipality: React.FC = () => {
 
   const [municipalityInfo, setMunicipalityInfo] = useState<MunicipalityInfo>();
 
+  const [allMunicipalities, setAllMunicipalities] = useState<Municipality[]>();
+  const [similarMunicipalities, setSimilarMunicipalities] = useState<Municipality[]>();
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const loadData = async (muniCode: string) => {
@@ -41,6 +47,10 @@ const ViewMunicipality: React.FC = () => {
     setAvailableYears(years.sort());
     setSelectedYear(years[years.length - 1]);
     setMunicipalityInfo(muniInfo);
+
+    const municipalities = await Promise.all([getAllMunicipalities(), getSimilarMunicipalities(muniCode)]);
+    setAllMunicipalities(municipalities[0]);
+    setSimilarMunicipalities(municipalities[1]);
   };
 
   useEffect(() => {
@@ -96,10 +106,30 @@ const ViewMunicipality: React.FC = () => {
               </TabList>
               <TabPanels>
                 <TabPanel>
-                  <Text>Similar</Text>
+                  <SimpleGrid columns={3} spacing={20}>
+                    { similarMunicipalities && similarMunicipalities.map((mun) => {
+                        const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
+                        return (
+                          <Link key={mun.code} to={(loc: any) => ({ ...loc, pathname: `/gdc/compare/${municipality}/${mun.code}` })}>
+                            <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
+                            <div>{`Population: ${mun.population}`}</div>
+                          </Link>
+                        );
+                      })}
+                  </SimpleGrid>
                 </TabPanel>
                 <TabPanel>
-                  <Text>All</Text>
+                  <SimpleGrid columns={3} spacing={20}>
+                    { allMunicipalities && allMunicipalities.map((mun) => {
+                        const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
+                        return (
+                          <Link key={mun.code} to={(loc: any) => ({ ...loc, pathname: `/gdc/compare/${municipality}/${mun.code}` })}>
+                            <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
+                            <div>{`Population: ${mun.population}`}</div>
+                          </Link>
+                        );
+                      })}
+                  </SimpleGrid>
                 </TabPanel>
               </TabPanels>
             </Tabs>
