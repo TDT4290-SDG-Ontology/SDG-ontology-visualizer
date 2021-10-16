@@ -5,6 +5,7 @@ import { getGDCOutput } from '../../api/gdc';
 import { GDCOutput, IndicatorScore } from '../../types/gdcTypes';
 
 import GDCPlot from '../atoms/GDCPlot';
+import GDCMinicipalityChart from '../atoms/GDCMinicipalityChart';
 
 type GDCViewProps = {
   code: string;
@@ -85,7 +86,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
                 </Tr>
                 <Tr>
                   <Td>Standard deviation of difference</Td>
-                  <Td isNumeric>{score.diffStd.toFixed(2)}</Td>
+
                 </Tr>
                 <Tr>
                   <Td>{`Best CAGR (${bestGrowth.startYear} to ${bestGrowth.endYear})`}</Td>
@@ -135,6 +136,9 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
         <Heading size="xl">
           Progress overview
         </Heading>
+        <Container maxWidth={1000} minWidth={900} maxHeight={800} minHeight={400}>
+          <GDCMinicipalityChart year={year} code={code} />
+        </Container>
         <Container maxWidth={1200} minWidth={800}>
           <Accordion allowToggle allowMultiple>
             <AccordionItem key='worst'>
@@ -146,7 +150,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
               </AccordionButton>
               <AccordionPanel>
                 <Accordion allowToggle allowMultiple>
-                  { worstIndicators && worstIndicators.map(([key, val]) => renderKPIAccordion(key, val))}      
+                  {worstIndicators && worstIndicators.map(([key, val]) => renderKPIAccordion(key, val))}
                 </Accordion>
               </AccordionPanel>
             </AccordionItem>
@@ -157,7 +161,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
         </Heading>
         <Container maxWidth={1200} minWidth={800}>
           <Accordion allowToggle allowMultiple>
-            { indicatorArray && indicatorArray.map(([key, val]) => renderKPIAccordion(key, val))}
+            {indicatorArray && indicatorArray.map(([key, val]) => renderKPIAccordion(key, val))}
           </Accordion>
         </Container>
       </Stack>
