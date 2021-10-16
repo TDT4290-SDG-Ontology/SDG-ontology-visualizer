@@ -275,7 +275,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
     compMean = <Td isNumeric>{compDiffMeanOutput}</Td>;
     compStd = <Td isNumeric>{compDiffStdOutput}</Td>;
     compTrendMean = <Td isNumeric>{`${(100.0 * compareData.trendMean).toFixed(2)} %`}</Td>;
-    compTrendStd = <Td isNumeric>{`${(100.0 * compareData.trendStd).toFixed(2)} %`}</Td>;
+    compTrendStd = <Td isNumeric>{`${compareData.trendStd.toFixed(5)}`}</Td>;
   }
 
   const pointsOutput = dataIsIndicatorScore ? (data as IndicatorScore).points : 'N/A';
