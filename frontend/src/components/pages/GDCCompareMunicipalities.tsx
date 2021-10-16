@@ -1,23 +1,10 @@
-import { Stack, Select, Flex, Container, Text, Spacer, Button, Modal, ModalOverlay, ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  SimpleGrid,
-  Link,
-  Heading } from '@chakra-ui/react';
+import { Stack, Select, Flex, Container, Text, Spacer } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { MunicipalityInfo, Municipality } from '../../types/municipalityTypes';
+import { MunicipalityInfo } from '../../types/municipalityTypes';
 import { getAvailableYears } from '../../api/data';
-import { getMunicipalityInfo, getAllMunicipalities, getSimilarMunicipalities } from '../../api/municipalities';
+import { getMunicipalityInfo } from '../../api/municipalities';
 
 import MunicipalityInfoView from '../molecules/MunicipalityInfo';
 import GDCView from '../molecules/GDCView';
@@ -32,13 +19,10 @@ const CompareMunicipalities: React.FC = () => {
   const [availableYears, setAvailableYears] = useState<Array<number>>();
   const [selectedYear, setSelectedYear] = useState<number>(-1);
 
+  const [selectedGoals, setSelectedGoals] = useState<number>(-1);
+
   const [municipalityInfo, setMunicipalityInfo] = useState<MunicipalityInfo>();
   const [compareMunicipalityInfo, setCompareMunicipalityInfo] = useState<MunicipalityInfo>();
-
-  const [allMunicipalities, setAllMunicipalities] = useState<Municipality[]>();
-  const [similarMunicipalities, setSimilarMunicipalities] = useState<Municipality[]>();
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const loadData = async (muniCode: string, otherCode: string) => {
     const data = await Promise.all([getAvailableYears(muniCode), getMunicipalityInfo(muniCode), getMunicipalityInfo(otherCode)]);
@@ -52,10 +36,6 @@ const CompareMunicipalities: React.FC = () => {
 
     setMunicipalityInfo(muniInfo);
     setCompareMunicipalityInfo(compareMuniInfo);
-
-    const municipalities = await Promise.all([getAllMunicipalities(), getSimilarMunicipalities(muniCode)]);
-    setAllMunicipalities(municipalities[0]);
-    setSimilarMunicipalities(municipalities[1]);
   };
 
   useEffect(() => {
@@ -66,6 +46,10 @@ const CompareMunicipalities: React.FC = () => {
     setSelectedYear(parseFloat(evt.currentTarget.value));
   };
 
+  const onChangeGoalset = (evt: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedGoals(parseInt(evt.currentTarget.value, 10));
+  };
+
   const name = municipalityInfo === undefined ? '' : municipalityInfo.name;
   const otherName = compareMunicipalityInfo === undefined ? '' : compareMunicipalityInfo.name;
 
@@ -74,9 +58,25 @@ const CompareMunicipalities: React.FC = () => {
       <MunicipalityInfoView info={municipalityInfo} compareInfo={compareMunicipalityInfo} />
       <Flex align="center" justify="center" justifyContent="space-evenly" m="0px" p="0px">
         <Stack w={{ base: '900px', '2xl': '1420px' }} bg="white" m="0px" spacing="10">
-          <Container align="right" justify="right" justifyContent="space-evenly" p="1em">
-            <Flex>
-              <Button onClick={onOpen}>Compare with ...</Button>
+          <Container minWidth="800px" p="1em">
+            <Flex w="800px" align="center" justify="center" justifyContent="space-evenly">
+              <Stack direction="row">
+                <Text size="md" p="0.4em">Goal override:</Text>
+                <Select value={selectedGoals} onChange={onChangeGoalset} w="250px">
+                  <option key="separate" value={-1}>
+                    Separate
+                  </option>
+                  <option key="both-first" value={0}>
+                    {`Force ${(municipalityInfo !== undefined) ? municipalityInfo.name : ''}`}
+                  </option>
+                  <option key="both-second" value={1}>
+                    {`Force ${(compareMunicipalityInfo !== undefined) ? compareMunicipalityInfo.name : ''}`}
+                  </option>
+                  <option key="swap" value={2}>
+                    Swap
+                  </option>
+                </Select>
+              </Stack>
               <Spacer />
               <Stack direction="row">
                 <Text size="md" p="0.4em">Year:</Text>
@@ -101,56 +101,6 @@ const CompareMunicipalities: React.FC = () => {
           />
         </Stack>
       </Flex>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay  />
-        <ModalContent>
-          <ModalHeader>Select municipality to compare with</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Tabs>
-              <TabList>
-                <Tab>Similar</Tab>
-                <Tab>All</Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel>
-                  <SimpleGrid columns={3} spacing={20}>
-                    { similarMunicipalities && similarMunicipalities.map((mun) => {
-                        const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
-                        return (
-                          <Link key={mun.code} to={(loc: any) => ({ ...loc, pathname: `/gdc/compare/${municipality}/${mun.code}` })}>
-                            <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
-                            <div>{`Population: ${mun.population}`}</div>
-                          </Link>
-                        );
-                      })}
-                  </SimpleGrid>
-                </TabPanel>
-                <TabPanel>
-                  <SimpleGrid columns={3} spacing={20}>
-                    { allMunicipalities && allMunicipalities.map((mun) => {
-                        const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
-                        return (
-                          <Link key={mun.code} to={(loc: any) => ({ ...loc, pathname: `/gdc/compare/${municipality}/${mun.code}` })}>
-                            <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
-                            <div>{`Population: ${mun.population}`}</div>
-                          </Link>
-                        );
-                      })}
-                  </SimpleGrid>
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </Stack>
   );
 };
