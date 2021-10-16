@@ -54,11 +54,7 @@ const MunicipalityInfoDisplay: React.FC<MunicipalityInfoDisplayProps> = (
               {`Population: ${info.population}`}
             </Text>
           </Stack>
-          <Container 
-            align="center"
-            justify="center"
-            justifyContent="space-evenly"
-          >
+          <Container align="center" justify="center" justifyContent="space-evenly">
             <Heading color="white">vs</Heading>
           </Container>
           <Stack spacing="0">

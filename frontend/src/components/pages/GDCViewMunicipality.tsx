@@ -1,4 +1,14 @@
-import { Stack, Select, Flex, Container, Text, Spacer, Button, Modal, ModalOverlay, ModalContent,
+import {
+  Stack,
+  Select,
+  Flex,
+  Container,
+  Text,
+  Spacer,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
   ModalHeader,
   ModalFooter,
   ModalBody,
@@ -11,13 +21,18 @@ import { Stack, Select, Flex, Container, Text, Spacer, Button, Modal, ModalOverl
   TabPanel,
   SimpleGrid,
   Link,
-  Heading } from '@chakra-ui/react';
+  Heading,
+} from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { MunicipalityInfo, Municipality } from '../../types/municipalityTypes';
 import { getAvailableYears } from '../../api/data';
-import { getMunicipalityInfo, getAllMunicipalities, getSimilarMunicipalities } from '../../api/municipalities';
+import {
+  getMunicipalityInfo,
+  getAllMunicipalities,
+  getSimilarMunicipalities,
+} from '../../api/municipalities';
 
 import MunicipalityInfoView from '../molecules/MunicipalityInfo';
 import GDCView from '../molecules/GDCView';
@@ -48,7 +63,10 @@ const ViewMunicipality: React.FC = () => {
     setSelectedYear(years[years.length - 1]);
     setMunicipalityInfo(muniInfo);
 
-    const municipalities = await Promise.all([getAllMunicipalities(), getSimilarMunicipalities(muniCode)]);
+    const municipalities = await Promise.all([
+      getAllMunicipalities(),
+      getSimilarMunicipalities(muniCode),
+    ]);
     setAllMunicipalities(municipalities[0]);
     setSimilarMunicipalities(municipalities[1]);
   };
@@ -73,7 +91,9 @@ const ViewMunicipality: React.FC = () => {
               <Button onClick={onOpen}>Compare with ...</Button>
               <Spacer />
               <Stack direction="row">
-                <Text size="md" p="0.4em">Year:</Text>
+                <Text size="md" p="0.4em">
+                  Year:
+                </Text>
                 <Select value={selectedYear} onChange={onChangeYear} w="100px">
                   {availableYears &&
                     availableYears.map((year) => (
@@ -94,7 +114,7 @@ const ViewMunicipality: React.FC = () => {
         </Stack>
       </Flex>
       <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay  />
+        <ModalOverlay />
         <ModalContent>
           <ModalHeader>Select municipality to compare with</ModalHeader>
           <ModalCloseButton />
@@ -107,10 +127,17 @@ const ViewMunicipality: React.FC = () => {
               <TabPanels>
                 <TabPanel>
                   <SimpleGrid columns={3} spacing={20}>
-                    { similarMunicipalities && similarMunicipalities.map((mun) => {
+                    {similarMunicipalities &&
+                      similarMunicipalities.map((mun) => {
                         const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
                         return (
-                          <Link key={mun.code} to={(loc: any) => ({ ...loc, pathname: `/gdc/compare/${municipality}/${mun.code}` })}>
+                          <Link
+                            key={mun.code}
+                            to={(loc: any) => ({
+                              ...loc,
+                              pathname: `/gdc/compare/${municipality}/${mun.code}`,
+                            })}
+                          >
                             <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
                             <div>{`Population: ${mun.population}`}</div>
                           </Link>
@@ -120,10 +147,17 @@ const ViewMunicipality: React.FC = () => {
                 </TabPanel>
                 <TabPanel>
                   <SimpleGrid columns={3} spacing={20}>
-                    { allMunicipalities && allMunicipalities.map((mun) => {
+                    {allMunicipalities &&
+                      allMunicipalities.map((mun) => {
                         const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
                         return (
-                          <Link key={mun.code} to={(loc: any) => ({ ...loc, pathname: `/gdc/compare/${municipality}/${mun.code}` })}>
+                          <Link
+                            key={mun.code}
+                            to={(loc: any) => ({
+                              ...loc,
+                              pathname: `/gdc/compare/${municipality}/${mun.code}`,
+                            })}
+                          >
                             <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
                             <div>{`Population: ${mun.population}`}</div>
                           </Link>

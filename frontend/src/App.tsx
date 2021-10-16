@@ -34,7 +34,11 @@ const App: React.FC = () => (
               <Route path="/" exact component={Frontpage} />
               <Route path="/ontology" exact component={OntologyPage} />
               <Route path="/about" exact component={About} />
-              <Route exact path="/gdc/compare/:municipality/:otherMunicipality" component={GDCCompareMunicipalities} />
+              <Route
+                exact
+                path="/gdc/compare/:municipality/:otherMunicipality"
+                component={GDCCompareMunicipalities}
+              />
               <Route exact path="/gdc/view/:municipality" component={GDCViewMunicipality} />
               <Route exact path="/gdc" component={GDCSelectMunicipality} />
               <Route component={NotFoundPage} />

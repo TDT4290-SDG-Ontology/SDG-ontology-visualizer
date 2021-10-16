@@ -70,7 +70,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
           ),
         );
       }
-      
+
       setCompareGDCInfo(data[1]);
     } else {
       const data = await getGDCOutput(muniCode, muniYear);

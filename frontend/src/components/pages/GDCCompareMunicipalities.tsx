@@ -25,7 +25,11 @@ const CompareMunicipalities: React.FC = () => {
   const [compareMunicipalityInfo, setCompareMunicipalityInfo] = useState<MunicipalityInfo>();
 
   const loadData = async (muniCode: string, otherCode: string) => {
-    const data = await Promise.all([getAvailableYears(muniCode), getMunicipalityInfo(muniCode), getMunicipalityInfo(otherCode)]);
+    const data = await Promise.all([
+      getAvailableYears(muniCode),
+      getMunicipalityInfo(muniCode),
+      getMunicipalityInfo(otherCode),
+    ]);
 
     const years: number[] = data[0];
     const muniInfo: MunicipalityInfo = data[1];
@@ -61,16 +65,20 @@ const CompareMunicipalities: React.FC = () => {
           <Container minWidth="800px" p="1em">
             <Flex w="800px" align="center" justify="center" justifyContent="space-evenly">
               <Stack direction="row">
-                <Text size="md" p="0.4em">Goal override:</Text>
+                <Text size="md" p="0.4em">
+                  Goal override:
+                </Text>
                 <Select value={selectedGoals} onChange={onChangeGoalset} w="250px">
                   <option key="separate" value={-1}>
                     Separate
                   </option>
                   <option key="both-first" value={0}>
-                    {`Force ${(municipalityInfo !== undefined) ? municipalityInfo.name : ''}`}
+                    {`Force ${municipalityInfo !== undefined ? municipalityInfo.name : ''}`}
                   </option>
                   <option key="both-second" value={1}>
-                    {`Force ${(compareMunicipalityInfo !== undefined) ? compareMunicipalityInfo.name : ''}`}
+                    {`Force ${
+                      compareMunicipalityInfo !== undefined ? compareMunicipalityInfo.name : ''
+                    }`}
                   </option>
                   <option key="swap" value={2}>
                     Swap
@@ -79,7 +87,9 @@ const CompareMunicipalities: React.FC = () => {
               </Stack>
               <Spacer />
               <Stack direction="row">
-                <Text size="md" p="0.4em">Year:</Text>
+                <Text size="md" p="0.4em">
+                  Year:
+                </Text>
                 <Select value={selectedYear} onChange={onChangeYear} w="100px">
                   {availableYears &&
                     availableYears.map((year) => (

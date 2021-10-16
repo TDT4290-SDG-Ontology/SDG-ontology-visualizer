@@ -28,7 +28,9 @@ const correlationLabel = (name: string, corr: number) => {
   // TODO: need? to invert correlation number for 'INV_...' calculations.
   if (corr >= 0.7)
     return (
-      <Tooltip label={`An improvement in the "${name}" KPI would lead to a equivalent improvement in this KPI`}>
+      <Tooltip
+        label={`An improvement in the "${name}" KPI would lead to a equivalent improvement in this KPI`}
+      >
         <Text fontWeight="bold" color="green.600" decoration="underline dotted">
           Strong synergy
         </Text>
@@ -36,7 +38,9 @@ const correlationLabel = (name: string, corr: number) => {
     );
   if (corr >= 0.4)
     return (
-      <Tooltip label={`An improvement in the "${name}" KPI would lead to a moderate improvement in this KPI`}>
+      <Tooltip
+        label={`An improvement in the "${name}" KPI would lead to a moderate improvement in this KPI`}
+      >
         <Text fontWeight="bold" color="green.600" decoration="underline dotted">
           Moderate synergy
         </Text>
@@ -44,7 +48,9 @@ const correlationLabel = (name: string, corr: number) => {
     );
   if (corr > 0.1)
     return (
-      <Tooltip label={`An improvement in the "${name}" KPI would lead to a small improvement in this KPI`}>
+      <Tooltip
+        label={`An improvement in the "${name}" KPI would lead to a small improvement in this KPI`}
+      >
         <Text fontWeight="bold" color="green.600" decoration="underline dotted">
           Weak synergy
         </Text>
@@ -53,7 +59,9 @@ const correlationLabel = (name: string, corr: number) => {
 
   if (corr <= -0.7)
     return (
-      <Tooltip label={`An improvement in the "${name}" KPI would lead to an equivalent regression in this KPI`}>
+      <Tooltip
+        label={`An improvement in the "${name}" KPI would lead to an equivalent regression in this KPI`}
+      >
         <Text fontWeight="bold" color="red.600" decoration="underline dotted">
           Strong tradeoff
         </Text>
@@ -61,7 +69,9 @@ const correlationLabel = (name: string, corr: number) => {
     );
   if (corr <= -0.4)
     return (
-      <Tooltip label={`An improvement in the "${name}" KPI would lead to a moderate regression in this KPI`}>
+      <Tooltip
+        label={`An improvement in the "${name}" KPI would lead to a moderate regression in this KPI`}
+      >
         <Text fontWeight="bold" color="red.600" decoration="underline dotted">
           Moderate tradeoff
         </Text>
@@ -69,7 +79,9 @@ const correlationLabel = (name: string, corr: number) => {
     );
   if (corr < 0.1)
     return (
-      <Tooltip label={`An improvement in the "${name}" KPI would lead to a small regression in this KPI`}>
+      <Tooltip
+        label={`An improvement in the "${name}" KPI would lead to a small regression in this KPI`}
+      >
         <Text fontWeight="bold" color="red.600" decoration="underline dotted">
           Weak tradeoff
         </Text>
@@ -375,20 +387,16 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
               <Tr>
                 <Td>
                   <Tooltip label="Mean of difference between actual values and the projected values (measure of model suitability).">
-                    <Text decoration="underline dotted">
-                      Mean difference
-                    </Text>
+                    <Text decoration="underline dotted">Mean difference</Text>
                   </Tooltip>
                 </Td>
                 <Td isNumeric>{diffMeanOutput}</Td>
                 {compMean}
               </Tr>
               <Tr>
-                <Td>                  
+                <Td>
                   <Tooltip label="Standard deviation of difference between actual values and the projected values.">
-                    <Text decoration="underline dotted">
-                      Standard deviation of difference
-                    </Text>
+                    <Text decoration="underline dotted">Standard deviation of difference</Text>
                   </Tooltip>
                 </Td>
                 <Td isNumeric>{diffStdOutput}</Td>
