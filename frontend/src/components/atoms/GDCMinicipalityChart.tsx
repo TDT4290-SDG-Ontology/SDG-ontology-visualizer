@@ -24,8 +24,6 @@ const GDCMinicipalityChart: React.FC<ChartProps> = (props: ChartProps) => {
   const [sortedIndicators, setSortedIndicators] = useState<any[]>();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [sortedIndicatorsKeys, setSortedIndicatorsKeys] = useState<any[]>();
-  const [categories, setCategories] = useState< { value: number; key: string; }[][]>([]);
-  const [indicators, setIndicators] = useState<{ value: number; key: string; }[][]>([]);
   const { year, code } = props;
   console.log(year);
   console.log(code);
@@ -77,7 +75,6 @@ const GDCMinicipalityChart: React.FC<ChartProps> = (props: ChartProps) => {
       return 0;
     });
     setdomSum(domainWithSumScore);
-    setCategories(categoriesArr);
   };
 
   const fillIndicators = () => {
@@ -111,10 +108,7 @@ const GDCMinicipalityChart: React.FC<ChartProps> = (props: ChartProps) => {
       if (a.key > b.key) { return 1; }
       return 0;
     });
-    console.log(indicatorsScoreSum);
     setcatSum(categoriesWithSumScore);
-    setIndicators(indicatorsArr);
-
     setSortedIndicators(Array.from(gdcInfo.indicators.values()).sort((a, b) => {
       if (a.kpi < b.kpi) { return -1; }
       if (a.kpi > b.kpi) { return 1; }
@@ -133,7 +127,6 @@ const GDCMinicipalityChart: React.FC<ChartProps> = (props: ChartProps) => {
 
   useEffect(() => {
     FindScores(code);
-    console.log('EFFECT');
     fillCategories();
     fillIndicators();
   },
@@ -143,11 +136,7 @@ const GDCMinicipalityChart: React.FC<ChartProps> = (props: ChartProps) => {
       <></>
     );
   }
-  console.log('Arr');
-  console.log(categories);
-  console.log(indicators[0]);
-  console.log(domSum);
-  console.log(catSum);
+
   return (
     <ResponsiveContainer width="100%" height="100%" minHeight={400} maxHeight={450} minWidth={900}>
       <PieChart width={300} height={300}>
