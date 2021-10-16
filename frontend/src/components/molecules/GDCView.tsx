@@ -60,6 +60,17 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
         getGDCOutput(compareCode, muniYear),
       ]);
       setGDCInfo(data[0]);
+      if (data[0] !== undefined) {
+        setIndicators(data[0].indicators);
+        setWorstIndicators(
+          new Map(
+            Array.from(data[0].indicators)
+              .sort((a, b) => a[1].score - b[1].score)
+              .slice(0, WORST_COUNT),
+          ),
+        );
+      }
+      
       setCompareGDCInfo(data[1]);
     } else {
       const data = await getGDCOutput(muniCode, muniYear);

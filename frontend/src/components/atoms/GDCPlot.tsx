@@ -53,7 +53,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   let maxDeadline = currentYear;
   const dataIsIndicatorScore = (data as IndicatorScore).goal !== undefined;
   const compareIsIndicatorScore =
-    compareData !== undefined && (compareData as IndicatorScore).goal === undefined;
+    compareData !== undefined && (compareData as IndicatorScore).goal !== undefined;
   if (dataIsIndicatorScore && compareIsIndicatorScore) {
     maxDeadline = max(
       (data as IndicatorScore).goal.deadline,
