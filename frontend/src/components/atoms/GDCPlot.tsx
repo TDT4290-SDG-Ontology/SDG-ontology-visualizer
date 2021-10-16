@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary, no-plusplus, no-restricted-syntax */
 
 import React from 'react';
-import { Heading, Stack, Container, Table, Tr, Td, Th, Thead, Tbody } from '@chakra-ui/react';
+import { Heading, Stack, Container, Table, Tr, Td, Th, Thead, Tbody, Text } from '@chakra-ui/react';
 import {
   ResponsiveContainer,
   ComposedChart,
@@ -297,6 +297,72 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
     );
   }
 
+  const CustomLegend: React.FC = (arg: any) => {
+    // Slightly customized version of the default recharts legend component...
+
+    const SIZE = 32;
+    const renderIcon = (color: string) => {
+      const halfSize = SIZE / 2;
+      const sixthSize = SIZE / 6;
+      const thirdSize = SIZE / 3;
+
+      return (
+        <path
+          strokeWidth={4}
+          fill="none"
+          stroke={color}
+          d={`M0,${halfSize}h${thirdSize}
+            A${sixthSize},${sixthSize},0,1,1,${2 * thirdSize},${halfSize}
+            H${SIZE}M${2 * thirdSize},${halfSize}
+            A${sixthSize},${sixthSize},0,1,1,${thirdSize},${halfSize}`}
+          className="recharts-legend-icon"
+        />
+      );
+    };
+
+    const renderItems = (muni: string, items: any[]) => (
+      <li key={`${muni}`} className="recharts-legend-item legend-item-0" style={{ display: 'block', marginRight: 10 }}>
+        <Text style={{ display: 'inline-block', marginRight: 4 }}>{`${muni}:`}</Text>
+        <ul className="recharts-default-legend" style={{ padding: 0, margin: 0, textAlign: 'center', display: 'inline-block' }}>
+          { items.map((entry, i) => (
+            <li
+              className={`recharts-legend-item legend-item-${i}`}
+              style={{ display: 'inline-block', marginRight: 10 }}
+              key={`legend-item-${entry.value}`}
+            >
+              <svg width={14} height={14} viewBox={`0 0 ${SIZE} ${SIZE}`} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: 4 }} version="1.1">
+                {renderIcon(entry.color)}
+              </svg>
+              <span className="recharts-legend-item-text" style={{ color: entry.color }}>
+                {entry.value}
+              </span>
+            </li>
+              ),
+            )}
+        </ul>
+      </li>
+    );
+
+    const items = [];
+    const compItems = [];
+
+    for (const its of arg.payload) {
+      if (its.dataKey.startsWith('compare')) {
+        compItems.push(its);
+      } else {
+        items.push(its);
+      }
+    }
+
+    return (
+      <ul className="recharts-default-legend" style={{ padding: 0, margin: 0, textAlign: 'center' }}>
+        { renderItems(municipality, items) }
+        { compareMunicipality && renderItems(compareMunicipality, compItems) }
+      </ul>
+    );
+
+  };
+
   // Default blue colour: curious blue
   // "suitable" complement: crimson
   return (
@@ -314,7 +380,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         <XAxis dataKey="year" />
         <YAxis />
         <Tooltip content={<CustomTooltip />} />
-        <Legend />
+        <Legend content={<CustomLegend />} />
         <Area name="Bounds" type="natural" dataKey="bounds" fillOpacity="0.15" stroke="none" />
         <Line name="Existing values" type="natural" dataKey="value" />
         <Line name="Predicted values" type="natural" dataKey="predicted" strokeDasharray="3 3" />
