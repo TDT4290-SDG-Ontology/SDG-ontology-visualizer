@@ -14,6 +14,7 @@ export type Dataseries = {
   year: number;
   value: number;
   dataseries: ?string;
+  calculationMethod: string;
 };
 
 export type GDCGoal = {

@@ -6,7 +6,7 @@ export default (municipality: string, year: number): string => {
 
   return `
         ${prefixString}
-        SELECT ?kpi ?year ?value ?dataseries
+        SELECT ?kpi ?year ?value ?dataseries ?calculationMethod
         WHERE {
             BIND(${year} as ?year).
 
@@ -21,6 +21,8 @@ export default (municipality: string, year: number): string => {
 
             ?dp SDG:datapointForMunicipality ?mun.
             ?mun SDG:municipalityCode "${municipality}".
+
+            ?ds SDG:dataseriesScoreCalculationMethod ?calculationMethod.
 
             Optional {
               ?ds SDG:dataseriesVariant ?dataseries.

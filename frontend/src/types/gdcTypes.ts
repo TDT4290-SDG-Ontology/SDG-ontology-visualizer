@@ -25,6 +25,7 @@ export type Dataseries = {
   year: number;
   value: number;
   dataseries: string | undefined;
+  calculationMethod: string;
 };
 
 export type IndicatorScore = {
@@ -65,12 +66,20 @@ export type IndicatorScore = {
   // between the predicted value and the actual measured value.
   diffMean: number;
   diffStd: number;
+
+  trendMean: number;
+  trendStd: number;
 };
 
 export type IndicatorWithoutGoal = {
   kpi: string;
   dataseries: string | null;
   historicalData: Datapoint[];
+  yearlyGrowth: YearlyGrowth[];
+
+  currentCAGR: number;
+  trendMean: number;
+  trendStd: number;
 };
 
 export type Score = {
