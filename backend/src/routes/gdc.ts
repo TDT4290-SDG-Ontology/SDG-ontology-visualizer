@@ -110,8 +110,8 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
     return {
       kpi,
       dataseries: current.dataseries,
-      score: 4,
-      points: 100,
+      score: 100,
+      points: 4,
       projectedCompletion: goal.baselineYear,
       willCompleteBeforeDeadline: true,
       currentCAGR: 0.0,
@@ -170,8 +170,8 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
     return {
       kpi,
       dataseries: current.dataseries,
-      score: points,
-      points: indicatorScore,
+      points,
+      score: indicatorScore,
       projectedCompletion: -1,
       willCompleteBeforeDeadline: false,
       currentCAGR: 0.0,
@@ -206,8 +206,8 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
     return {
       kpi,
       dataseries: current.dataseries,
-      score: 4,
-      points: 100,
+      score: 100,
+      points: 4,
       projectedCompletion: current.year,
       willCompleteBeforeDeadline: true,
       currentCAGR,
