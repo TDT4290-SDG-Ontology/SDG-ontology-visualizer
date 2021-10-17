@@ -2,17 +2,9 @@
 
 import React from 'react';
 import { Container, Text } from '@chakra-ui/react';
-import {
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  LabelList,
-  Tooltip,
-  Cell,
-} from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, LabelList, Tooltip, Cell } from 'recharts';
 
 import { IndicatorScore, GDCOutput } from '../../types/gdcTypes';
-
 
 type HierarchyData = {
   name: string;
@@ -192,7 +184,7 @@ const kpiData: KPIData[] = [
   { name: 'Household Internet Access',                    value: 1, key: 'EC: ICT: ICT: 1C',          category: 'EC: ICT' },
 ];
 
-const sgn = (v: number) => (v >= 0.0) ? 1.0 : -1.0;
+const sgn = (v: number) => (v >= 0.0 ? 1.0 : -1.0);
 
 const DEG2RAD = Math.PI / 180.0;
 const toCartesian = (cx: number, cy: number, radius: number, angle: number) => ({
@@ -200,7 +192,8 @@ const toCartesian = (cx: number, cy: number, radius: number, angle: number) => (
   y: cy + radius * Math.sin(-DEG2RAD * angle),
 });
 
-const deltaAngle = (start: number, end: number) => sgn(end - start) * Math.min(Math.abs(end - start), 360);
+const deltaAngle = (start: number, end: number) =>
+  sgn(end - start) * Math.min(Math.abs(end - start), 360);
 
 let idCounter = 0;
 const uniqueId = (prefix?: string) => `${prefix}${idCounter++}`;
@@ -217,7 +210,7 @@ type CategoryScore = {
   withoutGoal: number;
 };
 
-const COLORS = [ '#8a817a', '#4ba0be', '#dd7947', '#ddac42', '#5ab47d', '#009e69' ];
+const COLORS = ['#8a817a', '#4ba0be', '#dd7947', '#ddac42', '#5ab47d', '#009e69'];
 
 const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
   const { gdc, municipality } = props;
@@ -225,13 +218,11 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
   const indicatorScores = new Map<string, number>();
   const categoryScores = new Map<string, CategoryScore>();
 
-  const getScore = (kpi: string) => {    
+  const getScore = (kpi: string) => {
     const score = gdc.indicators.get(kpi);
-    if (score !== undefined)
-      return (score as IndicatorScore).points;
+    if (score !== undefined) return (score as IndicatorScore).points;
 
-    if (gdc.indicatorsWithoutGoals.has(kpi))
-      return -1;
+    if (gdc.indicatorsWithoutGoals.has(kpi)) return -1;
 
     // unreported
     return -2;
@@ -249,8 +240,7 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
       }
 
       if (Array.isArray(kpi.key)) {
-        if (kpi.displayKey === undefined)
-          continue;
+        if (kpi.displayKey === undefined) continue;
 
         let sum = 0.0;
         let count = 0;
@@ -316,8 +306,7 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
     }
 
     for (const catScore of categoryScores.values()) {
-      if (catScore.count > 0)
-        catScore.score /= catScore.count;
+      if (catScore.count > 0) catScore.score /= catScore.count;
     }
 
     console.log(categoryScores);
@@ -336,15 +325,15 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
     const direction = angle <= 0 ? clockWise : !clockWise;
 
     const start = toCartesian(cx, cy, radius, labelAngle);
-    const end   = toCartesian(cx, cy, radius, labelAngle + (direction ? 1 : -1) * 359);
+    const end = toCartesian(cx, cy, radius, labelAngle + (direction ? 1 : -1) * 359);
     const path = `M${start.x},${start.y}
                   A${radius},${radius},0,1,${direction ? 0 : 1},${end.x},${end.y}`;
 
     const id = uniqueId('recharts-radial-line-');
     return (
-      <text 
-        dominantBaseline="central" 
-        className={`recharts-radial-bar-label ${className}`} 
+      <text
+        dominantBaseline="central"
+        className={`recharts-radial-bar-label ${className}`}
         fill="white"
         textAnchor="middle"
       >
@@ -364,7 +353,7 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
 
     const angle = (startAngle + endAngle) / 2;
     let start = toCartesian(cx, cy, outerRadius - 10, angle);
-    let end   = toCartesian(cx, cy, innerRadius +  5, angle);
+    let end = toCartesian(cx, cy, innerRadius + 5, angle);
 
     const needsSwap = angle < 90 || angle > 270;
     if (needsSwap) {
@@ -378,9 +367,9 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
 
     const id = uniqueId('recharts-radial-line-');
     return (
-      <text 
-        dominantBaseline="central" 
-        className={`recharts-radial-bar-label ${className}`} 
+      <text
+        dominantBaseline="central"
+        className={`recharts-radial-bar-label ${className}`}
         fill="white"
         textRendering="optimizeLegibility"
         textAnchor={`${needsSwap ? 'end' : 'start'}`}
@@ -396,13 +385,12 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
     );
   };
 
-  const CustomTooltip: React.FC = (arg: any) => { 
+  const CustomTooltip: React.FC = (arg: any) => {
     const { active, payload } = arg;
 
     if (active && payload && payload.length) {
       const obj = payload[0].payload;
-      if (!obj)
-        return null;
+      if (!obj) return null;
 
       const { key, name } = obj;
 
@@ -410,24 +398,20 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
       if (obj.category !== undefined) {
         // KPI
 
-        const indi = indicatorScores.get((Array.isArray(key)) ? obj.displayKey : key);
-        if (!indi)
-          return null;
+        const indi = indicatorScores.get(Array.isArray(key) ? obj.displayKey : key);
+        if (!indi) return null;
 
         score = indi;
-
       } else if (key.indexOf(':') > -1) {
         // category
         const cat = categoryScores.get(key);
-        if (!cat)
-          return null;
+        if (!cat) return null;
 
         score = cat.score;
       } else {
         // domain
         const dom = gdc.domains.get(key);
-        if (!dom)
-          return null;
+        if (!dom) return null;
 
         score = dom.score;
       }
@@ -435,10 +419,12 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
       return (
         <Container bg="white" borderWidth="1px" borderRadius="0.5em" p="0.5em">
           <Text>
-            {`${name}: ${(score >= 0.0) ? score.toFixed(2) : ((score === -2) ? 'Unrepported' : 'Missing goal')}`}
+            {`${name}: ${
+              score >= 0.0 ? score.toFixed(2) : score === -2 ? 'Unrepported' : 'Missing goal'
+            }`}
           </Text>
         </Container>
-        );
+      );
     }
 
     return null;
@@ -449,62 +435,67 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
   const START_KPIS = 300;
 
   return (
-    <ResponsiveContainer width='100%' height='100%' minWidth='650px' minHeight='650px'>
-      <PieChart
-        width={800}
-        height={800}
-      >
-        <Pie 
-          data={domainData} 
-          dataKey='value' 
-          innerRadius={START_DOMAINS} 
-          outerRadius={START_CATEGORIES - 1} 
-          startAngle={90} 
-          endAngle={450} 
+    <ResponsiveContainer width="100%" height="100%" minWidth="650px" minHeight="650px">
+      <PieChart width={800} height={800}>
+        <Pie
+          data={domainData}
+          dataKey="value"
+          innerRadius={START_DOMAINS}
+          outerRadius={START_CATEGORIES - 1}
+          startAngle={90}
+          endAngle={450}
           isAnimationActive={false}
         >
-          { domainData.map((entry) => {
-              const score = gdc.domains.get(entry.key);
-              const colorIndex: number = (score === undefined) ? 0 : Math.floor(score.score) + 1;
-              return (<Cell key={entry.key} fill={COLORS[colorIndex]} />);
+          {domainData.map((entry) => {
+            const score = gdc.domains.get(entry.key);
+            const colorIndex: number = score === undefined ? 0 : Math.floor(score.score) + 1;
+            return <Cell key={entry.key} fill={COLORS[colorIndex]} />;
           })}
           <LabelList dataKey="name" content={<DomainLabels />} />
         </Pie>
-        <Pie 
-          data={categoryData} 
-          dataKey='value' 
-          innerRadius={START_CATEGORIES} 
-          outerRadius={START_KPIS - 1} 
-          startAngle={90} 
-          endAngle={450} 
+        <Pie
+          data={categoryData}
+          dataKey="value"
+          innerRadius={START_CATEGORIES}
+          outerRadius={START_KPIS - 1}
+          startAngle={90}
+          endAngle={450}
           isAnimationActive={false}
         >
-          { categoryData.map((entry) => {
-              const score = categoryScores.get(entry.key);
-              const colorIndex: number = (score === undefined) ? 0 : ((score.score < 0) ? score.score + 2 : Math.floor(score.score) + 1);
-              return (<Cell key={entry.key} fill={COLORS[colorIndex]} />);
+          {categoryData.map((entry) => {
+            const score = categoryScores.get(entry.key);
+            const colorIndex: number =
+              score === undefined
+                ? 0
+                : score.score < 0
+                ? score.score + 2
+                : Math.floor(score.score) + 1;
+            return <Cell key={entry.key} fill={COLORS[colorIndex]} />;
           })}
           <LabelList dataKey="name" content={<CategoryLabels />} />
         </Pie>
-        <Pie 
-          data={kpiData} 
-          dataKey='value' 
-          innerRadius={START_KPIS} 
-          outerRadius={START_KPIS + 25} 
-          startAngle={90} 
-          endAngle={450} 
+        <Pie
+          data={kpiData}
+          dataKey="value"
+          innerRadius={START_KPIS}
+          outerRadius={START_KPIS + 25}
+          startAngle={90}
+          endAngle={450}
         >
-          { kpiData.map((entry) => {
-              const key: string = (Array.isArray(entry.key)) ? entry.displayKey! : entry.key as string;
-              const score = indicatorScores.get(key as string);
-              const colorIndex: number = (score === undefined) ? 0 : ((score < 0) ? score + 2 : Math.floor(score) + 1);
-              return (<Cell key={key} fill={COLORS[colorIndex]} />);
+          {kpiData.map((entry) => {
+            const key: string = Array.isArray(entry.key)
+              ? entry.displayKey!
+              : (entry.key as string);
+            const score = indicatorScores.get(key as string);
+            const colorIndex: number =
+              score === undefined ? 0 : score < 0 ? score + 2 : Math.floor(score) + 1;
+            return <Cell key={key} fill={COLORS[colorIndex]} />;
           })}
         </Pie>
         <Tooltip content={<CustomTooltip />} />
         <g>
-          <text 
-            x="50%" 
+          <text
+            x="50%"
             y="50%"
             textAnchor="middle"
             dominantBaseline="central"

@@ -209,7 +209,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
               {compRow}
             </Tr>
           );
-        } 
+        }
 
         if (compVal !== undefined && !Number.isNaN(compVal)) {
           return (
@@ -218,7 +218,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
               <Td p="0.5em" isNumeric />
               {compRow}
             </Tr>
-            );
+          );
         }
 
         return null;
@@ -391,8 +391,8 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   // "suitable" complement: crimson
   return (
     <ResponsiveContainer width="100%" height="100%" minWidth={800} minHeight={500}>
-      <ComposedChart 
-        width={800} 
+      <ComposedChart
+        width={800}
         height={500}
         data={predictions}
         margin={{

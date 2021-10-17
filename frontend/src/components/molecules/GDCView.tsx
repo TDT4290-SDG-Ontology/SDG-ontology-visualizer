@@ -194,7 +194,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
 
   let compareSunburst = null;
   if (compareGdcInfo !== undefined)
-    compareSunburst = (<GDCSunburst municipality={compareMunicipality!} gdc={compareGdcInfo} />);
+    compareSunburst = <GDCSunburst municipality={compareMunicipality!} gdc={compareGdcInfo} />;
 
   return (
     <Flex align="center" justify="center" justifyContent="space-evenly">
