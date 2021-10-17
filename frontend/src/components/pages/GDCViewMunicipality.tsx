@@ -20,11 +20,11 @@ import {
   Tab,
   TabPanel,
   SimpleGrid,
-  Link,
   Heading,
+  Box,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { MunicipalityInfo, Municipality } from '../../types/municipalityTypes';
 import { getAvailableYears } from '../../api/data';
@@ -42,6 +42,7 @@ type GDCViewParams = {
 };
 
 const ViewMunicipality: React.FC = () => {
+  const history = useHistory();
   const { municipality } = useParams<GDCViewParams>();
   const [availableYears, setAvailableYears] = useState<Array<number>>();
   const [selectedYear, setSelectedYear] = useState<number>(-1);
@@ -113,54 +114,62 @@ const ViewMunicipality: React.FC = () => {
           />
         </Stack>
       </Flex>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size="5xl">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Select municipality to compare with</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Tabs>
+            <Tabs isLazy>
               <TabList>
                 <Tab>Similar</Tab>
                 <Tab>All</Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>
-                  <SimpleGrid columns={3} spacing={20}>
+                  <SimpleGrid columns={3} spacing={10}>
                     {similarMunicipalities &&
                       similarMunicipalities.map((mun) => {
                         const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
                         return (
-                          <Link
+                          <Button
                             key={mun.code}
-                            to={(loc: any) => ({
-                              ...loc,
-                              pathname: `/gdc/compare/${municipality}/${mun.code}`,
-                            })}
+                            onClick={() => history.push(`/gdc/compare/${municipality}/${mun.code}`)}
+                            borderRadius="10px"
+                            size="xl"
+                            color="white"
+                            bg="cyan.700"
+                            _hover={{ backgroundColor: 'cyan.600' }}
                           >
-                            <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
-                            <div>{`Population: ${mun.population}`}</div>
-                          </Link>
+                            <Box size="lg">
+                              <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
+                              <div>{`Population: ${mun.population}`}</div>
+                            </Box>
+                          </Button>
                         );
                       })}
                   </SimpleGrid>
                 </TabPanel>
                 <TabPanel>
-                  <SimpleGrid columns={3} spacing={20}>
+                  <SimpleGrid columns={3} spacing={10}>
                     {allMunicipalities &&
                       allMunicipalities.map((mun) => {
                         const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
                         return (
-                          <Link
+                          <Button
                             key={mun.code}
-                            to={(loc: any) => ({
-                              ...loc,
-                              pathname: `/gdc/compare/${municipality}/${mun.code}`,
-                            })}
+                            onClick={() => history.push(`/gdc/compare/${municipality}/${mun.code}`)}
+                            borderRadius="10px"
+                            size="xl"
+                            color="white"
+                            bg="cyan.700"
+                            _hover={{ backgroundColor: 'cyan.600' }}
                           >
-                            <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
-                            <div>{`Population: ${mun.population}`}</div>
-                          </Link>
+                            <Box size="lg">
+                              <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
+                              <div>{`Population: ${mun.population}`}</div>
+                            </Box>
+                          </Button>
                         );
                       })}
                   </SimpleGrid>
@@ -173,7 +182,6 @@ const ViewMunicipality: React.FC = () => {
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
