@@ -8,7 +8,7 @@ A tool for visualizing ontologies related to UN's sustainable development goals
 
 [Deployed project](https://epic-ardinghelli-d1ee4d.netlify.app/)
 
-## Deploying
+# Deploying
 
 Prerequisites:
 
@@ -16,7 +16,7 @@ Prerequisites:
 
 - A valid GraphDB license file
 
-**IMPORTANT**: To ease deployment, all containers are pre-built and uploaded to Docker Hub. This also includes environment variables like **access secrets, JWT-tokens and coniguration-urls**. If you want to change any of these settings, build change the environment-settings in `frontend/` or `backend/`, rebuild the images with your own tags and use these tags in the compose-files in `deployment/`.
+**IMPORTANT**: To ease deployment, all containers are pre-built and uploaded to Docker Hub. This also includes environment variables like **access secrets, JWT-tokens and coniguration-urls**. If you want to change any of these settings, change the environment-settings in `frontend/` or `backend/`, rebuild the images with your own tags and use these tags in the compose-files in `deployment/`.
 
 ### Database, API, backend, or the whole application
 
@@ -47,6 +47,8 @@ Ports:
 ### Only API or frontend
 
 Run `docker compose -f docker-compose-api.yml up` or `docker compose -f docker-compose-frontend.yml up`
+
+# Develop
 
 ## How to setup
 
