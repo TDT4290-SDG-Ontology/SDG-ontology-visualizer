@@ -28,6 +28,7 @@ import { GDCOutput, IndicatorScore, IndicatorWithoutGoal } from '../../types/gdc
 import u4sscKPIMap from '../../common/u4sscKPIMap';
 
 import GDCPanel from './GDCPanel';
+import GDCSunburst from '../atoms/GDCSunburst';
 
 type GDCViewProps = {
   year: number;
@@ -191,12 +192,20 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
     );
   }
 
+  let compareSunburst = null;
+  if (compareGdcInfo !== undefined)
+    compareSunburst = (<GDCSunburst municipality={compareMunicipality!} gdc={compareGdcInfo} />);
+
   return (
     <Flex align="center" justify="center" justifyContent="space-evenly">
       <Stack spacing="4" bg="white">
         <Container maxWidth={1600} minWidth={800} w={{ base: '900px', '2xl': '1420px' }} p="1em">
           <Stack spacing="4">
             <Heading size="xl">Progress overview</Heading>
+            <Stack direction="row">
+              <GDCSunburst municipality={municipality} gdc={gdcInfo} />
+              {compareSunburst}
+            </Stack>
             <Heading size="md">Issues</Heading>
             <Accordion allowToggle allowMultiple>
               <AccordionItem key="worst">
