@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-syntax, no-plusplus */
-
 import {
   Flex,
   Heading,
