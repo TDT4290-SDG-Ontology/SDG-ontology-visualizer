@@ -11,9 +11,7 @@ export default (muniURI: string, goals: GDCGoal[]): string => {
   );
 
   let insertStatements = '';
-
-  /* eslint-disable-next-line no-restricted-syntax */
-  for (const goal of goals) {
+  goals.forEach((goal) => {
     const dataseries =
       goal.indicatorName +
       (goal.dataseries === undefined || goal.dataseries === 'main' ? '' : `.${goal.dataseries}`);
@@ -36,7 +34,7 @@ export default (muniURI: string, goals: GDCGoal[]): string => {
        ${goalUri} SDG:goalBaselineYear ${goal.baselineYear}.
        ${dummyString}`,
     );
-  }
+  });
 
   return `
     ${prefixString}

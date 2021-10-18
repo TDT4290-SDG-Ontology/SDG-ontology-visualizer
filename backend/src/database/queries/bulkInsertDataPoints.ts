@@ -11,9 +11,7 @@ export default (muniURI: string, data: DataPoint[]): string => {
   );
 
   let insertStatements = '';
-
-  /* eslint-disable-next-line no-restricted-syntax */
-  for (const dp of data) {
+  data.forEach((dp) => {
     const dataseries =
       dp.indicatorName +
       (dp.dataseries === undefined || dp.dataseries === 'main' ? '' : `.${dp.dataseries}`);
@@ -32,7 +30,7 @@ export default (muniURI: string, data: DataPoint[]): string => {
        ${dpUri} SDG:datapointYear ${dp.year}.
        ${dummyString}`,
     );
-  }
+  });
 
   return `
     ${prefixString}

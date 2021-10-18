@@ -11,16 +11,14 @@ export default (goals: GDCGoal[]): string => {
   );
 
   let uris: string = '';
-
-  /* eslint-disable-next-line no-restricted-syntax */
-  for (const goal of goals) {
+  goals.forEach((goal) => {
     const dataseries =
       goal.indicatorName +
       (goal.dataseries === undefined || goal.dataseries === 'main' ? '' : `.${goal.dataseries}`);
 
     const goalUri = ` <http://www.semanticweb.org/aga/ontologies/2017/9/SDG#goals.u4ssc.${dataseries}.${goal.municipality}>`;
     uris = uris.concat(goalUri);
-  }
+  });
 
   return `
     ${prefixString}

@@ -11,16 +11,14 @@ export default (data: DataPoint[]): string => {
   );
 
   let uris: string = '';
-
-  /* eslint-disable-next-line no-restricted-syntax */
-  for (const dp of data) {
+  data.forEach((dp) => {
     const dataseries =
       dp.indicatorName +
       (dp.dataseries === undefined || dp.dataseries === 'main' ? '' : `.${dp.dataseries}`);
 
     const dpUri = ` <http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapoint.u4ssc.${dataseries}.${dp.municipality}.${dp.year}>`;
     uris = uris.concat(dpUri);
-  }
+  });
 
   return `
     ${prefixString}
