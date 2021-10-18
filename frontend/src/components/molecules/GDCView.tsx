@@ -226,7 +226,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
             <Container>
               <Wrap w={{ base: '900px', '2xl': '1356px' }} justify="center" spacing="10">
                 <WrapItem>
-                  <GDCSunburst municipality={municipality} gdc={gdcInfo} />
+                  <GDCSunburst municipality={municipality} gdc={gdcInfo} showLegend />
                 </WrapItem>
                 {compareSunburst}
               </Wrap>

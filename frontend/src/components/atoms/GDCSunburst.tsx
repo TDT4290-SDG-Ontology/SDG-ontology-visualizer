@@ -209,6 +209,11 @@ const uniqueId = (prefix?: string) => `${prefix}${idCounter++}`;
 type SunburstProps = {
   gdc: GDCOutput;
   municipality: string;
+  showLegend?: boolean;
+};
+
+const sunburstDefaults = {
+  showLegend: false,
 };
 
 type CategoryScore = {
@@ -282,7 +287,7 @@ class CustomTooltip<TValue extends ValueType, TName extends NameType> extends Pu
 }
 
 const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
-  const { gdc, municipality } = props;
+  const { gdc, municipality, showLegend } = props;
 
   const indicatorScores = new Map<string, number>();
   const categoryScores = new Map<string, CategoryScore>();
@@ -417,8 +422,7 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
     const { cx, cy, innerRadius, outerRadius, startAngle, endAngle } = viewBox;
 
     let angle = (startAngle + endAngle) / 2;
-    if (angle === 270)
-      angle -= 0.1;
+    if (angle === 270) angle -= 0.1;
 
     let start = toCartesian(cx, cy, outerRadius - 10, angle);
     let end = toCartesian(cx, cy, innerRadius + 5, angle);
@@ -457,8 +461,51 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
   const START_CATEGORIES = 100;
   const START_KPIS = 300;
 
+  let legend = null;
+  if (showLegend)
+    legend = (
+      <g>
+        <g>
+          <circle cx="10" cy="83%" r="7.5" fill={COLORS[5]} />
+          <text x="25" y="82.75%" dominantBaseline="central" textRendering="optimizeLegibility">
+            95% +
+          </text>
+        </g>
+        <g>
+          <circle cx="10" cy="86%" r="7.5" fill={COLORS[4]} />
+          <text x="25" y="85.75%" dominantBaseline="central" textRendering="optimizeLegibility">
+            66% - 95%
+          </text>
+        </g>
+        <g>
+          <circle cx="10" cy="89%" r="7.5" fill={COLORS[3]} />
+          <text x="25" y="88.75%" dominantBaseline="central" textRendering="optimizeLegibility">
+            33% - 66%
+          </text>
+        </g>
+        <g>
+          <circle cx="10" cy="92%" r="7.5" fill={COLORS[2]} />
+          <text x="25" y="91.75%" dominantBaseline="central" textRendering="optimizeLegibility">
+            {'<33%'}
+          </text>
+        </g>
+        <g>
+          <circle cx="10" cy="95%" r="7.5" fill={COLORS[1]} />
+          <text x="25" y="94.75%" dominantBaseline="central" textRendering="optimizeLegibility">
+            Missing target
+          </text>
+        </g>
+        <g>
+          <circle cx="10" cy="98%" r="7.5" fill={COLORS[0]} />
+          <text x="25" y="97.75%" dominantBaseline="central" textRendering="optimizeLegibility">
+            Unreported data
+          </text>
+        </g>
+      </g>
+    );
+
   return (
-    <ResponsiveContainer width="100%" height="100%" minWidth="650px" minHeight="650px">
+    <ResponsiveContainer width="100%" height="100%" minWidth="650px" minHeight="750px">
       <PieChart width={800} height={800}>
         <Pie
           data={domainData}
@@ -517,13 +564,11 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
         </Pie>
         <Tooltip
           content={
-            (
-              <CustomTooltip
-                gdc={gdc}
-                indicatorScores={indicatorScores}
-                categoryScores={categoryScores}
-              />
-            )
+            <CustomTooltip
+              gdc={gdc}
+              indicatorScores={indicatorScores}
+              categoryScores={categoryScores}
+            />
           }
         />
         <g>
@@ -537,9 +582,11 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
             {municipality}
           </text>
         </g>
+        {legend}
       </PieChart>
     </ResponsiveContainer>
   );
 };
 
+GDCSunburst.defaultProps = sunburstDefaults;
 export default GDCSunburst;
