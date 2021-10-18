@@ -28,10 +28,10 @@ const CompareMunicipalities: React.FC = () => {
   const [otherGoalOverride, setOtherGoalOverride] = useState<string>(otherMunicipality);
 
   const overrideCombos = [
-    [ municipality,       otherMunicipality ],
-    [ municipality,       municipality      ],
-    [ otherMunicipality,  otherMunicipality ],
-    [ otherMunicipality,  municipality      ],
+    [municipality, otherMunicipality],
+    [municipality, municipality],
+    [otherMunicipality, otherMunicipality],
+    [otherMunicipality, municipality],
   ];
 
   const loadData = async (muniCode: string, otherCode: string) => {
@@ -115,7 +115,7 @@ const CompareMunicipalities: React.FC = () => {
             </Flex>
           </Container>
           <GDCView
-            key={selectedYear}
+            key={`${selectedYear}-${selectedGoals}`}
             year={selectedYear}
             municipality={name}
             municipalityCode={municipality}

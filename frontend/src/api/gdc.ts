@@ -7,9 +7,14 @@ import {
   CorrelatedKPI,
 } from '../types/gdcTypes';
 
-export const getGDCOutput = async (municipality: string, year: number, goalOverride?: string): Promise<GDCOutput> => {
+export const getGDCOutput = async (
+  municipality: string,
+  year: number,
+  goalOverride?: string,
+): Promise<GDCOutput> => {
   try {
-    const reqBody = (goalOverride !== undefined) ? { municipality, year, goalOverride } : { municipality, year };
+    const reqBody =
+      goalOverride !== undefined ? { municipality, year, goalOverride } : { municipality, year };
     return await api.POST('gdc/get', reqBody).then((data) => {
       try {
         const domains: Map<string, Score> = new Map<string, Score>(data.domains);

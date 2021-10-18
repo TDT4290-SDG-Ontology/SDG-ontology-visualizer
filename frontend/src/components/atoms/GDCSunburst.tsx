@@ -1,8 +1,16 @@
 /* eslint-disable no-nested-ternary, no-restricted-syntax, no-continue, no-plusplus */
 
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Container, Text } from '@chakra-ui/react';
-import { ResponsiveContainer, PieChart, Pie, LabelList, Tooltip, Cell } from 'recharts';
+import {
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  LabelList,
+  Tooltip,
+  TooltipProps,
+  Cell,
+} from 'recharts';
 
 import { IndicatorScore, GDCOutput } from '../../types/gdcTypes';
 
@@ -212,6 +220,67 @@ type CategoryScore = {
 
 const COLORS = ['#8a817a', '#4ba0be', '#dd7947', '#ddac42', '#5ab47d', '#009e69'];
 
+type ValueType = number | string | Array<number | string>;
+type NameType = number | string;
+
+type CustomTooltipProps<TValue extends ValueType, TName extends NameType> = TooltipProps<
+  TValue,
+  TName
+> & {
+  gdc: GDCOutput;
+  indicatorScores: Map<string, number>;
+  categoryScores: Map<string, CategoryScore>;
+};
+
+class CustomTooltip<TValue extends ValueType, TName extends NameType> extends PureComponent<
+  CustomTooltipProps<TValue, TName>
+> {
+  render() {
+    const { active, payload, gdc, indicatorScores, categoryScores } = this.props;
+
+    if (active && payload && payload.length) {
+      const obj = payload[0].payload;
+      if (!obj) return null;
+
+      const { key, name } = obj;
+
+      let score: number;
+      if (obj.category !== undefined) {
+        // KPI
+
+        const indi = indicatorScores.get(Array.isArray(key) ? obj.displayKey : key);
+        if (!indi) return null;
+
+        score = indi;
+      } else if (key.indexOf(':') > -1) {
+        // category
+        const cat = categoryScores.get(key);
+        if (!cat) return null;
+
+        score = cat.score;
+      } else {
+        // domain
+        const dom = gdc.domains.get(key);
+        if (!dom) return null;
+
+        score = dom.score;
+      }
+
+      return (
+        <Container bg="white" borderWidth="1px" borderRadius="0.5em" p="0.5em">
+          <Text>
+            {`${name}: ${
+              score >= 0.0 ? score.toFixed(2) : score === -2 ? 'Unrepported' : 'Missing goal'
+            }`}
+          </Text>
+        </Container>
+      );
+    }
+
+    return null;
+  }
+}
+
 const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
   const { gdc, municipality } = props;
 
@@ -381,51 +450,6 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
     );
   };
 
-  const CustomTooltip: React.FC = (arg: any) => {
-    const { active, payload } = arg;
-
-    if (active && payload && payload.length) {
-      const obj = payload[0].payload;
-      if (!obj) return null;
-
-      const { key, name } = obj;
-
-      let score: number;
-      if (obj.category !== undefined) {
-        // KPI
-
-        const indi = indicatorScores.get(Array.isArray(key) ? obj.displayKey : key);
-        if (!indi) return null;
-
-        score = indi;
-      } else if (key.indexOf(':') > -1) {
-        // category
-        const cat = categoryScores.get(key);
-        if (!cat) return null;
-
-        score = cat.score;
-      } else {
-        // domain
-        const dom = gdc.domains.get(key);
-        if (!dom) return null;
-
-        score = dom.score;
-      }
-
-      return (
-        <Container bg="white" borderWidth="1px" borderRadius="0.5em" p="0.5em">
-          <Text>
-            {`${name}: ${
-              score >= 0.0 ? score.toFixed(2) : score === -2 ? 'Unrepported' : 'Missing goal'
-            }`}
-          </Text>
-        </Container>
-      );
-    }
-
-    return null;
-  };
-
   const START_DOMAINS = 50;
   const START_CATEGORIES = 100;
   const START_KPIS = 300;
@@ -488,7 +512,15 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
             return <Cell key={key} fill={COLORS[colorIndex]} />;
           })}
         </Pie>
-        <Tooltip content={<CustomTooltip />} />
+        <Tooltip
+          content={
+            <CustomTooltip
+              gdc={gdc}
+              indicatorScores={indicatorScores}
+              categoryScores={categoryScores}
+            />
+          }
+        />
         <g>
           <text
             x="50%"
