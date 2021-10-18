@@ -228,7 +228,6 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
     return -2;
   };
 
-  console.log(gdc);
   if (gdc !== undefined) {
     for (const category of categoryData) {
       categoryScores.set(category.key, { score: 0, count: 0, unreported: 0, withoutGoal: 0 });
@@ -308,9 +307,6 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
     for (const catScore of categoryScores.values()) {
       if (catScore.count > 0) catScore.score /= catScore.count;
     }
-
-    console.log(categoryScores);
-    console.log(getScore('SC: SH: SI: 2C'));
   }
 
   const DomainLabels = (arg: any) => {
