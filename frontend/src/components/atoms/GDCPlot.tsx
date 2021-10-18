@@ -390,41 +390,39 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   // Default blue colour: curious blue
   // "suitable" complement: crimson
   return (
-    <Container minWidth={800} minHeight={500}>
-      <ResponsiveContainer width="100%" height="100%" minWidth={800} minHeight={500}>
-        <ComposedChart
-          width={800}
-          height={500}
-          data={predictions}
-          margin={{
-            top: 20,
-            bottom: 20,
-            right: 20,
-            left: 0,
-          }}
-        >
-          <CartesianGrid />
-          <XAxis dataKey="year" />
-          <YAxis />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend content={<CustomLegend />} />
-          <Area name="Bounds" type="natural" dataKey="bounds" fillOpacity="0.15" stroke="none" />
-          <Line name="Existing values" type="natural" dataKey="value" />
-          <Line name="Predicted values" type="natural" dataKey="predicted" strokeDasharray="3 3" />
-          <Line
-            name="Values required to reach target"
-            type="natural"
-            dataKey="required"
-            stroke="gray"
-            strokeDasharray="3 3"
-          />
-          {compareBounds}
-          {compareValues}
-          {comparePredicted}
-          {compareRequired}
-        </ComposedChart>
-      </ResponsiveContainer>
-    </Container>
+    <ResponsiveContainer width="100%" height="100%" minWidth={800} minHeight={500} maxHeight={50000}>
+      <ComposedChart
+        width={800}
+        height={500}
+        data={predictions}
+        margin={{
+          top: 20,
+          bottom: 20,
+          right: 20,
+          left: 0,
+        }}
+      >
+        <CartesianGrid />
+        <XAxis dataKey="year" />
+        <YAxis />
+        <Tooltip content={<CustomTooltip />} />
+        <Legend content={<CustomLegend />} />
+        <Area name="Bounds" type="natural" dataKey="bounds" fillOpacity="0.15" stroke="none" />
+        <Line name="Existing values" type="natural" dataKey="value" />
+        <Line name="Predicted values" type="natural" dataKey="predicted" strokeDasharray="3 3" />
+        <Line
+          name="Values required to reach target"
+          type="natural"
+          dataKey="required"
+          stroke="gray"
+          strokeDasharray="3 3"
+        />
+        {compareBounds}
+        {compareValues}
+        {comparePredicted}
+        {compareRequired}
+      </ComposedChart>
+    </ResponsiveContainer>
   );
 };
 
