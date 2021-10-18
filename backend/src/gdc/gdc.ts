@@ -45,7 +45,6 @@ export const computeGDC = (
   const subdomainScores = new Map<string, CumulativeScore[]>();
   const domainScores = new Map<string, CumulativeScore[]>();
 
-  /* eslint-disable-next-line no-restricted-syntax */
   dataseries.forEach((series) => {
     const isVariant = series.dataseries !== undefined;
     const displayKPI = series.kpi + (isVariant ? ` - ${series.dataseries}` : '');

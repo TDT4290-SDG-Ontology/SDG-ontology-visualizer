@@ -126,7 +126,6 @@ const getGoals = async (req: Request, res: Response) => {
     const goalsData = await getGDCGoals(req.params.municipality, req.params.municipality);
     const goals: Map<string, Goal> = new Map<string, Goal>();
 
-    /* eslint-disable-next-line no-restricted-syntax */
     goalsData.forEach((goal) => {
       const isVariant = goal.dataseries !== undefined;
       const displayKPI = goal.kpi + (isVariant ? ` - ${goal.dataseries}` : '');
