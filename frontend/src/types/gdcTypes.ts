@@ -88,9 +88,6 @@ export type Score = {
 };
 
 export type GDCOutput = {
-  municipality: string;
-  year: number;
-
   averageScore: number;
   projectedCompletion: number;
 

@@ -30,9 +30,6 @@ export const getGDCOutput = async (
         >(data.indicatorsWithoutGoals);
 
         const output: GDCOutput = {
-          municipality: data.municipality,
-          year: data.year,
-
           averageScore: data.averageScore,
           projectedCompletion: data.projectedCompletion,
 
@@ -50,9 +47,6 @@ export const getGDCOutput = async (
       } catch (e) {
         console.log(e);
         return {
-          municipality,
-          year,
-
           averageScore: 0.0,
           projectedCompletion: -Infinity,
 
@@ -69,9 +63,6 @@ export const getGDCOutput = async (
   } catch (e) {
     console.log(e);
     return {
-      municipality,
-      year,
-
       averageScore: 0.0,
       projectedCompletion: -Infinity,
 
