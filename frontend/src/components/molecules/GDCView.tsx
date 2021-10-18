@@ -108,8 +108,6 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
     loadGDCOutput(municipalityCode, year);
   }, []);
 
-  console.log(`Overrides: ${municipalityGoalOverride} - ${compareGoalOverride}`);
-
   const renderKPIAccordion = (displayKPI: string, score: IndicatorScore | IndicatorWithoutGoal) => {
     const display = u4sscKPIMap.get(displayKPI);
     if (display === undefined) return null;

@@ -514,11 +514,13 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
         </Pie>
         <Tooltip
           content={
-            <CustomTooltip
-              gdc={gdc}
-              indicatorScores={indicatorScores}
-              categoryScores={categoryScores}
-            />
+            (
+              <CustomTooltip
+                gdc={gdc}
+                indicatorScores={indicatorScores}
+                categoryScores={categoryScores}
+              />
+            )
           }
         />
         <g>
