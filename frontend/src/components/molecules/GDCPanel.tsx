@@ -25,8 +25,8 @@ import GDCPlot from '../atoms/GDCPlot';
 const correlationLabel = (name: string, corr: number) => {
   // TODO: need? to invert correlation number for 'INV_...' calculations.
 
-  let labelText: string; 
-  let tooltipLabel: string; 
+  let labelText: string;
+  let tooltipLabel: string;
   if (corr >= 0.7) {
     labelText = 'Strong synergy';
     tooltipLabel = `An improvement in the "${name}" KPI would lead to an equivalent improvement in this KPI`;
@@ -51,10 +51,12 @@ const correlationLabel = (name: string, corr: number) => {
   }
 
   return (
-    <Tooltip
-      label={tooltipLabel}
-    >
-      <Text fontWeight="bold" color={`${corr > 0.0 ? 'green' : 'red'}.600`} decoration="underline dotted">
+    <Tooltip label={tooltipLabel}>
+      <Text
+        fontWeight="bold"
+        color={`${corr > 0.0 ? 'green' : 'red'}.600`}
+        decoration="underline dotted"
+      >
         {labelText}
       </Text>
     </Tooltip>
@@ -217,12 +219,14 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
     if (compareIsIndicatorScore) {
       compPointsOutput = (compareData as IndicatorScore).points;
       compScoreOutput = (compareData as IndicatorScore).score.toFixed(2);
-      compWillCompleteOutput = (compareData as IndicatorScore).willCompleteBeforeDeadline ? 'Yes' : 'No';
+      compWillCompleteOutput = (compareData as IndicatorScore).willCompleteBeforeDeadline
+        ? 'Yes'
+        : 'No';
       compRequiredCAGROutput = (100.0 * (compareData as IndicatorScore).requiredCAGR).toFixed(2);
       compDiffMeanOutput = (compareData as IndicatorScore).diffMean.toFixed(2);
       compDiffStdOutput = (compareData as IndicatorScore).diffStd.toFixed(2);
     }
-    
+
     const compCurrentCAGROutput = (100.0 * compareData.currentCAGR).toFixed(2);
 
     compPoints = <Td isNumeric>{compPointsOutput}</Td>;
