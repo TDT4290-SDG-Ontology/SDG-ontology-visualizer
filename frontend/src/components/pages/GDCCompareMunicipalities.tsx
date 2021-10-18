@@ -19,10 +19,20 @@ const CompareMunicipalities: React.FC = () => {
   const [availableYears, setAvailableYears] = useState<Array<number>>();
   const [selectedYear, setSelectedYear] = useState<number>(-1);
 
-  const [selectedGoals, setSelectedGoals] = useState<number>(-1);
+  const [selectedGoals, setSelectedGoals] = useState<number>(0);
 
   const [municipalityInfo, setMunicipalityInfo] = useState<MunicipalityInfo>();
   const [compareMunicipalityInfo, setCompareMunicipalityInfo] = useState<MunicipalityInfo>();
+
+  const [goalOverride, setGoalOverride] = useState<string>(municipality);
+  const [otherGoalOverride, setOtherGoalOverride] = useState<string>(otherMunicipality);
+
+  const overrideCombos = [
+    [ municipality,       otherMunicipality ],
+    [ municipality,       municipality      ],
+    [ otherMunicipality,  otherMunicipality ],
+    [ otherMunicipality,  municipality      ],
+  ];
 
   const loadData = async (muniCode: string, otherCode: string) => {
     const data = await Promise.all([
@@ -47,11 +57,14 @@ const CompareMunicipalities: React.FC = () => {
   }, []);
 
   const onChangeYear = (evt: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedYear(parseFloat(evt.currentTarget.value));
+    setSelectedYear(parseInt(evt.currentTarget.value, 10));
   };
 
   const onChangeGoalset = (evt: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedGoals(parseInt(evt.currentTarget.value, 10));
+    const selector: number = parseInt(evt.currentTarget.value, 10);
+    setSelectedGoals(selector);
+    setGoalOverride(overrideCombos[selector][0]);
+    setOtherGoalOverride(overrideCombos[selector][1]);
   };
 
   const name = municipalityInfo === undefined ? '' : municipalityInfo.name;
@@ -69,18 +82,18 @@ const CompareMunicipalities: React.FC = () => {
                   Goal override:
                 </Text>
                 <Select value={selectedGoals} onChange={onChangeGoalset} w="250px">
-                  <option key="separate" value={-1}>
+                  <option key="separate" value={0}>
                     Separate
                   </option>
-                  <option key="both-first" value={0}>
+                  <option key="both-first" value={1}>
                     {`Force ${municipalityInfo !== undefined ? municipalityInfo.name : ''}`}
                   </option>
-                  <option key="both-second" value={1}>
+                  <option key="both-second" value={2}>
                     {`Force ${
                       compareMunicipalityInfo !== undefined ? compareMunicipalityInfo.name : ''
                     }`}
                   </option>
-                  <option key="swap" value={2}>
+                  <option key="swap" value={3}>
                     Swap
                   </option>
                 </Select>
@@ -106,8 +119,10 @@ const CompareMunicipalities: React.FC = () => {
             year={selectedYear}
             municipality={name}
             municipalityCode={municipality}
+            municipalityGoalOverride={goalOverride}
             compareMunicipality={otherName}
             compareCode={otherMunicipality}
+            compareGoalOverride={otherGoalOverride}
           />
         </Stack>
       </Flex>

@@ -35,14 +35,19 @@ type GDCViewProps = {
 
   municipality: string;
   municipalityCode: string;
+  municipalityGoalOverride?: string;
 
   compareMunicipality?: string;
   compareCode?: string;
+  compareGoalOverride?: string;
 };
 
 const defaultProps = {
   compareMunicipality: undefined,
   compareCode: undefined,
+
+  municipalityGoalOverride: undefined,
+  compareGoalOverride: undefined,
 };
 
 const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
@@ -51,14 +56,14 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   const [indicators, setIndicators] = useState<Map<string, IndicatorScore>>();
   const [worstIndicators, setWorstIndicators] = useState<Map<string, IndicatorScore>>();
 
-  const { year, municipality, municipalityCode, compareMunicipality, compareCode } = props;
+  const { year, municipality, municipalityCode, compareMunicipality, compareCode, municipalityGoalOverride, compareGoalOverride } = props;
   const WORST_COUNT = 5;
 
   const loadGDCOutput = async (muniCode: string, muniYear: number) => {
     if (compareCode !== undefined) {
       const data = await Promise.all([
-        getGDCOutput(muniCode, muniYear),
-        getGDCOutput(compareCode, muniYear),
+        getGDCOutput(muniCode, muniYear, municipalityGoalOverride),
+        getGDCOutput(compareCode, muniYear, compareGoalOverride),
       ]);
       setGDCInfo(data[0]);
       if (data[0] !== undefined) {
@@ -92,6 +97,8 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   useEffect(() => {
     loadGDCOutput(municipalityCode, year);
   }, []);
+
+  console.log(`Overrides: ${municipalityGoalOverride} - ${compareGoalOverride}`);
 
   const renderKPIAccordion = (displayKPI: string, score: IndicatorScore | IndicatorWithoutGoal) => {
     const display = u4sscKPIMap.get(displayKPI);
