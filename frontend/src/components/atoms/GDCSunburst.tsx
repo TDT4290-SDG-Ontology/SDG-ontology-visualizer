@@ -1,5 +1,3 @@
-/* eslint-disable no-nested-ternary, no-restricted-syntax, no-continue, no-plusplus */
-
 import React, { PureComponent } from 'react';
 import { Container, Text } from '@chakra-ui/react';
 import {
@@ -204,7 +202,11 @@ const deltaAngle = (start: number, end: number) =>
   sgn(end - start) * Math.min(Math.abs(end - start), 360);
 
 let idCounter = 0;
-const uniqueId = (prefix?: string) => `${prefix}${idCounter++}`;
+const uniqueId = (prefix?: string) => {
+  const counter = idCounter;
+  idCounter += 1;
+  return `${prefix}${counter}`;
+};
 
 type SunburstProps = {
   gdc: GDCOutput;
@@ -271,13 +273,14 @@ class CustomTooltip<TValue extends ValueType, TName extends NameType> extends Pu
         score = dom.score;
       }
 
+      let text: number | string = '';
+      if (score >= 0.0) text = score.toFixed(2);
+      else if (score === -2) text = 'Unreported';
+      else if (score === -1) text = 'Missing goal';
+
       return (
         <Container bg="white" borderWidth="1px" borderRadius="0.5em" p="0.5em">
-          <Text>
-            {`${name}: ${
-              score >= 0.0 ? score.toFixed(2) : score === -2 ? 'Unrepported' : 'Missing goal'
-            }`}
-          </Text>
+          <Text>{`${name}: ${text}`}</Text>
         </Container>
       );
     }
@@ -367,7 +370,7 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
 
   const getScore = (kpi: string) => {
     const score = gdc.indicators.get(kpi);
-    if (score !== undefined) return (score as IndicatorScore).points;
+    if (score) return (score as IndicatorScore).points;
 
     if (gdc.indicatorsWithoutGoals.has(kpi)) return -1;
 
@@ -375,34 +378,35 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
     return -2;
   };
 
-  if (gdc !== undefined) {
-    for (const category of categoryData) {
+  if (gdc) {
+    categoryData.forEach((category) => {
       categoryScores.set(category.key, { score: 0, count: 0, unreported: 0, withoutGoal: 0 });
-    }
+    });
 
-    for (const kpi of kpiData) {
-      if (kpi === undefined) {
-        continue;
+    kpiData.forEach((kpi) => {
+      if (!kpi) {
+        return;
       }
 
       if (Array.isArray(kpi.key)) {
-        if (kpi.displayKey === undefined) continue;
+        if (!kpi.displayKey) return;
 
         let sum = 0.0;
         let count = 0;
         let unreported = 0;
         let withoutGoal = 0;
-        for (const ind of kpi.key) {
+
+        kpi.key.forEach((ind) => {
           const score = getScore(ind);
           if (score === -1) {
-            withoutGoal++;
+            withoutGoal += 1;
           } else if (score === -2) {
-            unreported++;
+            unreported += 1;
           } else if (score >= 0.0) {
             sum += score;
-            count++;
+            count += 1;
           }
-        }
+        });
 
         let score: number;
         if (count > 0) {
@@ -415,17 +419,17 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
 
         indicatorScores.set(kpi.displayKey, score);
         const cat = categoryScores.get(kpi.category);
-        if (cat === undefined) {
-          continue;
+        if (!cat) {
+          return;
         }
 
         if (score > 0) {
           cat.score += score;
-          cat.count++;
+          cat.count += 1;
         } else if (score === -2) {
-          cat.unreported++;
+          cat.unreported += 1;
         } else if (score === -1) {
-          cat.withoutGoal++;
+          cat.withoutGoal += 1;
         }
 
         categoryScores.set(kpi.category, cat);
@@ -434,23 +438,25 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
         indicatorScores.set(kpi.key as string, score);
 
         const cat = categoryScores.get(kpi.category);
-        if (cat === undefined) {
-          continue;
+        if (!cat) {
+          return;
         }
 
         if (score > 0) {
           cat.score += score;
           cat.count += 1;
         } else if (score === -2) {
-          cat.unreported++;
+          cat.unreported += 1;
         } else if (score === -1) {
-          cat.withoutGoal++;
+          cat.withoutGoal += 1;
         }
 
         categoryScores.set(kpi.category, cat);
       }
-    }
+    });
 
+    // We're assigning to a property of the iterator, so we need for-of.
+    /* eslint-disable-next-line no-restricted-syntax */
     for (const catScore of categoryScores.values()) {
       if (catScore.count > 0) catScore.score /= catScore.count;
     }
@@ -491,7 +497,7 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
         <g>
           <circle cx="10" cy="95%" r="7.5" fill={COLORS[1]} />
           <text x="25" y="94.75%" dominantBaseline="central" textRendering="optimizeLegibility">
-            Missing target
+            Missing goal
           </text>
         </g>
         <g>
@@ -518,7 +524,7 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
         >
           {domainData.map((entry) => {
             const score = gdc.domains.get(entry.key);
-            const colorIndex: number = score === undefined ? 0 : Math.floor(score.score) + 1;
+            const colorIndex: number = !score ? 0 : Math.floor(score.score) + 1;
             return <Cell key={entry.key} fill={COLORS[colorIndex]} />;
           })}
           <LabelList dataKey="name" content={<DomainLabels />} />
@@ -535,12 +541,10 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
         >
           {categoryData.map((entry) => {
             const score = categoryScores.get(entry.key);
-            const colorIndex: number =
-              score === undefined
-                ? 0
-                : score.score < 0
-                ? score.score + 2
-                : Math.floor(score.score) + 1;
+            let colorIndex: number;
+            if (!score) colorIndex = 0;
+            else if (score.score < 0) colorIndex = score.score + 2;
+            else colorIndex = Math.floor(score.score) + 1;
             return <Cell key={entry.key} fill={COLORS[colorIndex]} />;
           })}
           <LabelList dataKey="name" content={<CategoryLabels />} />
@@ -559,8 +563,10 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
               ? entry.displayKey!
               : (entry.key as string);
             const score = indicatorScores.get(key as string);
-            const colorIndex: number =
-              score === undefined ? 0 : score < 0 ? score + 2 : Math.floor(score) + 1;
+            let colorIndex: number;
+            if (!score) colorIndex = 0;
+            else if (score < 0) colorIndex = score + 2;
+            else colorIndex = Math.floor(score) + 1;
             return <Cell key={key} fill={COLORS[colorIndex]} />;
           })}
         </Pie>
