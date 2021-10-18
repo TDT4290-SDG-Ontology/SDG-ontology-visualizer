@@ -29,5 +29,5 @@ export type GDCGoal = {
   startRange: number;
 
   isDummy: boolean;
-  dataseries?: string;
+  dataseries: ?string;
 };

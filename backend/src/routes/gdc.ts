@@ -164,7 +164,6 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
           indicatorScore >= 66.0 ? 3 : 
             indicatorScore >= 33.0 ? 2 : 1;
 
-
   if (current.year <= goal.baselineYear) {
     // current value equal enough to target -- assume it's fulfilled.
     return {
@@ -339,16 +338,16 @@ const getGoalDistance = async (req: Request, res: Response) => {
   try {
     const startTime = performance.now();
 
-    const goalMunicipality = (req.body.goalMunicipality !== undefined) ? req.body.goalMunicipality : req.body.municipality;
+    const goalMunicipality =
+      req.body.goalOverride !== undefined ? req.body.goalOverride : req.body.municipality;
 
     const dataseriesPromise = getGDCDataSeries(req.body.municipality, req.body.year);
-    const goalsPromise = getGDCGoals(goalMunicipality);
-
+    const goalPromise = getGDCGoals(goalMunicipality, req.body.municipality);
     const historicalPromise = getGDCDataSeriesUpto(req.body.municipality, req.body.year);
 
     const startInitialQueries = performance.now();
     // It should be more efficient to wait on both promises at the same time.
-    const data = await Promise.all([dataseriesPromise, goalsPromise]);
+    const data = await Promise.all([dataseriesPromise, goalPromise]);
     const dataseries: Dataseries[] = data[0];
     const goalArray: Goal[] = data[1];
     const endInitialQueries = performance.now();
@@ -359,7 +358,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const goals: Map<string, Goal> = new Map<string, Goal>();
 
     /* eslint-disable-next-line no-restricted-syntax */
-    for (const goal of goalArray.values()) {
+    for (const goal of goalArray) {
       const isVariant = goal.dataseries !== undefined;
       const displayKPI = goal.kpi + (isVariant ? ` - ${goal.dataseries}` : '');
       goals.set(displayKPI, goal);
@@ -430,8 +429,9 @@ const getGoalDistance = async (req: Request, res: Response) => {
       const isVariant = hist.dataseries !== undefined;
       const displayKPI = hist.kpi + (isVariant ? ` - ${hist.dataseries}` : '');
 
-      let score: IndicatorScore | IndicatorWithoutGoal | undefined =
-        outputIndicatorScores.get(displayKPI);
+      let score: IndicatorScore | IndicatorWithoutGoal | undefined = outputIndicatorScores.get(
+        displayKPI,
+      );
       if (score === undefined) {
         // Did not get score from indicators with goals, try the ones without goals instead...
         score = indicatorsWithoutGoals.get(displayKPI);
@@ -462,7 +462,8 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
       const diffMean = predictionDiffs.reduce((acc, val) => acc + val) / predictionDiffs.length;
       const squaredDiff = predictionDiffs.reduce(
-        (acc, val) => acc + (val - diffMean) * (val - diffMean), 0.0
+        (acc, val) => acc + (val - diffMean) * (val - diffMean),
+        0.0,
       );
       const diffStd =
         predictionDiffs.length > 1 ? Math.sqrt(squaredDiff / (predictionDiffs.length - 1)) : 0;
@@ -481,11 +482,15 @@ const getGoalDistance = async (req: Request, res: Response) => {
         yearlyGrowth.push({ value: CAGR, startYear: prev.year, endYear: curr.year });
       }
 
-      if (yearlyGrowth.length > 0) {        
-        const trends = yearlyGrowth.map(g => g.value);
+      if (yearlyGrowth.length > 0) {
+        const trends = yearlyGrowth.map((g) => g.value);
         const trendMean = trends.reduce((acc, v) => acc + v) / yearlyGrowth.length;
-        const squaredDiffTrend = trends.reduce((acc, v) => acc + (v - trendMean) * (v - trendMean), 0.0);
-        const trendStd = (trends.length > 1) ? Math.sqrt(squaredDiffTrend / (trends.length - 1)) : 0.0; 
+        const squaredDiffTrend = trends.reduce(
+          (acc, v) => acc + (v - trendMean) * (v - trendMean),
+          0.0,
+        );
+        const trendStd =
+          trends.length > 1 ? Math.sqrt(squaredDiffTrend / (trends.length - 1)) : 0.0;
 
         score.trendMean = trendMean;
         score.trendStd = trendStd;
@@ -499,13 +504,15 @@ const getGoalDistance = async (req: Request, res: Response) => {
     }
 
     // Calculate stats for indicators without goals
+    /* eslint-disable-next-line no-restricted-syntax */
     for (const score of indicatorsWithoutGoals.values()) {
       score.historicalData.sort((a, b) => a.year - b.year);
-      
+
       const first = score.historicalData[0];
-      const current = score.historicalData[score.historicalData.length - 1]; 
+      const current = score.historicalData[score.historicalData.length - 1];
       if (current.year !== first.year)
-        score.currentCAGR = (current.value / first.value) ** (1.0 / (current.year - first.year)) - 1.0;
+        score.currentCAGR =
+          (current.value / first.value) ** (1.0 / (current.year - first.year)) - 1.0;
 
       // Find periods of largest and smallest growth.
 
@@ -518,11 +525,15 @@ const getGoalDistance = async (req: Request, res: Response) => {
         yearlyGrowth.push({ value: CAGR, startYear: prev.year, endYear: curr.year });
       }
 
-      if (yearlyGrowth.length > 0) {        
-        const trends = yearlyGrowth.map(g => g.value);
+      if (yearlyGrowth.length > 0) {
+        const trends = yearlyGrowth.map((g) => g.value);
         const trendMean = trends.reduce((acc, v) => acc + v) / yearlyGrowth.length;
-        const squaredDiffTrend = trends.reduce((acc, v) => acc + (v - trendMean) * (v - trendMean), 0.0);
-        const trendStd = (trends.length > 1) ? Math.sqrt(squaredDiffTrend / (trends.length - 1)) : 0.0; 
+        const squaredDiffTrend = trends.reduce(
+          (acc, v) => acc + (v - trendMean) * (v - trendMean),
+          0.0,
+        );
+        const trendStd =
+          trends.length > 1 ? Math.sqrt(squaredDiffTrend / (trends.length - 1)) : 0.0;
 
         score.trendMean = trendMean;
         score.trendStd = trendStd;
@@ -764,7 +775,7 @@ const setBulkGoals = async (req: Request, res: Response) => {
 
 const getGoals = async (req: Request, res: Response) => {
   try {
-    const goalsData = await getGDCGoals(req.params.municipality);
+    const goalsData = await getGDCGoals(req.params.municipality, req.params.municipality);
     const goals: Map<string, Goal> = new Map<string, Goal>();
 
     /* eslint-disable-next-line no-restricted-syntax */

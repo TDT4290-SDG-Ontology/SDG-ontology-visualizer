@@ -1,7 +1,7 @@
 import { parsePrefixesToQuery } from '../../common/database';
 import { PREFIXES } from '../index';
 
-export default (municipality: string): string => {
+export default (municipality: string, baselineMunicipality: string): string => {
   const prefixString = parsePrefixesToQuery(PREFIXES.SDG, PREFIXES.SCHEMA, PREFIXES.RDFS);
 
   return `
@@ -12,14 +12,18 @@ export default (municipality: string): string => {
             ?indicator SDG:kpiNumber ?kpi.
             
             ?goal rdf:type SDG:U4SSCIndicatorGoal.
-            ?goal SDG:goalBaseline ?baseline.
-            ?goal SDG:goalBaselineYear ?baselineYear.
             ?goal SDG:goalDeadline ?deadline.
             ?goal SDG:goalTarget ?target.
             ?goal SDG:goalStartRange ?startRange.
 
             ?goal SDG:isGoalForMunicipality ?municipality.
             ?goal SDG:isGoalForDataseries ?ds.
+
+            ?baselineGoal rdf:type SDG:U4SSCIndicatorGoal.
+            ?baselineGoal SDG:goalBaseline ?baseline.
+            ?baselineGoal SDG:goalBaselineYear ?baselineYear.
+            ?baselineGoal SDG:isGoalForMunicipality ?baselineMuni.
+            ?baselineGoal SDG:isGoalForDataseries ?ds.
 
             ?ds SDG:isDataSeriesFor ?indicator.
             ?ds SDG:dataseriesScoreCalculationMethod ?calculationMethod.
@@ -29,5 +33,6 @@ export default (municipality: string): string => {
             }
 
             ?municipality SDG:municipalityCode "${municipality}".
+            ?baselineMuni SDG:municipalityCode "${baselineMunicipality}".
         }`;
 };
