@@ -140,6 +140,7 @@ const ViewMunicipality: React.FC = () => {
                             color="white"
                             bg="cyan.700"
                             _hover={{ backgroundColor: 'cyan.600' }}
+                            p="1em"
                           >
                             <Box size="lg">
                               <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
@@ -164,6 +165,7 @@ const ViewMunicipality: React.FC = () => {
                             color="white"
                             bg="cyan.700"
                             _hover={{ backgroundColor: 'cyan.600' }}
+                            p="1em"
                           >
                             <Box size="lg">
                               <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
