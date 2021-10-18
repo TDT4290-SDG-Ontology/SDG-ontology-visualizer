@@ -71,9 +71,16 @@ const CompareMunicipalities: React.FC = () => {
   const otherName = compareMunicipalityInfo === undefined ? '' : compareMunicipalityInfo.name;
 
   return (
-    <Stack>
+    <Stack height="100%">
       <MunicipalityInfoView info={municipalityInfo} compareInfo={compareMunicipalityInfo} />
-      <Flex align="center" justify="center" justifyContent="space-evenly" m="0px" p="0px">
+      <Flex
+        align="center"
+        justify="center"
+        justifyContent="space-evenly"
+        m="0px"
+        p="0px"
+        height="100%"
+      >
         <Stack w={{ base: '900px', '2xl': '1420px' }} bg="white" m="0px" spacing="10">
           <Container minWidth="800px" p="1em">
             <Flex w="800px" align="center" justify="center" justifyContent="space-evenly">

@@ -215,7 +215,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
       <WrapItem>
         <GDCSunburst municipality={compareMunicipality!} gdc={compareGdcInfo} />
       </WrapItem>
-      );
+    );
 
   return (
     <Flex align="center" justify="center" justifyContent="space-evenly">

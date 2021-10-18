@@ -390,7 +390,13 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   // Default blue colour: curious blue
   // "suitable" complement: crimson
   return (
-    <ResponsiveContainer width="100%" height="100%" minWidth={800} minHeight={500} maxHeight={50000}>
+    <ResponsiveContainer
+      width="100%"
+      height="100%"
+      minWidth={800}
+      minHeight={500}
+      maxHeight={50000}
+    >
       <ComposedChart
         width={800}
         height={500}
