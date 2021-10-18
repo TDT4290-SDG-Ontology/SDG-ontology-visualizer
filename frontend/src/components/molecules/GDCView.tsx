@@ -19,6 +19,8 @@ import {
   Tr,
   Td,
   Th,
+  Wrap,
+  WrapItem,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
@@ -209,7 +211,11 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
 
   let compareSunburst = null;
   if (compareGdcInfo !== undefined)
-    compareSunburst = <GDCSunburst municipality={compareMunicipality!} gdc={compareGdcInfo} />;
+    compareSunburst = (
+      <WrapItem>
+        <GDCSunburst municipality={compareMunicipality!} gdc={compareGdcInfo} />
+      </WrapItem>
+      );
 
   return (
     <Flex align="center" justify="center" justifyContent="space-evenly">
@@ -217,10 +223,14 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
         <Container maxWidth={1600} minWidth={800} w={{ base: '900px', '2xl': '1420px' }} p="1em">
           <Stack spacing="4">
             <Heading size="xl">Progress overview</Heading>
-            <Stack direction="row">
-              <GDCSunburst municipality={municipality} gdc={gdcInfo} />
-              {compareSunburst}
-            </Stack>
+            <Container>
+              <Wrap w={{ base: '900px', '2xl': '1356px' }} justify="center" spacing="10">
+                <WrapItem>
+                  <GDCSunburst municipality={municipality} gdc={gdcInfo} />
+                </WrapItem>
+                {compareSunburst}
+              </Wrap>
+            </Container>
             <Heading size="md">Issues</Heading>
             <Accordion allowToggle allowMultiple>
               <AccordionItem key="worst">
