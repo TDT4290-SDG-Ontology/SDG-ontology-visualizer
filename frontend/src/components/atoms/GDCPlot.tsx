@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary, no-plusplus, no-restricted-syntax */
 
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Heading, Stack, Container, Table, Tr, Td, Th, Thead, Tbody, Text } from '@chakra-ui/react';
 import {
   ResponsiveContainer,
@@ -11,6 +11,7 @@ import {
   Area,
   Line,
   Tooltip,
+  TooltipProps,
   Legend,
 } from 'recharts';
 
@@ -44,6 +45,226 @@ const defaultProps = {
   compareData: undefined,
   compareMunicipality: undefined,
 };
+
+type ValueType = number | string | Array<number | string>;
+type NameType = number | string;
+
+type CustomLegendProps = any & {
+  municipality: string;
+  compareMunicipality?: string;
+};
+
+const customLegendDefaults = {
+  compareMunicipality: undefined,
+};
+
+const CustomLegend: React.FC<CustomLegendProps> = (arg: CustomLegendProps) => {
+  // Slightly customized version of the default recharts legend component...
+
+  const { municipality, compareMunicipality, payload } = arg;
+
+  const SIZE = 32;
+  const renderIcon = (color: string) => {
+    const halfSize = SIZE / 2;
+    const sixthSize = SIZE / 6;
+    const thirdSize = SIZE / 3;
+
+    return (
+      <path
+        strokeWidth={4}
+        fill="none"
+        stroke={color}
+        d={`M0,${halfSize}h${thirdSize}
+          A${sixthSize},${sixthSize},0,1,1,${2 * thirdSize},${halfSize}
+          H${SIZE}M${2 * thirdSize},${halfSize}
+          A${sixthSize},${sixthSize},0,1,1,${thirdSize},${halfSize}`}
+        className="recharts-legend-icon"
+      />
+    );
+  };
+
+  const renderItems = (muni: string, items: any[]) => (
+    <li
+      key={`${muni}`}
+      className="recharts-legend-item legend-item-0"
+      style={{ display: 'block', marginRight: 10 }}
+    >
+      <Text style={{ display: 'inline-block', marginRight: 4 }}>{`${muni}:`}</Text>
+      <ul
+        className="recharts-default-legend"
+        style={{ padding: 0, margin: 0, textAlign: 'center', display: 'inline-block' }}
+      >
+        {items.map((entry, i) => (
+          <li
+            className={`recharts-legend-item legend-item-${i}`}
+            style={{ display: 'inline-block', marginRight: 10 }}
+            key={`legend-item-${entry.value}`}
+          >
+            <svg
+              width={14}
+              height={14}
+              viewBox={`0 0 ${SIZE} ${SIZE}`}
+              style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: 4 }}
+              version="1.1"
+            >
+              {renderIcon(entry.color)}
+            </svg>
+            <span className="recharts-legend-item-text" style={{ color: entry.color }}>
+              {entry.value}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </li>
+  );
+
+  const items = [];
+  const compItems = [];
+
+  for (const its of payload) {
+    if (its.dataKey.startsWith('compare')) {
+      compItems.push(its);
+    } else {
+      items.push(its);
+    }
+  }
+
+  return (
+    <ul className="recharts-default-legend" style={{ padding: 0, margin: 0, textAlign: 'center' }}>
+      {renderItems(municipality, items)}
+      {compareMunicipality && renderItems(compareMunicipality, compItems)}
+    </ul>
+  );
+};
+
+CustomLegend.defaultProps = customLegendDefaults;
+
+type CustomTooltipProps<TValue extends ValueType, TName extends NameType> = TooltipProps<
+  TValue,
+  TName
+> & {
+  currentYear: number;
+
+  municipality: string;
+
+  compareData?: IndicatorScore | IndicatorWithoutGoal;
+  compareMunicipality?: string;
+};
+
+class CustomTooltip<TValue extends ValueType, TName extends NameType> extends PureComponent<
+  CustomTooltipProps<TValue, TName>
+> {
+  // We have to use static default properties, as this must be a class component...
+  // However, eslint complains about this, so we silence eslint.
+  /* eslint-disable-next-line react/static-property-placement */
+  static defaultProps = {
+    compareData: undefined,
+    compareMunicipality: undefined,
+  };
+
+  render() {
+    const { active, payload, label, currentYear, municipality, compareData, compareMunicipality } =
+      this.props;
+    if (active && payload && payload.length) {
+      const {
+        year,
+        value,
+        required,
+        predicted,
+        bounds,
+        compareValue,
+        comparePredicted,
+        compareRequired,
+        compareBounds,
+      } = payload[0].payload;
+      const [best, worst] = bounds;
+      const [compareBest, compareWorst] = compareBounds;
+
+      let predictedRow = null;
+      let requiredRow = null;
+      let bestRow = null;
+      let worstRow = null;
+
+      const rowify = (rowLabel: string, rowVal: number, compVal: number) => {
+        let compRow = null;
+        if (compareData !== undefined) {
+          if (compVal !== undefined && !Number.isNaN(compVal)) {
+            const val = typeof compVal === 'number' ? compVal.toFixed(2) : compVal;
+            compRow = <Td p="0.5em" isNumeric>{`${val}`}</Td>;
+          } else {
+            compRow = <Td p="0.5em" isNumeric />;
+          }
+        }
+
+        if (rowVal !== undefined && !Number.isNaN(rowVal)) {
+          const val = typeof rowVal === 'number' ? rowVal.toFixed(2) : rowVal;
+          return (
+            <Tr>
+              <Td p="0.5em">{`${rowLabel}:`}</Td>
+              <Td p="0.5em" isNumeric>{`${val}`}</Td>
+              {compRow}
+            </Tr>
+          );
+        }
+
+        if (compVal !== undefined && !Number.isNaN(compVal)) {
+          return (
+            <Tr>
+              <Td p="0.5em">{`${rowLabel}:`}</Td>
+              <Td p="0.5em" isNumeric />
+              {compRow}
+            </Tr>
+          );
+        }
+
+        return null;
+      };
+
+      const valueRow = rowify('Value', value, compareValue);
+      if (year !== currentYear) {
+        predictedRow = rowify('Predicted', predicted, comparePredicted);
+        requiredRow = rowify('Required', required, compareRequired);
+        bestRow = rowify('Best case', best, compareBest);
+        worstRow = rowify('Worst case', worst, compareWorst);
+      }
+
+      let header = null;
+      if (compareData) {
+        header = (
+          <Thead>
+            <Tr>
+              <Th />
+              <Th>{municipality}</Th>
+              <Th>{compareMunicipality}</Th>
+            </Tr>
+          </Thead>
+        );
+      }
+
+      return (
+        <Container bg="white" borderWidth="1px" borderRadius="0.5em" p="0.5em">
+          <Stack>
+            <Heading p="0.5em" size="md">
+              {label}
+            </Heading>
+            <Table variant="simple">
+              {header}
+              <Tbody p="0px">
+                {valueRow}
+                {predictedRow}
+                {requiredRow}
+                {bestRow}
+                {worstRow}
+              </Tbody>
+            </Table>
+          </Stack>
+        </Container>
+      );
+    }
+
+    return null;
+  }
+}
 
 const max = (a: number, b: number): number => (a > b ? a : b);
 
@@ -167,108 +388,6 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
     }
   }
 
-  const CustomTooltip: React.FC = (arg: any) => {
-    const { active, payload, label } = arg;
-    if (active && payload && payload.length) {
-      const {
-        year,
-        value,
-        required,
-        predicted,
-        bounds,
-        compareValue,
-        comparePredicted,
-        compareRequired,
-        compareBounds,
-      } = payload[0].payload;
-      const [best, worst] = bounds;
-      const [compareBest, compareWorst] = compareBounds;
-
-      let predictedRow = null;
-      let requiredRow = null;
-      let bestRow = null;
-      let worstRow = null;
-
-      const rowify = (rowLabel: string, rowVal: number, compVal: number) => {
-        let compRow = null;
-        if (compareData !== undefined) {
-          if (compVal !== undefined && !Number.isNaN(compVal)) {
-            const val = typeof compVal === 'number' ? compVal.toFixed(2) : compVal;
-            compRow = <Td p="0.5em" isNumeric>{`${val}`}</Td>;
-          } else {
-            compRow = <Td p="0.5em" isNumeric />;
-          }
-        }
-
-        if (rowVal !== undefined && !Number.isNaN(rowVal)) {
-          const val = typeof rowVal === 'number' ? rowVal.toFixed(2) : rowVal;
-          return (
-            <Tr>
-              <Td p="0.5em">{`${rowLabel}:`}</Td>
-              <Td p="0.5em" isNumeric>{`${val}`}</Td>
-              {compRow}
-            </Tr>
-          );
-        }
-
-        if (compVal !== undefined && !Number.isNaN(compVal)) {
-          return (
-            <Tr>
-              <Td p="0.5em">{`${rowLabel}:`}</Td>
-              <Td p="0.5em" isNumeric />
-              {compRow}
-            </Tr>
-          );
-        }
-
-        return null;
-      };
-
-      const valueRow = rowify('Value', value, compareValue);
-      if (year !== currentYear) {
-        predictedRow = rowify('Predicted', predicted, comparePredicted);
-        requiredRow = rowify('Required', required, compareRequired);
-        bestRow = rowify('Best case', best, compareBest);
-        worstRow = rowify('Worst case', worst, compareWorst);
-      }
-
-      let header = null;
-      if (compareData) {
-        header = (
-          <Thead>
-            <Tr>
-              <Th />
-              <Th>{municipality}</Th>
-              <Th>{compareMunicipality}</Th>
-            </Tr>
-          </Thead>
-        );
-      }
-
-      return (
-        <Container bg="white" borderWidth="1px" borderRadius="0.5em" p="0.5em">
-          <Stack>
-            <Heading p="0.5em" size="md">
-              {label}
-            </Heading>
-            <Table variant="simple">
-              {header}
-              <Tbody p="0px">
-                {valueRow}
-                {predictedRow}
-                {requiredRow}
-                {bestRow}
-                {worstRow}
-              </Tbody>
-            </Table>
-          </Stack>
-        </Container>
-      );
-    }
-
-    return null;
-  };
-
   let compareValues = null;
   let compareBounds = null;
   let comparePredicted = null;
@@ -307,86 +426,6 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
     );
   }
 
-  const CustomLegend: React.FC = (arg: any) => {
-    // Slightly customized version of the default recharts legend component...
-
-    const SIZE = 32;
-    const renderIcon = (color: string) => {
-      const halfSize = SIZE / 2;
-      const sixthSize = SIZE / 6;
-      const thirdSize = SIZE / 3;
-
-      return (
-        <path
-          strokeWidth={4}
-          fill="none"
-          stroke={color}
-          d={`M0,${halfSize}h${thirdSize}
-            A${sixthSize},${sixthSize},0,1,1,${2 * thirdSize},${halfSize}
-            H${SIZE}M${2 * thirdSize},${halfSize}
-            A${sixthSize},${sixthSize},0,1,1,${thirdSize},${halfSize}`}
-          className="recharts-legend-icon"
-        />
-      );
-    };
-
-    const renderItems = (muni: string, items: any[]) => (
-      <li
-        key={`${muni}`}
-        className="recharts-legend-item legend-item-0"
-        style={{ display: 'block', marginRight: 10 }}
-      >
-        <Text style={{ display: 'inline-block', marginRight: 4 }}>{`${muni}:`}</Text>
-        <ul
-          className="recharts-default-legend"
-          style={{ padding: 0, margin: 0, textAlign: 'center', display: 'inline-block' }}
-        >
-          {items.map((entry, i) => (
-            <li
-              className={`recharts-legend-item legend-item-${i}`}
-              style={{ display: 'inline-block', marginRight: 10 }}
-              key={`legend-item-${entry.value}`}
-            >
-              <svg
-                width={14}
-                height={14}
-                viewBox={`0 0 ${SIZE} ${SIZE}`}
-                style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: 4 }}
-                version="1.1"
-              >
-                {renderIcon(entry.color)}
-              </svg>
-              <span className="recharts-legend-item-text" style={{ color: entry.color }}>
-                {entry.value}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </li>
-    );
-
-    const items = [];
-    const compItems = [];
-
-    for (const its of arg.payload) {
-      if (its.dataKey.startsWith('compare')) {
-        compItems.push(its);
-      } else {
-        items.push(its);
-      }
-    }
-
-    return (
-      <ul
-        className="recharts-default-legend"
-        style={{ padding: 0, margin: 0, textAlign: 'center' }}
-      >
-        {renderItems(municipality, items)}
-        {compareMunicipality && renderItems(compareMunicipality, compItems)}
-      </ul>
-    );
-  };
-
   // Default blue colour: curious blue
   // "suitable" complement: crimson
   return (
@@ -411,7 +450,16 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         <CartesianGrid />
         <XAxis dataKey="year" />
         <YAxis />
-        <Tooltip content={<CustomTooltip />} />
+        <Tooltip
+          content={(
+            <CustomTooltip
+              currentYear={currentYear}
+              municipality={municipality}
+              compareData={compareData}
+              compareMunicipality={compareMunicipality}
+            />
+          )}
+        />
         <Legend content={<CustomLegend />} />
         <Area name="Bounds" type="natural" dataKey="bounds" fillOpacity="0.15" stroke="none" />
         <Line name="Existing values" type="natural" dataKey="value" />

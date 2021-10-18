@@ -286,6 +286,79 @@ class CustomTooltip<TValue extends ValueType, TName extends NameType> extends Pu
   }
 }
 
+const DomainLabels = (arg: any) => {
+  const { viewBox, offset, className, name } = arg;
+  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, clockWise } = viewBox;
+
+  const radius = (innerRadius + outerRadius) / 2;
+  const angle = deltaAngle(startAngle, endAngle);
+  const sign = sgn(angle);
+
+  const labelAngle = startAngle + sign * offset;
+  const direction = angle <= 0 ? clockWise : !clockWise;
+
+  const start = toCartesian(cx, cy, radius, labelAngle);
+  const end = toCartesian(cx, cy, radius, labelAngle + (direction ? 1 : -1) * 359);
+  const path = `M${start.x},${start.y}
+                A${radius},${radius},0,1,${direction ? 0 : 1},${end.x},${end.y}`;
+
+  const id = uniqueId('recharts-radial-line-');
+  return (
+    <text
+      dominantBaseline="central"
+      className={`recharts-radial-bar-label ${className}`}
+      fill="white"
+      textAnchor="middle"
+    >
+      <defs>
+        <path id={id} d={path} />
+      </defs>
+      <textPath xlinkHref={`#${id}`} startOffset="10%">
+        {name}
+      </textPath>
+    </text>
+  );
+};
+const CategoryLabels = (arg: any) => {
+  const { viewBox, className, name } = arg;
+  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle } = viewBox;
+
+  let angle = (startAngle + endAngle) / 2;
+  if (angle === 270) angle -= 0.1;
+
+  let start = toCartesian(cx, cy, outerRadius - 10, angle);
+  let end = toCartesian(cx, cy, innerRadius + 5, angle);
+
+  const needsSwap = angle < 90 || angle > 270;
+  if (needsSwap) {
+    const tmp = start;
+    start = end;
+    end = tmp;
+  }
+
+  const path = `M${start.x},${start.y}
+                L${end.x},${end.y}`;
+
+  const id = uniqueId('recharts-radial-line-');
+  return (
+    <text
+      dominantBaseline="central"
+      className={`recharts-radial-bar-label ${className}`}
+      fill="white"
+      textRendering="optimizeLegibility"
+      textAnchor={`${needsSwap ? 'end' : 'start'}`}
+      fontSize="1em"
+    >
+      <defs>
+        <path id={id} d={path} />
+      </defs>
+      <textPath xlinkHref={`#${id}`} startOffset={`${needsSwap ? 100 : 0}%`}>
+        {name}
+      </textPath>
+    </text>
+  );
+};
+
 const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
   const { gdc, municipality, showLegend } = props;
 
@@ -382,80 +455,6 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
       if (catScore.count > 0) catScore.score /= catScore.count;
     }
   }
-
-  const DomainLabels = (arg: any) => {
-    const { viewBox, offset, className, name } = arg;
-    const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, clockWise } = viewBox;
-
-    const radius = (innerRadius + outerRadius) / 2;
-    const angle = deltaAngle(startAngle, endAngle);
-    const sign = sgn(angle);
-
-    const labelAngle = startAngle + sign * offset;
-    const direction = angle <= 0 ? clockWise : !clockWise;
-
-    const start = toCartesian(cx, cy, radius, labelAngle);
-    const end = toCartesian(cx, cy, radius, labelAngle + (direction ? 1 : -1) * 359);
-    const path = `M${start.x},${start.y}
-                  A${radius},${radius},0,1,${direction ? 0 : 1},${end.x},${end.y}`;
-
-    const id = uniqueId('recharts-radial-line-');
-    return (
-      <text
-        dominantBaseline="central"
-        className={`recharts-radial-bar-label ${className}`}
-        fill="white"
-        textAnchor="middle"
-      >
-        <defs>
-          <path id={id} d={path} />
-        </defs>
-        <textPath xlinkHref={`#${id}`} startOffset="10%">
-          {name}
-        </textPath>
-      </text>
-    );
-  };
-
-  const CategoryLabels = (arg: any) => {
-    const { viewBox, className, name } = arg;
-    const { cx, cy, innerRadius, outerRadius, startAngle, endAngle } = viewBox;
-
-    let angle = (startAngle + endAngle) / 2;
-    if (angle === 270) angle -= 0.1;
-
-    let start = toCartesian(cx, cy, outerRadius - 10, angle);
-    let end = toCartesian(cx, cy, innerRadius + 5, angle);
-
-    const needsSwap = angle < 90 || angle > 270;
-    if (needsSwap) {
-      const tmp = start;
-      start = end;
-      end = tmp;
-    }
-
-    const path = `M${start.x},${start.y}
-                  L${end.x},${end.y}`;
-
-    const id = uniqueId('recharts-radial-line-');
-    return (
-      <text
-        dominantBaseline="central"
-        className={`recharts-radial-bar-label ${className}`}
-        fill="white"
-        textRendering="optimizeLegibility"
-        textAnchor={`${needsSwap ? 'end' : 'start'}`}
-        fontSize="1em"
-      >
-        <defs>
-          <path id={id} d={path} />
-        </defs>
-        <textPath xlinkHref={`#${id}`} startOffset={`${needsSwap ? 100 : 0}%`}>
-          {name}
-        </textPath>
-      </text>
-    );
-  };
 
   const START_DOMAINS = 50;
   const START_CATEGORIES = 100;
@@ -566,15 +565,13 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
           })}
         </Pie>
         <Tooltip
-          content={
-            (
-              <CustomTooltip
-                gdc={gdc}
-                indicatorScores={indicatorScores}
-                categoryScores={categoryScores}
-              />
-            )
-          }
+          content={(
+            <CustomTooltip
+              gdc={gdc}
+              indicatorScores={indicatorScores}
+              categoryScores={categoryScores}
+            />
+          )}
         />
         <g>
           <text
