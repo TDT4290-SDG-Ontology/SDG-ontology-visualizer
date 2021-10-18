@@ -102,6 +102,18 @@ type IndicatorWithoutGoal = {
 };
 
 const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorScore => {
+
+  const baselineComp = Math.max(goal.baseline, 0.1); // Guard against division by 0. TODO: check for better solutions for this.
+  const targetFraction = goal.target / baselineComp;
+  const currentFraction = current.value / baselineComp;
+
+  const currentCAGR = currentFraction ** (1.0 / (current.year - goal.baselineYear)) - 1.0;
+  const requiredCAGR =
+    (goal.target / current.value) ** (1.0 / (goal.deadline - current.year)) - 1.0;
+  const targetCAGR = targetFraction ** (1.0 / (goal.deadline - goal.baselineYear)) - 1.0;
+
+  const fractCompare = Math.abs(currentFraction);
+
   const CMP_EPSILON = 0.0001; // TODO: tune the epsilon
   const absGoalBaselineDiff = Math.abs(goal.target - goal.baseline);
   if (absGoalBaselineDiff < CMP_EPSILON) {
@@ -114,9 +126,9 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
       points: 4,
       projectedCompletion: goal.baselineYear,
       willCompleteBeforeDeadline: true,
-      currentCAGR: 0.0,
-      requiredCAGR: 0.0,
-      targetCAGR: 0.0,
+      currentCAGR,
+      requiredCAGR,
+      targetCAGR,
 
       historicalData: [],
       yearlyGrowth: [],
@@ -173,9 +185,9 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
       score: indicatorScore,
       projectedCompletion: -1,
       willCompleteBeforeDeadline: false,
-      currentCAGR: 0.0,
-      requiredCAGR: 0.0,
-      targetCAGR: 0.0,
+      currentCAGR,
+      requiredCAGR,
+      targetCAGR,
 
       historicalData: [],
       yearlyGrowth: [],
@@ -188,17 +200,6 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
       trendStd: 0,
     };
   }
-
-  const baselineComp = Math.max(goal.baseline, 0.1); // Guard against division by 0. TODO: check for better solutions for this.
-  const targetFraction = goal.target / baselineComp;
-  const currentFraction = current.value / baselineComp;
-
-  const currentCAGR = currentFraction ** (1.0 / (current.year - goal.baselineYear)) - 1.0;
-  const requiredCAGR =
-    (goal.target / current.value) ** (1.0 / (goal.deadline - current.year)) - 1.0;
-  const targetCAGR = targetFraction ** (1.0 / (goal.deadline - goal.baselineYear)) - 1.0;
-
-  const fractCompare = Math.abs(currentFraction);
 
   if (Math.abs(goal.target - current.value) < 0.01) {
     // current value equal enough to target -- assume it's fulfilled.
