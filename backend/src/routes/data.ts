@@ -11,6 +11,8 @@ import getAvailableYears from '../database/getAvailableYears';
 import bulkDeleteDataPoints from '../database/bulkDeleteDataPoints';
 import bulkInsertDataPoints from '../database/bulkInsertDataPoints';
 
+import CheckMunicipalityByCode from '../database/CheckMunicipalityByCode';
+
 import { ApiError } from '../types/errorTypes';
 import onError from './middleware/onError';
 import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
@@ -54,6 +56,9 @@ const insertBulkData = async (req: Request, res: Response) => {
     const { municipality } = req.body;
     const year = parseInt(req.body.year, 10);
     if (Number.isNaN(year)) throw new ApiError(400, 'Year not an int.');
+
+    const validMunicipality = await CheckMunicipalityByCode(municipality);
+    if (validMunicipality === 0) throw new ApiError(400, 'Invalid municipality id');
 
     const datapoints: DataPoint[] = [];
 

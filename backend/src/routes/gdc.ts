@@ -15,6 +15,8 @@ import getCorrelatedKPIs from '../database/getCorrelatedKPIs';
 import bulkDeleteGDCGoals from '../database/bulkDeleteGDCGoals';
 import bulkInsertGDCGoals from '../database/bulkInsertGDCGoals';
 
+import CheckMunicipalityByCode from '../database/CheckMunicipalityByCode';
+
 import { Goal, Dataseries, GDCGoal } from '../types/gdcTypes';
 
 import {
@@ -102,7 +104,6 @@ type IndicatorWithoutGoal = {
 };
 
 const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorScore => {
-
   const baselineComp = Math.max(goal.baseline, 0.1); // Guard against division by 0. TODO: check for better solutions for this.
   const targetFraction = goal.target / baselineComp;
   const currentFraction = current.value / baselineComp;
@@ -736,6 +737,9 @@ const setBulkGoals = async (req: Request, res: Response) => {
     console.log(`Bulk goal insert: ${req.body.municipality}`);
     const isDummy = req.body.isDummy !== undefined && req.body.isDummy;
     const { municipality } = req.body;
+
+    const validMunicipality = await CheckMunicipalityByCode(municipality);
+    if (validMunicipality === 0) throw new ApiError(400, 'Invalid municipality id');
 
     const goals: GDCGoal[] = [];
 
