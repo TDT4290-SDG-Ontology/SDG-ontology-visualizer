@@ -88,7 +88,7 @@ const setBulkGoals = async (req: Request, res: Response) => {
 
     const goals: GDCGoal[] = [];
 
-    req.body.goals.forEach((goal) =>  {
+    req.body.goals.forEach((goal) => {
       const dataseries =
         goal.dataseries === undefined || goal.dataseries === null ? 'main' : goal.dataseries;
 
