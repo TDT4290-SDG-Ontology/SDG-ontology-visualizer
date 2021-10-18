@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-syntax, no-plusplus, no-nested-ternary */
-
 import {
   Stack,
   Text,
@@ -26,69 +24,41 @@ import GDCPlot from '../atoms/GDCPlot';
 
 const correlationLabel = (name: string, corr: number) => {
   // TODO: need? to invert correlation number for 'INV_...' calculations.
-  if (corr >= 0.7)
-    return (
-      <Tooltip
-        label={`An improvement in the "${name}" KPI would lead to a equivalent improvement in this KPI`}
-      >
-        <Text fontWeight="bold" color="green.600" decoration="underline dotted">
-          Strong synergy
-        </Text>
-      </Tooltip>
-    );
-  if (corr >= 0.4)
-    return (
-      <Tooltip
-        label={`An improvement in the "${name}" KPI would lead to a moderate improvement in this KPI`}
-      >
-        <Text fontWeight="bold" color="green.600" decoration="underline dotted">
-          Moderate synergy
-        </Text>
-      </Tooltip>
-    );
-  if (corr > 0.1)
-    return (
-      <Tooltip
-        label={`An improvement in the "${name}" KPI would lead to a small improvement in this KPI`}
-      >
-        <Text fontWeight="bold" color="green.600" decoration="underline dotted">
-          Weak synergy
-        </Text>
-      </Tooltip>
-    );
 
-  if (corr <= -0.7)
-    return (
-      <Tooltip
-        label={`An improvement in the "${name}" KPI would lead to an equivalent regression in this KPI`}
-      >
-        <Text fontWeight="bold" color="red.600" decoration="underline dotted">
-          Strong tradeoff
-        </Text>
-      </Tooltip>
-    );
-  if (corr <= -0.4)
-    return (
-      <Tooltip
-        label={`An improvement in the "${name}" KPI would lead to a moderate regression in this KPI`}
-      >
-        <Text fontWeight="bold" color="red.600" decoration="underline dotted">
-          Moderate tradeoff
-        </Text>
-      </Tooltip>
-    );
-  if (corr < 0.1)
-    return (
-      <Tooltip
-        label={`An improvement in the "${name}" KPI would lead to a small regression in this KPI`}
-      >
-        <Text fontWeight="bold" color="red.600" decoration="underline dotted">
-          Weak tradeoff
-        </Text>
-      </Tooltip>
-    );
+  let labelText: string; 
+  let tooltipLabel: string; 
+  if (corr >= 0.7) {
+    labelText = 'Strong synergy';
+    tooltipLabel = `An improvement in the "${name}" KPI would lead to an equivalent improvement in this KPI`;
+  } else if (corr >= 0.4) {
+    labelText = 'Moderate synergy';
+    tooltipLabel = `An improvement in the "${name}" KPI would lead to a moderate improvement in this KPI`;
+  } else if (corr >= 0.1) {
+    labelText = 'Weak synergy';
+    tooltipLabel = `An improvement in the "${name}" KPI would lead to a small improvement in this KPI`;
+  } else if (corr <= -0.7) {
+    labelText = 'Strong tradeoff';
+    tooltipLabel = `An improvement in the "${name}" KPI would lead to an equivalent regression in this KPI`;
+  } else if (corr <= -0.4) {
+    labelText = 'Moderate tradeoff';
+    tooltipLabel = `An improvement in the "${name}" KPI would lead to a moderate regression in this KPI`;
+  } else if (corr <= -0.1) {
+    labelText = 'Weak tradeoff';
+    tooltipLabel = `An improvement in the "${name}" KPI would lead to a small regression in this KPI`;
+  } else {
+    labelText = 'Ambigouos';
+    tooltipLabel = 'This correlation is ambigouos';
+  }
 
-  return <Text fontWeight="bold">Ambigouos</Text>;
+  return (
+    <Tooltip
+      label={tooltipLabel}
+    >
+      <Text fontWeight="bold" color={`${corr > 0.0 ? 'green' : 'red'}.600`} decoration="underline dotted">
+        {labelText}
+      </Text>
+    </Tooltip>
+  );
 };
 
 type GDCPanelProps = {
@@ -238,28 +208,22 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
       </>
     );
 
-    const compPointsOutput = compareIsIndicatorScore
-      ? (compareData as IndicatorScore).points
-      : 'N/A';
-    const compScoreOutput = compareIsIndicatorScore
-      ? (compareData as IndicatorScore).score.toFixed(2)
-      : 'N/A';
-    const compWillCompleteOutput = compareIsIndicatorScore
-      ? (compareData as IndicatorScore).willCompleteBeforeDeadline
-        ? 'Yes'
-        : 'No'
-      : 'N/A';
+    let compPointsOutput: number | string = 'N/A';
+    let compScoreOutput: number | string = 'N/A';
+    let compWillCompleteOutput: number | string = 'N/A';
+    let compRequiredCAGROutput: number | string = 'N/A';
+    let compDiffMeanOutput: number | string = 'N/A';
+    let compDiffStdOutput: number | string = 'N/A';
+    if (compareIsIndicatorScore) {
+      compPointsOutput = (compareData as IndicatorScore).points;
+      compScoreOutput = (compareData as IndicatorScore).score.toFixed(2);
+      compWillCompleteOutput = (compareData as IndicatorScore).willCompleteBeforeDeadline ? 'Yes' : 'No';
+      compRequiredCAGROutput = (100.0 * (compareData as IndicatorScore).requiredCAGR).toFixed(2);
+      compDiffMeanOutput = (compareData as IndicatorScore).diffMean.toFixed(2);
+      compDiffStdOutput = (compareData as IndicatorScore).diffStd.toFixed(2);
+    }
+    
     const compCurrentCAGROutput = (100.0 * compareData.currentCAGR).toFixed(2);
-    const compRequiredCAGROutput = compareIsIndicatorScore
-      ? (100.0 * (compareData as IndicatorScore).requiredCAGR).toFixed(2)
-      : 'N/A';
-
-    const compDiffMeanOutput = compareIsIndicatorScore
-      ? (compareData as IndicatorScore).diffMean.toFixed(2)
-      : 'N/A';
-    const compDiffStdOutput = compareIsIndicatorScore
-      ? (compareData as IndicatorScore).diffStd.toFixed(2)
-      : 'N/A';
 
     compPoints = <Td isNumeric>{compPointsOutput}</Td>;
     compScore = <Td isNumeric>{compScoreOutput}</Td>;
@@ -290,20 +254,20 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
     compTrendStd = <Td isNumeric>{`${(100.0 * compareData.trendStd).toFixed(2)} %`}</Td>;
   }
 
-  const pointsOutput = dataIsIndicatorScore ? (data as IndicatorScore).points : 'N/A';
-  const scoreOutput = dataIsIndicatorScore ? (data as IndicatorScore).score.toFixed(2) : 'N/A';
-  const willCompleteOutput = dataIsIndicatorScore
-    ? (data as IndicatorScore).willCompleteBeforeDeadline
-      ? 'Yes'
-      : 'No'
-    : 'N/A';
-  const requiredOutput = dataIsIndicatorScore
-    ? (100.0 * (data as IndicatorScore).requiredCAGR).toFixed(2)
-    : 'N/A';
-  const diffMeanOutput = dataIsIndicatorScore
-    ? (data as IndicatorScore).diffMean.toFixed(2)
-    : 'N/A';
-  const diffStdOutput = dataIsIndicatorScore ? (data as IndicatorScore).diffStd.toFixed(2) : 'N/A';
+  let pointsOutput: number | string = 'N/A';
+  let scoreOutput: number | string = 'N/A';
+  let willCompleteOutput: number | string = 'N/A';
+  let requiredOutput: number | string = 'N/A';
+  let diffMeanOutput: number | string = 'N/A';
+  let diffStdOutput: number | string = 'N/A';
+  if (dataIsIndicatorScore) {
+    pointsOutput = (data as IndicatorScore).points;
+    scoreOutput = (data as IndicatorScore).score.toFixed(2);
+    willCompleteOutput = (data as IndicatorScore).willCompleteBeforeDeadline ? 'Yes' : 'No';
+    requiredOutput = (100.0 * (data as IndicatorScore).requiredCAGR).toFixed(2);
+    diffMeanOutput = (data as IndicatorScore).diffMean.toFixed(2);
+    diffStdOutput = (data as IndicatorScore).diffStd.toFixed(2);
+  }
 
   return (
     <Stack spacing={4} w={{ base: '800px', '2xl': '1350px' }}>
