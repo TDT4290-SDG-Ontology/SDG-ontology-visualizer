@@ -88,8 +88,7 @@ const setBulkGoals = async (req: Request, res: Response) => {
 
     const goals: GDCGoal[] = [];
 
-    /* eslint-disable-next-line no-restricted-syntax */
-    for (const goal of req.body.goals) {
+    req.body.goals.forEach((goal) =>  {
       const dataseries =
         goal.dataseries === undefined || goal.dataseries === null ? 'main' : goal.dataseries;
 
@@ -111,7 +110,7 @@ const setBulkGoals = async (req: Request, res: Response) => {
       };
 
       goals.push(newGoal);
-    }
+    });
 
     await bulkDeleteGDCGoals(goals);
     await bulkInsertGDCGoals(municipality, goals);
@@ -128,11 +127,11 @@ const getGoals = async (req: Request, res: Response) => {
     const goals: Map<string, Goal> = new Map<string, Goal>();
 
     /* eslint-disable-next-line no-restricted-syntax */
-    for (const goal of goalsData.values()) {
+    goalsData.forEach((goal) => {
       const isVariant = goal.dataseries !== undefined;
       const displayKPI = goal.kpi + (isVariant ? ` - ${goal.dataseries}` : '');
       goals.set(displayKPI, goal);
-    }
+    });
 
     res.json({
       goals: [...goals],

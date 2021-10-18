@@ -107,7 +107,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
     : -1;
 
   let correlatedTable = null;
-  if (correlatedKPIs !== undefined) {
+  if (correlatedKPIs !== undefined && correlatedKPIs !== null) {
     if (correlatedKPIs.length === 0) {
       correlatedTable = (
         <Container minWidth="800px">

@@ -62,8 +62,7 @@ const insertBulkData = async (req: Request, res: Response) => {
 
     const datapoints: DataPoint[] = [];
 
-    /* eslint-disable-next-line no-restricted-syntax */
-    for (const dp of req.body.data) {
+    req.body.data.forEach((dp) => {
       const indicatorName = u4sscKpiMap.get(dp.indicator);
       if (indicatorName === undefined) throw new ApiError(400, '!');
 
@@ -78,7 +77,7 @@ const insertBulkData = async (req: Request, res: Response) => {
       };
 
       datapoints.push(datapoint);
-    }
+    });
 
     await bulkDeleteDataPoints(datapoints);
     await bulkInsertDataPoints(municipality, datapoints);
