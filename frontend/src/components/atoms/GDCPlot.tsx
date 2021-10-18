@@ -1,5 +1,3 @@
-/* eslint-disable no-nested-ternary, no-plusplus, no-restricted-syntax */
-
 import React, { PureComponent } from 'react';
 import { Heading, Stack, Container, Table, Tr, Td, Th, Thead, Tbody, Text } from '@chakra-ui/react';
 import {
@@ -118,16 +116,16 @@ const CustomLegend: React.FC<CustomLegendProps> = (arg: CustomLegendProps) => {
     </li>
   );
 
-  const items = [];
-  const compItems = [];
+  const items: any[] = [];
+  const compItems: any[] = [];
 
-  for (const its of payload) {
+  payload.forEach((its: any) => {
     if (its.dataKey.startsWith('compare')) {
       compItems.push(its);
     } else {
       items.push(its);
     }
-  }
+  });
 
   return (
     <ul className="recharts-default-legend" style={{ padding: 0, margin: 0, textAlign: 'center' }}>
@@ -298,7 +296,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
     const predictions: Prediction[] = [];
 
     // Initial dummy in order for all plots to start at the same ...
-    for (const val of score.historicalData) {
+    score.historicalData.forEach((val) => {
       predictions.push({
         year: val.year,
         value: val.value,
@@ -311,7 +309,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         comparePredicted: NaN,
         compareRequired: NaN,
       });
-    }
+    });
 
     const currentValue = predictions[predictions.length - 1].value;
 
@@ -320,7 +318,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
     predictions[predictions.length - 1].bounds = [currentValue, currentValue];
     predictions[predictions.length - 1].required = currentValue;
 
-    for (let year = currentYear + 1; year <= maxDeadline; year++) {
+    for (let year = currentYear + 1; year <= maxDeadline; year += 1) {
       const prediction = currentValue * (currentCAGR + 1.0) ** (year - currentYear);
       const best = currentValue * (bestCAGR + 1.0) ** (year - currentYear);
       const worst = currentValue * (worstCAGR + 1.0) ** (year - currentYear);
@@ -350,11 +348,12 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
 
     // Try to unify data
     const compareByYear = new Map<number, Prediction>();
-    for (const comp of compPredictions) {
+    compPredictions.forEach((comp) => {
       compareByYear.set(comp.year, comp);
-    }
+    });
 
-    for (const pred of predictions) {
+    for (let i = 0; i < predictions.length; i += 1) {
+      const pred = predictions[i];
       const compPred = compareByYear.get(pred.year);
       if (compPred !== undefined) {
         pred.compareValue = compPred.value;
@@ -369,7 +368,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
     // compareByYear now contains just the values / predictions not present in the initial dataset.
     // insert these in the back, and resort the predictions array...
     if (compareByYear.size > 0) {
-      for (const [year, comp] of compareByYear) {
+      compareByYear.forEach((comp, year) => {
         predictions.push({
           year,
           predicted: NaN,
@@ -382,7 +381,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
           comparePredicted: comp.predicted,
           compareRequired: comp.required,
         });
-      }
+      });
 
       predictions.sort((a, b) => a.year - b.year);
     }
