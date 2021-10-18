@@ -416,7 +416,10 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
     const { viewBox, className, name } = arg;
     const { cx, cy, innerRadius, outerRadius, startAngle, endAngle } = viewBox;
 
-    const angle = (startAngle + endAngle) / 2;
+    let angle = (startAngle + endAngle) / 2;
+    if (angle === 270)
+      angle -= 0.1;
+
     let start = toCartesian(cx, cy, outerRadius - 10, angle);
     let end = toCartesian(cx, cy, innerRadius + 5, angle);
 
