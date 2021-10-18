@@ -460,7 +460,15 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
             />
           )}
         />
-        <Legend content={<CustomLegend />} />
+        <Legend
+          content={(
+            <CustomLegend
+              municipality={municipality}
+              compareMunicipality={compareMunicipality}
+              compareData={compareData}
+            />
+          )}
+        />
         <Area name="Bounds" type="natural" dataKey="bounds" fillOpacity="0.15" stroke="none" />
         <Line name="Existing values" type="natural" dataKey="value" />
         <Line name="Predicted values" type="natural" dataKey="predicted" strokeDasharray="3 3" />
