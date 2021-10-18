@@ -56,10 +56,20 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   const [indicators, setIndicators] = useState<Map<string, IndicatorScore>>();
   const [worstIndicators, setWorstIndicators] = useState<Map<string, IndicatorScore>>();
 
-  const { year, municipality, municipalityCode, compareMunicipality, compareCode, municipalityGoalOverride, compareGoalOverride } = props;
+  const {
+    year,
+    municipality,
+    municipalityCode,
+    compareMunicipality,
+    compareCode,
+    municipalityGoalOverride,
+    compareGoalOverride,
+  } = props;
   const WORST_COUNT = 5;
 
   const loadGDCOutput = async (muniCode: string, muniYear: number) => {
+    if (muniYear === -1) return;
+
     if (compareCode !== undefined) {
       const data = await Promise.all([
         getGDCOutput(muniCode, muniYear, municipalityGoalOverride),
@@ -132,7 +142,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
     );
   };
 
-  if (gdcInfo === undefined || year === undefined)
+  if (gdcInfo === undefined || year === undefined || year === -1)
     return (
       <Flex align="center" justify="center" justifyContent="space-evenly">
         <Stack>
