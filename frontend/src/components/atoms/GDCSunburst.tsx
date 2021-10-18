@@ -505,9 +505,10 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
     );
 
   return (
-    <ResponsiveContainer width="100%" height="100%" minWidth="650px" minHeight="750px">
+    <ResponsiveContainer width="100%" height="100%" minWidth="650px" minHeight="800px">
       <PieChart width={800} height={800}>
         <Pie
+          cy="45%"
           data={domainData}
           dataKey="value"
           innerRadius={START_DOMAINS}
@@ -524,6 +525,7 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
           <LabelList dataKey="name" content={<DomainLabels />} />
         </Pie>
         <Pie
+          cy="45%"
           data={categoryData}
           dataKey="value"
           innerRadius={START_CATEGORIES}
@@ -545,6 +547,7 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
           <LabelList dataKey="name" content={<CategoryLabels />} />
         </Pie>
         <Pie
+          cy="45%"
           data={kpiData}
           dataKey="value"
           innerRadius={START_KPIS}
@@ -564,17 +567,19 @@ const GDCSunburst: React.FC<SunburstProps> = (props: SunburstProps) => {
         </Pie>
         <Tooltip
           content={
-            <CustomTooltip
-              gdc={gdc}
-              indicatorScores={indicatorScores}
-              categoryScores={categoryScores}
-            />
+            (
+              <CustomTooltip
+                gdc={gdc}
+                indicatorScores={indicatorScores}
+                categoryScores={categoryScores}
+              />
+            )
           }
         />
         <g>
           <text
             x="50%"
-            y="50%"
+            y="45%"
             textAnchor="middle"
             dominantBaseline="central"
             textRendering="optimizeLegibility"
