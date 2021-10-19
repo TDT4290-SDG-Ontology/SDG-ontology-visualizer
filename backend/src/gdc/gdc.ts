@@ -1,3 +1,4 @@
+import * as fs from 'fs/promises';
 import computeScore from './score';
 
 import {
@@ -19,6 +20,8 @@ import {
   Score,
   IndicatorScore,
 } from '../types/gdcTypes';
+
+import { gdc2json } from '../utils/gdcUtils';
 
 export const computeGDC = (
   dataseries: Dataseries[],
@@ -307,14 +310,47 @@ export const computeGDC = (
   };
 };
 
-export const gdc2json = (gdc: GDCOutput) => ({
-  averageScore: gdc.averageScore,
-  projectedCompletion: gdc.projectedCompletion,
+export const recordGDCData = async (
+  municipality: string,
+  year: number,
+  goalOverride: string,
+  dataseries: Dataseries[],
+  goals: Goal[],
+  historicalData: Dataseries[],
+  output: GDCOutput,
+) => {
+  const filename = `./src/tests/gdc_data/${municipality}-${year}-${goalOverride}.ts`;
+  let filehandle;
+  try {
+    // await fs.unlink(filename);
+    filehandle = await fs.open(filename, 'w');
+    await filehandle.write("import { Dataseries, Goal, GDCOutput } from '../../types/gdcTypes';\n");
+    await filehandle.write("import { json2gdc } from '../../utils/gdcUtils';\n\n");
 
-  domains: [...gdc.domains],
-  subdomains: [...gdc.subdomains],
-  categories: [...gdc.categories],
-  indicators: [...gdc.indicators],
-  indicatorsWithoutGoals: [...gdc.indicatorsWithoutGoals],
-  unreportedIndicators: gdc.unreportedIndicators,
-});
+    await filehandle.write(`export const municipality: string = "${municipality}";\n`);
+    await filehandle.write(`export const goalOverride: string = "${goalOverride}";\n`);
+    await filehandle.write(`export const year: number = ${year};\n\n`);
+
+    await filehandle.write(
+      `export const dataseries: Dataseries[] = JSON.parse('${JSON.stringify(dataseries)}');\n`,
+    );
+    await filehandle.write(
+      `export const goals: Goal[] = JSON.parse('${JSON.stringify(goals)}');\n`,
+    );
+    await filehandle.write(
+      `export const historicalData: Dataseries[] = JSON.parse('${JSON.stringify(
+        historicalData,
+      )}');\n\n`,
+    );
+
+    await filehandle.write(
+      `export const gdcOutput: GDCOutput = json2gdc(JSON.parse('${JSON.stringify(
+        gdc2json(output),
+      )}'));\n`,
+    );
+  } catch (err) {
+    console.error(err);
+  } finally {
+    await filehandle?.close();
+  }
+};

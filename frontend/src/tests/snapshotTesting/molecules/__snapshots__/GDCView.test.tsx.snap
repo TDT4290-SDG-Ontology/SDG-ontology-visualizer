@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders when there are no items 1`] = `
+<div
+  className="css-172bykr"
+>
+  <div
+    className="chakra-stack css-eao00i"
+  >
+    <div
+      className="chakra-spinner css-1nasj0w"
+    >
+      <span
+        className="css-f8n5zr"
+      >
+        Loading...
+      </span>
+    </div>
+    <p
+      className="chakra-text css-0"
+    >
+      Loading...
+    </p>
+  </div>
+</div>
+`;

@@ -11,7 +11,8 @@ import bulkInsertGDCGoals from '../database/bulkInsertGDCGoals';
 import CheckMunicipalityByCode from '../database/CheckMunicipalityByCode';
 
 import { Goal, Dataseries, GDCGoal, GDCOutput } from '../types/gdcTypes';
-import { computeGDC, gdc2json } from '../gdc/gdc';
+import { computeGDC } from '../gdc/gdc';
+import { gdc2json } from '../utils/gdcUtils';
 
 import { u4sscKpiMap } from '../database/u4sscKpiMap';
 import { ApiError } from '../types/errorTypes';
@@ -41,6 +42,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
       throw new ApiError(400, 'Missing goals, data, or historical data for municipality.');
 
     const gdcOutput: GDCOutput = computeGDC(dataseries, goals, historicalData);
+
     res.json(gdc2json(gdcOutput));
   } catch (e: any) {
     onError(e, req, res);

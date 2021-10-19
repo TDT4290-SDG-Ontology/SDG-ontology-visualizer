@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders when there are no items 1`] = `
+<div
+  className="chakra-stack css-eao00i"
+>
+  <div
+    className="css-ixqi0y"
+    spacing="10"
+  >
+    <div
+      className="chakra-stack css-efzghl"
+    >
+      <h2
+        className="chakra-heading css-kbn7if"
+      >
+        Unknown municipality
+      </h2>
+    </div>
+  </div>
+  <div
+    className="css-1s3qarl"
+  >
+    <div
+      className="chakra-stack css-13gs4nc"
+    >
+      <div
+        align="right"
+        className="chakra-container css-zxqcz"
+        justify="right"
+      >
+        <div
+          className="css-k008qs"
+        >
+          <button
+            className="chakra-button css-oqfhsh"
+            onClick={[Function]}
+            type="button"
+          >
+            Compare with ...
+          </button>
+          <div
+            className="css-17xejub"
+          />
+          <div
+            className="chakra-stack css-1q3uncw"
+          >
+            <p
+              className="chakra-text css-140q4f4"
+            >
+              Year:
+            </p>
+            <div
+              className="chakra-select__wrapper css-1wmuqwq"
+            >
+              <select
+                className="chakra-select css-1p4gbel"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value={-1}
+              />
+              <div
+                className="chakra-select__icon-wrapper css-162mkon"
+              >
+                <svg
+                  aria-hidden={true}
+                  className="chakra-select__icon"
+                  focusable={false}
+                  role="presentation"
+                  style={
+                    Object {
+                      "color": "currentColor",
+                      "height": "1em",
+                      "width": "1em",
+                    }
+                  }
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="css-172bykr"
+      >
+        <div
+          className="chakra-stack css-eao00i"
+        >
+          <div
+            className="chakra-spinner css-1nasj0w"
+          >
+            <span
+              className="css-f8n5zr"
+            >
+              Loading...
+            </span>
+          </div>
+          <p
+            className="chakra-text css-0"
+          >
+            Loading...
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
