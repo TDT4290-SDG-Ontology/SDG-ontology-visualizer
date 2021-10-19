@@ -28,7 +28,7 @@ const App: React.FC = () => {
 
   const originalWarn = console.warn.bind(console.warn);
   console.warn = (msg: any) => {
-    if (!msg.toString().startWith('The width(0) and height(0) of chart should be greater than 0'))
+    if (!msg.toString().startsWith('The width(0) and height(0) of chart should be greater than 0'))
       originalWarn(msg);
   };
 
