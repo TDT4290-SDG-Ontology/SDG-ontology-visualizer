@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders expected output for different municipality 1`] = `
+<div
+  className="recharts-responsive-container"
+  style={
+    Object {
+      "height": "100%",
+      "maxHeight": undefined,
+      "minHeight": "800px",
+      "minWidth": "650px",
+      "width": "100%",
+    }
+  }
+/>
+`;
+
+exports[`renders expected output with legend 1`] = `
+<div
+  className="recharts-responsive-container"
+  style={
+    Object {
+      "height": "100%",
+      "maxHeight": undefined,
+      "minHeight": "800px",
+      "minWidth": "650px",
+      "width": "100%",
+    }
+  }
+/>
+`;
+
+exports[`renders expected output without legend 1`] = `
+<div
+  className="recharts-responsive-container"
+  style={
+    Object {
+      "height": "100%",
+      "maxHeight": undefined,
+      "minHeight": "800px",
+      "minWidth": "650px",
+      "width": "100%",
+    }
+  }
+/>
+`;

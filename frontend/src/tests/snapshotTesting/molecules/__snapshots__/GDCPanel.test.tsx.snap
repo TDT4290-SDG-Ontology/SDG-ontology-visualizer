@@ -1,0 +1,1119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders expected output for comparison of municipalities 1`] = `
+<div
+  className="chakra-stack css-1af9nrx"
+>
+  <div
+    className="chakra-wrap css-0"
+  >
+    <ul
+      className="chakra-wrap__list css-umyqv7"
+    >
+      <li
+        className="chakra-wrap__listitem css-1yp4ln"
+      >
+        <div
+          className="recharts-responsive-container"
+          style={
+            Object {
+              "height": "100%",
+              "maxHeight": 50000,
+              "minHeight": 500,
+              "minWidth": 800,
+              "width": "100%",
+            }
+          }
+        />
+      </li>
+      <li
+        className="chakra-wrap__listitem css-1hsm1qd"
+      >
+        <table
+          className="chakra-table css-0"
+          role="table"
+        >
+          <thead
+            className="css-0"
+          >
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <th
+                className="css-1rq9d1i"
+              >
+                Statistic
+              </th>
+              <th
+                className="css-yf1l8i"
+                data-is-numeric={true}
+              >
+                Trondheim
+              </th>
+              <th
+                className="css-yf1l8i"
+                data-is-numeric={true}
+              >
+                Eindhoven
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            className="css-0"
+          >
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                U4SSC points
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                3
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                3
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Raw score
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                72.50
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                70.07
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Projected completion
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2030.4
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2032.6
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Will complete within deadline?
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                No
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                No
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Overall trend
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -6.89 %
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -6.04 %
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Required trend
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -7.15 %
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -7.57 %
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Best trend
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -10.81 %
+                <br />
+                (2018 to 2019)
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -17.68 %
+                <br />
+                (2017 to 2018)
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Worst trend
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -3.01 %
+                <br />
+                (2017 to 2018)
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                1.82 %
+                <br />
+                (2016 to 2017)
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Mean of trends
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -6.84 %
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -5.76 %
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Standard deviation of trends
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                3.32 %
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                8.03 %
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Mean difference
+                </p>
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                382.33
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -915.16
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Standard deviation of difference
+                </p>
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                900.90
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2504.01
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </div>
+  <button
+    className="chakra-button css-11ma6mm"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Load correlated KPIs
+  </button>
+</div>
+`;
+
+exports[`renders expected output for comparison of municipalities with override 1`] = `
+<div
+  className="chakra-stack css-1af9nrx"
+>
+  <div
+    className="chakra-wrap css-0"
+  >
+    <ul
+      className="chakra-wrap__list css-umyqv7"
+    >
+      <li
+        className="chakra-wrap__listitem css-1yp4ln"
+      >
+        <div
+          className="recharts-responsive-container"
+          style={
+            Object {
+              "height": "100%",
+              "maxHeight": 50000,
+              "minHeight": 500,
+              "minWidth": 800,
+              "width": "100%",
+            }
+          }
+        />
+      </li>
+      <li
+        className="chakra-wrap__listitem css-1hsm1qd"
+      >
+        <table
+          className="chakra-table css-0"
+          role="table"
+        >
+          <thead
+            className="css-0"
+          >
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <th
+                className="css-1rq9d1i"
+              >
+                Statistic
+              </th>
+              <th
+                className="css-yf1l8i"
+                data-is-numeric={true}
+              >
+                Trondheim
+              </th>
+              <th
+                className="css-yf1l8i"
+                data-is-numeric={true}
+              >
+                Eindhoven
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            className="css-0"
+          >
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                U4SSC points
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                3
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                3
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Raw score
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                72.50
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                70.07
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Projected completion
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2030.4
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2032.6
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Will complete within deadline?
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                No
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                No
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Overall trend
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -6.89 %
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -6.04 %
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Required trend
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -7.15 %
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -7.57 %
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Best trend
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -10.81 %
+                <br />
+                (2018 to 2019)
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -17.68 %
+                <br />
+                (2017 to 2018)
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Worst trend
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -3.01 %
+                <br />
+                (2017 to 2018)
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                1.82 %
+                <br />
+                (2016 to 2017)
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Mean of trends
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -6.84 %
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -5.76 %
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Standard deviation of trends
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                3.32 %
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                8.03 %
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Mean difference
+                </p>
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                382.33
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -915.16
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Standard deviation of difference
+                </p>
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                900.90
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2504.01
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </div>
+  <button
+    className="chakra-button css-11ma6mm"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Load correlated KPIs
+  </button>
+</div>
+`;
+
+exports[`renders expected output for single municipality 1`] = `
+<div
+  className="chakra-stack css-1af9nrx"
+>
+  <div
+    className="chakra-wrap css-0"
+  >
+    <ul
+      className="chakra-wrap__list css-umyqv7"
+    >
+      <li
+        className="chakra-wrap__listitem css-1yp4ln"
+      >
+        <div
+          className="recharts-responsive-container"
+          style={
+            Object {
+              "height": "100%",
+              "maxHeight": 50000,
+              "minHeight": 500,
+              "minWidth": 800,
+              "width": "100%",
+            }
+          }
+        />
+      </li>
+      <li
+        className="chakra-wrap__listitem css-1hsm1qd"
+      >
+        <table
+          className="chakra-table css-0"
+          role="table"
+        >
+          <thead
+            className="css-0"
+          >
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <th
+                className="css-1rq9d1i"
+              >
+                Statistic
+              </th>
+              <th
+                className="css-yf1l8i"
+                data-is-numeric={true}
+              >
+                Value
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            className="css-0"
+          >
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                U4SSC points
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                3
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Raw score
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                72.50
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Projected completion
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2030.4
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Will complete within deadline?
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                No
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Overall trend
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -6.89 %
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Required trend
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -7.15 %
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Best trend
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -10.81 %
+                <br />
+                (2018 to 2019)
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Worst trend
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -3.01 %
+                <br />
+                (2017 to 2018)
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Mean of trends
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                -6.84 %
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                Standard deviation of trends
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                3.32 %
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Mean difference
+                </p>
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                382.33
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-0"
+                role="gridcell"
+              >
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Standard deviation of difference
+                </p>
+              </td>
+              <td
+                className="css-0"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                900.90
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </div>
+  <button
+    className="chakra-button css-11ma6mm"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Load correlated KPIs
+  </button>
+</div>
+`;

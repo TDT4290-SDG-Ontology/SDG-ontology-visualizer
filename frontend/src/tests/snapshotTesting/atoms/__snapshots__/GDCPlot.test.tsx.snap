@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders expected output for comparison of municipalities 1`] = `
+<div
+  className="recharts-responsive-container"
+  style={
+    Object {
+      "height": "100%",
+      "maxHeight": 50000,
+      "minHeight": 500,
+      "minWidth": 800,
+      "width": "100%",
+    }
+  }
+/>
+`;
+
+exports[`renders expected output for comparison of municipalities with override 1`] = `
+<div
+  className="recharts-responsive-container"
+  style={
+    Object {
+      "height": "100%",
+      "maxHeight": 50000,
+      "minHeight": 500,
+      "minWidth": 800,
+      "width": "100%",
+    }
+  }
+/>
+`;
+
+exports[`renders expected output for single municipality 1`] = `
+<div
+  className="recharts-responsive-container"
+  style={
+    Object {
+      "height": "100%",
+      "maxHeight": 50000,
+      "minHeight": 500,
+      "minWidth": 800,
+      "width": "100%",
+    }
+  }
+/>
+`;
