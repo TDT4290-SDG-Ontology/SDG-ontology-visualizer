@@ -19,7 +19,7 @@ const App: React.FC = () => {
   // Better to do this in a global scope so that it's easily visible!
   // Massive hack, please fix in future:
   //
-  // The problem is that the accoridons used to hide the plots in GDCView set the
+  // The problem is that the accordions used to hide the plots in GDCView set the
   // height of the responsive container to 0, which causes the warning to issue.
   // This happens ~117 times per page render, causing a massive flood of warnings,
   // slowing down the page loading times. The ResponsiveContainer has minHeight
