@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars -- no-unused-vars disabled in order to help further development */
-
 import { Request, Response, NextFunction } from 'express';
 import { verifyAdminToken } from '../../auth/credentials';
 import { ApiError } from '../../types/errorTypes';
