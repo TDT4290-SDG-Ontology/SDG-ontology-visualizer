@@ -9,7 +9,7 @@ import {
   goals as trdGoals,
   historicalData as trdHistorical,
   gdcOutput as trdOutput,
-} from './gdc_data/no.5001-2020-no.5001';
+} from './gdcData/no.5001-2020-no.5001';
 
 const compareIndicators = (a: IndicatorScore, b: IndicatorScore) => {
   let equalDataseries = true;

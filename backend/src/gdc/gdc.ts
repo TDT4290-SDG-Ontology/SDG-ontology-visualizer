@@ -319,7 +319,7 @@ export const recordGDCData = async (
   historicalData: Dataseries[],
   output: GDCOutput,
 ) => {
-  const filename = `./src/tests/gdc_data/${municipality}-${year}-${goalOverride}.ts`;
+  const filename = `./src/tests/gdcData/${municipality}-${year}-${goalOverride}.ts`;
   let filehandle;
   try {
     // await fs.unlink(filename);
