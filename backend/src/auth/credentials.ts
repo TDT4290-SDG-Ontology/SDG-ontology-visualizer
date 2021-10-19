@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars, no-plusplus -- no-unused-vars disabled in order to help further development by having the inverse of 'decodeHash' available, no-plusplus disabled due to loops */
-
 import { Buffer } from 'buffer';
 import { pbkdf } from 'bcrypt-pbkdf';
 import * as jwt from 'jsonwebtoken';
@@ -9,7 +7,6 @@ import config from '../config';
  * for storage in databases.
  */
 export const encodePasswordHash = (passwordHash: Uint8Array, salt: Uint8Array, rounds: number) => {
-  // eslint-disable-line @typescript-eslint/no-unused-vars
   const hashString = Buffer.from(passwordHash).toString('base64');
   const saltString = Buffer.from(salt).toString('base64');
 
@@ -64,14 +61,9 @@ export const checkPassword = (password: string, existingHash: string) => {
 
   const existingHashedBytes = decodedHash.hash;
   let diff = newHash.length ^ existingHashedBytes.length; // eslint-disable-line no-bitwise
-  for (let i = 0; i < existingHashedBytes.length; i++) {
-    // eslint-disable-line no-plusplus
-    // eslint-disable-line no-plusplus
-    // eslint-disable-line no-plusplus
-    // The bitwise XOR finds the bitwise difference between the
-    // characters being compared.
-    diff |= existingHashedBytes[i] ^ newHash[i]; // eslint-disable-line no-bitwise
-  }
+  existingHashedBytes.forEach((hashedByte, index) => {
+    diff |= hashedByte ^ newHash[index]; // eslint-disable-line no-bitwise
+  });
 
   return diff === 0;
 };
@@ -87,8 +79,7 @@ export const verifyAdminToken = (token: string) => {
 
 export const verifyToken = (token: string) => {
   try {
-    const decoded: any = jwt.verify(token, config.JWT_SECRET_TOKEN!, { maxAge: '24 hours' });
-    return true;
+    return !!jwt.verify(token, config.JWT_SECRET_TOKEN!, { maxAge: '24 hours' });
   } catch {
     return false;
   }

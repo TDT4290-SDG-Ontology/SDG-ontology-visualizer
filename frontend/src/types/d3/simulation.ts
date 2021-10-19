@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/indent */
 import { Modify } from '../genericTypes';
 import { GraphEdge, GraphNode } from '../ontologyTypes';
 

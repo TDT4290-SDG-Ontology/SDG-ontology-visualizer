@@ -116,8 +116,7 @@ const getAllData = async (req: Request, res: Response) => {
         }
         const data2 = _.groupBy(value, 'dataseriesVariant');
 
-        // eslint-disable-next-line array-callback-return
-        Object.keys(data2).map((key2) => {
+        Object.keys(data2).forEach((key2) => {
           data2[key2] = data2[key2].map(({ kpiNumber, dataseriesVariant, ...item }) => item);
         });
         return { kpiNumber: key, data: data2 };
