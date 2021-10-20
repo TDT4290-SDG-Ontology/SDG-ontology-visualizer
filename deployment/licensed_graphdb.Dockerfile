@@ -2,4 +2,4 @@
 FROM fredrbus/tk_sdg_db:1.0
 ENV GDB_JAVA_OPTS="-Dgraphdb.license.file=/opt/graphdb/dist/license/graphdb.license"
 COPY license/ /opt/graphdb/dist/license
-RUN /opt/graphdb/dist/bin/loadrdf -c /opt/graphdb/dist/conf/TK_SDG-config.ttl -m parallel /opt/graphdb/home/ontology
+RUN /opt/graphdb/dist/bin/loadrdf -c /opt/graphdb/dist/conf/TK_SDG-config.ttl -m parallel /opt/graphdb/home/ontology --force
