@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   Heading,
   Stack,
-  Text,
   Flex,
   Input,
   Button,
@@ -13,6 +12,8 @@ import {
   AlertTitle,
   AlertDescription,
   Spacer,
+  FormControl,
+  FormLabel,
 } from '@chakra-ui/react';
 
 import reducer from '../../state/store';
@@ -27,20 +28,27 @@ const Login: React.FC = () => {
   */
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const [missingUsername, setMissingUsername] = useState<boolean>(false);
+  const [missingPassword, setMissingPassword] = useState<boolean>(false);
 
   const onSubmit = async () => {
-    let error: string | null = null;
+    let error: boolean = true;
     if (username === '') {
-      error = 'Username is required.';
+      setMissingUsername(true);
+      error = true;
+    } else {
+      setMissingUsername(false);
     }
 
     if (password === '') {
-      error = error ? `${error} Password is required.` : 'Password is required';
+      setMissingPassword(true);
+      error = true;
+    } else {
+      setMissingPassword(false);
     }
 
     if (error) {
-      setErrorMessage(error);
       return;
     }
 
@@ -82,28 +90,42 @@ const Login: React.FC = () => {
             The functionality you want to access requires valid credentials.
           </Heading>
           <Stack w="100%" p="10">
-            {errorMessage && (
+            {(missingUsername || missingPassword) && (
               <Alert status="error">
                 <AlertIcon />
-                <AlertTitle>Missing required fields!</AlertTitle>
-                <AlertDescription>{errorMessage}</AlertDescription>
+                <AlertTitle>Missing required fields:</AlertTitle>
+                <AlertDescription>
+                  {`${missingUsername ? 'Username' : ''}${
+                    missingUsername && missingPassword ? ', ' : ''
+                  }${missingPassword ? 'Password' : ''}`}
+                </AlertDescription>
               </Alert>
             )}
-            <Text>Username:</Text>
-            <Input onChange={(evt) => setUsername(evt.currentTarget.value)} />
-            <Text>Password:</Text>
-            <InputGroup size="md">
+            <FormControl id="username" isRequired>
+              <FormLabel>Username:</FormLabel>
               <Input
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Enter password"
-                onChange={(evt) => setPassword(evt.currentTarget.value)}
+                onChange={(evt) => setUsername(evt.currentTarget.value)}
+                errorBorderColor="crimson"
+                isInvalid={missingUsername}
               />
-              <InputRightElement w="4rem">
-                <Button onClick={() => setShowPassword(!showPassword)} size="sm" mr="1" w="4rem">
-                  {showPassword ? 'Hide' : 'Show'}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
+            </FormControl>
+            <FormControl id="password" isRequired>
+              <FormLabel>Password:</FormLabel>
+              <InputGroup size="md">
+                <Input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Enter password"
+                  onChange={(evt) => setPassword(evt.currentTarget.value)}
+                  errorBorderColor="crimson"
+                  isInvalid={missingUsername}
+                />
+                <InputRightElement w="4rem">
+                  <Button onClick={() => setShowPassword(!showPassword)} size="sm" mr="1" w="4rem">
+                    {showPassword ? 'Hide' : 'Show'}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+            </FormControl>
             <Spacer m="2rem" />
             <Button onClick={onSubmit}>Log in</Button>
           </Stack>
