@@ -8,12 +8,16 @@ import {
   Button,
   InputGroup,
   InputRightElement,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from '@chakra-ui/react';
 
 import reducer from '../../state/store';
 import { loginSuccess } from '../../state/reducers/loginReducer';
 
-import { login, validateToken } from '../../api/auth';
+import { login } from '../../api/auth';
 
 const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -22,8 +26,23 @@ const Login: React.FC = () => {
   */
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onSubmit = async () => {
+    let error: string | null = null;
+    if (username === '') {
+      error = 'Username is required.';
+    }
+
+    if (password === '') {
+      error = error ? `${error} Password is required.` : 'Password is required';
+    }
+
+    if (error) {
+      setErrorMessage(error);
+      return;
+    }
+
     const data = await login(username, password);
     if (data) {
       console.log(data);
@@ -62,6 +81,13 @@ const Login: React.FC = () => {
             The functionality you want to access requires valid credentials.
           </Heading>
           <Stack w="100%" p="10">
+            {errorMessage && (
+              <Alert status="error">
+                <AlertIcon />
+                <AlertTitle>Missing required fields.</AlertTitle>
+                <AlertDescription>{errorMessage}</AlertDescription>
+              </Alert>
+            )}
             <Text>Username:</Text>
             <Input onChange={(evt) => setUsername(evt.currentTarget.value)} />
             <Text>Password:</Text>
