@@ -102,7 +102,7 @@ const checkToken = async (req: Request, res: Response) => {
   } catch (e) {
     onError(e, req, res);
   }
-}
+};
 
 router.post('/login', verifyDatabaseAccess, login);
 router.post('/add-user', verifyDatabaseAccess, verifyAdminToken, addUser);
