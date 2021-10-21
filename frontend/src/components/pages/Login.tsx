@@ -12,6 +12,7 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  Spacer,
 } from '@chakra-ui/react';
 
 import reducer from '../../state/store';
@@ -84,7 +85,7 @@ const Login: React.FC = () => {
             {errorMessage && (
               <Alert status="error">
                 <AlertIcon />
-                <AlertTitle>Missing required fields.</AlertTitle>
+                <AlertTitle>Missing required fields!</AlertTitle>
                 <AlertDescription>{errorMessage}</AlertDescription>
               </Alert>
             )}
@@ -98,11 +99,12 @@ const Login: React.FC = () => {
                 onChange={(evt) => setPassword(evt.currentTarget.value)}
               />
               <InputRightElement w="4rem">
-                <Button onClick={() => setShowPassword(!showPassword)} size="sm" mr="1">
+                <Button onClick={() => setShowPassword(!showPassword)} size="sm" mr="1" w="4rem">
                   {showPassword ? 'Hide' : 'Show'}
                 </Button>
               </InputRightElement>
             </InputGroup>
+            <Spacer m="2rem" />
             <Button onClick={onSubmit}>Log in</Button>
           </Stack>
         </Stack>
