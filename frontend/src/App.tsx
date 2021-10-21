@@ -3,9 +3,12 @@ import { Provider } from 'react-redux';
 import { Box, ChakraProvider, Flex } from '@chakra-ui/react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import store from './state/store';
+
+import CookieNotice from './components/atoms/CookieNotice';
 import ErrorModal from './components/atoms/ErrorModal';
 import Navbar from './components/atoms/Navbar';
 import Footer from './components/atoms/Footer';
+
 import Frontpage from './components/pages/Frontpage';
 import About from './components/pages/About';
 import OntologyPage from './components/pages/OntologyPage';
@@ -31,6 +34,9 @@ const App: React.FC = () => {
     if (!msg.toString().startsWith('The width(0) and height(0) of chart should be greater than 0'))
       originalWarn(msg);
   };
+
+  // TODO: check local storage for saved token
+  // TODO: check local storage for saved cookie notice state
 
   return (
     <ChakraProvider>
@@ -62,6 +68,7 @@ const App: React.FC = () => {
                 <Route component={NotFoundPage} />
               </Switch>
             </Box>
+            <CookieNotice />
             <Footer />
           </Router>
         </Flex>
