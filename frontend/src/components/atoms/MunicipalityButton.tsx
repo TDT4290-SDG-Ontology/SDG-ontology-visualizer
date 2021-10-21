@@ -20,10 +20,12 @@ const MunicipalityButton: React.FC<MunicipalityButtonProps> = ({
       key={municipality.code}
       onClick={() => history.push(url)}
       borderRadius="10px"
+      borderWidth="3px"
+      borderColor="cyan.700"
       size="xl"
-      color="white"
-      bg="cyan.700"
-      _hover={{ backgroundColor: 'cyan.600' }}
+      color="cyan.700"
+      bg="white"
+      _hover={{ backgroundColor: 'cyan.300' }}
       p="1em"
     >
       <Box size="lg">
