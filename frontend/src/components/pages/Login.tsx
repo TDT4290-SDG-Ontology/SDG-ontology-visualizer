@@ -33,7 +33,7 @@ const Login: React.FC = () => {
   const [missingPassword, setMissingPassword] = useState<boolean>(false);
 
   const onSubmit = async () => {
-    let error: boolean = true;
+    let error: boolean = false;
     if (username === '') {
       setMissingUsername(true);
       error = true;
