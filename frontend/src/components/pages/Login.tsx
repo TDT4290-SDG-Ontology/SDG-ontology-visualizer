@@ -117,7 +117,7 @@ const Login: React.FC = () => {
                   placeholder="Enter password"
                   onChange={(evt) => setPassword(evt.currentTarget.value)}
                   errorBorderColor="crimson"
-                  isInvalid={missingUsername}
+                  isInvalid={missingPassword}
                 />
                 <InputRightElement w="4rem">
                   <Button onClick={() => setShowPassword(!showPassword)} size="sm" mr="1" w="4rem">
