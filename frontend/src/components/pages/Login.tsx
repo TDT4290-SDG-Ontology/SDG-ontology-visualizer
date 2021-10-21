@@ -33,24 +33,11 @@ const Login: React.FC = () => {
   const [missingPassword, setMissingPassword] = useState<boolean>(false);
 
   const onSubmit = async () => {
-    let error: boolean = false;
-    if (username === '') {
-      setMissingUsername(true);
-      error = true;
-    } else {
-      setMissingUsername(false);
-    }
+    const error: boolean = username === '' || password === '';
+    setMissingUsername(username === '');
+    setMissingPassword(password === '');
 
-    if (password === '') {
-      setMissingPassword(true);
-      error = true;
-    } else {
-      setMissingPassword(false);
-    }
-
-    if (error) {
-      return;
-    }
+    if (error) return;
 
     const data = await login(username, password);
     if (data) {
