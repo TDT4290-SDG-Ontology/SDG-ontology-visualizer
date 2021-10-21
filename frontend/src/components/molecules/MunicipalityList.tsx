@@ -1,13 +1,12 @@
-import { SimpleGrid, Heading, Stack, Flex, Spinner, Text, Button, Box } from '@chakra-ui/react';
+import { SimpleGrid, Stack, Flex, Spinner, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import { getAllMunicipalities } from '../../api/municipalities';
 import { Municipality } from '../../types/municipalityTypes';
+import MunicipalityButton from '../atoms/MunicipalityButton';
 
 const MunicipalityList: React.FC = () => {
   const [municipalities, setMunicipalities] = useState<Array<Municipality>>();
-  const history = useHistory();
 
   const loadMunicipalities = async () => {
     const data = await getAllMunicipalities();
@@ -39,26 +38,9 @@ const MunicipalityList: React.FC = () => {
     <Stack align="center">
       <SimpleGrid columns={3} spacing="10">
         {municipalities &&
-          municipalities.map((mun) => {
-            const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
-            return (
-              <Button
-                key={mun.code}
-                onClick={() => history.push(`/gdc/view/${mun.code}`)}
-                borderRadius="10px"
-                size="xl"
-                color="white"
-                bg="cyan.700"
-                _hover={{ backgroundColor: 'cyan.600' }}
-                p="1em"
-              >
-                <Box size="lg">
-                  <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
-                  <div>{`Population: ${mun.population}`}</div>
-                </Box>
-              </Button>
-            );
-          })}
+          municipalities.map((mun) => (
+            <MunicipalityButton municipality={mun} url={`/gdc/view/${mun.code}`} />
+          ))}
       </SimpleGrid>
     </Stack>
   );

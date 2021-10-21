@@ -36,6 +36,7 @@ import {
 
 import MunicipalityInfoView from '../molecules/MunicipalityInfo';
 import GDCView from '../molecules/GDCView';
+import MunicipalityButton from '../atoms/MunicipalityButton';
 
 type GDCViewParams = {
   municipality: string;
@@ -129,26 +130,12 @@ const ViewMunicipality: React.FC = () => {
                 <TabPanel>
                   <SimpleGrid columns={3} spacing={10}>
                     {similarMunicipalities &&
-                      similarMunicipalities.map((mun) => {
-                        const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
-                        return (
-                          <Button
-                            key={mun.code}
-                            onClick={() => history.push(`/gdc/compare/${municipality}/${mun.code}`)}
-                            borderRadius="10px"
-                            size="xl"
-                            color="white"
-                            bg="cyan.700"
-                            _hover={{ backgroundColor: 'cyan.600' }}
-                            p="1em"
-                          >
-                            <Box size="lg">
-                              <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
-                              <div>{`Population: ${mun.population}`}</div>
-                            </Box>
-                          </Button>
-                        );
-                      })}
+                      similarMunicipalities.map((mun) => (
+                        <MunicipalityButton
+                          municipality={mun}
+                          url={`/gdc/compare/${municipality}/${mun.code}`}
+                        />
+                      ))}
                   </SimpleGrid>
                 </TabPanel>
                 <TabPanel>

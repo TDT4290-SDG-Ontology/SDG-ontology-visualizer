@@ -29,22 +29,6 @@ exports[`renders when there are no items 1`] = `
       <h1>
         <a
           className="chakra-link css-qrr3e6"
-          href="/ontology"
-          onClick={[Function]}
-        >
-          Ontology
-        </a>
-      </h1>
-    </div>
-    <div
-      className="css-17xejub"
-    />
-    <div
-      className="css-0"
-    >
-      <h1>
-        <a
-          className="chakra-link css-qrr3e6"
           href="/gdc"
           onClick={[Function]}
         >
