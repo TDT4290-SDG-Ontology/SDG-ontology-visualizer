@@ -87,6 +87,19 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
               .slice(0, WORST_COUNT),
           ),
         );
+
+        setLongestCompletionIndicators(
+          new Map(
+            Array.from(data[0].indicators)
+              .sort((a, b) => {
+                if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return 1;
+                if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return -1;
+
+                return b[1].projectedCompletion - a[1].projectedCompletion;
+              })
+              .slice(0, WORST_COUNT),
+          ),
+        );
       }
 
       setCompareGDCInfo(data[1]);
