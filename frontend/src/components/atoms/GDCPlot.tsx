@@ -437,7 +437,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         name="Values required to reach target"
         type="natural"
         dataKey="compareRequired"
-        stroke="gray"
+        stroke="black"
         strokeDasharray="3 3"
       />
     );
@@ -496,7 +496,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
           name="Values required to reach target"
           type="natural"
           dataKey="required"
-          stroke="gray"
+          stroke="black"
           strokeDasharray="3 3"
         />
         <Line name="Target" type="natural" dataKey="target" stroke="#0050B5" dot={false} />
