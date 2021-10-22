@@ -257,10 +257,10 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
 
     statsHeaders = (
       <>
-        <Th minWidth="155px" isNumeric>
+        <Th minWidth="155px" isNumeric pl="0">
           {municipality}
         </Th>
-        <Th minWidth="155px" isNumeric>
+        <Th minWidth="155px" isNumeric pl="0">
           {compareMunicipality}
         </Th>
       </>
@@ -322,36 +322,68 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
 
     const compCurrentCAGROutput = (100.0 * compareData.currentCAGR).toFixed(2);
 
-    compPoints = <Td isNumeric>{compPointsOutput}</Td>;
-    compScore = <Td isNumeric>{compScoreOutput}</Td>;
-    compCompletion = <Td isNumeric>{compProjectedCompletionOutput}</Td>;
-    compWillComplete = <Td isNumeric>{compWillCompleteOutput}</Td>;
-    compCurrentCAGR = <Td isNumeric>{`${compCurrentCAGROutput} %`}</Td>;
-    compRequiredCAGR = <Td isNumeric>{`${compRequiredCAGROutput} %`}</Td>;
+    compPoints = (
+      <Td isNumeric pl="0">
+        {compPointsOutput}
+      </Td>
+    );
+    compScore = (
+      <Td isNumeric pl="0">
+        {compScoreOutput}
+      </Td>
+    );
+    compCompletion = (
+      <Td isNumeric pl="0">
+        {compProjectedCompletionOutput}
+      </Td>
+    );
+    compWillComplete = (
+      <Td isNumeric pl="0">
+        {compWillCompleteOutput}
+      </Td>
+    );
+    compCurrentCAGR = <Td isNumeric pl="0">{`${compCurrentCAGROutput} %`}</Td>;
+    compRequiredCAGR = <Td isNumeric pl="0">{`${compRequiredCAGROutput} %`}</Td>;
     compBestCAGR = (
-      <Td isNumeric>
+      <Td isNumeric pl="0">
         {`${(100.0 * compBestGrowth.value).toFixed(2)} %`}
         <br />
         {`(${compBestGrowth.startYear} to ${compBestGrowth.endYear})`}
       </Td>
     );
 
-    compBestCompletion = <Td isNumeric>{compBestCompletionOutput}</Td>;
+    compBestCompletion = (
+      <Td isNumeric pl="0">
+        {compBestCompletionOutput}
+      </Td>
+    );
 
     compWorstCAGR = (
-      <Td isNumeric>
+      <Td isNumeric pl="0">
         {`${(100.0 * compWorstGrowth.value).toFixed(2)} %`}
         <br />
         {`(${compWorstGrowth.startYear} to ${compWorstGrowth.endYear})`}
       </Td>
     );
 
-    compWorstCompletion = <Td isNumeric>{compWorstCompletionOutput}</Td>;
+    compWorstCompletion = (
+      <Td isNumeric pl="0">
+        {compWorstCompletionOutput}
+      </Td>
+    );
 
-    compMean = <Td isNumeric>{compDiffMeanOutput}</Td>;
-    compStd = <Td isNumeric>{compDiffStdOutput}</Td>;
-    compTrendMean = <Td isNumeric>{`${(100.0 * compareData.trendMean).toFixed(2)} %`}</Td>;
-    compTrendStd = <Td isNumeric>{`${(100.0 * compareData.trendStd).toFixed(2)} %`}</Td>;
+    compMean = (
+      <Td isNumeric pl="0">
+        {compDiffMeanOutput}
+      </Td>
+    );
+    compStd = (
+      <Td isNumeric pl="0">
+        {compDiffStdOutput}
+      </Td>
+    );
+    compTrendMean = <Td isNumeric pl="0">{`${(100.0 * compareData.trendMean).toFixed(2)} %`}</Td>;
+    compTrendStd = <Td isNumeric pl="0">{`${(100.0 * compareData.trendStd).toFixed(2)} %`}</Td>;
   }
 
   let pointsOutput: number | string = 'N/A';
@@ -407,48 +439,86 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
             compareData={compareData}
           />
         </WrapItem>
-        <WrapItem maxWidth="475px">
+        <WrapItem maxWidth="525px" minWidth="475px">
           <Table variant="simple">
             <Thead>
-              <Tr>
-                <Th minWidth="165px">Statistic</Th>
+              <Tr pr="0">
+                <Th minWidth="215px">Statistic</Th>
                 {statsHeaders}
               </Tr>
             </Thead>
             <Tbody>
               <Tr>
-                <Td>U4SSC points</Td>
-                <Td isNumeric>{pointsOutput}</Td>
+                <Td pr="0">
+                  <Tooltip label="Points as calculated according to the U4SSC scale.">
+                    <Text decoration="underline dotted">U4SSC points</Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric pl="0">
+                  {pointsOutput}
+                </Td>
                 {compPoints}
               </Tr>
               <Tr>
-                <Td>Raw score</Td>
-                <Td isNumeric>{scoreOutput}</Td>
+                <Td pr="0">
+                  <Tooltip label="Current value in percent of goal reached.">
+                    <Text decoration="underline dotted">Raw score</Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric pl="0">
+                  {scoreOutput}
+                </Td>
                 {compScore}
               </Tr>
               <Tr>
-                <Td>Projected completion</Td>
-                <Td isNumeric>{projectedCompletionOutput}</Td>
+                <Td pr="0">
+                  <Tooltip label="Estimated completion year (including fraction) according to the prediction model.">
+                    <Text decoration="underline dotted">Projected completion</Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric pl="0">
+                  {projectedCompletionOutput}
+                </Td>
                 {compCompletion}
               </Tr>
               <Tr>
-                <Td>Will complete within deadline?</Td>
-                <Td isNumeric>{willCompleteOutput}</Td>
+                <Td pr="0">
+                  <Tooltip label="Is the projected completion year less than the set deadline for this KPI?">
+                    <Text decoration="underline dotted">Will complete within deadline?</Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric pl="0">
+                  {willCompleteOutput}
+                </Td>
                 {compWillComplete}
               </Tr>
               <Tr>
-                <Td>Overall trend</Td>
-                <Td isNumeric>{`${(100.0 * data.currentCAGR).toFixed(2)} %`}</Td>
+                <Td pr="0">
+                  <Tooltip label={`The average per year change until ${year}`}>
+                    <Text decoration="underline dotted">Overall trend</Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric pl="0">{`${(100.0 * data.currentCAGR).toFixed(2)} %`}</Td>
                 {compCurrentCAGR}
               </Tr>
               <Tr>
-                <Td>Required trend</Td>
-                <Td isNumeric>{`${requiredOutput} %`}</Td>
+                <Td pr="0">
+                  <Tooltip
+                    label={`The average per year change required to reach the designated target from ${year} to the set deadline.`}
+                  >
+                    <Text decoration="underline dotted">Required trend</Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric pl="0">{`${requiredOutput} %`}</Td>
                 {compRequiredCAGR}
               </Tr>
               <Tr>
-                <Td>Best trend</Td>
-                <Td isNumeric>
+                <Td pr="0">
+                  <Tooltip label={`The best per year change for all periods until ${year}.`}>
+                    <Text decoration="underline dotted">Best trend</Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric pl="0">
                   {`${(100.0 * bestGrowth.value).toFixed(2)} %`}
                   <br />
                   {`(${bestGrowth.startYear} to ${bestGrowth.endYear})`}
@@ -456,13 +526,23 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                 {compBestCAGR}
               </Tr>
               <Tr>
-                <Td>Best case completion</Td>
-                <Td isNumeric>{bestCompletionOutput}</Td>
+                <Td pr="0">
+                  <Tooltip label="Estimated completion year (including fraction) according to the prediction model when assuming the average yearly change is the best possible case encountered this far.">
+                    <Text decoration="underline dotted">Best case completion</Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric pl="0">
+                  {bestCompletionOutput}
+                </Td>
                 {compBestCompletion}
               </Tr>
               <Tr>
-                <Td>Worst trend</Td>
-                <Td isNumeric>
+                <Td pr="0">
+                  <Tooltip label={`The worst per year change for all periods until ${year}.`}>
+                    <Text decoration="underline dotted">Worst trend</Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric pl="0">
                   {`${(100.0 * worstGrowth.value).toFixed(2)} %`}
                   <br />
                   {`(${worstGrowth.startYear} to ${worstGrowth.endYear})`}
@@ -470,36 +550,56 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                 {compWorstCAGR}
               </Tr>
               <Tr>
-                <Td>Worst case completion</Td>
-                <Td isNumeric>{worstCompletionOutput}</Td>
+                <Td pr="0">
+                  <Tooltip label="Estimated completion year (including fraction) according to the prediction model when assuming the average yearly change is the worst possible case encountered this far.">
+                    <Text decoration="underline dotted">Worst case completion</Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric pl="0">
+                  {worstCompletionOutput}
+                </Td>
                 {compWorstCompletion}
               </Tr>
               <Tr>
-                <Td>Mean of trends</Td>
-                <Td isNumeric>{`${(100.0 * data.trendMean).toFixed(2)} %`}</Td>
+                <Td pr="0">
+                  <Tooltip label="Mean of all trends encountered.">
+                    <Text decoration="underline dotted">Mean of trends</Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric pl="0">{`${(100.0 * data.trendMean).toFixed(2)} %`}</Td>
                 {compTrendMean}
               </Tr>
               <Tr>
-                <Td>Standard deviation of trends</Td>
-                <Td isNumeric>{`${(100.0 * data.trendStd).toFixed(2)} %`}</Td>
+                <Td pr="0">
+                  <Tooltip label="Standard deviation of trends encountered.">
+                    <Text decoration="underline dotted">Standard deviation of trends</Text>
+                  </Tooltip>
+                </Td>
+                <Td isNumeric pl="0">{`${(100.0 * data.trendStd).toFixed(2)} %`}</Td>
                 {compTrendStd}
               </Tr>
               <Tr>
-                <Td>
+                <Td pr="0">
                   <Tooltip label="Mean of difference between actual values and the projected values (measure of model suitability).">
-                    <Text decoration="underline dotted">Mean difference</Text>
+                    <Text decoration="underline dotted">Mean difference of estimated value</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric>{diffMeanOutput}</Td>
+                <Td isNumeric pl="0">
+                  {diffMeanOutput}
+                </Td>
                 {compMean}
               </Tr>
               <Tr>
-                <Td>
+                <Td pr="0">
                   <Tooltip label="Standard deviation of difference between actual values and the projected values.">
-                    <Text decoration="underline dotted">Standard deviation of difference</Text>
+                    <Text decoration="underline dotted">
+                      Standard deviation of difference from estimated value
+                    </Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric>{diffStdOutput}</Td>
+                <Td isNumeric pl="0">
+                  {diffStdOutput}
+                </Td>
                 {compStd}
               </Tr>
             </Tbody>
