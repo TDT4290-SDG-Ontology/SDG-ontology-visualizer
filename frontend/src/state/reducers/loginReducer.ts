@@ -14,21 +14,25 @@ const defaultState: LoginState = {
 const loginReducer = (state: LoginState = defaultState, action: LoginStateAction): LoginState => {
   switch (action.type) {
     case LOGIN_SUCCESS:
+      localStorage.setItem('token', JSON.stringify(action.payload));
       return {
         ...state,
         token: action.payload,
       };
     case LOGIN_FAILED:
+      localStorage.removeItem('token');
       return {
         ...state,
         token: null,
       };
     case TOKEN_VERIFIED:
+      localStorage.setItem('token', JSON.stringify(action.payload));
       return {
         ...state,
         token: action.payload,
       };
     case TOKEN_UNVERIFIED:
+      localStorage.removeItem('token');
       return {
         ...state,
         token: null,

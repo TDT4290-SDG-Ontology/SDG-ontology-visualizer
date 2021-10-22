@@ -2,7 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Box, ChakraProvider, Flex } from '@chakra-ui/react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+
 import store from './state/store';
+import { loginSuccess } from './state/reducers/loginReducer';
 
 import CookieNotice from './components/atoms/CookieNotice';
 import ErrorModal from './components/atoms/ErrorModal';
@@ -18,6 +20,7 @@ import Login from './components/pages/Login';
 import GDCSelectMunicipality from './components/pages/GDCSelectMunicipality';
 import GDCViewMunicipality from './components/pages/GDCViewMunicipality';
 import GDCCompareMunicipalities from './components/pages/GDCCompareMunicipalities';
+
 
 const App: React.FC = () => {
   // Better to do this in a global scope so that it's easily visible!
@@ -36,7 +39,12 @@ const App: React.FC = () => {
   };
 
   // TODO: check local storage for saved token
-  // TODO: check local storage for saved cookie notice state
+  if (!store.getState().login.token) {
+    const tok = localStorage.getItem('token');
+    if (tok) {
+      store.dispatch(loginSuccess(JSON.parse(tok)));
+    }
+  }
 
   return (
     <ChakraProvider>
@@ -68,8 +76,8 @@ const App: React.FC = () => {
                 <Route component={NotFoundPage} />
               </Switch>
             </Box>
-            <CookieNotice />
             <Footer />
+            <CookieNotice />
           </Router>
         </Flex>
       </Provider>
