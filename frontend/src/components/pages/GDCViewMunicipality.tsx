@@ -20,11 +20,9 @@ import {
   Tab,
   TabPanel,
   SimpleGrid,
-  Heading,
-  Box,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { MunicipalityInfo, Municipality } from '../../types/municipalityTypes';
 import { getAvailableYears } from '../../api/data';
@@ -43,7 +41,6 @@ type GDCViewParams = {
 };
 
 const ViewMunicipality: React.FC = () => {
-  const history = useHistory();
   const { municipality } = useParams<GDCViewParams>();
   const [availableYears, setAvailableYears] = useState<Array<number>>();
   const [selectedYear, setSelectedYear] = useState<number>(-1);
@@ -142,26 +139,13 @@ const ViewMunicipality: React.FC = () => {
                 <TabPanel>
                   <SimpleGrid columns={3} spacing={10}>
                     {allMunicipalities &&
-                      allMunicipalities.map((mun) => {
-                        const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
-                        return (
-                          <Button
-                            key={mun.code}
-                            onClick={() => history.push(`/gdc/compare/${municipality}/${mun.code}`)}
-                            borderRadius="10px"
-                            size="xl"
-                            color="white"
-                            bg="cyan.700"
-                            _hover={{ backgroundColor: 'cyan.600' }}
-                            p="1em"
-                          >
-                            <Box size="lg">
-                              <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
-                              <div>{`Population: ${mun.population}`}</div>
-                            </Box>
-                          </Button>
-                        );
-                      })}
+                      allMunicipalities.map((mun) => (
+                        <MunicipalityButton
+                          key={mun.code}
+                          municipality={mun}
+                          url={`/gdc/compare/${municipality}/${mun.code}`}
+                        />
+                      ))}
                   </SimpleGrid>
                 </TabPanel>
               </TabPanels>
