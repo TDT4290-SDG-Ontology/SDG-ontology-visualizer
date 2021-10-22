@@ -39,7 +39,7 @@ const MunicipalityList: React.FC = () => {
       <SimpleGrid columns={3} spacing="10">
         {municipalities &&
           municipalities.map((mun) => (
-            <MunicipalityButton municipality={mun} url={`/gdc/view/${mun.code}`} />
+            <MunicipalityButton key={mun.code} municipality={mun} url={`/gdc/view/${mun.code}`} />
           ))}
       </SimpleGrid>
     </Stack>

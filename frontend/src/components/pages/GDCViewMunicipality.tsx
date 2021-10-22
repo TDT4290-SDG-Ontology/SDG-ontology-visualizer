@@ -132,6 +132,7 @@ const ViewMunicipality: React.FC = () => {
                     {similarMunicipalities &&
                       similarMunicipalities.map((mun) => (
                         <MunicipalityButton
+                          key={mun.code}
                           municipality={mun}
                           url={`/gdc/compare/${municipality}/${mun.code}`}
                         />
