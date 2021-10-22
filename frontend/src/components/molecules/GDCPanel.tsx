@@ -281,7 +281,11 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
       compWillCompleteOutput = (compareData as IndicatorScore).willCompleteBeforeDeadline
         ? 'Yes'
         : 'No';
-      compRequiredCAGROutput = (100.0 * (compareData as IndicatorScore).requiredCAGR).toFixed(2);
+
+      if (compCurrentYear < (compareData as IndicatorScore).goal.deadline) {
+        compRequiredCAGROutput = (100.0 * (compareData as IndicatorScore).requiredCAGR).toFixed(2);
+      }
+
       compDiffMeanOutput = (compareData as IndicatorScore).diffMean.toFixed(2);
       compDiffStdOutput = (compareData as IndicatorScore).diffStd.toFixed(2);
 
@@ -363,7 +367,11 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
     pointsOutput = (data as IndicatorScore).points;
     scoreOutput = (data as IndicatorScore).score.toFixed(2);
     willCompleteOutput = (data as IndicatorScore).willCompleteBeforeDeadline ? 'Yes' : 'No';
-    requiredOutput = (100.0 * (data as IndicatorScore).requiredCAGR).toFixed(2);
+
+    if (currentYear < (data as IndicatorScore).goal.deadline) {
+      requiredOutput = (100.0 * (data as IndicatorScore).requiredCAGR).toFixed(2);
+    }
+
     diffMeanOutput = (data as IndicatorScore).diffMean.toFixed(2);
     diffStdOutput = (data as IndicatorScore).diffStd.toFixed(2);
 
