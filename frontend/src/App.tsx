@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { Box, ChakraProvider, Flex } from '@chakra-ui/react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import store from './state/store';
-import { loginSuccess } from './state/reducers/loginReducer';
+import { tokenVerified, tokenUnverified } from './state/reducers/loginReducer';
 
 import CookieNotice from './components/atoms/CookieNotice';
 import ErrorModal from './components/atoms/ErrorModal';
@@ -21,6 +21,7 @@ import GDCSelectMunicipality from './components/pages/GDCSelectMunicipality';
 import GDCViewMunicipality from './components/pages/GDCViewMunicipality';
 import GDCCompareMunicipalities from './components/pages/GDCCompareMunicipalities';
 
+import { validateToken } from './api/auth';
 
 const App: React.FC = () => {
   // Better to do this in a global scope so that it's easily visible!
@@ -38,13 +39,24 @@ const App: React.FC = () => {
       originalWarn(msg);
   };
 
-  // TODO: check local storage for saved token
-  if (!store.getState().login.token) {
-    const tok = localStorage.getItem('token');
-    if (tok) {
-      store.dispatch(loginSuccess(JSON.parse(tok)));
+  const loadToken = async () => {
+    if (!store.getState().login.token) {
+      const tok = localStorage.getItem('token');
+      if (tok) {
+        const token = JSON.parse(tok);
+        const res = await validateToken(token);
+        if (res) {
+          store.dispatch(tokenVerified(JSON.parse(tok)));
+        } else {
+          store.dispatch(tokenUnverified());
+        }
+      }
     }
-  }
+  };
+
+  useEffect(() => {
+    loadToken();
+  });
 
   return (
     <ChakraProvider>
