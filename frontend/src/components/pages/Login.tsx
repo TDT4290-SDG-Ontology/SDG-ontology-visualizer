@@ -31,6 +31,7 @@ const Login: React.FC = () => {
 
   const [missingUsername, setMissingUsername] = useState<boolean>(false);
   const [missingPassword, setMissingPassword] = useState<boolean>(false);
+  const [loginError, setLoginError] = useState<boolean>(false);
 
   const onSubmit = async () => {
     const error: boolean = username === '' || password === '';
@@ -41,8 +42,11 @@ const Login: React.FC = () => {
 
     const data = await login(username, password);
     if (data) {
+      setLoginError(false);
       console.log(data);
       reducer.dispatch(loginSuccess(data));
+    } else {
+      setLoginError(true);
     }
   };
 
@@ -86,6 +90,13 @@ const Login: React.FC = () => {
                     missingUsername && missingPassword ? ', ' : ''
                   }${missingPassword ? 'Password' : ''}`}
                 </AlertDescription>
+              </Alert>
+            )}
+            {loginError && (
+              <Alert status="error">
+                <AlertIcon />
+                <AlertTitle>Error!</AlertTitle>
+                <AlertDescription>Invalid username or password</AlertDescription>
               </Alert>
             )}
             <FormControl id="username" isRequired>

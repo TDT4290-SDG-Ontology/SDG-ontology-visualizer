@@ -12,9 +12,17 @@ export const validateToken = async (token: string): Promise<boolean> => {
 };
 
 export const login = async (username: string, password: string): Promise<string | null> => {
+  const responseHandler = async (res: Response): Promise<string | null> => {
+    if (!res.ok) {
+      return null;
+    }
+
+    return res.json();
+  };
+
   try {
-    const data = await api.POST('auth/login', { username, password });
-    return data.token;
+    const data = await api.POST('auth/login', { username, password }, {}, responseHandler);
+    return data ? data.token : null;
   } catch (e) {
     console.log(e);
     return null;
