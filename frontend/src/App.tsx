@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { Box, ChakraProvider, Flex } from '@chakra-ui/react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import store from './state/store';
-import { tokenVerified, tokenUnverified } from './state/reducers/loginReducer';
 
 import CookieNotice from './components/atoms/CookieNotice';
 import ErrorModal from './components/atoms/ErrorModal';
@@ -20,8 +19,8 @@ import Login from './components/pages/Login';
 import GDCSelectMunicipality from './components/pages/GDCSelectMunicipality';
 import GDCViewMunicipality from './components/pages/GDCViewMunicipality';
 import GDCCompareMunicipalities from './components/pages/GDCCompareMunicipalities';
+import GDCDataEntry from './components/pages/GDCDataEntry';
 
-import { validateToken } from './api/auth';
 
 const App: React.FC = () => {
   // Better to do this in a global scope so that it's easily visible!
@@ -38,25 +37,6 @@ const App: React.FC = () => {
     if (!msg.toString().startsWith('The width(0) and height(0) of chart should be greater than 0'))
       originalWarn(msg);
   };
-
-  const loadToken = async () => {
-    if (!store.getState().login.token) {
-      const tok = localStorage.getItem('token');
-      if (tok) {
-        const token = JSON.parse(tok);
-        const res = await validateToken(token);
-        if (res) {
-          store.dispatch(tokenVerified(JSON.parse(tok)));
-        } else {
-          store.dispatch(tokenUnverified());
-        }
-      }
-    }
-  };
-
-  useEffect(() => {
-    loadToken();
-  });
 
   return (
     <ChakraProvider>
@@ -84,6 +64,7 @@ const App: React.FC = () => {
                   component={GDCCompareMunicipalities}
                 />
                 <Route exact path="/gdc/view/:municipality" component={GDCViewMunicipality} />
+                <Route exact path="/gdc/data" component={GDCDataEntry} />
                 <Route exact path="/gdc" component={GDCSelectMunicipality} />
                 <Route component={NotFoundPage} />
               </Switch>

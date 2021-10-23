@@ -16,16 +16,17 @@ import {
   FormLabel,
 } from '@chakra-ui/react';
 
+import { useHistory } from 'react-router-dom';
+
 import reducer from '../../state/store';
-import { loginSuccess } from '../../state/reducers/loginReducer';
+import { loginSuccess, loginFailed } from '../../state/reducers/loginReducer';
 
 import { login } from '../../api/auth';
 
 const Login: React.FC = () => {
+  const history = useHistory();
+
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  /*
-  const [didError, setDidError] = useState<boolean>(false);
-  */
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -43,10 +44,11 @@ const Login: React.FC = () => {
     const data = await login(username, password);
     if (data) {
       setLoginError(false);
-      console.log(data);
       reducer.dispatch(loginSuccess(data));
+      history.goBack();
     } else {
       setLoginError(true);
+      reducer.dispatch(loginFailed());
     }
   };
 
