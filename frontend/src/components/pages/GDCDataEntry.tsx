@@ -5,10 +5,6 @@ import {
   Flex,
   Input,
   Button,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
   Spacer,
   FormControl,
   FormLabel,
@@ -18,6 +14,8 @@ import {
   TabPanels,
   TabList,
   Select,
+  InputGroup,
+  InputLeftElement,
 } from '@chakra-ui/react';
 
 import { useHistory } from 'react-router-dom';
@@ -35,7 +33,9 @@ const GDCDataEntry: React.FC = () => {
   const history = useHistory();
 
   const [municipalities, setMunicipalities] = useState<Municipality[]>();
+
   const [dataFile, setDataFile] = useState<File | null>(null);
+  const [goalFile, setGoalFile] = useState<File | null>(null);
 
   const loadToken = async () => {
     if (!reducer.getState().login.token) {
@@ -71,11 +71,11 @@ const GDCDataEntry: React.FC = () => {
   });
 
   const onSubmitData = async () => {
-    console.log(dataFile);
+    console.log('data file: ', dataFile);
   };
 
   const onSubmitGoals = async () => {
-
+    console.log('goal file: ', goalFile);
   };
 
   return (
@@ -140,10 +140,42 @@ const GDCDataEntry: React.FC = () => {
                           paddingTop: '0.25rem', 
                           paddingLeft: '0.25rem',
                           height: '40px',
+                          opacity: 0,
+                          zIndex: 20,
+                          cursor: 'pointer',
                         }
                       }
                       onChange={(evt) => setDataFile(evt.target.files ? evt.target.files[0] : null)}
                     />
+                    <InputGroup
+                      style={
+                        {
+                          height: '40px',
+                          marginTop: '-40px',
+                        }
+                      }
+                    >
+                      <InputLeftElement
+                        style={
+                          {
+                            width: '6rem',
+                            cursor: 'pointer',
+                          }
+                        }
+                      >
+                        <Button>Browse...</Button>
+                      </InputLeftElement>
+                      <Input 
+                        value={dataFile ? dataFile.name : ''} 
+                        isReadOnly 
+                        style={
+                          {
+                            paddingLeft: '7rem',
+                            cursor: 'pointer',
+                          }
+                        }
+                      />
+                    </InputGroup>
                   </FormControl>
                   <Spacer m="2rem" />
                   <Button onClick={onSubmitData}>Upload</Button>
@@ -151,23 +183,60 @@ const GDCDataEntry: React.FC = () => {
               </TabPanel>
               <TabPanel>
                 <Stack w="100%" p="10">
-                  <Alert status="error">
-                    <AlertIcon />
-                    <AlertTitle>Missing required fields:</AlertTitle>
-                    <AlertDescription>LOL!</AlertDescription>
-                  </Alert>
-                  <FormControl id="username" isRequired>
-                    <FormLabel>Username:</FormLabel>
+                  <FormControl id="goal-municipality" isRequired>
+                    <FormLabel>Municipality</FormLabel>
+                    <Select>
+                      {municipalities && municipalities.map((muni) => (
+                        <option key={muni.code} value={muni.code}>{muni.name}</option>
+                        ))}
+                    </Select>
+                  </FormControl>        
+                  <FormControl id="goal-file" isRequired>
+                    <FormLabel>File:</FormLabel>
                     <Input
                       errorBorderColor="crimson"
+                      type="file"
+                      style={
+                        { 
+                          paddingTop: '0.25rem', 
+                          paddingLeft: '0.25rem',
+                          height: '40px',
+                          opacity: 0,
+                          zIndex: 20,
+                          cursor: 'pointer',
+                        }
+                      }
+                      onChange={(evt) => setGoalFile(evt.target.files ? evt.target.files[0] : null)}
                     />
-                  </FormControl>
-                  <FormControl id="password" isRequired>
-                    <FormLabel>Password:</FormLabel>
-                    <Input
-                      placeholder="Enter password"
-                      errorBorderColor="crimson"
-                    />
+                    <InputGroup
+                      style={
+                        {
+                          height: '40px',
+                          marginTop: '-40px',
+                        }
+                      }
+                    >
+                      <InputLeftElement
+                        style={
+                          {
+                            width: '6rem',
+                            cursor: 'pointer',
+                          }
+                        }
+                      >
+                        <Button>Browse...</Button>
+                      </InputLeftElement>
+                      <Input 
+                        value={goalFile ? goalFile.name : ''} 
+                        isReadOnly 
+                        style={
+                          {
+                            paddingLeft: '7rem',
+                            cursor: 'pointer',
+                          }
+                        }
+                      />
+                    </InputGroup>
                   </FormControl>
                   <Spacer m="2rem" />
                   <Button onClick={onSubmitGoals}>Log in</Button>        
