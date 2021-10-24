@@ -38,7 +38,7 @@ If you only want to run the API or frontend by itself, you can skip this step. I
 
 6. If you're running the backend or whole application, restart the cluster.
 
-7. **OPTIONAL:** If you want to add fictional data for the GDC-visualization, run `utils/datagen.py` after setting up the backend.
+7. **OPTIONAL:** If you want to add fictional data for the GDC-visualization, run `utils/datagen.py` after setting up the backend (see `utils/README.md` for more details).
 
 Ports:
 
