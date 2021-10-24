@@ -60,9 +60,10 @@ def get_data(kpi, municipality, year):
 # print(get_data(u4ssc.indicators[0].id))
 
 skip_probability = {
-	"se.1281": (0.05, 0.1, 0.05),   # goal, data series, data point
-	"no.1103": (0.05, 0.05, 0.025), 
-	"nl.0772": (0.05, 0.1, 0.1),  
+	# code 		goal, 	data series, 	data point
+	"se.1281": (0.05, 	0.1, 			0.05),   
+	"no.1103": (0.05, 	0.05, 			0.025), 
+	"nl.0772": (0.05, 	0.1, 			0.1),  
 }
 
 skips = {}
@@ -151,6 +152,7 @@ def generate_data(token, municipality, goal_goodness, data_goodness, year):
 token = login("test", "123")
 
 municipalities = {
+	# code 		 name 			goal level			data level
 	"no.5001": ("Trondheim", 	u4ssc.GOOD, 		u4ssc.GOOD),
 	"no.0301": ("Oslo", 		u4ssc.GOOD,			u4ssc.ACCEPTABLE),
 	"no.1301": ("Bergen", 		u4ssc.GOOD, 		u4ssc.BAD),

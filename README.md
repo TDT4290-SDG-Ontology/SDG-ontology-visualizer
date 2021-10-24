@@ -39,7 +39,7 @@ If you only want to run the API or frontend by itself, you can skip this step. I
 
 6. When the cluster is running and ready, go to http://localhost:7200 (or the externally reachable URL). On the left side of the screen, go to "Setup" and then "Users and Access". Click "Create new user" and make a user with credentials matching the `GRAPHDB_USERNAME` and `GRAPHDB_PASSWORD`variables set in `.env`. Make sure the user has Read-access to the TK_SDG-repository.
 
-7. The database is now ready for connections
+7. **OPTIONAL:** If you want to add fictional data for the GDC-visualization, run `utils/datagen.py` after setting up the backend (see `utils/README.md` for more details).
 
 8. If you're running the backend or whole application, restart the cluster.
 
