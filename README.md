@@ -43,8 +43,6 @@ If you only want to run the API or frontend by itself, you can skip this step. I
 
 8. If you're running the backend or whole application, restart the cluster.
 
-9. **OPTIONAL:** If you want to add fictional data for the GDC-visualization, run `utils/datagen.py` after setting up the backend.
-
 Default ports:
 
 - **DB:** 7200
