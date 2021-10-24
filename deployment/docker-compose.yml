@@ -16,5 +16,3 @@ services:
     extends:
       file: docker-compose-frontend.yml
       service: web
-    command:
-      ['./utils/await_login.sh', 'api', 'http-server', 'build', '-p', '80']
