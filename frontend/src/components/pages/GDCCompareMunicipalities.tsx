@@ -1,4 +1,17 @@
-import { Stack, Select, Flex, Container, Text, Spacer } from '@chakra-ui/react';
+import {
+  Stack,
+  Select,
+  Flex,
+  Container,
+  Text,
+  Spacer,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  CloseButton,
+  Center,
+} from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -26,6 +39,8 @@ const CompareMunicipalities: React.FC = () => {
 
   const [goalOverride, setGoalOverride] = useState<string>(municipality);
   const [otherGoalOverride, setOtherGoalOverride] = useState<string>(otherMunicipality);
+
+  const [showDataAlert, setShowDataAlert] = useState<boolean>(true);
 
   const overrideCombos = [
     [municipality, otherMunicipality],
@@ -69,6 +84,27 @@ const CompareMunicipalities: React.FC = () => {
 
   const name = municipalityInfo === undefined ? '' : municipalityInfo.name;
   const otherName = compareMunicipalityInfo === undefined ? '' : compareMunicipalityInfo.name;
+
+  let dataAlert = null;
+  if (showDataAlert) {
+    dataAlert = (
+      <Flex align="center" justify="center" justifyContent="space-evenly" m="0px" p="0px">
+        <Center w="550px">
+          <Alert status="error">
+            <AlertIcon />
+            <AlertTitle mr={2}>NOTICE!</AlertTitle>
+            <AlertDescription>All data is fictional.</AlertDescription>
+            <CloseButton
+              position="absolute"
+              right="8px"
+              top="8px"
+              onClick={() => setShowDataAlert(false)}
+            />
+          </Alert>
+        </Center>
+      </Flex>
+    );
+  }
 
   return (
     <Stack height="100%">
@@ -121,6 +157,7 @@ const CompareMunicipalities: React.FC = () => {
               </Stack>
             </Flex>
           </Container>
+          {dataAlert}
           <GDCView
             key={`${selectedYear}-${selectedGoals}`}
             year={selectedYear}

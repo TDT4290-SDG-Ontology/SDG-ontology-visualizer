@@ -27,7 +27,7 @@ exports[`renders expected output for comparison of municipalities 1`] = `
         />
       </li>
       <li
-        className="chakra-wrap__listitem css-1hsm1qd"
+        className="chakra-wrap__listitem css-1o2vm2q"
       >
         <table
           className="chakra-table css-0"
@@ -37,22 +37,22 @@ exports[`renders expected output for comparison of municipalities 1`] = `
             className="css-0"
           >
             <tr
-              className="css-0"
+              className="css-prstg"
               role="row"
             >
               <th
-                className="css-1rq9d1i"
+                className="css-rgz4tj"
               >
                 Statistic
               </th>
               <th
-                className="css-yf1l8i"
+                className="css-1v97kd8"
                 data-is-numeric={true}
               >
                 Trondheim
               </th>
               <th
-                className="css-yf1l8i"
+                className="css-1v97kd8"
                 data-is-numeric={true}
               >
                 Eindhoven
@@ -67,20 +67,29 @@ exports[`renders expected output for comparison of municipalities 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                U4SSC points
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  U4SSC points
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 3
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -92,20 +101,29 @@ exports[`renders expected output for comparison of municipalities 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Raw score
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Raw score
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 72.50
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -117,20 +135,29 @@ exports[`renders expected output for comparison of municipalities 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Projected completion
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Projected completion
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 2030.4
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -142,20 +169,29 @@ exports[`renders expected output for comparison of municipalities 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Will complete within deadline?
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Will complete within deadline?
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 No
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -167,20 +203,29 @@ exports[`renders expected output for comparison of municipalities 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Overall trend
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Overall trend
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 -6.89 %
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -192,20 +237,29 @@ exports[`renders expected output for comparison of municipalities 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Required trend
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Required trend
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 -7.15 %
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -217,13 +271,22 @@ exports[`renders expected output for comparison of municipalities 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Best trend
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Best trend
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -232,7 +295,7 @@ exports[`renders expected output for comparison of municipalities 1`] = `
                 (2018 to 2019)
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -246,13 +309,56 @@ exports[`renders expected output for comparison of municipalities 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Worst trend
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Best case completion
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2026.5
+              </td>
+              <td
+                className="css-1a88wtd"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2024.0
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-prstg"
+                role="gridcell"
+              >
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Worst trend
+                </p>
+              </td>
+              <td
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -261,7 +367,7 @@ exports[`renders expected output for comparison of municipalities 1`] = `
                 (2017 to 2018)
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -275,20 +381,63 @@ exports[`renders expected output for comparison of municipalities 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Mean of trends
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Worst case completion
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2044.3
+              </td>
+              <td
+                className="css-1a88wtd"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                Never
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-prstg"
+                role="gridcell"
+              >
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Mean of trends
+                </p>
+              </td>
+              <td
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 -6.84 %
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -300,20 +449,29 @@ exports[`renders expected output for comparison of municipalities 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Standard deviation of trends
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Standard deviation of trends
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 3.32 %
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -325,7 +483,7 @@ exports[`renders expected output for comparison of municipalities 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
                 <p
@@ -336,18 +494,18 @@ exports[`renders expected output for comparison of municipalities 1`] = `
                   onMouseDown={[Function]}
                   onMouseEnter={[Function]}
                 >
-                  Mean difference
+                  Mean difference of estimated value
                 </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 382.33
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -359,7 +517,7 @@ exports[`renders expected output for comparison of municipalities 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
                 <p
@@ -370,18 +528,18 @@ exports[`renders expected output for comparison of municipalities 1`] = `
                   onMouseDown={[Function]}
                   onMouseEnter={[Function]}
                 >
-                  Standard deviation of difference
+                  Standard deviation of difference from estimated value
                 </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 900.90
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -431,7 +589,7 @@ exports[`renders expected output for comparison of municipalities with override 
         />
       </li>
       <li
-        className="chakra-wrap__listitem css-1hsm1qd"
+        className="chakra-wrap__listitem css-1o2vm2q"
       >
         <table
           className="chakra-table css-0"
@@ -441,22 +599,22 @@ exports[`renders expected output for comparison of municipalities with override 
             className="css-0"
           >
             <tr
-              className="css-0"
+              className="css-prstg"
               role="row"
             >
               <th
-                className="css-1rq9d1i"
+                className="css-rgz4tj"
               >
                 Statistic
               </th>
               <th
-                className="css-yf1l8i"
+                className="css-1v97kd8"
                 data-is-numeric={true}
               >
                 Trondheim
               </th>
               <th
-                className="css-yf1l8i"
+                className="css-1v97kd8"
                 data-is-numeric={true}
               >
                 Eindhoven
@@ -471,20 +629,29 @@ exports[`renders expected output for comparison of municipalities with override 
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                U4SSC points
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  U4SSC points
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 3
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -496,20 +663,29 @@ exports[`renders expected output for comparison of municipalities with override 
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Raw score
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Raw score
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 72.50
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -521,20 +697,29 @@ exports[`renders expected output for comparison of municipalities with override 
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Projected completion
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Projected completion
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 2030.4
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -546,20 +731,29 @@ exports[`renders expected output for comparison of municipalities with override 
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Will complete within deadline?
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Will complete within deadline?
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 No
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -571,20 +765,29 @@ exports[`renders expected output for comparison of municipalities with override 
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Overall trend
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Overall trend
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 -6.89 %
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -596,20 +799,29 @@ exports[`renders expected output for comparison of municipalities with override 
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Required trend
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Required trend
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 -7.15 %
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -621,13 +833,22 @@ exports[`renders expected output for comparison of municipalities with override 
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Best trend
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Best trend
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -636,7 +857,7 @@ exports[`renders expected output for comparison of municipalities with override 
                 (2018 to 2019)
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -650,13 +871,56 @@ exports[`renders expected output for comparison of municipalities with override 
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Worst trend
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Best case completion
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2026.5
+              </td>
+              <td
+                className="css-1a88wtd"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2024.0
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-prstg"
+                role="gridcell"
+              >
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Worst trend
+                </p>
+              </td>
+              <td
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -665,7 +929,7 @@ exports[`renders expected output for comparison of municipalities with override 
                 (2017 to 2018)
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -679,20 +943,63 @@ exports[`renders expected output for comparison of municipalities with override 
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Mean of trends
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Worst case completion
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2044.3
+              </td>
+              <td
+                className="css-1a88wtd"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                Never
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-prstg"
+                role="gridcell"
+              >
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Mean of trends
+                </p>
+              </td>
+              <td
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 -6.84 %
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -704,20 +1011,29 @@ exports[`renders expected output for comparison of municipalities with override 
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Standard deviation of trends
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Standard deviation of trends
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 3.32 %
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -729,7 +1045,7 @@ exports[`renders expected output for comparison of municipalities with override 
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
                 <p
@@ -740,18 +1056,18 @@ exports[`renders expected output for comparison of municipalities with override 
                   onMouseDown={[Function]}
                   onMouseEnter={[Function]}
                 >
-                  Mean difference
+                  Mean difference of estimated value
                 </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 382.33
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -763,7 +1079,7 @@ exports[`renders expected output for comparison of municipalities with override 
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
                 <p
@@ -774,18 +1090,18 @@ exports[`renders expected output for comparison of municipalities with override 
                   onMouseDown={[Function]}
                   onMouseEnter={[Function]}
                 >
-                  Standard deviation of difference
+                  Standard deviation of difference from estimated value
                 </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
                 900.90
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -835,7 +1151,7 @@ exports[`renders expected output for single municipality 1`] = `
         />
       </li>
       <li
-        className="chakra-wrap__listitem css-1hsm1qd"
+        className="chakra-wrap__listitem css-1o2vm2q"
       >
         <table
           className="chakra-table css-0"
@@ -845,11 +1161,11 @@ exports[`renders expected output for single municipality 1`] = `
             className="css-0"
           >
             <tr
-              className="css-0"
+              className="css-prstg"
               role="row"
             >
               <th
-                className="css-1rq9d1i"
+                className="css-rgz4tj"
               >
                 Statistic
               </th>
@@ -869,13 +1185,22 @@ exports[`renders expected output for single municipality 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                U4SSC points
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  U4SSC points
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -887,13 +1212,22 @@ exports[`renders expected output for single municipality 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Raw score
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Raw score
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -905,13 +1239,22 @@ exports[`renders expected output for single municipality 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Projected completion
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Projected completion
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -923,13 +1266,22 @@ exports[`renders expected output for single municipality 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Will complete within deadline?
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Will complete within deadline?
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -941,13 +1293,22 @@ exports[`renders expected output for single municipality 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Overall trend
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Overall trend
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -959,13 +1320,22 @@ exports[`renders expected output for single municipality 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Required trend
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Required trend
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -977,13 +1347,22 @@ exports[`renders expected output for single municipality 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Best trend
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Best trend
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -997,13 +1376,49 @@ exports[`renders expected output for single municipality 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Worst trend
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Best case completion
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2026.5
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-prstg"
+                role="gridcell"
+              >
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Worst trend
+                </p>
+              </td>
+              <td
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -1017,13 +1432,49 @@ exports[`renders expected output for single municipality 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Mean of trends
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Worst case completion
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
+                data-is-numeric={true}
+                role="gridcell"
+              >
+                2044.3
+              </td>
+            </tr>
+            <tr
+              className="css-0"
+              role="row"
+            >
+              <td
+                className="css-prstg"
+                role="gridcell"
+              >
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Mean of trends
+                </p>
+              </td>
+              <td
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -1035,13 +1486,22 @@ exports[`renders expected output for single municipality 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
-                Standard deviation of trends
+                <p
+                  className="chakra-text css-1c3mh59"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Standard deviation of trends
+                </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -1053,7 +1513,7 @@ exports[`renders expected output for single municipality 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
                 <p
@@ -1064,11 +1524,11 @@ exports[`renders expected output for single municipality 1`] = `
                   onMouseDown={[Function]}
                   onMouseEnter={[Function]}
                 >
-                  Mean difference
+                  Mean difference of estimated value
                 </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
@@ -1080,7 +1540,7 @@ exports[`renders expected output for single municipality 1`] = `
               role="row"
             >
               <td
-                className="css-0"
+                className="css-prstg"
                 role="gridcell"
               >
                 <p
@@ -1091,11 +1551,11 @@ exports[`renders expected output for single municipality 1`] = `
                   onMouseDown={[Function]}
                   onMouseEnter={[Function]}
                 >
-                  Standard deviation of difference
+                  Standard deviation of difference from estimated value
                 </p>
               </td>
               <td
-                className="css-0"
+                className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >

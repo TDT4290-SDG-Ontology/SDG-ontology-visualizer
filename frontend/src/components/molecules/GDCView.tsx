@@ -55,6 +55,8 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   const [compareGdcInfo, setCompareGDCInfo] = useState<GDCOutput>();
   const [indicators, setIndicators] = useState<Map<string, IndicatorScore>>();
   const [worstIndicators, setWorstIndicators] = useState<Map<string, IndicatorScore>>();
+  const [longestCompletionIndicators, setLongestCompletionIndicators] =
+    useState<Map<string, IndicatorScore>>();
 
   const {
     year,
@@ -65,7 +67,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
     municipalityGoalOverride,
     compareGoalOverride,
   } = props;
-  const WORST_COUNT = 5;
+  const WORST_COUNT = 10;
 
   const loadGDCOutput = async (muniCode: string, muniYear: number) => {
     if (muniYear === -1) return;
@@ -85,6 +87,19 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
               .slice(0, WORST_COUNT),
           ),
         );
+
+        setLongestCompletionIndicators(
+          new Map(
+            Array.from(data[0].indicators)
+              .sort((a, b) => {
+                if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return 1;
+                if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return -1;
+
+                return b[1].projectedCompletion - a[1].projectedCompletion;
+              })
+              .slice(0, WORST_COUNT),
+          ),
+        );
       }
 
       setCompareGDCInfo(data[1]);
@@ -97,6 +112,19 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
           new Map(
             Array.from(data.indicators)
               .sort((a, b) => a[1].score - b[1].score)
+              .slice(0, WORST_COUNT),
+          ),
+        );
+
+        setLongestCompletionIndicators(
+          new Map(
+            Array.from(data.indicators)
+              .sort((a, b) => {
+                if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return 1;
+                if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return -1;
+
+                return b[1].projectedCompletion - a[1].projectedCompletion;
+              })
               .slice(0, WORST_COUNT),
           ),
         );
@@ -231,10 +259,10 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
             </Container>
             <Heading size="md">Issues</Heading>
             <Accordion allowToggle allowMultiple>
-              <AccordionItem key="worst">
+              <AccordionItem key="worst-score">
                 <AccordionButton>
                   <Box flex="1" textAlign="left">
-                    Worst performing KPIs
+                    Worst performing KPIs (by score)
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
@@ -242,6 +270,22 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
                   <Accordion allowToggle allowMultiple>
                     {worstIndicators &&
                       Array.from(worstIndicators).map(([key, val]) => renderKPIAccordion(key, val))}
+                  </Accordion>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem key="worst-completion">
+                <AccordionButton>
+                  <Box flex="1" textAlign="left">
+                    Worst performing KPIs (by projected completion year)
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <Accordion allowToggle allowMultiple>
+                    {longestCompletionIndicators &&
+                      Array.from(longestCompletionIndicators).map(([key, val]) =>
+                        renderKPIAccordion(key, val),
+                      )}
                   </Accordion>
                 </AccordionPanel>
               </AccordionItem>

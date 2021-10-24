@@ -75,7 +75,6 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
   else points = 1;
 
   if (current.year <= goal.baselineYear) {
-    // current value equal enough to target -- assume it's fulfilled.
     return {
       kpi,
       dataseries: current.dataseries,
@@ -187,7 +186,7 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
   //
   //  end_year = goal.baselineYear + (current.year - goal.baselineYear) * log(target / baseline) / log(current.value / goal.baseline)
 
-  const projectedCompletion =
+  let projectedCompletion =
     goal.baselineYear +
     (indicatorScore >= 100
       ? current.year - goal.baselineYear
@@ -196,7 +195,15 @@ const computeScore = (kpi: string, current: Dataseries, goal: Goal): IndicatorSc
 
   // TODO: consider if we should round the projected completion year to the nearest integer (or upwards).
 
-  const willComplete = projectedCompletion.toFixed(2) <= goal.deadline.toFixed(2);
+  if (projectedCompletion < current.year && indicatorScore < 99.5) {
+    // Handle case where municipality does *extremely* badly, and the projected completion ends up in the past
+    // even though that makes no sense...
+
+    projectedCompletion = -1;
+  }
+
+  const willComplete =
+    projectedCompletion > 0 && projectedCompletion.toFixed(2) <= goal.deadline.toFixed(2);
 
   return {
     kpi,

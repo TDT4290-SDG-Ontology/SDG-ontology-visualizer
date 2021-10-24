@@ -22,11 +22,13 @@ type Prediction = {
   predicted: number;
   required: number;
   bounds: number[];
+  target: number;
 
   compareValue: number;
   compareBounds: number[];
   comparePredicted: number;
   compareRequired: number;
+  compareTarget: number;
 };
 
 type PlotProps = {
@@ -170,10 +172,12 @@ class CustomTooltip<TValue extends ValueType, TName extends NameType> extends Pu
         required,
         predicted,
         bounds,
+        target,
         compareValue,
         comparePredicted,
         compareRequired,
         compareBounds,
+        compareTarget,
       } = payload[0].payload;
       const [best, worst] = bounds;
       const [compareBest, compareWorst] = compareBounds;
@@ -182,6 +186,7 @@ class CustomTooltip<TValue extends ValueType, TName extends NameType> extends Pu
       let requiredRow = null;
       let bestRow = null;
       let worstRow = null;
+      let targetRow = null;
 
       const rowify = (rowLabel: string, rowVal: number, compVal: number) => {
         let compRow = null;
@@ -224,6 +229,7 @@ class CustomTooltip<TValue extends ValueType, TName extends NameType> extends Pu
         requiredRow = rowify('Required', required, compareRequired);
         bestRow = rowify('Best case', best, compareBest);
         worstRow = rowify('Worst case', worst, compareWorst);
+        targetRow = rowify('Target', target, compareTarget);
       }
 
       let header = null;
@@ -253,6 +259,7 @@ class CustomTooltip<TValue extends ValueType, TName extends NameType> extends Pu
                 {requiredRow}
                 {bestRow}
                 {worstRow}
+                {targetRow}
               </Tbody>
             </Table>
           </Stack>
@@ -289,6 +296,9 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
     const requiredCAGR =
       (score as IndicatorScore).goal !== undefined ? (score as IndicatorScore).requiredCAGR : NaN;
 
+    const target =
+      (score as IndicatorScore).goal !== undefined ? (score as IndicatorScore).goal.target : NaN;
+
     const bestCAGR =
       score.yearlyGrowth.length > 0 ? score.yearlyGrowth[score.yearlyGrowth.length - 1].value : 0;
     const worstCAGR = score.yearlyGrowth.length > 0 ? score.yearlyGrowth[0].value : 0;
@@ -303,11 +313,13 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         bounds: [NaN, NaN],
         predicted: NaN,
         required: NaN,
+        target,
 
         compareValue: NaN,
         compareBounds: [NaN, NaN],
         comparePredicted: NaN,
         compareRequired: NaN,
+        compareTarget: NaN,
       });
     });
 
@@ -329,12 +341,14 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         predicted: prediction,
         bounds: [best, worst],
         required,
+        target,
         value: NaN,
 
         compareValue: NaN,
         compareBounds: [NaN, NaN],
         comparePredicted: NaN,
         compareRequired: NaN,
+        compareTarget: NaN,
       });
     }
 
@@ -360,6 +374,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         pred.compareBounds = compPred.bounds;
         pred.comparePredicted = compPred.predicted;
         pred.compareRequired = compPred.required;
+        pred.compareTarget = compPred.target;
 
         compareByYear.delete(compPred.year);
       }
@@ -375,11 +390,13 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
           bounds: [NaN, NaN],
           required: NaN,
           value: NaN,
+          target: NaN,
 
           compareValue: comp.value,
           compareBounds: comp.bounds,
           comparePredicted: comp.predicted,
           compareRequired: comp.required,
+          compareTarget: comp.target,
         });
       });
 
@@ -391,6 +408,7 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
   let compareBounds = null;
   let comparePredicted = null;
   let compareRequired = null;
+  let compareTarget = null;
   if (compareData !== undefined) {
     compareBounds = (
       <Area
@@ -419,9 +437,12 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
         name="Values required to reach target"
         type="natural"
         dataKey="compareRequired"
-        stroke="gray"
+        stroke="black"
         strokeDasharray="3 3"
       />
+    );
+    compareTarget = (
+      <Line name="Target" type="natural" dataKey="compareTarget" stroke="#800500" dot={false} />
     );
   }
 
@@ -475,13 +496,15 @@ const GDCPlot: React.FC<PlotProps> = (props: PlotProps) => {
           name="Values required to reach target"
           type="natural"
           dataKey="required"
-          stroke="gray"
+          stroke="black"
           strokeDasharray="3 3"
         />
+        <Line name="Target" type="natural" dataKey="target" stroke="#0050B5" dot={false} />
         {compareBounds}
         {compareValues}
         {comparePredicted}
         {compareRequired}
+        {compareTarget}
       </ComposedChart>
     </ResponsiveContainer>
   );

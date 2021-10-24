@@ -20,11 +20,15 @@ import {
   Tab,
   TabPanel,
   SimpleGrid,
-  Heading,
-  Box,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  CloseButton,
+  Center,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { MunicipalityInfo, Municipality } from '../../types/municipalityTypes';
 import { getAvailableYears } from '../../api/data';
@@ -43,7 +47,6 @@ type GDCViewParams = {
 };
 
 const ViewMunicipality: React.FC = () => {
-  const history = useHistory();
   const { municipality } = useParams<GDCViewParams>();
   const [availableYears, setAvailableYears] = useState<Array<number>>();
   const [selectedYear, setSelectedYear] = useState<number>(-1);
@@ -52,6 +55,8 @@ const ViewMunicipality: React.FC = () => {
 
   const [allMunicipalities, setAllMunicipalities] = useState<Municipality[]>();
   const [similarMunicipalities, setSimilarMunicipalities] = useState<Municipality[]>();
+
+  const [showDataAlert, setShowDataAlert] = useState<boolean>(true);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -83,6 +88,27 @@ const ViewMunicipality: React.FC = () => {
 
   const name = municipalityInfo === undefined ? '' : municipalityInfo.name;
 
+  let dataAlert = null;
+  if (showDataAlert) {
+    dataAlert = (
+      <Flex align="center" justify="center" justifyContent="space-evenly" m="0px" p="0px">
+        <Center w="550px">
+          <Alert status="error">
+            <AlertIcon />
+            <AlertTitle mr={2}>NOTICE!</AlertTitle>
+            <AlertDescription>All data is fictional.</AlertDescription>
+            <CloseButton
+              position="absolute"
+              right="8px"
+              top="8px"
+              onClick={() => setShowDataAlert(false)}
+            />
+          </Alert>
+        </Center>
+      </Flex>
+    );
+  }
+
   return (
     <Stack>
       <MunicipalityInfoView info={municipalityInfo} />
@@ -107,6 +133,7 @@ const ViewMunicipality: React.FC = () => {
               </Stack>
             </Flex>
           </Container>
+          {dataAlert}
           <GDCView
             key={selectedYear}
             year={selectedYear}
@@ -132,6 +159,7 @@ const ViewMunicipality: React.FC = () => {
                     {similarMunicipalities &&
                       similarMunicipalities.map((mun) => (
                         <MunicipalityButton
+                          key={mun.code}
                           municipality={mun}
                           url={`/gdc/compare/${municipality}/${mun.code}`}
                         />
@@ -141,26 +169,13 @@ const ViewMunicipality: React.FC = () => {
                 <TabPanel>
                   <SimpleGrid columns={3} spacing={10}>
                     {allMunicipalities &&
-                      allMunicipalities.map((mun) => {
-                        const countryCode = mun.code.slice(0, mun.code.indexOf('.'));
-                        return (
-                          <Button
-                            key={mun.code}
-                            onClick={() => history.push(`/gdc/compare/${municipality}/${mun.code}`)}
-                            borderRadius="10px"
-                            size="xl"
-                            color="white"
-                            bg="cyan.700"
-                            _hover={{ backgroundColor: 'cyan.600' }}
-                            p="1em"
-                          >
-                            <Box size="lg">
-                              <Heading size="lg">{`${mun.name} (${countryCode})`}</Heading>
-                              <div>{`Population: ${mun.population}`}</div>
-                            </Box>
-                          </Button>
-                        );
-                      })}
+                      allMunicipalities.map((mun) => (
+                        <MunicipalityButton
+                          key={mun.code}
+                          municipality={mun}
+                          url={`/gdc/compare/${municipality}/${mun.code}`}
+                        />
+                      ))}
                   </SimpleGrid>
                 </TabPanel>
               </TabPanels>
