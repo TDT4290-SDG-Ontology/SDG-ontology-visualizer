@@ -67,7 +67,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
     municipalityGoalOverride,
     compareGoalOverride,
   } = props;
-  const WORST_COUNT = 10;
+  const WORST_COUNT = 15;
 
   const loadGDCOutput = async (muniCode: string, muniYear: number) => {
     if (muniYear === -1) return;
