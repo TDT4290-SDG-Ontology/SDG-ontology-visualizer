@@ -26,19 +26,24 @@ If you only want to run the API or frontend by itself, you can skip this step. I
 
 2. Add your valid GraphDB license file to the `license` directory, naming it `graphdb.license`
 
-3. Run either...
+3. Copy `.env.example` and rename it `.env`. Change the values if needed.
 
-   1. **Database only:** `docker compose -f docker-compose-db.yml up`
-   2. **Whole backend:** `docker compose -f docker-compose-backend.yml up`
-   3. **Whole application:** `docker compose up`
+4. In `build_frontend.Dockerfile`, set `REACT_APP_BACKEND_URL` to the publicly reachable address of the API.
 
-4. When the cluster is running and ready, go to http://localhost:7200 (or the externally reachable URL). On the left side of the screen, go to "Setup" and then "Users and Access". Click "Create new user" and make a user with credentials matching the `GRAPHDB_USERNAME` and `GRAPHDB_PASSWORD`variables set in the compose file. Make sure the user has Read-access to the TK_SDG-repository.
+5. Run either...
 
-5. The database is now ready for connections
+   1. **Frontend only:** `docker compose -f docker-compose-frontend.yml up`
+   2. **Database only:** `docker compose -f docker-compose-db.yml up`
+   3. **Whole backend:** `docker compose -f docker-compose-backend.yml up`
+   4. **Whole application:** `docker compose up`
 
-6. If you're running the backend or whole application, restart the cluster.
+6. When the cluster is running and ready, go to http://localhost:7200 (or the externally reachable URL). On the left side of the screen, go to "Setup" and then "Users and Access". Click "Create new user" and make a user with credentials matching the `GRAPHDB_USERNAME` and `GRAPHDB_PASSWORD`variables set in `.env`. Make sure the user has Read-access to the TK_SDG-repository.
 
-Ports:
+7. **OPTIONAL:** If you want to add fictional data for the GDC-visualization, run `utils/datagen.py` after setting up the backend (see `utils/README.md` for more details).
+
+8. If you're running the backend or whole application, restart the cluster.
+
+Default ports:
 
 - **DB:** 7200
 - **API:** 3001
@@ -46,7 +51,9 @@ Ports:
 
 ### Only API or frontend
 
-Run `docker compose -f docker-compose-api.yml up` or `docker compose -f docker-compose-frontend.yml up`
+1. See point **3** and **4** above.
+
+2. Run `docker compose -f docker-compose-api.yml up` or `docker compose -f docker-compose-frontend.yml up`
 
 # Develop
 

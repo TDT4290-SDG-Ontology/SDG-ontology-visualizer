@@ -6,4 +6,4 @@ EXPOSE 7200
 RUN mkdir -p /opt/graphdb/dist/conf
 COPY conf/ /opt/graphdb/dist/conf
 COPY ontology/ /opt/graphdb/home/ontology
-RUN /opt/graphdb/dist/bin/loadrdf -c /opt/graphdb/dist/conf/TK_SDG-config.ttl -m parallel /opt/graphdb/home/ontology
+RUN /opt/graphdb/dist/bin/loadrdf -c /opt/graphdb/dist/conf/TK_SDG-config.ttl -m parallel /opt/graphdb/home/ontology --force

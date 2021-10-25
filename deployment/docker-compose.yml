@@ -9,12 +9,10 @@ services:
     image: fredrbus/tk_sdg_api:1.0
     ports:
       - '3001:3001'
-    environment:
-      - GRAPHDB_BASE_URL=http://graphdb:7200
+    env_file:
+      - .env
   web:
     depends_on: ['api', 'graphdb']
     extends:
       file: docker-compose-frontend.yml
       service: web
-    command:
-      ['./utils/await_login.sh', 'api', 'http-server', 'build', '-p', '80']

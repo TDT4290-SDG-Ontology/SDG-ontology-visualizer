@@ -1,3 +1,4 @@
 graphdb.license
 *.pyc
 .vscode
+deployment/.env
