@@ -16,6 +16,8 @@ import {
   Select,
   InputGroup,
   InputLeftElement,
+  Spinner,
+  Text,
 } from '@chakra-ui/react';
 
 import { useHistory } from 'react-router-dom';
@@ -33,6 +35,11 @@ const GDCDataEntry: React.FC = () => {
   const history = useHistory();
 
   const [municipalities, setMunicipalities] = useState<Municipality[]>();
+  
+  const [selectedDataMunicipality, setDataMunicipality] = useState<string>('');
+  const [selectedGoalMunicipality, setGoalMunicipality] = useState<string>('');
+
+  const [dataYear, setDataYear] = useState<number>(-1);
 
   const [dataFile, setDataFile] = useState<File | null>(null);
   const [goalFile, setGoalFile] = useState<File | null>(null);
@@ -63,6 +70,9 @@ const GDCDataEntry: React.FC = () => {
         return 0;
       }),
     );
+
+    setDataMunicipality(munis[0].code);
+    setGoalMunicipality(munis[0].code);
   };
 
   useEffect(() => {
@@ -72,11 +82,47 @@ const GDCDataEntry: React.FC = () => {
 
   const onSubmitData = async () => {
     console.log('data file: ', dataFile);
+    console.log('year: ', dataYear);
   };
 
   const onSubmitGoals = async () => {
     console.log('goal file: ', goalFile);
   };
+
+  if (!municipalities)
+    return (
+      <Stack spacing="10">
+        <Flex
+          align="center"
+          justify="center"
+          justifyContent="space-evenly"
+          h="150px"
+          spacing="10"
+          bg="cyan.700"
+        >
+          <Stack spacing="10">
+            <Heading size="lg" color="white">
+              Data upload
+            </Heading>
+          </Stack>
+        </Flex>
+        <Flex align="center" justify="center" justifyContent="space-evenly" spacing="10">
+          <Stack
+            bg="white"
+            w="800px"
+            align="center"
+            justify="center"
+            justifyContent="center"
+            p="10"
+            spacing="10"
+            alignItems="center"
+          >
+            <Spinner size="xl" thickness="4px" speed="0.65s" emptyColor="gray.200" color="cyan.700" />
+            <Text size="md">Loading...</Text>
+          </Stack>
+        </Flex>
+      </Stack>
+    );
 
   return (
     <Stack spacing="10">
@@ -105,9 +151,6 @@ const GDCDataEntry: React.FC = () => {
           spacing="10"
           alignItems="center"
         >
-          <Heading size="md" mt="5">
-            ?!?!?!?
-          </Heading>
           <Tabs isLazy w="800px" pl="10" pr="10">
             <TabList pl="10" pr="10">
               <Tab>Data</Tab>
@@ -118,7 +161,7 @@ const GDCDataEntry: React.FC = () => {
                 <Stack w="100%" p="10">
                   <FormControl id="data-municipality" isRequired>
                     <FormLabel>Municipality</FormLabel>
-                    <Select>
+                    <Select value={selectedDataMunicipality} onChange={(evt) => setDataMunicipality(evt.currentTarget.value)}>
                       {municipalities && municipalities.map((muni) => (
                         <option key={muni.code} value={muni.code}>{muni.name}</option>
                         ))}
@@ -128,6 +171,7 @@ const GDCDataEntry: React.FC = () => {
                     <FormLabel>Year:</FormLabel>
                     <Input
                       errorBorderColor="crimson"
+                      onChange={(evt) => setDataYear(parseInt(evt.currentTarget.value, 10))}
                     />
                   </FormControl>
                   <FormControl id="data-file" isRequired>
@@ -146,6 +190,7 @@ const GDCDataEntry: React.FC = () => {
                         }
                       }
                       onChange={(evt) => setDataFile(evt.target.files ? evt.target.files[0] : null)}
+                      accept="text/csv, .csv"
                     />
                     <InputGroup
                       style={
@@ -178,14 +223,14 @@ const GDCDataEntry: React.FC = () => {
                     </InputGroup>
                   </FormControl>
                   <Spacer m="2rem" />
-                  <Button onClick={onSubmitData}>Upload</Button>
+                  <Button onClick={onSubmitData}>Upload data</Button>
                 </Stack>
               </TabPanel>
               <TabPanel>
                 <Stack w="100%" p="10">
                   <FormControl id="goal-municipality" isRequired>
                     <FormLabel>Municipality</FormLabel>
-                    <Select>
+                    <Select value={selectedGoalMunicipality} onChange={(evt) => setGoalMunicipality(evt.currentTarget.value)}>
                       {municipalities && municipalities.map((muni) => (
                         <option key={muni.code} value={muni.code}>{muni.name}</option>
                         ))}
@@ -206,7 +251,8 @@ const GDCDataEntry: React.FC = () => {
                           cursor: 'pointer',
                         }
                       }
-                      onChange={(evt) => setGoalFile(evt.target.files ? evt.target.files[0] : null)}
+                      onChange={(evt) => setGoalFile(evt.target.files ? evt.target.files[0] : null)}                      
+                      accept="text/csv, .csv"
                     />
                     <InputGroup
                       style={
@@ -239,7 +285,7 @@ const GDCDataEntry: React.FC = () => {
                     </InputGroup>
                   </FormControl>
                   <Spacer m="2rem" />
-                  <Button onClick={onSubmitGoals}>Log in</Button>        
+                  <Button onClick={onSubmitGoals}>Upload goals</Button>        
                 </Stack>
               </TabPanel>
             </TabPanels>
