@@ -67,7 +67,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
     municipalityGoalOverride,
     compareGoalOverride,
   } = props;
-  const WORST_COUNT = 10;
+  const WORST_COUNT = 15;
 
   const loadGDCOutput = async (muniCode: string, muniYear: number) => {
     if (muniYear === -1) return;
@@ -92,8 +92,8 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
           new Map(
             Array.from(data[0].indicators)
               .sort((a, b) => {
-                if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return 1;
-                if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return -1;
+                if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return -1;
+                if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return 1;
 
                 return b[1].projectedCompletion - a[1].projectedCompletion;
               })
@@ -120,8 +120,8 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
           new Map(
             Array.from(data.indicators)
               .sort((a, b) => {
-                if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return 1;
-                if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return -1;
+                if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return -1;
+                if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return 1;
 
                 return b[1].projectedCompletion - a[1].projectedCompletion;
               })
