@@ -11,7 +11,6 @@ export default (
   if (overrideMode === 'absolute') {
     return `
         ${prefixString}
-        PREFIX ofn: <http://www.ontotext.com/sparql/functions/>
 
         SELECT ?kpi ?baseline ?baselineYear ?target ?deadline ?startRange ?dataseries ?calculationMethod
         WHERE {
