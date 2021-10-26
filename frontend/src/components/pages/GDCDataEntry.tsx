@@ -22,6 +22,7 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  Checkbox,
 } from '@chakra-ui/react';
 
 import { useHistory } from 'react-router-dom';
@@ -54,6 +55,9 @@ const GDCDataEntry: React.FC = () => {
 
   const [dataFile, setDataFile] = useState<File | null>(null);
   const [goalFile, setGoalFile] = useState<File | null>(null);
+
+  const [dataDummy, setDataDummy] = useState<boolean>(false);
+  const [goalDummy, setGoalDummy] = useState<boolean>(false);
 
   const loadToken = async () => {
     if (!reducer.getState().login.token) {
@@ -106,6 +110,9 @@ const GDCDataEntry: React.FC = () => {
       form.append('csv', dataFile, dataFile.name);
       form.append('municipality', selectedDataMunicipality);
       form.append('year', JSON.stringify(dataYear));
+      if (dataDummy)
+        form.append('isDummy', JSON.stringify(true));
+      
       await uploadDataCSV(reducer.getState().login.token as string, form);
     }
   };
@@ -272,6 +279,13 @@ const GDCDataEntry: React.FC = () => {
                       />
                     </InputGroup>
                   </FormControl>
+                  <Spacer m="0.5rem" />
+                  <FormControl id="data-dummy" isRequired>
+                    <FormLabel>Is this dummy data?</FormLabel>
+                    <Checkbox isChecked={dataDummy} onChange={(evt) => setDataDummy(evt.currentTarget.checked)}>
+                      Dummy data
+                    </Checkbox>
+                  </FormControl>
                   <Spacer m="2rem" />
                   <Button onClick={onSubmitData}>Upload data</Button>
                 </Stack>
@@ -346,6 +360,13 @@ const GDCDataEntry: React.FC = () => {
                         errorBorderColor="crimson"
                       />
                     </InputGroup>
+                  </FormControl>
+                  <Spacer m="0.5rem" />
+                  <FormControl id="goal-dummy" isRequired>
+                    <FormLabel>Are these dummy goals?</FormLabel>
+                    <Checkbox isChecked={goalDummy} onChange={(evt) => setGoalDummy(evt.currentTarget.checked)}>
+                      Dummy goals
+                    </Checkbox>
                   </FormControl>
                   <Spacer m="2rem" />
                   <Button onClick={onSubmitGoals}>Upload goals</Button>
