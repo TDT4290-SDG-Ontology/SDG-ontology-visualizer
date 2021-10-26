@@ -21,7 +21,6 @@ import GDCViewMunicipality from './components/pages/GDCViewMunicipality';
 import GDCCompareMunicipalities from './components/pages/GDCCompareMunicipalities';
 import GDCDataEntry from './components/pages/GDCDataEntry';
 
-
 const App: React.FC = () => {
   // Better to do this in a global scope so that it's easily visible!
   // Massive hack, please fix in future:
