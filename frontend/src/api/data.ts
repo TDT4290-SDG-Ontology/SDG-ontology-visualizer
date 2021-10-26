@@ -16,8 +16,8 @@ export const uploadDataCSV = async (token: string, formData: FormData): Promise<
     // TODO: refactor into helper function in api.ts
     await window.fetch(`${API_BASE}/data/upload`, {
       method: 'POST',
-      headers: { 
-        Accept: 'application/json', 
+      headers: {
+        Accept: 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: formData,

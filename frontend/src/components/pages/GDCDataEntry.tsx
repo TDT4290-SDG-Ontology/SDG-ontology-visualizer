@@ -39,7 +39,7 @@ const GDCDataEntry: React.FC = () => {
   const history = useHistory();
 
   const [municipalities, setMunicipalities] = useState<Municipality[]>();
-  
+
   const [selectedDataMunicipality, setDataMunicipality] = useState<string | undefined>();
   const [selectedGoalMunicipality, setGoalMunicipality] = useState<string | undefined>();
 
@@ -76,7 +76,8 @@ const GDCDataEntry: React.FC = () => {
   const loadMunicipalities = async () => {
     const munis = await getAllMunicipalities();
     if (munis) {
-      setMunicipalities(munis.sort((a, b) => {
+      setMunicipalities(
+        munis.sort((a, b) => {
           if (a.code < b.code) return -1;
           if (a.code > b.code) return 1;
           return 0;
@@ -143,7 +144,13 @@ const GDCDataEntry: React.FC = () => {
             spacing="10"
             alignItems="center"
           >
-            <Spinner size="xl" thickness="4px" speed="0.65s" emptyColor="gray.200" color="cyan.700" />
+            <Spinner
+              size="xl"
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="cyan.700"
+            />
             <Text size="md">Loading...</Text>
           </Stack>
         </Flex>
@@ -192,7 +199,7 @@ const GDCDataEntry: React.FC = () => {
                       <AlertDescription>
                         {`${errorDataMunicipality ? 'Municipality' : ''}${
                           errorDataMunicipality && errorDataYear ? ', ' : ''
-                        }${errorDataYear ? 'Year' : ''}${                          
+                        }${errorDataYear ? 'Year' : ''}${
                           errorDataYear && errorDataFile ? ', ' : ''
                         }${errorDataFile ? 'File' : ''}`}
                       </AlertDescription>
@@ -200,17 +207,20 @@ const GDCDataEntry: React.FC = () => {
                   )}
                   <FormControl id="data-municipality" isRequired>
                     <FormLabel>Municipality</FormLabel>
-                    <Select 
-                      value={selectedDataMunicipality} 
+                    <Select
+                      value={selectedDataMunicipality}
                       onChange={(evt) => setDataMunicipality(evt.currentTarget.value)}
                       isInvalid={errorDataMunicipality}
                       errorBorderColor="crimson"
                     >
-                      {municipalities && municipalities.map((muni) => (
-                        <option key={muni.code} value={muni.code}>{muni.name}</option>
+                      {municipalities &&
+                        municipalities.map((muni) => (
+                          <option key={muni.code} value={muni.code}>
+                            {muni.name}
+                          </option>
                         ))}
                     </Select>
-                  </FormControl>                  
+                  </FormControl>
                   <FormControl id="data-year" isRequired>
                     <FormLabel>Year:</FormLabel>
                     <Input
@@ -224,48 +234,40 @@ const GDCDataEntry: React.FC = () => {
                     <Input
                       errorBorderColor="crimson"
                       type="file"
-                      style={
-                        { 
-                          paddingTop: '0.25rem', 
-                          paddingLeft: '0.25rem',
-                          height: '40px',
-                          opacity: 0,
-                          zIndex: 20,
-                          cursor: 'pointer',
-                        }
-                      }
+                      style={{
+                        paddingTop: '0.25rem',
+                        paddingLeft: '0.25rem',
+                        height: '40px',
+                        opacity: 0,
+                        zIndex: 20,
+                        cursor: 'pointer',
+                      }}
                       onChange={(evt) => setDataFile(evt.target.files ? evt.target.files[0] : null)}
                       accept="text/csv, .csv"
                       isInvalid={errorDataFile}
                     />
                     <InputGroup
-                      style={
-                        {
-                          height: '40px',
-                          marginTop: '-40px',
-                        }
-                      }
+                      style={{
+                        height: '40px',
+                        marginTop: '-40px',
+                      }}
                     >
                       <InputLeftElement
-                        style={
-                          {
-                            width: '6rem',
-                            cursor: 'pointer',
-                          }
-                        }
+                        style={{
+                          width: '6rem',
+                          cursor: 'pointer',
+                        }}
                       >
                         <Button>Browse...</Button>
                       </InputLeftElement>
-                      <Input 
-                        value={dataFile ? dataFile.name : ''} 
-                        isReadOnly 
-                        style={
-                          {
-                            paddingLeft: '7rem',
-                            cursor: 'pointer',
-                          }
-                        }          
-                        errorBorderColor="crimson"              
+                      <Input
+                        value={dataFile ? dataFile.name : ''}
+                        isReadOnly
+                        style={{
+                          paddingLeft: '7rem',
+                          cursor: 'pointer',
+                        }}
+                        errorBorderColor="crimson"
                         isInvalid={errorDataFile}
                       />
                     </InputGroup>
@@ -289,73 +291,68 @@ const GDCDataEntry: React.FC = () => {
                   )}
                   <FormControl id="goal-municipality" isRequired>
                     <FormLabel>Municipality</FormLabel>
-                    <Select 
-                      value={selectedGoalMunicipality} 
+                    <Select
+                      value={selectedGoalMunicipality}
                       onChange={(evt) => setGoalMunicipality(evt.currentTarget.value)}
                       isInvalid={errorGoalMunicipality}
                       errorBorderColor="crimson"
                     >
-                      {municipalities && municipalities.map((muni) => (
-                        <option key={muni.code} value={muni.code}>{muni.name}</option>
+                      {municipalities &&
+                        municipalities.map((muni) => (
+                          <option key={muni.code} value={muni.code}>
+                            {muni.name}
+                          </option>
                         ))}
                     </Select>
-                  </FormControl>        
+                  </FormControl>
                   <FormControl id="goal-file" isRequired>
                     <FormLabel>File:</FormLabel>
                     <Input
                       errorBorderColor="crimson"
                       type="file"
-                      style={
-                        { 
-                          paddingTop: '0.25rem', 
-                          paddingLeft: '0.25rem',
-                          height: '40px',
-                          opacity: 0,
-                          zIndex: 20,
-                          cursor: 'pointer',
-                        }
-                      }
-                      onChange={(evt) => setGoalFile(evt.target.files ? evt.target.files[0] : null)}                      
+                      style={{
+                        paddingTop: '0.25rem',
+                        paddingLeft: '0.25rem',
+                        height: '40px',
+                        opacity: 0,
+                        zIndex: 20,
+                        cursor: 'pointer',
+                      }}
+                      onChange={(evt) => setGoalFile(evt.target.files ? evt.target.files[0] : null)}
                       accept="text/csv, .csv"
                     />
                     <InputGroup
-                      style={
-                        {
-                          height: '40px',
-                          marginTop: '-40px',
-                        }
-                      }
+                      style={{
+                        height: '40px',
+                        marginTop: '-40px',
+                      }}
                     >
                       <InputLeftElement
-                        style={
-                          {
-                            width: '6rem',
-                            cursor: 'pointer',
-                          }
-                        }
+                        style={{
+                          width: '6rem',
+                          cursor: 'pointer',
+                        }}
                       >
                         <Button>Browse...</Button>
                       </InputLeftElement>
-                      <Input 
-                        value={goalFile ? goalFile.name : ''} 
-                        isReadOnly 
-                        style={
-                          {
-                            paddingLeft: '7rem',
-                            cursor: 'pointer',
-                          }
-                        }
+                      <Input
+                        value={goalFile ? goalFile.name : ''}
+                        isReadOnly
+                        style={{
+                          paddingLeft: '7rem',
+                          cursor: 'pointer',
+                        }}
                         isInvalid={errorGoalFile}
                         errorBorderColor="crimson"
                       />
                     </InputGroup>
                   </FormControl>
                   <Spacer m="2rem" />
-                  <Button onClick={onSubmitGoals}>Upload goals</Button>        
+                  <Button onClick={onSubmitGoals}>Upload goals</Button>
                 </Stack>
               </TabPanel>
             </TabPanels>
-          </Tabs>  
+          </Tabs>
         </Stack>
       </Flex>
     </Stack>

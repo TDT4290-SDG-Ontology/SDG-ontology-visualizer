@@ -1,6 +1,11 @@
 import { Router, Request, Response } from 'express';
 import _ from 'lodash';
 import multer from 'multer';
+import csvParser from 'csv-parser';
+import getStream from 'get-stream';
+
+import { Buffer } from 'node:buffer';
+import { Readable as ReadableStream } from 'node:stream';
 
 import { u4sscKpiMap } from '../database/u4sscKpiMap';
 
@@ -142,8 +147,22 @@ const availableYears = async (req: Request, res: Response) => {
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+const parseCSV = async (data: any, opts?: any): Promise<any[]> => {
+  let stream = data;
+  if (typeof stream === 'string' || Buffer.isBuffer(stream)) {
+    stream = ReadableStream.from(stream);
+  }
+
+  const parseStream = csvParser(opts);
+  return getStream.array(stream.pipe(parseStream));
+};
+
 const dataUploadCSV = async (req: Request, res: Response) => {
-  console.log(req);
+  try {
+    console.log(await parseCSV((req as any).file.buffer));
+  } catch (e) {
+    onError(e, req, res);
+  }
 };
 
 router.post('/insert', verifyDatabaseAccess, verifyToken, insertData);
