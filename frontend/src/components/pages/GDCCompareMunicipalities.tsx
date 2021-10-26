@@ -38,6 +38,8 @@ const CompareMunicipalities: React.FC = () => {
   const [compareMunicipalityInfo, setCompareMunicipalityInfo] = useState<MunicipalityInfo>();
 
   const [goalOverride, setGoalOverride] = useState<string>(municipality);
+  const [overrideMode, setOverrideMode] = useState<string>('absolute');
+
   const [otherGoalOverride, setOtherGoalOverride] = useState<string>(otherMunicipality);
 
   const [showDataAlert, setShowDataAlert] = useState<boolean>(true);
@@ -144,6 +146,24 @@ const CompareMunicipalities: React.FC = () => {
               <Spacer />
               <Stack direction="row">
                 <Text size="md" p="0.4em">
+                  Override mode:
+                </Text>
+                <Select
+                  value={overrideMode}
+                  onChange={(evt) => setOverrideMode(evt.currentTarget.value)}
+                  w="125px"
+                >
+                  <option key="absolute" value="absolute">
+                    Absolute
+                  </option>
+                  <option key="relative" value="relative">
+                    Relative
+                  </option>
+                </Select>
+              </Stack>
+              <Spacer />
+              <Stack direction="row">
+                <Text size="md" p="0.4em">
                   Year:
                 </Text>
                 <Select value={selectedYear} onChange={onChangeYear} w="100px">
@@ -159,7 +179,7 @@ const CompareMunicipalities: React.FC = () => {
           </Container>
           {dataAlert}
           <GDCView
-            key={`${selectedYear}-${selectedGoals}`}
+            key={`${selectedYear}-${selectedGoals}-${overrideMode}`}
             year={selectedYear}
             municipality={name}
             municipalityCode={municipality}
@@ -167,6 +187,7 @@ const CompareMunicipalities: React.FC = () => {
             compareMunicipality={otherName}
             compareCode={otherMunicipality}
             compareGoalOverride={otherGoalOverride}
+            overrideMode={overrideMode}
           />
         </Stack>
       </Flex>

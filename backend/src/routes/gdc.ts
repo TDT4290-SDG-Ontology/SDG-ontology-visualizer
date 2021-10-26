@@ -28,8 +28,10 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const goalMunicipality =
       req.body.goalOverride !== undefined ? req.body.goalOverride : req.body.municipality;
 
+    const overrideMode = req.body.overrideMode !== undefined ? req.body.overrideMode : 'absolute';
+
     const dataseriesPromise = getGDCDataSeries(req.body.municipality, req.body.year);
-    const goalPromise = getGDCGoals(goalMunicipality, req.body.municipality);
+    const goalPromise = getGDCGoals(goalMunicipality, req.body.municipality, overrideMode);
     const historicalPromise = getGDCDataSeriesUpto(req.body.municipality, req.body.year);
 
     // It should be more efficient to wait on all promises at the same time.
@@ -125,7 +127,11 @@ const setBulkGoals = async (req: Request, res: Response) => {
 
 const getGoals = async (req: Request, res: Response) => {
   try {
-    const goalsData = await getGDCGoals(req.params.municipality, req.params.municipality);
+    const goalsData = await getGDCGoals(
+      req.params.municipality,
+      req.params.municipality,
+      'absolute',
+    );
     const goals: Map<string, Goal> = new Map<string, Goal>();
 
     goalsData.forEach((goal) => {

@@ -40,6 +40,7 @@ type GDCViewProps = {
   compareMunicipality?: string;
   compareCode?: string;
   compareGoalOverride?: string;
+  overrideMode?: string;
 };
 
 const defaultProps = {
@@ -48,6 +49,7 @@ const defaultProps = {
 
   municipalityGoalOverride: undefined,
   compareGoalOverride: undefined,
+  overrideMode: undefined,
 };
 
 const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
@@ -66,6 +68,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
     compareCode,
     municipalityGoalOverride,
     compareGoalOverride,
+    overrideMode,
   } = props;
   const WORST_COUNT = 15;
 
@@ -74,8 +77,8 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
 
     if (compareCode !== undefined) {
       const data = await Promise.all([
-        getGDCOutput(muniCode, muniYear, municipalityGoalOverride),
-        getGDCOutput(compareCode, muniYear, compareGoalOverride),
+        getGDCOutput(muniCode, muniYear, municipalityGoalOverride, overrideMode || 'absolute'),
+        getGDCOutput(compareCode, muniYear, compareGoalOverride, overrideMode || 'absolute'),
       ]);
       setGDCInfo(data[0]);
       if (data[0] !== undefined) {

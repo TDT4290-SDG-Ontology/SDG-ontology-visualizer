@@ -11,10 +11,13 @@ export const getGDCOutput = async (
   municipality: string,
   year: number,
   goalOverride?: string,
+  overrideMode?: string,
 ): Promise<GDCOutput> => {
   try {
     const reqBody =
-      goalOverride !== undefined ? { municipality, year, goalOverride } : { municipality, year };
+      goalOverride !== undefined
+        ? { municipality, year, goalOverride, overrideMode }
+        : { municipality, year };
     return await api.POST('gdc/get', reqBody).then((data) => {
       try {
         const domains: Map<string, Score> = new Map<string, Score>(data.domains);
