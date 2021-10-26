@@ -204,6 +204,7 @@ const GDCDataEntry: React.FC = () => {
                       value={selectedDataMunicipality} 
                       onChange={(evt) => setDataMunicipality(evt.currentTarget.value)}
                       isInvalid={errorDataMunicipality}
+                      errorBorderColor="crimson"
                     >
                       {municipalities && municipalities.map((muni) => (
                         <option key={muni.code} value={muni.code}>{muni.name}</option>
@@ -263,7 +264,8 @@ const GDCDataEntry: React.FC = () => {
                             paddingLeft: '7rem',
                             cursor: 'pointer',
                           }
-                        }                        
+                        }          
+                        errorBorderColor="crimson"              
                         isInvalid={errorDataFile}
                       />
                     </InputGroup>
@@ -287,7 +289,12 @@ const GDCDataEntry: React.FC = () => {
                   )}
                   <FormControl id="goal-municipality" isRequired>
                     <FormLabel>Municipality</FormLabel>
-                    <Select value={selectedGoalMunicipality} onChange={(evt) => setGoalMunicipality(evt.currentTarget.value)}>
+                    <Select 
+                      value={selectedGoalMunicipality} 
+                      onChange={(evt) => setGoalMunicipality(evt.currentTarget.value)}
+                      isInvalid={errorGoalMunicipality}
+                      errorBorderColor="crimson"
+                    >
                       {municipalities && municipalities.map((muni) => (
                         <option key={muni.code} value={muni.code}>{muni.name}</option>
                         ))}
@@ -338,6 +345,8 @@ const GDCDataEntry: React.FC = () => {
                             cursor: 'pointer',
                           }
                         }
+                        isInvalid={errorGoalFile}
+                        errorBorderColor="crimson"
                       />
                     </InputGroup>
                   </FormControl>
