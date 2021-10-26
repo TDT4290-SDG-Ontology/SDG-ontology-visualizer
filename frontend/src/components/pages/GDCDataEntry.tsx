@@ -18,6 +18,10 @@ import {
   InputLeftElement,
   Spinner,
   Text,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from '@chakra-ui/react';
 
 import { useHistory } from 'react-router-dom';
@@ -28,18 +32,25 @@ import { tokenVerified, tokenUnverified } from '../../state/reducers/loginReduce
 import { Municipality } from '../../types/municipalityTypes';
 
 import { validateToken } from '../../api/auth';
-
 import { getAllMunicipalities } from '../../api/municipalities';
+import { uploadDataCSV } from '../../api/data';
 
 const GDCDataEntry: React.FC = () => {
   const history = useHistory();
 
   const [municipalities, setMunicipalities] = useState<Municipality[]>();
   
-  const [selectedDataMunicipality, setDataMunicipality] = useState<string>('');
-  const [selectedGoalMunicipality, setGoalMunicipality] = useState<string>('');
+  const [selectedDataMunicipality, setDataMunicipality] = useState<string | undefined>();
+  const [selectedGoalMunicipality, setGoalMunicipality] = useState<string | undefined>();
 
-  const [dataYear, setDataYear] = useState<number>(-1);
+  const [errorDataMunicipality, setErrorDataMunicipality] = useState<boolean>(false);
+  const [errorDataYear, setErrorDataYear] = useState<boolean>(false);
+  const [errorDataFile, setErrorDataFile] = useState<boolean>(false);
+
+  const [errorGoalMunicipality, setErrorGoalMunicipality] = useState<boolean>(false);
+  const [errorGoalFile, setErrorGoalFile] = useState<boolean>(false);
+
+  const [dataYear, setDataYear] = useState<number | null>(null);
 
   const [dataFile, setDataFile] = useState<File | null>(null);
   const [goalFile, setGoalFile] = useState<File | null>(null);
@@ -64,15 +75,19 @@ const GDCDataEntry: React.FC = () => {
 
   const loadMunicipalities = async () => {
     const munis = await getAllMunicipalities();
-    setMunicipalities(munis.sort((a, b) => {
-        if (a.code < b.code) return -1;
-        if (a.code > b.code) return 1;
-        return 0;
-      }),
-    );
+    if (munis) {
+      setMunicipalities(munis.sort((a, b) => {
+          if (a.code < b.code) return -1;
+          if (a.code > b.code) return 1;
+          return 0;
+        }),
+      );
 
-    setDataMunicipality(munis[0].code);
-    setGoalMunicipality(munis[0].code);
+      if (municipalities && municipalities.length > 0) {
+        setDataMunicipality(municipalities[0].code);
+        setGoalMunicipality(municipalities[0].code);
+      }
+    }
   };
 
   useEffect(() => {
@@ -81,14 +96,25 @@ const GDCDataEntry: React.FC = () => {
   });
 
   const onSubmitData = async () => {
-    console.log('data file: ', dataFile);
-    console.log('year: ', dataYear);
+    setErrorDataMunicipality(!selectedDataMunicipality);
+    setErrorDataYear(!dataYear || Number.isNaN(dataYear));
+    setErrorDataFile(!dataFile);
+
+    if (selectedDataMunicipality && dataYear && !Number.isNaN(dataYear) && dataFile) {
+      const form = new FormData();
+      form.append('csv', dataFile, dataFile.name);
+      form.append('municipality', selectedDataMunicipality);
+      form.append('year', JSON.stringify(dataYear));
+      await uploadDataCSV(reducer.getState().login.token as string, form);
+    }
   };
 
   const onSubmitGoals = async () => {
-    console.log('goal file: ', goalFile);
+    setErrorGoalMunicipality(!selectedGoalMunicipality);
+    setErrorGoalFile(!goalFile);
   };
 
+  // Render spinner when loading data
   if (!municipalities)
     return (
       <Stack spacing="10">
@@ -159,9 +185,26 @@ const GDCDataEntry: React.FC = () => {
             <TabPanels>
               <TabPanel>
                 <Stack w="100%" p="10">
+                  {(errorDataMunicipality || errorDataYear || errorDataFile) && (
+                    <Alert status="error">
+                      <AlertIcon />
+                      <AlertTitle>Missing required fields:</AlertTitle>
+                      <AlertDescription>
+                        {`${errorDataMunicipality ? 'Municipality' : ''}${
+                          errorDataMunicipality && errorDataYear ? ', ' : ''
+                        }${errorDataYear ? 'Year' : ''}${                          
+                          errorDataYear && errorDataFile ? ', ' : ''
+                        }${errorDataFile ? 'File' : ''}`}
+                      </AlertDescription>
+                    </Alert>
+                  )}
                   <FormControl id="data-municipality" isRequired>
                     <FormLabel>Municipality</FormLabel>
-                    <Select value={selectedDataMunicipality} onChange={(evt) => setDataMunicipality(evt.currentTarget.value)}>
+                    <Select 
+                      value={selectedDataMunicipality} 
+                      onChange={(evt) => setDataMunicipality(evt.currentTarget.value)}
+                      isInvalid={errorDataMunicipality}
+                    >
                       {municipalities && municipalities.map((muni) => (
                         <option key={muni.code} value={muni.code}>{muni.name}</option>
                         ))}
@@ -172,6 +215,7 @@ const GDCDataEntry: React.FC = () => {
                     <Input
                       errorBorderColor="crimson"
                       onChange={(evt) => setDataYear(parseInt(evt.currentTarget.value, 10))}
+                      isInvalid={errorDataYear}
                     />
                   </FormControl>
                   <FormControl id="data-file" isRequired>
@@ -191,6 +235,7 @@ const GDCDataEntry: React.FC = () => {
                       }
                       onChange={(evt) => setDataFile(evt.target.files ? evt.target.files[0] : null)}
                       accept="text/csv, .csv"
+                      isInvalid={errorDataFile}
                     />
                     <InputGroup
                       style={
@@ -218,7 +263,8 @@ const GDCDataEntry: React.FC = () => {
                             paddingLeft: '7rem',
                             cursor: 'pointer',
                           }
-                        }
+                        }                        
+                        isInvalid={errorDataFile}
                       />
                     </InputGroup>
                   </FormControl>
@@ -228,6 +274,17 @@ const GDCDataEntry: React.FC = () => {
               </TabPanel>
               <TabPanel>
                 <Stack w="100%" p="10">
+                  {(errorGoalMunicipality || errorGoalFile) && (
+                    <Alert status="error">
+                      <AlertIcon />
+                      <AlertTitle>Missing required fields:</AlertTitle>
+                      <AlertDescription>
+                        {`${errorGoalMunicipality ? 'Municipality' : ''}${
+                          errorGoalMunicipality && errorGoalFile ? ', ' : ''
+                        }${errorGoalFile ? 'File' : ''}`}
+                      </AlertDescription>
+                    </Alert>
+                  )}
                   <FormControl id="goal-municipality" isRequired>
                     <FormLabel>Municipality</FormLabel>
                     <Select value={selectedGoalMunicipality} onChange={(evt) => setGoalMunicipality(evt.currentTarget.value)}>
