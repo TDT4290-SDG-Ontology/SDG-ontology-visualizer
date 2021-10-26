@@ -23,6 +23,21 @@ import {
   AlertTitle,
   AlertDescription,
   Checkbox,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Box,
+  Code,
+  Table, 
+  Tr, 
+  Td, 
+  Th, 
+  Thead, 
+  Tbody,
+  UnorderedList,
+  ListItem,
 } from '@chakra-ui/react';
 
 import { useHistory } from 'react-router-dom';
@@ -35,6 +50,8 @@ import { Municipality } from '../../types/municipalityTypes';
 import { validateToken } from '../../api/auth';
 import { getAllMunicipalities } from '../../api/municipalities';
 import { uploadDataCSV } from '../../api/data';
+
+import U4SSC_KPI_NAMES from '../../common/u4sscKPIMap';
 
 const GDCDataEntry: React.FC = () => {
   const history = useHistory();
@@ -112,7 +129,7 @@ const GDCDataEntry: React.FC = () => {
       form.append('year', JSON.stringify(dataYear));
       if (dataDummy)
         form.append('isDummy', JSON.stringify(true));
-      
+
       await uploadDataCSV(reducer.getState().login.token as string, form);
     }
   };
@@ -288,6 +305,339 @@ const GDCDataEntry: React.FC = () => {
                   </FormControl>
                   <Spacer m="2rem" />
                   <Button onClick={onSubmitData}>Upload data</Button>
+                  <Spacer m="2rem" />
+                  <Accordion allowToggle>
+                    <AccordionItem key="data-format">
+                      <AccordionButton>
+                        <Box flex="1" textAlign="left">
+                          CSV Data format requirements
+                        </Box>
+                        <AccordionIcon />
+                      </AccordionButton>
+                      <AccordionPanel>
+                        The following fields are required for data points:
+                        <Table>
+                          <Thead>
+                            <Tr>
+                              <Th>Type</Th>
+                              <Th>Field name</Th>
+                              <Th>Description</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td>KPI Id</Td>
+                              <Td>
+                                <Code>indicator</Code>
+                              </Td>
+                              <Td>Identifying number / string of KPI</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Data series</Td>
+                              <Td>
+                                <Code>dataseries</Code>
+                              </Td>
+                              <Td>Name of data series (if applicable)</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Value</Td>
+                              <Td>
+                                <Code>data</Code>
+                              </Td>
+                              <Td>The value of the data point, as defined by the Collection Methodology</Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>
+                        <br />
+                        The KPI id is the U4SSC KPI as defined in the 
+                        <Code>Collection Methodology for Key Performance Indicators for Smart Sustainable Cities (2017)</Code>
+                        but with the following modifications
+                        <Table>
+                          <Thead>
+                            <Tr>
+                              <Th>Official KPI</Th>
+                              <Th>Modified KPI</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: ED:1C</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: EH: ED: 1C</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: ED:2C</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: EH: ED: 2C</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: H:1C</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: EH: H: 1C</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: H:3C</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: EH: H: 3C</Code>
+                              </Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>
+                        <br />
+                        We did these modifications because we consider them to correct misentered data.
+                        <br />
+                        <br />
+                        Trondheim kommune have done some other modifications in their Airtable for data driven sustainability, where the following modifications are done:
+                        <Table>
+                          <Thead>
+                            <Tr>
+                              <Th>Airtable KPI</Th>
+                              <Th>Official KPI</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td> 
+                                <Code>EC: P: EM: 3A</Code>
+                              </Td>
+                              <Td>
+                                <Code>EC: P: EM: 3C</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>EC: P: EM: 4A</Code>
+                              </Td>
+                              <Td>
+                                <Code>EC: P: EM: 4C</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: H: 6A</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: EH: ED: 5A</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: SA: 5A</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: SH: SA: 5C</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: FS: 1A</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: SH: FS: 1C</Code>
+                              </Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>
+                        <br />
+                        These modifications are not supported by the data upload functionality.                 
+                        <br />
+                        <br />
+                        Indicators with required dataseries:
+                        <Table>
+                          <Thead>
+                            <Tr>
+                              <Th minWidth="175px">Indicator (KPI)</Th>
+                              <Th>Dataseries</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td>EC: ICT: ICT: 4C</Td>
+                              <Td>
+                                <Code>3g</Code>
+                                {', '}
+                                <Code>4g</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EC: ICT: PS: 1A</Td>
+                              <Td>
+                                <Code>number</Code>
+                                {', '}
+                                <Code>percent</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EC: I: T: 4A</Td>
+                              <Td>
+                                <Code>cycling</Code>
+                                {', '} 
+                                <Code>public</Code>
+                                {', '}
+                                <Code>private</Code>
+                                {', '}
+                                <Code>walking</Code>
+                                {', '}
+                                <Code>para</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EC: I: UP: 2A</Td>
+                              <Td>
+                                <Code>compact</Code>
+                                {', '}
+                                <Code>connected</Code>
+                                {', '}
+                                <Code>integrated</Code>
+                                {', '}
+                                <Code>inclusive</Code>
+                                {', '}
+                                <Code>resilient</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EN: EN: AQ: 1C</Td>
+                              <Td>
+                                <Code>pm_10</Code>
+                                {', '}
+                                <Code>pm_2.5</Code>
+                                {', '}
+                                <Code>no2</Code>
+                                {', '}
+                                <Code>so2</Code>
+                                {', '}
+                                <Code>o3</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EN: EN: WS: 4C</Td>
+                              <Td>
+                                <Code>primary</Code>
+                                {', '}
+                                <Code>secondary</Code>
+                                {', '}
+                                <Code>tertiary</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EN: EN: WA: 1C</Td>
+                              <Td>
+                                <Code>landfill</Code>
+                                {', '}
+                                <Code>burnt</Code>
+                                {', '}
+                                <Code>incinerated</Code>
+                                {', '}
+                                <Code>open_dump</Code>
+                                {', '}
+                                <Code>recycled</Code>
+                                {', '}
+                                <Code>other</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EN: EN: WA: 1C</Td>
+                              <Td>
+                                <Code>landfill</Code>
+                                {', '}
+                                <Code>burnt</Code>
+                                {', '}
+                                <Code>incinerated</Code>
+                                {', '}
+                                <Code>open_dump</Code>
+                                {', '}
+                                <Code>recycled</Code>
+                                {', '}
+                                <Code>other</Code>
+                              </Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>            
+                        <br />
+                        If the indicator does not have an associated dataseries, then leave the cell blank.                     
+                        <br />
+                        <br />
+                        Example csv:
+                        <br />
+                        <Code>
+                          indicator;dataseries;data                          
+                          <br />
+                          EN: EN: WA: 1C;landfill;20
+                          <br />
+                          EN: EN: WA: 1C;burnt;20                          
+                          <br />
+                          EN: EN: WA: 1C;open_dump;20                          
+                          <br />
+                          EC: ICT: ICT: 4C;4g;80                          
+                          <br />
+                          EC: ICT: ICT: 4C;3g;99                          
+                          <br />
+                          EN: EN: AQ: 1C;pm_10;5                          
+                          <br />
+                          EN: EN: AQ: 1C;pm_2.5;2.5                          
+                          <br />
+                          EN: EN: AQ: 1C;no2;3.4                          
+                          <br />
+                          EC: I: WS: 1C;;99                          
+                          <br />
+                          EC: ICT: ES: 1C;;75                          
+                          <br />
+                          SC: SH: HO: 1C;;0                          
+                          <br />
+                          SC: SH: SA: 1C;;1.5                          
+                          <br />
+                        </Code>
+                        <br />
+                        <br />
+                        <Accordion allowToggle>
+                          <AccordionItem key="all-kpis">
+                            <AccordionButton>
+                              <Box flex="1" textAlign="left">
+                                All KPIs.
+                              </Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                            <AccordionPanel>
+                              <Table>
+                                <Thead>
+                                  <Tr>
+                                    <Th key="1" w="200px">KPI</Th>
+                                    <Th key="2">Description</Th>
+                                  </Tr>
+                                </Thead>
+                                <Tbody>
+                                  { Array.from(U4SSC_KPI_NAMES).map(([key, val]) => {
+                                      if (key.indexOf('-') > -1)
+                                        return null;
+
+                                      return (
+                                        <Tr key={key}>
+                                          <Td>
+                                            <Code>{key}</Code>
+                                          </Td>
+                                          <Td>{val.eng}</Td>
+                                        </Tr>
+                                      );
+                                    })}
+                                </Tbody>
+                              </Table>
+                            </AccordionPanel>
+                          </AccordionItem>
+                        </Accordion>
+                      </AccordionPanel>
+                    </AccordionItem>
+                  </Accordion>
                 </Stack>
               </TabPanel>
               <TabPanel>
@@ -370,6 +720,381 @@ const GDCDataEntry: React.FC = () => {
                   </FormControl>
                   <Spacer m="2rem" />
                   <Button onClick={onSubmitGoals}>Upload goals</Button>
+                  <Spacer m="2rem" />
+                  <Accordion allowToggle>
+                    <AccordionItem key="goal-format">
+                      <AccordionButton>
+                        <Box flex="1" textAlign="left">
+                          CSV Goal format requirements
+                        </Box>
+                        <AccordionIcon />
+                      </AccordionButton>
+                      <AccordionPanel>
+                        The following fields are required for goals:
+                        <Table>
+                          <Thead>
+                            <Tr>
+                              <Th>Type</Th>
+                              <Th>Field name</Th>
+                              <Th>Description</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td>KPI Id</Td>
+                              <Td>
+                                <Code>indicator</Code>
+                              </Td>
+                              <Td>KPI Identificator, must be one of the ids listed in the list of all KPIs below.</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Data series</Td>
+                              <Td>
+                                <Code>dataseries</Code>
+                              </Td>
+                              <Td>Name of data series (if applicable)</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Baseline year</Td>
+                              <Td>
+                                <Code>baselineYear</Code>
+                              </Td>
+                              <Td>The year when measurements began.</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Baseline value</Td>
+                              <Td>
+                                <Code>baseline</Code>
+                              </Td>
+                              <Td>The value of the KPI (and data series) in the baseline year.</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Target value</Td>
+                              <Td>
+                                <Code>target</Code>
+                              </Td>
+                              <Td>The targeted value for the KPI (and data series).</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Deadline year</Td>
+                              <Td>
+                                <Code>deadline</Code>
+                              </Td>
+                              <Td>The year determined to be a deadline for the KPI and data series combination.</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Start Range</Td>
+                              <Td>
+                                <Code>startRange</Code>
+                              </Td>
+                              <Td>The value corresponding to 0% completion. MUST not equal the target value. Should be set according to guidance below.</Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>
+                        <br />
+                        Start range guidance:
+
+                        <UnorderedList>
+                          <ListItem>If the Collection Methodology specifies that higher and increasing values are considered positive, then the start range should be set to 0.</ListItem>
+                          <ListItem>
+                            If the Collection Methodology specifies that lower values and decreasing values are considered positive AND:
+                            <UnorderedList>
+                              <ListItem>The value is a percentage, then the start range should be set to 100</ListItem>                              
+                              <ListItem>Otherwise, the start range should be set according to good judgement to determine an appropriate start range. What&apos;s considered an appropriate value will probably differ somewhat from KPI to KPI and from municipality to municipality. The chief consideration is that the value set as the start range represents a completion of 0%.</ListItem>
+                            </UnorderedList>
+                          </ListItem>
+                          <ListItem>If the Collection Methodology does not specify whats considered positive, then the determination must be done according to the &quot;Otherwise&quot; section above.</ListItem>
+                        </UnorderedList>
+                        <br />
+                        The KPI id is the U4SSC KPI as defined in the 
+                        <Code>Collection Methodology for Key Performance Indicators for Smart Sustainable Cities (2017)</Code>
+                        but with the following modifications
+                        <Table>
+                          <Thead>
+                            <Tr>
+                              <Th>Official KPI</Th>
+                              <Th>Modified KPI</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: ED:1C</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: EH: ED: 1C</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: ED:2C</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: EH: ED: 2C</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: H:1C</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: EH: H: 1C</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: H:3C</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: EH: H: 3C</Code>
+                              </Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>
+                        <br />
+                        We did these modifications because we consider them to correct misentered data.
+                        <br />
+                        <br />
+                        Trondheim kommune have done some other modifications in their Airtable for data driven sustainability, where the following modifications are done:
+                        <Table>
+                          <Thead>
+                            <Tr>
+                              <Th>Airtable KPI</Th>
+                              <Th>Official KPI</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td> 
+                                <Code>EC: P: EM: 3A</Code>
+                              </Td>
+                              <Td>
+                                <Code>EC: P: EM: 3C</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>EC: P: EM: 4A</Code>
+                              </Td>
+                              <Td>
+                                <Code>EC: P: EM: 4C</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: H: 6A</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: EH: ED: 5A</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: SA: 5A</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: SH: SA: 5C</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td> 
+                                <Code>SC: EH: FS: 1A</Code>
+                              </Td>
+                              <Td>
+                                <Code>SC: SH: FS: 1C</Code>
+                              </Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>
+                        <br />
+                        These modifications are not supported by the data upload functionality.                 
+                        <br />
+                        <br />
+                        Indicators with required dataseries:
+                        <Table>
+                          <Thead>
+                            <Tr>
+                              <Th minWidth="175px">Indicator (KPI)</Th>
+                              <Th>Dataseries</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td>EC: ICT: ICT: 4C</Td>
+                              <Td>
+                                <Code>3g</Code>
+                                {', '}
+                                <Code>4g</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EC: ICT: PS: 1A</Td>
+                              <Td>
+                                <Code>number</Code>
+                                {', '}
+                                <Code>percent</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EC: I: T: 4A</Td>
+                              <Td>
+                                <Code>cycling</Code>
+                                {', '} 
+                                <Code>public</Code>
+                                {', '}
+                                <Code>private</Code>
+                                {', '}
+                                <Code>walking</Code>
+                                {', '}
+                                <Code>para</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EC: I: UP: 2A</Td>
+                              <Td>
+                                <Code>compact</Code>
+                                {', '}
+                                <Code>connected</Code>
+                                {', '}
+                                <Code>integrated</Code>
+                                {', '}
+                                <Code>inclusive</Code>
+                                {', '}
+                                <Code>resilient</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EN: EN: AQ: 1C</Td>
+                              <Td>
+                                <Code>pm_10</Code>
+                                {', '}
+                                <Code>pm_2.5</Code>
+                                {', '}
+                                <Code>no2</Code>
+                                {', '}
+                                <Code>so2</Code>
+                                {', '}
+                                <Code>o3</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EN: EN: WS: 4C</Td>
+                              <Td>
+                                <Code>primary</Code>
+                                {', '}
+                                <Code>secondary</Code>
+                                {', '}
+                                <Code>tertiary</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EN: EN: WA: 1C</Td>
+                              <Td>
+                                <Code>landfill</Code>
+                                {', '}
+                                <Code>burnt</Code>
+                                {', '}
+                                <Code>incinerated</Code>
+                                {', '}
+                                <Code>open_dump</Code>
+                                {', '}
+                                <Code>recycled</Code>
+                                {', '}
+                                <Code>other</Code>
+                              </Td>
+                            </Tr>
+                            <Tr>
+                              <Td>EN: EN: WA: 1C</Td>
+                              <Td>
+                                <Code>landfill</Code>
+                                {', '}
+                                <Code>burnt</Code>
+                                {', '}
+                                <Code>incinerated</Code>
+                                {', '}
+                                <Code>open_dump</Code>
+                                {', '}
+                                <Code>recycled</Code>
+                                {', '}
+                                <Code>other</Code>
+                              </Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>            
+                        <br />
+                        If the indicator does not have an associated dataseries, then leave the cell blank.                     
+                        <br />
+                        <br />
+                        Example csv:
+                        <br />
+                        <Code>
+                          indicator;dataseries;baselineYear;baseline;target;deadline;startRange                       
+                          <br />
+                          EN: EN: WA: 1C;landfill;2015;15;20;2030;0
+                          <br />
+                          EN: EN: WA: 1C;burnt;2010;10;15;2040;0     
+                          <br />
+                          EN: EN: WA: 1C;open_dump;2014;0;20;2025;0             
+                          <br />
+                          EC: ICT: ICT: 4C;4g;80;2015;100;2030;0
+                          <br />
+                          EC: ICT: ICT: 4C;3g;95;2005;100;2015;0          
+                          <br />
+                          EN: EN: AQ: 1C;pm_10;5;2015;2.1;2030;1000          
+                          <br />
+                          EN: EN: AQ: 1C;pm_2.5;2.5;2015;1;2030;1000          
+                          <br />
+                          EN: EN: AQ: 1C;no2;3.4;2015;1;2030;100      
+                          <br />
+                          EC: I: WS: 1C;;99;2000;100;2030;0     
+                          <br />
+                          EC: ICT: ES: 1C;;75;2010;100;2030;0            
+                          <br />
+                          SC: SH: HO: 1C;;0;2010;0;2015;100        
+                          <br />
+                          SC: SH: SA: 1C;;1.5;2015;0;2030;100          
+                          <br />
+                        </Code>
+                        <br />
+                        <br />
+                        <Accordion allowToggle>
+                          <AccordionItem key="all-kpis">
+                            <AccordionButton>
+                              <Box flex="1" textAlign="left">
+                                All KPIs.
+                              </Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                            <AccordionPanel>
+                              <Table>
+                                <Thead>
+                                  <Tr>
+                                    <Th key="1" w="200px">KPI</Th>
+                                    <Th key="2">Description</Th>
+                                  </Tr>
+                                </Thead>
+                                <Tbody>
+                                  { Array.from(U4SSC_KPI_NAMES).map(([key, val]) => {
+                                      if (key.indexOf('-') > -1)
+                                        return null;
+
+                                      return (
+                                        <Tr key={key}>
+                                          <Td>
+                                            <Code>{key}</Code>
+                                          </Td>
+                                          <Td>{val.eng}</Td>
+                                        </Tr>
+                                      );
+                                    })}
+                                </Tbody>
+                              </Table>
+                            </AccordionPanel>
+                          </AccordionItem>
+                        </Accordion>
+                      </AccordionPanel>
+                    </AccordionItem>
+                  </Accordion>
                 </Stack>
               </TabPanel>
             </TabPanels>
