@@ -30,11 +30,11 @@ import {
   AccordionIcon,
   Box,
   Code,
-  Table, 
-  Tr, 
-  Td, 
-  Th, 
-  Thead, 
+  Table,
+  Tr,
+  Td,
+  Th,
+  Thead,
   Tbody,
   UnorderedList,
   ListItem,
@@ -51,13 +51,16 @@ import { Municipality } from '../../types/municipalityTypes';
 import { validateToken } from '../../api/auth';
 import { getAllMunicipalities } from '../../api/municipalities';
 import { uploadDataCSV } from '../../api/data';
+import { uploadGoalCSV } from '../../api/gdc';
 
 import U4SSC_KPI_NAMES from '../../common/u4sscKPIMap';
 
 const CSVInfoMods = (
   <>
-    The KPI id is the U4SSC KPI as defined in the 
-    <Code>Collection Methodology for Key Performance Indicators for Smart Sustainable Cities (2017)</Code>
+    The KPI id is the U4SSC KPI as defined in the
+    <Code>
+      Collection Methodology for Key Performance Indicators for Smart Sustainable Cities (2017)
+    </Code>
     but with the following modifications
     <Table>
       <Thead>
@@ -68,7 +71,7 @@ const CSVInfoMods = (
       </Thead>
       <Tbody>
         <Tr>
-          <Td> 
+          <Td>
             <Code>SC: EH: ED:1C</Code>
           </Td>
           <Td>
@@ -76,7 +79,7 @@ const CSVInfoMods = (
           </Td>
         </Tr>
         <Tr>
-          <Td> 
+          <Td>
             <Code>SC: EH: ED:2C</Code>
           </Td>
           <Td>
@@ -84,7 +87,7 @@ const CSVInfoMods = (
           </Td>
         </Tr>
         <Tr>
-          <Td> 
+          <Td>
             <Code>SC: EH: H:1C</Code>
           </Td>
           <Td>
@@ -92,7 +95,7 @@ const CSVInfoMods = (
           </Td>
         </Tr>
         <Tr>
-          <Td> 
+          <Td>
             <Code>SC: EH: H:3C</Code>
           </Td>
           <Td>
@@ -105,7 +108,8 @@ const CSVInfoMods = (
     We did these modifications because we consider them to correct misentered data.
     <br />
     <br />
-    Trondheim kommune have done some other modifications in their Airtable for data driven sustainability, where the following modifications are done:
+    Trondheim kommune have done some other modifications in their Airtable for data driven
+    sustainability, where the following modifications are done:
     <Table>
       <Thead>
         <Tr>
@@ -115,7 +119,7 @@ const CSVInfoMods = (
       </Thead>
       <Tbody>
         <Tr>
-          <Td> 
+          <Td>
             <Code>EC: P: EM: 3A</Code>
           </Td>
           <Td>
@@ -123,7 +127,7 @@ const CSVInfoMods = (
           </Td>
         </Tr>
         <Tr>
-          <Td> 
+          <Td>
             <Code>EC: P: EM: 4A</Code>
           </Td>
           <Td>
@@ -131,7 +135,7 @@ const CSVInfoMods = (
           </Td>
         </Tr>
         <Tr>
-          <Td> 
+          <Td>
             <Code>SC: EH: H: 6A</Code>
           </Td>
           <Td>
@@ -139,7 +143,7 @@ const CSVInfoMods = (
           </Td>
         </Tr>
         <Tr>
-          <Td> 
+          <Td>
             <Code>SC: EH: SA: 5A</Code>
           </Td>
           <Td>
@@ -147,7 +151,7 @@ const CSVInfoMods = (
           </Td>
         </Tr>
         <Tr>
-          <Td> 
+          <Td>
             <Code>SC: EH: FS: 1A</Code>
           </Td>
           <Td>
@@ -157,7 +161,7 @@ const CSVInfoMods = (
       </Tbody>
     </Table>
     <br />
-    These modifications are not supported by the data upload functionality.                 
+    These modifications are not supported by the data upload functionality.
     <br />
   </>
 );
@@ -193,7 +197,7 @@ const CSVInfoDataseries = (
           <Td>EC: I: T: 4A</Td>
           <Td>
             <Code>cycling</Code>
-            {', '} 
+            {', '}
             <Code>public</Code>
             {', '}
             <Code>private</Code>
@@ -257,26 +261,10 @@ const CSVInfoDataseries = (
             <Code>other</Code>
           </Td>
         </Tr>
-        <Tr>
-          <Td>EN: EN: WA: 1C</Td>
-          <Td>
-            <Code>landfill</Code>
-            {', '}
-            <Code>burnt</Code>
-            {', '}
-            <Code>incinerated</Code>
-            {', '}
-            <Code>open_dump</Code>
-            {', '}
-            <Code>recycled</Code>
-            {', '}
-            <Code>other</Code>
-          </Td>
-        </Tr>
       </Tbody>
-    </Table>            
+    </Table>
     <br />
-    If the indicator does not have an associated dataseries, then leave the cell blank.                     
+    If the indicator does not have an associated dataseries, then leave the cell blank.
     <br />
   </>
 );
@@ -294,24 +282,25 @@ const CSVInfoAllKPIs = (
         <Table>
           <Thead>
             <Tr>
-              <Th key="1" w="200px">KPI</Th>
+              <Th key="1" w="200px">
+                KPI
+              </Th>
               <Th key="2">Description</Th>
             </Tr>
           </Thead>
           <Tbody>
-            { Array.from(U4SSC_KPI_NAMES).map(([key, val]) => {
-                if (key.indexOf('-') > -1)
-                  return null;
+            {Array.from(U4SSC_KPI_NAMES).map(([key, val]) => {
+              if (key.indexOf('-') > -1) return null;
 
-                return (
-                  <Tr key={key}>
-                    <Td>
-                      <Code>{key}</Code>
-                    </Td>
-                    <Td>{val.eng}</Td>
-                  </Tr>
-                );
-              })}
+              return (
+                <Tr key={key}>
+                  <Td>
+                    <Code>{key}</Code>
+                  </Td>
+                  <Td>{val.eng}</Td>
+                </Tr>
+              );
+            })}
           </Tbody>
         </Table>
       </AccordionPanel>
@@ -371,31 +360,31 @@ const CSVDataInfo: React.FC = () => (
         Example csv:
         <br />
         <Code>
-          indicator;dataseries;data                          
+          indicator;dataseries;data
           <br />
           EN: EN: WA: 1C;landfill;20
           <br />
-          EN: EN: WA: 1C;burnt;20                          
+          EN: EN: WA: 1C;burnt;20
           <br />
-          EN: EN: WA: 1C;open_dump;20                          
+          EN: EN: WA: 1C;open_dump;20
           <br />
-          EC: ICT: ICT: 4C;4g;80                          
+          EC: ICT: ICT: 4C;4g;80
           <br />
-          EC: ICT: ICT: 4C;3g;99                          
+          EC: ICT: ICT: 4C;3g;99
           <br />
-          EN: EN: AQ: 1C;pm_10;5                          
+          EN: EN: AQ: 1C;pm_10;5
           <br />
-          EN: EN: AQ: 1C;pm_2.5;2.5                          
+          EN: EN: AQ: 1C;pm_2.5;2.5
           <br />
-          EN: EN: AQ: 1C;no2;3.4                          
+          EN: EN: AQ: 1C;no2;3.4
           <br />
-          EC: I: WS: 1C;;99                          
+          EC: I: WS: 1C;;99
           <br />
-          EC: ICT: ES: 1C;;75                          
+          EC: ICT: ES: 1C;;75
           <br />
-          SC: SH: HO: 1C;;0                          
+          SC: SH: HO: 1C;;0
           <br />
-          SC: SH: SA: 1C;;1.5                          
+          SC: SH: SA: 1C;;1.5
           <br />
         </Code>
         <br />
@@ -432,7 +421,9 @@ const CSVGoalInfo: React.FC = () => (
               <Td>
                 <Code>indicator</Code>
               </Td>
-              <Td>KPI Identificator, must be one of the ids listed in the list of all KPIs below.</Td>
+              <Td>
+                KPI Identificator, must be one of the ids listed in the list of all KPIs below.
+              </Td>
             </Tr>
             <Tr>
               <Td>Data series</Td>
@@ -474,23 +465,40 @@ const CSVGoalInfo: React.FC = () => (
               <Td>
                 <Code>startRange</Code>
               </Td>
-              <Td>The value corresponding to 0% completion. MUST not equal the target value. Should be set according to guidance below.</Td>
+              <Td>
+                The value corresponding to 0% completion. MUST not equal the target value. Should be
+                set according to guidance below.
+              </Td>
             </Tr>
           </Tbody>
         </Table>
         <br />
         Start range guidance:
-
         <UnorderedList>
-          <ListItem>If the Collection Methodology specifies that higher and increasing values are considered positive, then the start range should be set to 0.</ListItem>
           <ListItem>
-            If the Collection Methodology specifies that lower values and decreasing values are considered positive AND:
+            If the Collection Methodology specifies that higher and increasing values are considered
+            positive, then the start range should be set to 0.
+          </ListItem>
+          <ListItem>
+            If the Collection Methodology specifies that lower values and decreasing values are
+            considered positive AND:
             <UnorderedList>
-              <ListItem>The value is a percentage, then the start range should be set to 100</ListItem>                              
-              <ListItem>Otherwise, the start range should be set according to good judgement to determine an appropriate start range. What&apos;s considered an appropriate value will probably differ somewhat from KPI to KPI and from municipality to municipality. The chief consideration is that the value set as the start range represents a completion of 0%.</ListItem>
+              <ListItem>
+                The value is a percentage, then the start range should be set to 100
+              </ListItem>
+              <ListItem>
+                Otherwise, the start range should be set according to good judgement to determine an
+                appropriate start range. What&apos;s considered an appropriate value will probably
+                differ somewhat from KPI to KPI and from municipality to municipality. The chief
+                consideration is that the value set as the start range represents a completion of
+                0%.
+              </ListItem>
             </UnorderedList>
           </ListItem>
-          <ListItem>If the Collection Methodology does not specify whats considered positive, then the determination must be done according to the &quot;Otherwise&quot; section above.</ListItem>
+          <ListItem>
+            If the Collection Methodology does not specify whats considered positive, then the
+            determination must be done according to the &quot;Otherwise&quot; section above.
+          </ListItem>
         </UnorderedList>
         <br />
         {CSVInfoMods}
@@ -500,31 +508,31 @@ const CSVGoalInfo: React.FC = () => (
         Example csv:
         <br />
         <Code>
-          indicator;dataseries;baselineYear;baseline;target;deadline;startRange                       
+          indicator;dataseries;baselineYear;baseline;target;deadline;startRange
           <br />
           EN: EN: WA: 1C;landfill;2015;15;20;2030;0
           <br />
-          EN: EN: WA: 1C;burnt;2010;10;15;2040;0     
+          EN: EN: WA: 1C;burnt;2010;10;15;2040;0
           <br />
-          EN: EN: WA: 1C;open_dump;2014;0;20;2025;0             
+          EN: EN: WA: 1C;open_dump;2014;0;20;2025;0
           <br />
           EC: ICT: ICT: 4C;4g;80;2015;100;2030;0
           <br />
-          EC: ICT: ICT: 4C;3g;95;2005;100;2015;0          
+          EC: ICT: ICT: 4C;3g;95;2005;100;2015;0
           <br />
-          EN: EN: AQ: 1C;pm_10;5;2015;2.1;2030;1000          
+          EN: EN: AQ: 1C;pm_10;5;2015;2.1;2030;1000
           <br />
-          EN: EN: AQ: 1C;pm_2.5;2.5;2015;1;2030;1000          
+          EN: EN: AQ: 1C;pm_2.5;2.5;2015;1;2030;1000
           <br />
-          EN: EN: AQ: 1C;no2;3.4;2015;1;2030;100      
+          EN: EN: AQ: 1C;no2;3.4;2015;1;2030;100
           <br />
-          EC: I: WS: 1C;;99;2000;100;2030;0     
+          EC: I: WS: 1C;;99;2000;100;2030;0
           <br />
-          EC: ICT: ES: 1C;;75;2010;100;2030;0            
+          EC: ICT: ES: 1C;;75;2010;100;2030;0
           <br />
-          SC: SH: HO: 1C;;0;2010;0;2015;100        
+          SC: SH: HO: 1C;;0;2010;0;2015;100
           <br />
-          SC: SH: SA: 1C;;1.5;2015;0;2030;100          
+          SC: SH: SA: 1C;;1.5;2015;0;2030;100
           <br />
         </Code>
         <br />
@@ -534,7 +542,6 @@ const CSVGoalInfo: React.FC = () => (
     </AccordionItem>
   </Accordion>
 );
-
 
 const GDCDataEntry: React.FC = () => {
   const history = useHistory();
@@ -611,12 +618,11 @@ const GDCDataEntry: React.FC = () => {
       form.append('csv', dataFile, dataFile.name);
       form.append('municipality', selectedDataMunicipality);
       form.append('year', JSON.stringify(dataYear));
-      if (dataDummy)
-        form.append('isDummy', JSON.stringify(true));
+      if (dataDummy) form.append('isDummy', JSON.stringify(true));
 
       toast({
         title: 'Processing',
-        description: 'We\'re processing your data file...',
+        description: "We're processing your data file...",
         status: 'info',
         isClosable: true,
       });
@@ -627,9 +633,22 @@ const GDCDataEntry: React.FC = () => {
   const onSubmitGoals = async () => {
     setErrorGoalMunicipality(!selectedGoalMunicipality);
     setErrorGoalFile(!goalFile);
+
+    if (selectedGoalMunicipality && goalFile) {
+      const form = new FormData();
+      form.append('csv', goalFile, goalFile.name);
+      form.append('municipality', selectedGoalMunicipality);
+      if (goalDummy) form.append('isDummy', JSON.stringify(true));
+
+      toast({
+        title: 'Processing',
+        description: "We're processing your data file...",
+        status: 'info',
+        isClosable: true,
+      });
+      await uploadGoalCSV(reducer.getState().login.token as string, form);
+    }
   };
-
-
 
   // Render spinner when loading data
   if (!municipalities)
@@ -791,7 +810,10 @@ const GDCDataEntry: React.FC = () => {
                   <Spacer m="0.5rem" />
                   <FormControl id="data-dummy" isRequired>
                     <FormLabel>Is this dummy data?</FormLabel>
-                    <Checkbox isChecked={dataDummy} onChange={(evt) => setDataDummy(evt.currentTarget.checked)}>
+                    <Checkbox
+                      isChecked={dataDummy}
+                      onChange={(evt) => setDataDummy(evt.currentTarget.checked)}
+                    >
                       Dummy data
                     </Checkbox>
                   </FormControl>
@@ -875,7 +897,10 @@ const GDCDataEntry: React.FC = () => {
                   <Spacer m="0.5rem" />
                   <FormControl id="goal-dummy" isRequired>
                     <FormLabel>Are these dummy goals?</FormLabel>
-                    <Checkbox isChecked={goalDummy} onChange={(evt) => setGoalDummy(evt.currentTarget.checked)}>
+                    <Checkbox
+                      isChecked={goalDummy}
+                      onChange={(evt) => setGoalDummy(evt.currentTarget.checked)}
+                    >
                       Dummy goals
                     </Checkbox>
                   </FormControl>

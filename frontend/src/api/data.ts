@@ -1,4 +1,4 @@
-import api, { API_BASE } from './api';
+import api, { API_BASE, responseHandler } from './api';
 
 export const getAvailableYears = async (municipality: string): Promise<Array<number>> => {
   try {
@@ -14,14 +14,16 @@ export const uploadDataCSV = async (token: string, formData: FormData): Promise<
   try {
     // Have to do this in order to send form data...
     // TODO: refactor into helper function in api.ts
-    await window.fetch(`${API_BASE}/data/upload`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
+    await window
+      .fetch(`${API_BASE}/data/upload`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      })
+      .then(responseHandler);
   } catch (e) {
     console.log(e);
   }

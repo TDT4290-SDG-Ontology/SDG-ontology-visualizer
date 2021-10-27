@@ -92,6 +92,19 @@ export const u4sscKpiMap = new Map([
   ['EN: EN: WS: 3C', 'freshwater_consumption'],
 ]);
 
+export const u4sscKpiDataseries = new Map([
+  ['EC: ICT: ICT: 4C', new Set(['3g', '4g'])],
+  ['EC: ICT: PS: 1A', new Set(['number', 'percent'])],
+  ['EC: I: T: 4A', new Set(['cycling', 'public', 'private', 'walking', 'para'])],
+  ['EC: I: UP: 2A', new Set(['compact', 'connected', 'integrated', 'inclusive', 'resilient'])],
+  ['EN: EN: AQ: 1C', new Set(['pm_10', 'pm_2.5', 'no2', 'so2', 'o3'])],
+  ['EN: EN: WS: 4C', new Set(['primary', 'secondary', 'tertiary'])],
+  [
+    'EN: EN: WA: 1C',
+    new Set(['landfill', 'burnt', 'incinerated', 'open_dump', 'recycled', 'other']),
+  ],
+]);
+
 export const u4sscKpiToCategory = new Map([
   ['EC: ICT: ICT: 1C', 'EC: ICT: ICT'],
   ['EC: ICT: ICT: 2C', 'EC: ICT: ICT'],
