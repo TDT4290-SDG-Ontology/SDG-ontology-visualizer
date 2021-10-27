@@ -16,7 +16,7 @@ import { computeGDC } from '../gdc/gdc';
 import { gdc2json } from '../utils/gdcUtils';
 import { parseCSV, detectSeparator } from '../utils/csv';
 
-import { u4sscKpiMap, u4sscKpiDataseries } from '../database/u4sscKpiMap';
+import { u4sscKpiMap, u4sscKpiDataseries, TKTransform } from '../database/u4sscKpiMap';
 import { ApiError } from '../types/errorTypes';
 
 import onError from './middleware/onError';
@@ -221,10 +221,14 @@ const goalUploadCSV = async (req: Request, res: Response) => {
     const goals: GDCGoal[] = [];
     const errors: CSVErrorMessage[] = [];
     data.forEach((dp) => {
-      const indicatorName = u4sscKpiMap.get(dp.indicator);
+      let { indicator } = dp;
+      const tkTransform = TKTransform.get(indicator);
+      if (tkTransform) indicator = tkTransform;
+
+      const indicatorName = u4sscKpiMap.get(indicator);
       if (!indicatorName) errors.push({ data: dp, message: 'Unrecognized KPI' });
       else {
-        const dataseries = u4sscKpiDataseries.get(dp.indicator);
+        const dataseries = u4sscKpiDataseries.get(indicator);
         if (dataseries && !dataseries.has(dp.dataseries)) {
           errors.push({ data: dp, message: 'Missing / unrecognized required data series' });
         } else if (!dataseries && dp.dataseries !== '') {
@@ -279,7 +283,7 @@ const goalUploadCSV = async (req: Request, res: Response) => {
 
           const goal: GDCGoal = {
             municipality,
-            indicatorId: dp.indicator,
+            indicatorId: indicator,
             indicatorName,
             isDummy,
             dataseries: dp.dataseries === '' ? 'main' : dp.dataseries,

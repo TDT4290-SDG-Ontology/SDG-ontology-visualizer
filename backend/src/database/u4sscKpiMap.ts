@@ -336,3 +336,18 @@ export const u4sscKpis = [
   'SC: SH: SA: 9C',
   'SC: SH: FS: 1C',
 ];
+
+export const TKTransform = new Map([
+  // Errors in spec
+  ['SC: EH: ED:1C', 'SC: EH: ED: 1C'],
+  ['SC: EH: ED:2C', 'SC: EH: ED: 2C'],
+  ['SC: EH: H:1C', 'SC: EH: H: 1C'],
+  ['SC: EH: H:3C', 'SC: EH: H: 3C'],
+
+  // Errors by TK
+  ['EC: P: EM: 3A', 'EC: P: EM: 3C'],
+  ['EC: P: EM: 4A', 'EC: P: EM: 4C'],
+  ['SC: EH: H: 6A', 'SC: EH: ED: 5A'],
+  ['SC: EH: SA: 5A', 'SC: SH: SA: 5C'],
+  ['SC: EH: FS: 1A', 'SC: EH: FS: 1C'],
+]);
