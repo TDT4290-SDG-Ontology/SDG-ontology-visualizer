@@ -1,11 +1,14 @@
 import { Router, Request, Response } from 'express';
 import _ from 'lodash';
 import multer from 'multer';
+
 import csvParser from 'csv-parser';
 import getStream from 'get-stream';
 
+import { promisify } from 'node:util';
 import { Buffer } from 'node:buffer';
-import { Readable as ReadableStream } from 'node:stream';
+import { Readable as ReadableStream, pipeline } from 'node:stream';
+import process from 'node:process';
 
 import { u4sscKpiMap } from '../database/u4sscKpiMap';
 
@@ -147,6 +150,7 @@ const availableYears = async (req: Request, res: Response) => {
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+const pipelinePromise = promisify(pipeline);
 const parseCSV = async (data: any, opts?: any): Promise<any[]> => {
   let stream = data;
   if (typeof stream === 'string' || Buffer.isBuffer(stream)) {
@@ -154,7 +158,14 @@ const parseCSV = async (data: any, opts?: any): Promise<any[]> => {
   }
 
   const parseStream = csvParser(opts);
-  return getStream.array(stream.pipe(parseStream));
+
+  // Node.js 16 has a bug with `.pipeline` for large strings. It works fine in Node.js 14 and 12.
+  if (Number(process.versions.node.split('.')[0]) >= 16) {
+    return getStream.array(stream.pipe(parseStream));
+  }
+
+  await pipelinePromise([stream, parseStream]);
+  return getStream.array(parseStream);
 };
 
 const dataUploadCSV = async (req: Request, res: Response) => {
