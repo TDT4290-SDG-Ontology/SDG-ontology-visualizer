@@ -195,7 +195,6 @@ const goalUploadCSV = async (req: Request, res: Response) => {
 
     // validate that headers are correct
     const fields = header.split(separator);
-    console.log('fields: ', fields);
     const requiredFields = new Set([
       'indicator',
       'dataseries',
