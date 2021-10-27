@@ -303,7 +303,7 @@ const goalUploadCSV = async (req: Request, res: Response) => {
     await bulkDeleteGDCGoals(goals);
     await bulkInsertGDCGoals(municipality, goals);
 
-    res.status(200);
+    res.json({});
   } catch (e) {
     onError(e, req, res);
   }

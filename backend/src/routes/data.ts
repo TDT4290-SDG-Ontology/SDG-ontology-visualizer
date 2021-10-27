@@ -229,7 +229,7 @@ const dataUploadCSV = async (req: Request, res: Response) => {
     await bulkDeleteDataPoints(datapoints);
     await bulkInsertDataPoints(municipality, datapoints);
 
-    res.status(200);
+    res.json({});
   } catch (e) {
     onError(e, req, res);
   }

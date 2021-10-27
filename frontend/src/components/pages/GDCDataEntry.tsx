@@ -626,7 +626,23 @@ const GDCDataEntry: React.FC = () => {
         status: 'info',
         isClosable: true,
       });
-      await uploadDataCSV(reducer.getState().login.token as string, form);
+
+      const succeeded = await uploadDataCSV(reducer.getState().login.token as string, form);
+      if (succeeded) {
+        toast({
+          title: 'Success!',
+          description: 'Data added.',
+          status: 'success',
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: 'Error',
+          description: 'There were errors while processing the data.',
+          status: 'error',
+          isClosable: true,
+        });
+      }
     }
   };
 
@@ -642,11 +658,27 @@ const GDCDataEntry: React.FC = () => {
 
       toast({
         title: 'Processing',
-        description: "We're processing your data file...",
+        description: "We're processing the data...",
         status: 'info',
         isClosable: true,
       });
-      await uploadGoalCSV(reducer.getState().login.token as string, form);
+
+      const succeeded = await uploadGoalCSV(reducer.getState().login.token as string, form);
+      if (succeeded) {
+        toast({
+          title: 'Success!',
+          description: 'Goals added.',
+          status: 'success',
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: 'Error',
+          description: 'There were errors while processing the goals.',
+          status: 'error',
+          isClosable: true,
+        });
+      }
     }
   };
 
