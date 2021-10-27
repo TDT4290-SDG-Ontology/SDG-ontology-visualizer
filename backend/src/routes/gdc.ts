@@ -55,7 +55,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
 const setGoal = async (req: Request, res: Response) => {
   try {
-    const isDummy = req.body.isDummy !== undefined && req.body.isDummy;
+    const isDummy = req.body.isDummy !== undefined && JSON.parse(req.body.isDummy);
     const dataseries =
       req.body.dataseries === undefined || req.body.dataseries === null
         ? 'main'
@@ -86,7 +86,7 @@ const setGoal = async (req: Request, res: Response) => {
 
 const setBulkGoals = async (req: Request, res: Response) => {
   try {
-    const isDummy = req.body.isDummy !== undefined && req.body.isDummy;
+    const isDummy = req.body.isDummy !== undefined && JSON.parse(req.body.isDummy);
     const { municipality } = req.body;
 
     const validMunicipality = await CheckMunicipalityByCode(municipality);
@@ -270,6 +270,12 @@ const goalUploadCSV = async (req: Request, res: Response) => {
             errors.push({
               data: dp,
               message: `Start range is in an incompatible format: '${typeof startRange}'`,
+            });
+
+          if (Math.abs(startRangeAsNumber - targetAsNumber) < 0.0001)
+            errors.push({
+              data: dp,
+              message: `Start range too similar to target: startRange is '${startRangeAsNumber}', target is '${targetAsNumber}'`,
             });
 
           const goal: GDCGoal = {

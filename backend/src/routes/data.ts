@@ -30,6 +30,7 @@ const insertData = async (req: Request, res: Response) => {
     const year = parseInt(req.body.year, 10);
     if (Number.isNaN(year)) throw new ApiError(400, 'Year not an int.');
 
+    const isDummy = req.body.isDummy !== undefined && JSON.parse(req.body.isDummy);
     const indicatorName: string | undefined = u4sscKpiMap.get(req.body.indicator);
     if (indicatorName === undefined || !(typeof indicatorName === 'string'))
       throw new ApiError(400, 'Unknown indicator');
@@ -40,7 +41,7 @@ const insertData = async (req: Request, res: Response) => {
       municipality: req.body.municipality,
       data: req.body.data,
       year,
-      isDummy: req.body.isDummy !== undefined && req.body.isDummy,
+      isDummy,
       dataseries: req.body.dataseries,
     };
 
@@ -56,7 +57,7 @@ const insertData = async (req: Request, res: Response) => {
 
 const insertBulkData = async (req: Request, res: Response) => {
   try {
-    const isDummy = req.body.isDummy !== undefined && req.body.isDummy;
+    const isDummy = req.body.isDummy !== undefined && JSON.parse(req.body.isDummy);
     const { municipality } = req.body;
     const year = parseInt(req.body.year, 10);
     if (Number.isNaN(year)) throw new ApiError(400, 'Year not an int.');
