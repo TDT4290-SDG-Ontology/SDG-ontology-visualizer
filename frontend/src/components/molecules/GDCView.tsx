@@ -346,6 +346,23 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
             </Accordion>
           </Stack>
         </Container>
+        <Container p="1em">
+          <Text fontSize="xs" w={{ base: '800px', '2xl': '1300px' }} p="1em" textAlign="center">
+            Correlation data is &copy; 2021
+            {' '}
+            <a target="_blank" rel="noreferrer" href="http://www.iges.or.jp/en/">
+              <Text color="blue">
+                Institute for Global Environmental Strategies (IGES), Japan
+              </Text>
+            </a>
+            All Rights Reserved, and is provided by the courtesy of the IGES SDG Interlinkages Analysis & Visualisation Tool (V4.0)
+            <a target="_blank" rel="noreferrer" href="https://sdginterlinkages.iges.jp/visualisationtool.html">
+              <Text color="blue">
+                https://sdginterlinkages.iges.jp/visualisationtool.html
+              </Text>
+            </a>
+          </Text>
+        </Container>
       </Stack>
     </Flex>
   );
