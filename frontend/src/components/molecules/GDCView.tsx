@@ -57,7 +57,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   const [worstIndicators, setWorstIndicators] = useState<Map<string, IndicatorScore>>();
   const [bestIndicators, setBestIndicators] = useState<Map<string, IndicatorScore>>();
   const [longestCompletionIndicators, setLongestCompletionIndicators] =
-    useState<Map<string, IndicatorScore>>();    
+    useState<Map<string, IndicatorScore>>();
   const [shortestCompletionIndicators, setShortestCompletionIndicators] =
     useState<Map<string, IndicatorScore>>();
 
@@ -84,21 +84,19 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
       if (data[0] !== undefined) {
         setIndicators(data[0].indicators);
 
-        const sortedByScore = 
-          Array.from(data[0].indicators)
-            .sort((a, b) => a[1].score - b[1].score);
+        const sortedByScore = Array.from(data[0].indicators).sort(
+          (a, b) => a[1].score - b[1].score,
+        );
 
         setWorstIndicators(new Map(sortedByScore.slice(0, WORST_COUNT)));
         setBestIndicators(new Map(sortedByScore.slice(-WORST_COUNT)));
 
-        const sortedByCompletionYear = 
-          Array.from(data[0].indicators)
-            .sort((a, b) => {
-              if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return 1;
-              if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return -1;
+        const sortedByCompletionYear = Array.from(data[0].indicators).sort((a, b) => {
+          if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return 1;
+          if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return -1;
 
-              return a[1].projectedCompletion - b[1].projectedCompletion;
-            });
+          return a[1].projectedCompletion - b[1].projectedCompletion;
+        });
 
         setShortestCompletionIndicators(new Map(sortedByCompletionYear.slice(0, WORST_COUNT)));
         setLongestCompletionIndicators(new Map(sortedByCompletionYear.slice(-WORST_COUNT)));
@@ -110,22 +108,18 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
       setGDCInfo(data);
       if (data !== undefined) {
         setIndicators(data.indicators);
-        
-        const sortedByScore = 
-          Array.from(data.indicators)
-            .sort((a, b) => a[1].score - b[1].score);
+
+        const sortedByScore = Array.from(data.indicators).sort((a, b) => a[1].score - b[1].score);
 
         setWorstIndicators(new Map(sortedByScore.slice(0, WORST_COUNT)));
         setBestIndicators(new Map(sortedByScore.slice(-WORST_COUNT)));
 
-        const sortedByCompletionYear = 
-          Array.from(data.indicators)
-            .sort((a, b) => {
-              if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return 1;
-              if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return -1;
+        const sortedByCompletionYear = Array.from(data.indicators).sort((a, b) => {
+          if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return 1;
+          if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return -1;
 
-              return a[1].projectedCompletion - b[1].projectedCompletion;
-            });
+          return a[1].projectedCompletion - b[1].projectedCompletion;
+        });
 
         setShortestCompletionIndicators(new Map(sortedByCompletionYear.slice(0, WORST_COUNT)));
         setLongestCompletionIndicators(new Map(sortedByCompletionYear.slice(-WORST_COUNT)));
@@ -320,15 +314,15 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
-            { (unreportedIndicatorsPanel || indicatorsWithoutGoalsPanel) && (
-            <>
-              <Heading size="md">Issues</Heading>
-              <Accordion allowToggle allowMultiple>
-                {unreportedIndicatorsPanel}
-                {indicatorsWithoutGoalsPanel}
-              </Accordion>
-            </>
-              )}
+            {(unreportedIndicatorsPanel || indicatorsWithoutGoalsPanel) && (
+              <>
+                <Heading size="md">Issues</Heading>
+                <Accordion allowToggle allowMultiple>
+                  {unreportedIndicatorsPanel}
+                  {indicatorsWithoutGoalsPanel}
+                </Accordion>
+              </>
+            )}
           </Stack>
         </Container>
         <Container maxWidth={1600} minWidth={800} p="1em">
@@ -351,15 +345,16 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
             Correlation data is &copy; 2021
             {' '}
             <a target="_blank" rel="noreferrer" href="http://www.iges.or.jp/en/">
-              <Text color="blue">
-                Institute for Global Environmental Strategies (IGES), Japan
-              </Text>
+              <Text color="blue">Institute for Global Environmental Strategies (IGES), Japan</Text>
             </a>
-            All Rights Reserved, and is provided by the courtesy of the IGES SDG Interlinkages Analysis & Visualisation Tool (V4.0)
-            <a target="_blank" rel="noreferrer" href="https://sdginterlinkages.iges.jp/visualisationtool.html">
-              <Text color="blue">
-                https://sdginterlinkages.iges.jp/visualisationtool.html
-              </Text>
+            All Rights Reserved, and is provided by the courtesy of the IGES SDG Interlinkages
+            Analysis & Visualisation Tool (V4.0)
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://sdginterlinkages.iges.jp/visualisationtool.html"
+            >
+              <Text color="blue">https://sdginterlinkages.iges.jp/visualisationtool.html</Text>
             </a>
           </Text>
         </Container>
