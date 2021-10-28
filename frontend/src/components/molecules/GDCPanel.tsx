@@ -296,7 +296,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
         compProjectedCompletionOutput = 'Attained';
       } else {
         compProjectedCompletionOutput =
-          compProjectedCompletion < 0 ? 'Never' : compProjectedCompletion.toFixed(1);
+          compProjectedCompletion < 0 ? 'Never' : compProjectedCompletion.toFixed(0);
       }
 
       if (
@@ -306,7 +306,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
         compBestCompletionOutput = 'Attained';
       } else {
         compBestCompletionOutput =
-          compBestCompletionYear < 0 ? 'Never' : compBestCompletionYear.toFixed(1);
+          compBestCompletionYear < 0 ? 'Never' : compBestCompletionYear.toFixed(0);
       }
 
       if (
@@ -316,7 +316,7 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
         compWorstCompletionOutput = 'Attained';
       } else {
         compWorstCompletionOutput =
-          compWorstCompletionYear < 0 ? 'Never' : compWorstCompletionYear.toFixed(1);
+          compWorstCompletionYear < 0 ? 'Never' : compWorstCompletionYear.toFixed(0);
       }
     }
 
@@ -411,19 +411,19 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
       projectedCompletionOutput = 'Attained';
     } else {
       projectedCompletionOutput =
-        projectedCompletion < 0 ? 'Never' : projectedCompletion.toFixed(1);
+        projectedCompletion < 0 ? 'Never' : projectedCompletion.toFixed(0);
     }
 
     if (bestCompletion < currentYear && (data as IndicatorScore).score >= CUTOFF_DONE_PCT) {
       bestCompletionOutput = 'Attained';
     } else {
-      bestCompletionOutput = bestCompletion < 0 ? 'Never' : bestCompletion.toFixed(1);
+      bestCompletionOutput = bestCompletion < 0 ? 'Never' : bestCompletion.toFixed(0);
     }
 
     if (worstCompletion < currentYear && (data as IndicatorScore).score >= CUTOFF_DONE_PCT) {
       worstCompletionOutput = 'Attained';
     } else {
-      worstCompletionOutput = worstCompletion < 0 ? 'Never' : worstCompletion.toFixed(1);
+      worstCompletionOutput = worstCompletion < 0 ? 'Never' : worstCompletion.toFixed(0);
     }
   }
 
