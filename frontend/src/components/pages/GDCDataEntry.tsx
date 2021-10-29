@@ -840,7 +840,7 @@ const GDCDataEntry: React.FC = () => {
                     </InputGroup>
                   </FormControl>
                   <Spacer m="0.5rem" />
-                  <FormControl id="data-dummy" isRequired>
+                  <FormControl id="data-dummy">
                     <FormLabel>Is this dummy data?</FormLabel>
                     <Checkbox
                       isChecked={dataDummy}
@@ -927,7 +927,7 @@ const GDCDataEntry: React.FC = () => {
                     </InputGroup>
                   </FormControl>
                   <Spacer m="0.5rem" />
-                  <FormControl id="goal-dummy" isRequired>
+                  <FormControl id="goal-dummy">
                     <FormLabel>Are these dummy goals?</FormLabel>
                     <Checkbox
                       isChecked={goalDummy}
