@@ -226,7 +226,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   let indicatorsWithoutGoalsPanel = null;
   if (gdcInfo.indicatorsWithoutGoals.size > 0) {
     indicatorsWithoutGoalsPanel = (
-      <AccordionItem key="unreported">
+      <AccordionItem key="without-goals">
         <AccordionButton>
           <Box flex="1" textAlign="left">
             KPIs without goals
