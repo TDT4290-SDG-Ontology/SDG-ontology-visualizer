@@ -500,7 +500,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   return (
     <Flex align="center" justify="center" justifyContent="space-evenly">
       <Stack spacing="4" bg="white">
-        <Container maxWidth={1600} minWidth={800} w={{ base: '900px', '2xl': '1420px' }} p="1em">
+        <Container maxWidth={1600} minWidth={800} w={{ base: '900px', '2xl': '1450px' }} p="1em">
           <Stack spacing="4">
             <Heading size="xl">Progress overview</Heading>
             <Container>
@@ -590,7 +590,9 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
             {indicators &&
               indicatorDisplayHierarchy.map((d) => (
                 <div key={d.name}>
-                  <Heading size="md" mb="0.5em">{d.name}</Heading>
+                  <Heading size="md" mb="0.5em">
+                    {d.name}
+                  </Heading>
                   <Accordion allowToggle allowMultiple>
                     {d.categories.map((c) => (
                       <AccordionItem key={c.name}>
@@ -618,7 +620,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
         </Container>
         <Stack
           p="1em"
-          w={{ base: '900px', '2xl': '1420px' }}
+          w={{ base: '900px', '2xl': '1450px' }}
           justify="center"
           justifyContent="center"
           align="center"

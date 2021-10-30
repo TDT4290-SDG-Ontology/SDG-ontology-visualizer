@@ -117,7 +117,7 @@ const CompareMunicipalities: React.FC = () => {
         p="0px"
         height="100%"
       >
-        <Stack w={{ base: '900px', '2xl': '1420px' }} bg="white" m="0px" spacing="10">
+        <Stack w={{ base: '900px', '2xl': '1450px' }} bg="white" m="0px" spacing="10">
           <Container minWidth="800px" p="1em">
             <Flex w="800px" align="center" justify="center" justifyContent="space-evenly">
               <Stack direction="row">
