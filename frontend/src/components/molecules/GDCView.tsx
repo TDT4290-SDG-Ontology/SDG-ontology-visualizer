@@ -75,6 +75,8 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
   const loadGDCOutput = async (muniCode: string, muniYear: number) => {
     if (muniYear === -1) return;
 
+    const CUTOFF_DONE_PCT = 99.5;
+
     if (compareCode !== undefined) {
       const data = await Promise.all([
         getGDCOutput(muniCode, muniYear, municipalityGoalOverride),
@@ -84,14 +86,17 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
       if (data[0] !== undefined) {
         setIndicators(data[0].indicators);
 
-        const sortedByScore = Array.from(data[0].indicators).sort(
+        const sortedByScore: Array<any> = Array.from(data[0].indicators).sort(
           (a, b) => a[1].score - b[1].score,
         );
 
         setWorstIndicators(new Map(sortedByScore.slice(0, WORST_COUNT)));
-        setBestIndicators(new Map(sortedByScore.slice(-WORST_COUNT)));
+        setBestIndicators(new Map(Array.from(sortedByScore.slice(-WORST_COUNT)).reverse()));
 
         const sortedByCompletionYear = Array.from(data[0].indicators).sort((a, b) => {
+          if (a[1].projectedCompletion === -1 && a[1].score >= CUTOFF_DONE_PCT) return -1;
+          if (b[1].projectedCompletion === -1 && b[1].score >= CUTOFF_DONE_PCT) return 1;
+
           if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return 1;
           if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return -1;
 
@@ -99,7 +104,9 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
         });
 
         setShortestCompletionIndicators(new Map(sortedByCompletionYear.slice(0, WORST_COUNT)));
-        setLongestCompletionIndicators(new Map(sortedByCompletionYear.slice(-WORST_COUNT)));
+        setLongestCompletionIndicators(
+          new Map(Array.from(sortedByCompletionYear.slice(-WORST_COUNT)).reverse()),
+        );
       }
 
       setCompareGDCInfo(data[1]);
@@ -109,12 +116,17 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
       if (data !== undefined) {
         setIndicators(data.indicators);
 
-        const sortedByScore = Array.from(data.indicators).sort((a, b) => a[1].score - b[1].score);
+        const sortedByScore: Array<any> = Array.from(data.indicators).sort(
+          (a, b) => a[1].score - b[1].score,
+        );
 
         setWorstIndicators(new Map(sortedByScore.slice(0, WORST_COUNT)));
-        setBestIndicators(new Map(sortedByScore.slice(-WORST_COUNT)));
+        setBestIndicators(new Map(Array.from(sortedByScore.slice(-WORST_COUNT)).reverse()));
 
         const sortedByCompletionYear = Array.from(data.indicators).sort((a, b) => {
+          if (a[1].projectedCompletion === -1 && a[1].score >= CUTOFF_DONE_PCT) return -1;
+          if (b[1].projectedCompletion === -1 && b[1].score >= CUTOFF_DONE_PCT) return 1;
+
           if (a[1].projectedCompletion === -1 && b[1].projectedCompletion > 0) return 1;
           if (b[1].projectedCompletion === -1 && a[1].projectedCompletion > 0) return -1;
 
@@ -122,7 +134,9 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
         });
 
         setShortestCompletionIndicators(new Map(sortedByCompletionYear.slice(0, WORST_COUNT)));
-        setLongestCompletionIndicators(new Map(sortedByCompletionYear.slice(-WORST_COUNT)));
+        setLongestCompletionIndicators(
+          new Map(Array.from(sortedByCompletionYear.slice(-WORST_COUNT)).reverse()),
+        );
       }
     }
   };
