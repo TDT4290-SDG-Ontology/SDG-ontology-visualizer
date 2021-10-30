@@ -48,7 +48,7 @@ const MunicipalityInfoDisplay: React.FC<MunicipalityInfoDisplayProps> = (
         <SimpleGrid columns={3} spacing={150}>
           <Stack spacing="0" align="center">
             <Heading size="xl" color="white">
-              {`${info.name}`}
+              {info.name}
             </Heading>
             <Text size="md" color="white">
               {`Population: ${info.population}`}
@@ -59,7 +59,7 @@ const MunicipalityInfoDisplay: React.FC<MunicipalityInfoDisplayProps> = (
           </Container>
           <Stack spacing="0" align="center">
             <Heading size="xl" color="white">
-              {`${compareInfo.name}`}
+              {compareInfo.name}
             </Heading>
             <Text size="md" color="white">
               {`Population: ${compareInfo.population}`}
@@ -81,7 +81,7 @@ const MunicipalityInfoDisplay: React.FC<MunicipalityInfoDisplayProps> = (
     >
       <Stack spacing="0" align="center">
         <Heading size="xl" color="white">
-          {`${info.name}`}
+          {info.name}
         </Heading>
         <Text size="md" color="white">
           {`Population: ${info.population}`}
