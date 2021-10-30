@@ -330,7 +330,7 @@ const GDCView: React.FC<GDCViewProps> = (props: GDCViewProps) => {
             </Accordion>
             {(unreportedIndicatorsPanel || indicatorsWithoutGoalsPanel) && (
               <>
-                <Heading size="md">Issues</Heading>
+                <Heading size="xl">Issues</Heading>
                 <Accordion allowToggle allowMultiple>
                   {unreportedIndicatorsPanel}
                   {indicatorsWithoutGoalsPanel}
