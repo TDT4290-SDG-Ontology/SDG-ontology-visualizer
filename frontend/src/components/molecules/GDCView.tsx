@@ -115,8 +115,8 @@ const indicatorDisplayHierarchy = [
         kpis: [
           'EC: P: EM: 1C',
           'EC: P: EM: 2C',
-          'EC: P: EM: 3C',
-          'EC: P: EM: 4C',
+          'EC: P: EM: 3A',
+          'EC: P: EM: 4A',
         ],
       },
       { 
@@ -260,7 +260,7 @@ const indicatorDisplayHierarchy = [
           'SC: SH: SA: 2C',
           'SC: SH: SA: 3A',
           'SC: SH: SA: 4A',
-          'SC: SH: SA: 5C',
+          'SC: SH: SA: 5A',
           'SC: SH: SA: 6C',
           'SC: SH: SA: 7C',
           'SC: SH: SA: 8C',
@@ -269,7 +269,7 @@ const indicatorDisplayHierarchy = [
       },
       { 
         name: 'Food Security',
-        kpis: [ 'SC: SH: FS: 1C' ],
+        kpis: [ 'SC: SH: FS: 1A' ],
       }, 
     ],
   },

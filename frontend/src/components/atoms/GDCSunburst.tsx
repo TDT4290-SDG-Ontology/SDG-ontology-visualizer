@@ -69,12 +69,12 @@ const categoryData: HierarchyData[] = [
 
 /* prettier-ignore */
 const kpiData: KPIData[] = [
-  { name: 'Local Food Production',                        value: 1, key: 'SC: SH: FS: 1C',                category: 'SC: FS' },
+  { name: 'Local Food Production',                        value: 1, key: 'SC: SH: FS: 1A',                category: 'SC: FS' },
   { name: 'Transportation Fatalities',                    value: 1, key: 'SC: SH: SA: 9C',                category: 'SC: SA' },
   { name: 'Violent Crime Rate',                           value: 1, key: 'SC: SH: SA: 8C',                category: 'SC: SA' },
   { name: 'Fire Service',                                 value: 1, key: 'SC: SH: SA: 7C',                category: 'SC: SA' },
   { name: 'Police Service',                               value: 1, key: 'SC: SH: SA: 6C',                category: 'SC: SA' },
-  { name: 'Emergency Service Response Time',              value: 1, key: 'SC: SH: SA: 5C',                category: 'SC: SA' },
+  { name: 'Emergency Service Response Time',              value: 1, key: 'SC: SH: SA: 5A',                category: 'SC: SA' },
   { name: 'At Risk Population',                           value: 1, key: 'SC: SH: SA: 4A',                category: 'SC: SA' },
   { name: 'Resilience Plans',                             value: 1, key: 'SC: SH: SA: 3A',                category: 'SC: SA' },
   { name: 'Disaster Related Economic Losses',             value: 1, key: 'SC: SH: SA: 2C',                category: 'SC: SA' },
@@ -142,8 +142,8 @@ const kpiData: KPIData[] = [
   { name: 'Integrated Building Management Systems',       value: 1, key: 'EC: I: B: 2A',              category: 'EC: B' },
   { name: 'Public Building Sustainability',               value: 1, key: 'EC: I: B: 1A',              category: 'EC: B' },
   { name: 'Solid Waste Collection',                       value: 1, key: 'EC: I: WA: 1C',             category: 'EC: WA' },
-  { name: 'ICT Industry Employment',                      value: 1, key: 'EC: P: EM: 4C',             category: 'EC: EM' },
-  { name: 'Tourism Industry Employment',                  value: 1, key: 'EC: P: EM: 3C',             category: 'EC: EM' },
+  { name: 'ICT Industry Employment',                      value: 1, key: 'EC: P: EM: 4A',             category: 'EC: EM' },
+  { name: 'Tourism Industry Employment',                  value: 1, key: 'EC: P: EM: 3A',             category: 'EC: EM' },
   { name: 'Youth Unemployment Rate',                      value: 1, key: 'EC: P: EM: 2C',             category: 'EC: EM' },
   { name: 'Unemployment Rate',                            value: 1, key: 'EC: P: EM: 1C',             category: 'EC: EM' },
   { name: 'Small and Medium-Sized Enterprises',           value: 1, key: 'EC: P: IN: 3A',             category: 'EC: IN' },
