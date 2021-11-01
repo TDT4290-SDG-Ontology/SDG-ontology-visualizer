@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express';
+import multer from 'multer';
 
 import getGDCDataSeries from '../database/getGDCDataSeries';
 import getGDCDataSeriesUpto from '../database/getGDCDataSeriesUpto';
@@ -13,8 +14,9 @@ import CheckMunicipalityByCode from '../database/CheckMunicipalityByCode';
 import { Goal, Dataseries, GDCGoal, GDCOutput } from '../types/gdcTypes';
 import { computeGDC } from '../gdc/gdc';
 import { gdc2json } from '../utils/gdcUtils';
+import { parseCSV, detectSeparator } from '../utils/csv';
 
-import { u4sscKpiMap } from '../database/u4sscKpiMap';
+import { u4sscKpiMap, u4sscKpiDataseries, TKTransform } from '../database/u4sscKpiMap';
 import { ApiError } from '../types/errorTypes';
 
 import onError from './middleware/onError';
@@ -28,8 +30,10 @@ const getGoalDistance = async (req: Request, res: Response) => {
     const goalMunicipality =
       req.body.goalOverride !== undefined ? req.body.goalOverride : req.body.municipality;
 
+    const overrideMode = req.body.overrideMode !== undefined ? req.body.overrideMode : 'absolute';
+
     const dataseriesPromise = getGDCDataSeries(req.body.municipality, req.body.year);
-    const goalPromise = getGDCGoals(goalMunicipality, req.body.municipality);
+    const goalPromise = getGDCGoals(goalMunicipality, req.body.municipality, overrideMode);
     const historicalPromise = getGDCDataSeriesUpto(req.body.municipality, req.body.year);
 
     // It should be more efficient to wait on all promises at the same time.
@@ -51,7 +55,7 @@ const getGoalDistance = async (req: Request, res: Response) => {
 
 const setGoal = async (req: Request, res: Response) => {
   try {
-    const isDummy = req.body.isDummy !== undefined && req.body.isDummy;
+    const isDummy = req.body.isDummy !== undefined && JSON.parse(req.body.isDummy);
     const dataseries =
       req.body.dataseries === undefined || req.body.dataseries === null
         ? 'main'
@@ -82,7 +86,7 @@ const setGoal = async (req: Request, res: Response) => {
 
 const setBulkGoals = async (req: Request, res: Response) => {
   try {
-    const isDummy = req.body.isDummy !== undefined && req.body.isDummy;
+    const isDummy = req.body.isDummy !== undefined && JSON.parse(req.body.isDummy);
     const { municipality } = req.body;
 
     const validMunicipality = await CheckMunicipalityByCode(municipality);
@@ -125,7 +129,11 @@ const setBulkGoals = async (req: Request, res: Response) => {
 
 const getGoals = async (req: Request, res: Response) => {
   try {
-    const goalsData = await getGDCGoals(req.params.municipality, req.params.municipality);
+    const goalsData = await getGDCGoals(
+      req.params.municipality,
+      req.params.municipality,
+      'absolute',
+    );
     const goals: Map<string, Goal> = new Map<string, Goal>();
 
     goalsData.forEach((goal) => {
@@ -161,10 +169,155 @@ const correlatedKPIs = async (req: Request, res: Response) => {
   }
 };
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+type CSVErrorMessage = {
+  data: any;
+  message: string;
+};
+
+const goalUploadCSV = async (req: Request, res: Response) => {
+  try {
+    const { municipality } = req.body;
+    if (!municipality) throw new ApiError(401, 'Missing municipality');
+
+    const validMunicipality = await CheckMunicipalityByCode(municipality);
+    if (validMunicipality === 0) throw new ApiError(400, 'Invalid municipality id');
+
+    const isDummy = req.body.isDummy !== undefined && JSON.parse(req.body.isDummy);
+
+    const { buffer } = (req as any).file;
+    const str = buffer.toString();
+
+    const header = str.split('\n')[0].trim();
+    const separator = detectSeparator(header);
+
+    // validate that headers are correct
+    const fields = header.split(separator);
+    const requiredFields = new Set([
+      'indicator',
+      'dataseries',
+      'baseline',
+      'baselineYear',
+      'target',
+      'deadline',
+      'startRange',
+    ]);
+    fields.forEach((field) => {
+      if (!requiredFields.has(field)) throw new ApiError(401, `Unrecognized CSV field: '${field}'`);
+      else requiredFields.delete(field);
+    });
+
+    if (requiredFields.size !== 0)
+      throw new ApiError(
+        401,
+        `Missing required CSV fields: ${Array.from(requiredFields).map((f) => `${f}, `)}`,
+      );
+
+    const data = await parseCSV(buffer, { separator });
+
+    // Validate goals
+    const goals: GDCGoal[] = [];
+    const errors: CSVErrorMessage[] = [];
+    data.forEach((dp) => {
+      let { indicator } = dp;
+      const tkTransform = TKTransform.get(indicator);
+      if (tkTransform) indicator = tkTransform;
+
+      const indicatorName = u4sscKpiMap.get(indicator);
+      if (!indicatorName) errors.push({ data: dp, message: 'Unrecognized KPI' });
+      else {
+        const dataseries = u4sscKpiDataseries.get(indicator);
+        if (dataseries && !dataseries.has(dp.dataseries)) {
+          errors.push({ data: dp, message: 'Missing / unrecognized required data series' });
+        } else if (!dataseries && dp.dataseries !== '') {
+          errors.push({ data: dp, message: 'Dataseries present in indicator not having one' });
+        } else {
+          const baseline = JSON.parse(dp.baseline);
+          const baselineAsNumber = Number(baseline);
+          const baselineYear = JSON.parse(dp.baselineYear);
+          const baselineYearAsNumber = Number(baselineYear);
+          const target = JSON.parse(dp.target);
+          const targetAsNumber = Number(target);
+          const deadline = JSON.parse(dp.deadline);
+          const deadlineAsNumber = Number(deadline);
+          const startRange = JSON.parse(dp.startRange);
+          const startRangeAsNumber = Number(startRange);
+
+          if (Number.isNaN(baselineAsNumber))
+            errors.push({
+              data: dp,
+              message: `Baseline is in an incompatible format: '${typeof baseline}'`,
+            });
+
+          if (Number.isNaN(baselineYearAsNumber))
+            errors.push({
+              data: dp,
+              message: `Baseline year is in an incompatible format: '${typeof baselineYear}'`,
+            });
+
+          if (Number.isNaN(targetAsNumber))
+            errors.push({
+              data: dp,
+              message: `Target is in an incompatible format: '${typeof target}'`,
+            });
+
+          if (Number.isNaN(deadlineAsNumber))
+            errors.push({
+              data: dp,
+              message: `Deadline is in an incompatible format: '${typeof deadline}'`,
+            });
+
+          if (Number.isNaN(startRangeAsNumber))
+            errors.push({
+              data: dp,
+              message: `Start range is in an incompatible format: '${typeof startRange}'`,
+            });
+
+          if (Math.abs(startRangeAsNumber - targetAsNumber) < 0.0001)
+            errors.push({
+              data: dp,
+              message: `Start range too similar to target: startRange is '${startRangeAsNumber}', target is '${targetAsNumber}'`,
+            });
+
+          const goal: GDCGoal = {
+            municipality,
+            indicatorId: indicator,
+            indicatorName,
+            isDummy,
+            dataseries: dp.dataseries === '' ? 'main' : dp.dataseries,
+            target: targetAsNumber,
+            deadline: deadlineAsNumber,
+            baseline: baselineAsNumber,
+            baselineYear: baselineYearAsNumber,
+            startRange: startRangeAsNumber,
+          };
+
+          goals.push(goal);
+        }
+      }
+    });
+
+    if (errors.length > 0) {
+      throw new ApiError(401, `Data errors: ${JSON.stringify(errors)}`);
+    }
+
+    await bulkDeleteGDCGoals(goals);
+    await bulkInsertGDCGoals(municipality, goals);
+
+    res.json({});
+  } catch (e) {
+    onError(e, req, res);
+  }
+};
+
 router.post('/get', verifyDatabaseAccess, getGoalDistance);
 router.post('/set-goal', verifyDatabaseAccess, verifyToken, setGoal);
 router.post('/set-bulk-goals', verifyDatabaseAccess, verifyToken, setBulkGoals);
 router.get('/goals/:municipality', verifyDatabaseAccess, getGoals);
 router.get('/correlated-kpis/:indicator', verifyDatabaseAccess, correlatedKPIs);
+
+router.post('/upload', verifyToken, verifyDatabaseAccess, upload.single('csv'), goalUploadCSV);
 
 export default router;

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders page correctly 1`] = `
+<div
+  className="chakra-stack css-efzghl"
+>
+  <div
+    className="css-ixqi0y"
+    spacing="10"
+  >
+    <div
+      className="chakra-stack css-efzghl"
+    >
+      <h2
+        className="chakra-heading css-kbn7if"
+      >
+        Data upload
+      </h2>
+    </div>
+  </div>
+  <div
+    className="css-172bykr"
+    spacing="10"
+  >
+    <div
+      className="chakra-stack css-18b10pk"
+    >
+      <div
+        className="chakra-spinner css-1nasj0w"
+      >
+        <span
+          className="css-f8n5zr"
+        >
+          Loading...
+        </span>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        Loading...
+      </p>
+    </div>
+  </div>
+</div>
+`;

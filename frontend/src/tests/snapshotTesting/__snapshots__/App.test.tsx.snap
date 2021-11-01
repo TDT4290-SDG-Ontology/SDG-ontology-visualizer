@@ -39,6 +39,22 @@ exports[`renders when there are no items 1`] = `
     <div
       className="css-17xejub"
     />
+    <div
+      className="css-0"
+    >
+      <h1>
+        <a
+          className="chakra-link css-qrr3e6"
+          href="/gdc/data"
+          onClick={[Function]}
+        >
+          Data Upload
+        </a>
+      </h1>
+    </div>
+    <div
+      className="css-17xejub"
+    />
     <button
       className="chakra-button css-1jgj6x0"
       justify="center"
@@ -176,6 +192,36 @@ exports[`renders when there are no items 1`] = `
         TRDK03-UN
       </h2>
     </div>
+  </footer>
+  <footer>
+    <div
+      className="css-x68c2"
+    >
+      <div
+        className="chakra-stack css-1barlnb"
+      >
+        <h2
+          className="chakra-heading css-1at26de"
+        >
+          This site uses cookies to provide user authenticated access to priveleged functionality.
+        </h2>
+        <p
+          className="chakra-text css-79wky"
+        >
+          These cookies are "Strictly necessary cookies" for the functionality of this website, and thus fall under the GDPR exceptions.
+        </p>
+      </div>
+      <button
+        className="chakra-button css-1954wt8"
+        onClick={[Function]}
+        type="button"
+      >
+        Close
+      </button>
+    </div>
+    <div
+      className="css-ev0gax"
+    />
   </footer>
 </div>
 `;

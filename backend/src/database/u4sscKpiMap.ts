@@ -92,6 +92,19 @@ export const u4sscKpiMap = new Map([
   ['EN: EN: WS: 3C', 'freshwater_consumption'],
 ]);
 
+export const u4sscKpiDataseries = new Map([
+  ['EC: ICT: ICT: 4C', new Set(['3g', '4g'])],
+  ['EC: ICT: PS: 1A', new Set(['number', 'percent'])],
+  ['EC: I: T: 4A', new Set(['cycling', 'public', 'private', 'walking', 'para'])],
+  ['EC: I: UP: 2A', new Set(['compact', 'connected', 'integrated', 'inclusive', 'resilient'])],
+  ['EN: EN: AQ: 1C', new Set(['pm_10', 'pm_2.5', 'no2', 'so2', 'o3'])],
+  ['EN: EN: WS: 4C', new Set(['primary', 'secondary', 'tertiary'])],
+  [
+    'EN: EN: WA: 1C',
+    new Set(['landfill', 'burnt', 'incinerated', 'open_dump', 'recycled', 'other']),
+  ],
+]);
+
 export const u4sscKpiToCategory = new Map([
   ['EC: ICT: ICT: 1C', 'EC: ICT: ICT'],
   ['EC: ICT: ICT: 2C', 'EC: ICT: ICT'],
@@ -323,3 +336,18 @@ export const u4sscKpis = [
   'SC: SH: SA: 9C',
   'SC: SH: FS: 1C',
 ];
+
+export const TKTransform = new Map([
+  // Errors in spec
+  ['SC: EH: ED:1C', 'SC: EH: ED: 1C'],
+  ['SC: EH: ED:2C', 'SC: EH: ED: 2C'],
+  ['SC: EH: H:1C', 'SC: EH: H: 1C'],
+  ['SC: EH: H:3C', 'SC: EH: H: 3C'],
+
+  // Errors by TK
+  ['EC: P: EM: 3A', 'EC: P: EM: 3C'],
+  ['EC: P: EM: 4A', 'EC: P: EM: 4C'],
+  ['SC: EH: H: 6A', 'SC: EH: ED: 5A'],
+  ['SC: EH: SA: 5A', 'SC: SH: SA: 5C'],
+  ['SC: EH: FS: 1A', 'SC: EH: FS: 1C'],
+]);

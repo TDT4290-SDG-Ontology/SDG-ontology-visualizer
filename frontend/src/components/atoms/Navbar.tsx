@@ -29,6 +29,14 @@ const Navbar = () => {
         </h1>
       </Box>
       <Spacer />
+      <Box>
+        <h1>
+          <Link fontWeight="bold" color="cyan.700" fontSize="1.5em" as={RouteLink} to="/gdc/data">
+            Data Upload
+          </Link>
+        </h1>
+      </Box>
+      <Spacer />
       <Button
         size="sm"
         color="white"
