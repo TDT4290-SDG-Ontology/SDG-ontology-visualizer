@@ -182,14 +182,14 @@ const KPI_NAMES = new Map([
     },
   ],
   [
-    'EC: P: EM: 3C',
+    'EC: P: EM: 3A',
     {
       eng: 'Tourism Sector Employment',
       nor: 'Reiselivssektor sysselsetting',
     },
   ],
   [
-    'EC: P: EM: 4C',
+    'EC: P: EM: 4A',
     {
       eng: 'ICT Sector Employment',
       nor: 'IKT-sektor sysselsetting',
@@ -791,7 +791,7 @@ const KPI_NAMES = new Map([
     },
   ],
   [
-    'SC: SH: SA: 5C',
+    'SC: SH: SA: 5A',
     {
       eng: 'Emergency Services Response Time',
       nor: 'N\u00f8detatens responstid',
@@ -826,7 +826,7 @@ const KPI_NAMES = new Map([
     },
   ],
   [
-    'SC: SH: FS: 1C',
+    'SC: SH: FS: 1A',
     {
       eng: 'Local Food Production',
       nor: 'Lokal matforsyning',
