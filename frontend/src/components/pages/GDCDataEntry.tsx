@@ -120,42 +120,10 @@ const CSVInfoMods = (
       <Tbody>
         <Tr>
           <Td>
-            <Code>EC: P: EM: 3A</Code>
-          </Td>
-          <Td>
-            <Code>EC: P: EM: 3C</Code>
-          </Td>
-        </Tr>
-        <Tr>
-          <Td>
-            <Code>EC: P: EM: 4A</Code>
-          </Td>
-          <Td>
-            <Code>EC: P: EM: 4C</Code>
-          </Td>
-        </Tr>
-        <Tr>
-          <Td>
             <Code>SC: EH: H: 6A</Code>
           </Td>
           <Td>
             <Code>SC: EH: ED: 5A</Code>
-          </Td>
-        </Tr>
-        <Tr>
-          <Td>
-            <Code>SC: EH: SA: 5A</Code>
-          </Td>
-          <Td>
-            <Code>SC: SH: SA: 5C</Code>
-          </Td>
-        </Tr>
-        <Tr>
-          <Td>
-            <Code>SC: EH: FS: 1A</Code>
-          </Td>
-          <Td>
-            <Code>SC: SH: FS: 1C</Code>
           </Td>
         </Tr>
       </Tbody>
