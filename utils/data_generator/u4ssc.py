@@ -163,7 +163,7 @@ indicators = [
 	rel("SC: SH: SA: 7C",		"Fire service", "Number of firefighters per 100,000 inhabitants"),
 	rel("SC: SH: SA: 8C", 		"Violent crime rate"),
 	rel("SC: SH: SA: 9C",		"Traffic fatailities"),
-	pct("SC: SH: SA: 1A",		"Local food production", "Percentage of local food supplied from within 100 km of the urban area"),
+	pct("SC: SH: FS: 1A",		"Local food production", "Percentage of local food supplied from within 100 km of the urban area"),
 ]
 
 # wrongly entered in airtable:
@@ -295,7 +295,7 @@ all_dataseries = [
 	dataseries("SC: SH: HO: 2A", 	INV_PERCENT),
 	dataseries("SC: SH: SA: 7C", 	RELATIVE),
 	dataseries("EC: ICT: ICT: 2C", 	PERCENT),
-	dataseries("SC: SH: SA: 1A", 	PERCENT),
+	dataseries("SC: SH: FS: 1A", 	PERCENT),
 	dataseries("EN: EN: WS: 3C", 	INV_PERCENT),
 	dataseries("SC: SH: SI: 1C", 	RATIO, target = 1.0, min_range = 0.0, max_range = 2.0),
 	dataseries("SC: SH: SI: 2C", 	INV_RATIO, target = 0.0, min_range = 0.0, max_range = 1.0),

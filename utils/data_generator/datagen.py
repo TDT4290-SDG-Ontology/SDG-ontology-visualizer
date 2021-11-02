@@ -32,7 +32,8 @@ def insert_data(token, kpi, value, municipality, year, dataseries = None):
 def insert_bulk_data(token, municipality, year, data):
 	req = requests.post(BASE_URL + "/data/insert-bulk", json={'token': token["token"], 'municipality': municipality, 'year': year, 'data': data, 'isDummy': True })
 	print(req.status_code, req.reason)
-	# return json.loads(req.text)
+	if (req.status_code != 200):
+		print(req.text)
 
 def set_goal(token, municipality, kpi, target, deadline, baseline, baselineYear, start_range, dataseries):
 	if dataseries:
@@ -44,6 +45,8 @@ def set_goal(token, municipality, kpi, target, deadline, baseline, baselineYear,
 def set_bulk_goals(token, municipality, goals):
 	req = requests.post(BASE_URL + "/gdc/set-bulk-goals", json = { 'token': token["token"], 'municipality': municipality, 'goals': goals, 'isDummy': True })
 	print(req.status_code, req.reason)
+	if (req.status_code != 200):
+		print(req.text)
 
 def get_data(kpi):
 	req = requests.post(BASE_URL + "/data/get", json={'token': token, 'indicator': kpi })
