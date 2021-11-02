@@ -69,7 +69,8 @@ const insertBulkData = async (req: Request, res: Response) => {
 
     req.body.data.forEach((dp) => {
       const indicatorName = u4sscKpiMap.get(dp.indicator);
-      if (indicatorName === undefined) throw new ApiError(400, `Unknown indicator: ${dp.indicator}`);
+      if (indicatorName === undefined)
+        throw new ApiError(400, `Unknown indicator: ${dp.indicator}`);
 
       const datapoint: DataPoint = {
         municipality,
