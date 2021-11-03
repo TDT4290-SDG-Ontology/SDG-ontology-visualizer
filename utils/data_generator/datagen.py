@@ -3,14 +3,20 @@ import requests
 import json
 import time
 import random
+import sys
 
 BASE_URL = "http://localhost:3001/api"
 SEND_BULK_DATA = True
+PRODUCE_OWL = "rdf" in sys.argv
+
+all_goals = []
+all_data = []
 
 def login(username, password):
 	req = requests.post(BASE_URL + "/auth/login", json={'username': username, 'password': password })
-	print(req.status_code, req.reason)
-	print(req.text)
+	if not PRODUCE_OWL:
+		print(req.status_code, req.reason)
+		print(req.text)
 	return json.loads(req.text)
 
 def insert_data(token, kpi, value, municipality, year, dataseries = None):
@@ -26,7 +32,8 @@ def insert_data(token, kpi, value, municipality, year, dataseries = None):
 def insert_bulk_data(token, municipality, year, data):
 	req = requests.post(BASE_URL + "/data/insert-bulk", json={'token': token["token"], 'municipality': municipality, 'year': year, 'data': data, 'isDummy': True })
 	print(req.status_code, req.reason)
-	# return json.loads(req.text)
+	if (req.status_code != 200):
+		print(req.text)
 
 def set_goal(token, municipality, kpi, target, deadline, baseline, baselineYear, start_range, dataseries):
 	if dataseries:
@@ -38,6 +45,8 @@ def set_goal(token, municipality, kpi, target, deadline, baseline, baselineYear,
 def set_bulk_goals(token, municipality, goals):
 	req = requests.post(BASE_URL + "/gdc/set-bulk-goals", json = { 'token': token["token"], 'municipality': municipality, 'goals': goals, 'isDummy': True })
 	print(req.status_code, req.reason)
+	if (req.status_code != 200):
+		print(req.text)
 
 def get_data(kpi):
 	req = requests.post(BASE_URL + "/data/get", json={'token': token, 'indicator': kpi })
@@ -56,6 +65,59 @@ def get_data(kpi, municipality, year):
     )
     print(req.status_code, req.reason)
     return json.loads(req.text)
+
+
+def rdf_goal(muni, goal):
+
+	kpi = goal['indicator']
+	dataseries = u4ssc.friendly_names[kpi]	
+	if 'dataseries' in goal:
+		dataseries = "{}.{}".format(dataseries, goal['dataseries'])
+
+	# <http://www.semanticweb.org/aga/ontologies/2017/9/SDG#goals.u4ssc.${dataseries}.${goal.municipality}>
+	# <http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.${dataseries}>
+
+	return """    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#goals.u4ssc.{dataseries}.{municipality} -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#goals.u4ssc.{dataseries}.{municipality}">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#U4SSCIndicatorGoal"/>
+        <SDG:isGoalForMunicipality rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipality.{municipality}"/>
+        <SDG:isGoalForDataseries rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.{dataseries}"/>
+        <SDG:goalStartRange rdf:datatype="http://www.w3.org/2001/XMLSchema#double">{start_range}</SDG:goalStartRange>
+        <SDG:goalTarget rdf:datatype="http://www.w3.org/2001/XMLSchema#double">{target}</SDG:goalTarget>
+        <SDG:goalDeadline rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">{deadline}</SDG:goalDeadline>
+        <SDG:goalBaseline rdf:datatype="http://www.w3.org/2001/XMLSchema#double">{baseline}</SDG:goalBaseline>
+        <SDG:goalBaselineYear rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">{baseline_year}</SDG:goalBaselineYear>
+        <SDG:isDummyData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</SDG:isDummyData>
+    </owl:NamedIndividual>
+""".format(dataseries = dataseries, 
+		   municipality = muni, 
+		   start_range = float(goal["startRange"]), 
+		   target = float(goal["target"]), 
+		   deadline = int(goal["deadline"]), 
+		   baseline = float(goal["baseline"]), 
+		   baseline_year = int(goal["baselineYear"]))
+
+def rdf_data(muni, year, data):	
+	kpi = data['indicator']
+	dataseries = u4ssc.friendly_names[kpi]
+	if 'dataseries' in data:
+		dataseries = "{}.{}".format(dataseries, data['dataseries'])
+
+	return """    <!-- http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapoint.u4ssc.{dataseries}.{municipality}.{year} -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#datapoint.u4ssc.{dataseries}.{municipality}.{year}">
+        <rdf:type rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#Datapoint"/>
+        <SDG:datapointForMunicipality rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#municipality.{municipality}"/>
+        <SDG:datapointForSeries rdf:resource="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#dataseries.{dataseries}"/>
+        <SDG:datapointValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">{value}</SDG:datapointValue>
+        <SDG:datapointYear rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">{year}</SDG:datapointYear>
+        <SDG:isDummyData rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</SDG:isDummyData>
+    </owl:NamedIndividual>
+""".format(dataseries = dataseries, 
+		   municipality = muni, 
+		   year = int(year), 
+		   value = float(data["data"]))
 
 # print(get_data(u4ssc.indicators[0].id))
 
@@ -110,7 +172,13 @@ def generate_goals(token, municipality, goal_goodness):
 
 			goals.append(item)
 
-		set_bulk_goals(token, municipality, goals)
+		if PRODUCE_OWL:
+			all_goals.append({
+				'municipality': municipality,
+				'goals': goals,
+				})
+		else:
+			set_bulk_goals(token, municipality, goals)
 	else:
 		for ds in u4ssc.all_dataseries:
 			goal, deadline, baseline, baselineYear, start_range = ds.generate_goal(goal_goodness)
@@ -144,12 +212,22 @@ def generate_data(token, municipality, goal_goodness, data_goodness, year):
 
 			data.append(item)
 
-		insert_bulk_data(token, municipality, year, data)
+		if PRODUCE_OWL:
+			all_data.append({
+				'municipality': municipality,
+				'year': year,
+				'data': data,
+				})
+		else:
+			insert_bulk_data(token, municipality, year, data)
 	else:
 		for ds in u4ssc.all_dataseries:
 			insert_data(token, ds.kpi, ds.produce_data(goal_goodness, data_goodness, year), municipality, year, ds.variant)
 
-token = login("test", "123")
+if not PRODUCE_OWL:
+	token = login("test", "123")
+else: 
+	token = ""
 
 municipalities = {
 	# code 		 name 			goal level			data level
@@ -172,20 +250,53 @@ municipalities = {
 	"lt.16":   ("Kaunas",		u4ssc.ACCEPTABLE, 	u4ssc.BAD),
 }
 
-print("Generating...")
+if not PRODUCE_OWL:
+	print("Generating...")
+
 start = time.time()
 
 for code, v in municipalities.items():
  	name, goal_goodness, data_goodness = v
  	generate_goals(token, code, goal_goodness)
 
- 	print("Generating data for", name)
+ 	if not PRODUCE_OWL:
+ 		print("Generating data for", name)
+
  	for year in range(2015, 2030 + 1):
- 		print(year, " data")
+ 		if not PRODUCE_OWL:
+	 		print(year, " data")
+
  		generate_data(token, code, goal_goodness, data_goodness, year)
 
+if PRODUCE_OWL:
+	file_content = """<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/aga/ontologies/2017/9/untitled-ontology-9"
+     xml:base="http://www.semanticweb.org/aga/ontologies/2017/9/untitled-ontology-9"
+     xmlns:SDG="http://www.semanticweb.org/aga/ontologies/2017/9/SDG#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:schema="http://schema.org/"
+     xmlns:ontology="http://metadata.un.org/sdg/ontology#">
+	"""
+
+	for goal_pkg in all_goals:
+		file_content += "\n".join([ rdf_goal(goal_pkg["municipality"], goal) for goal in goal_pkg["goals"] ])
+
+	for data_pkg in all_data:
+		file_content += "\n".join([ rdf_data(data_pkg["municipality"], data_pkg["year"], data) for data in data_pkg["data"]])
+
+	file_content += "\n</rdf:RDF>"
+
+	print(file_content)
+
 duration = time.time() - start
-print("Inserted all goals / data points in {:.2f}s".format(duration))
+if not PRODUCE_OWL:
+	print("Inserted all goals / data points in {:.2f}s".format(duration))
 
 def test_data_generation():
 	def test(goal_goodness, data_goodness, start_range, end_range):

@@ -154,14 +154,14 @@ exports[`renders expected output for comparison of municipalities 1`] = `
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2030.4
+                2030
               </td>
               <td
                 className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2032.6
+                2033
               </td>
             </tr>
             <tr
@@ -328,14 +328,14 @@ exports[`renders expected output for comparison of municipalities 1`] = `
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2026.5
+                2026
               </td>
               <td
                 className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2024.0
+                2024
               </td>
             </tr>
             <tr
@@ -400,7 +400,7 @@ exports[`renders expected output for comparison of municipalities 1`] = `
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2044.3
+                2044
               </td>
               <td
                 className="css-1a88wtd"
@@ -716,14 +716,14 @@ exports[`renders expected output for comparison of municipalities with override 
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2030.4
+                2030
               </td>
               <td
                 className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2032.6
+                2033
               </td>
             </tr>
             <tr
@@ -890,14 +890,14 @@ exports[`renders expected output for comparison of municipalities with override 
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2026.5
+                2026
               </td>
               <td
                 className="css-1a88wtd"
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2024.0
+                2024
               </td>
             </tr>
             <tr
@@ -962,7 +962,7 @@ exports[`renders expected output for comparison of municipalities with override 
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2044.3
+                2044
               </td>
               <td
                 className="css-1a88wtd"
@@ -1170,7 +1170,7 @@ exports[`renders expected output for single municipality 1`] = `
                 Statistic
               </th>
               <th
-                className="css-yf1l8i"
+                className="css-1v97kd8"
                 data-is-numeric={true}
               >
                 Value
@@ -1258,7 +1258,7 @@ exports[`renders expected output for single municipality 1`] = `
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2030.4
+                2030
               </td>
             </tr>
             <tr
@@ -1395,7 +1395,7 @@ exports[`renders expected output for single municipality 1`] = `
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2026.5
+                2026
               </td>
             </tr>
             <tr
@@ -1451,7 +1451,7 @@ exports[`renders expected output for single municipality 1`] = `
                 data-is-numeric={true}
                 role="gridcell"
               >
-                2044.3
+                2044
               </td>
             </tr>
             <tr

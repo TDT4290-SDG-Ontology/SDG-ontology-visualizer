@@ -1,4 +1,4 @@
-import api from './api';
+import api, { API_BASE, responseHandler } from './api';
 import {
   IndicatorScore,
   IndicatorWithoutGoal,
@@ -11,10 +11,13 @@ export const getGDCOutput = async (
   municipality: string,
   year: number,
   goalOverride?: string,
+  overrideMode?: string,
 ): Promise<GDCOutput> => {
   try {
     const reqBody =
-      goalOverride !== undefined ? { municipality, year, goalOverride } : { municipality, year };
+      goalOverride !== undefined
+        ? { municipality, year, goalOverride, overrideMode }
+        : { municipality, year };
     return await api.POST('gdc/get', reqBody).then((data) => {
       try {
         const domains: Map<string, Score> = new Map<string, Score>(data.domains);
@@ -84,5 +87,27 @@ export const getCorrelatedKPIs = async (kpi: string): Promise<CorrelatedKPI[]> =
   } catch (e) {
     console.log(e);
     return [];
+  }
+};
+
+export const uploadGoalCSV = async (token: string, formData: FormData): Promise<boolean> => {
+  try {
+    // Have to do this in order to send form data...
+    // TODO: refactor into helper function in api.ts
+    return await window
+      .fetch(`${API_BASE}/gdc/upload`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      })
+      .then(responseHandler)
+      .then(() => true)
+      .catch(() => false);
+  } catch (e) {
+    console.log(e);
+    return false;
   }
 };

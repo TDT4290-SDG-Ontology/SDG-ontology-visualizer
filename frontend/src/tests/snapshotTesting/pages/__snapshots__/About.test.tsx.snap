@@ -13,13 +13,16 @@ exports[`renders when there are no items 1`] = `
       Om prosjektet
     </h2>
     <p
-      className="chakra-text css-1c9yrxe"
+      className="chakra-text css-12jprvx"
     >
-      Dette er en prototype laget for Trondheim kommune i forbindelse med bacheloroppgave i informatikk. Applikasjonen gir mulighet til å utforske bærekraftsmålene og finne sammenhenger og relasjoner til ulike perspektiver satt av Trondheim kommune. Dataen i applikasjonen er lagret og hentet fra en ontologi, som også definerer relasjonene mellom disse.
+      Dette er en videreutvikling av en prototype laget for Trondheim kommune. Arbeidet er gjort i forbindelse med faget TDT4290 Kundestyrt prosjekt. Videreutviklingen realiserer funksjonalitet som søker å umiddelbart forbedre verktøyene tilgjengelig for datadrevet bærekraft ved å forbedre visualisering av historisk ytelse samt antatt fremtidig ytelse.
+      <br />
+      <br />
+      Videreutviklingen har funnet sted på toppen av en eksisterende prototype utviklet som del av en batcheloroppgave i informatikk.
     </p>
     <a
       className="chakra-link css-otktsc"
-      href="https://github.com/ntnu-informatikk-2021/SDG-ontology-visualizer"
+      href="https://github.com/TDT4290-SDG-Ontology/SDG-ontology-visualizer/"
       rel="noopener noreferrer"
       target="_blank"
     >

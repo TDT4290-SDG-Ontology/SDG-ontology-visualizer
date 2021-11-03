@@ -7,14 +7,15 @@ import onError from './onError';
 
 export default (req: Request, res: Response, next: NextFunction) => {
   try {
-    if (req.body === undefined || req.body === null) throw new ApiError(400, 'Missing body');
+    let token: string | undefined = req.body ? req.body.token : undefined;
+    if (!token && req.headers.authorization && req.headers.authorization.startsWith('Bearer '))
+      token = req.headers.authorization.substring(7);
 
-    if (req.body.token === undefined) throw new ApiError(400, 'Missing auth token');
+    if (!token) throw new ApiError(400, 'Missing auth token');
 
-    if (!(typeof req.body.token === 'string' || req.body.token instanceof String))
-      throw new ApiError(400, 'Token has wrong type.');
+    if (!(typeof token === 'string')) throw new ApiError(400, 'Token has wrong type.');
 
-    if (verifyToken(req.body.token)) {
+    if (verifyToken(token)) {
       next();
     } else {
       throw new ApiError(400, 'Server could not verify token.');

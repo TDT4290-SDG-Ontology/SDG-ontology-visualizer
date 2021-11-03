@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders login page correctly 1`] = `
+<div
+  className="chakra-stack css-efzghl"
+>
+  <div
+    className="css-ixqi0y"
+    spacing="10"
+  >
+    <div
+      className="chakra-stack css-efzghl"
+    >
+      <h2
+        className="chakra-heading css-kbn7if"
+      >
+        Please log in
+      </h2>
+    </div>
+  </div>
+  <div
+    className="css-172bykr"
+    spacing="10"
+  >
+    <div
+      className="chakra-stack css-18b10pk"
+    >
+      <h2
+        className="chakra-heading css-odz94x"
+      >
+        The functionality you want to access requires valid credentials.
+      </h2>
+      <div
+        className="chakra-stack css-1wcf7sk"
+      >
+        <div
+          className="chakra-form-control css-1kxonj9"
+          role="group"
+        >
+          <label
+            className="chakra-form__label css-uvho5g"
+            htmlFor="username"
+            id="username-label"
+          >
+            Username:
+            <span
+              aria-hidden={true}
+              className="chakra-form__required-indicator css-0"
+              role="presentation"
+            >
+              *
+            </span>
+          </label>
+          <input
+            aria-required={true}
+            className="chakra-input css-0"
+            disabled={false}
+            id="username"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            readOnly={false}
+            required={true}
+          />
+        </div>
+        <div
+          className="chakra-form-control css-1kxonj9"
+          role="group"
+        >
+          <label
+            className="chakra-form__label css-uvho5g"
+            htmlFor="password"
+            id="password-label"
+          >
+            Password:
+            <span
+              aria-hidden={true}
+              className="chakra-form__required-indicator css-0"
+              role="presentation"
+            >
+              *
+            </span>
+          </label>
+          <div
+            className="chakra-input__group css-4302v8"
+          >
+            <input
+              aria-required={true}
+              className="chakra-input css-0"
+              disabled={false}
+              id="password"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              placeholder="Enter password"
+              readOnly={false}
+              required={true}
+              type="password"
+            />
+            <div
+              className="chakra-input__right-element css-fmpuuc"
+              size="md"
+            >
+              <button
+                className="chakra-button css-1t02tt6"
+                onClick={[Function]}
+                type="button"
+              >
+                Show
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          className="css-12p7y6a"
+        />
+        <button
+          className="chakra-button css-oqfhsh"
+          onClick={[Function]}
+          type="button"
+        >
+          Log in
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

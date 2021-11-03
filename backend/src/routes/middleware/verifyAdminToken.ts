@@ -5,7 +5,15 @@ import onError from './onError';
 
 export default (req: Request, res: Response, next: NextFunction) => {
   try {
-    if (verifyAdminToken(req.body.token)) {
+    let token: string | undefined = req.body ? req.body.token : undefined;
+    if (!token && req.headers.authorization && req.headers.authorization.startsWith('Bearer '))
+      token = req.headers.authorization.substring(7);
+
+    if (!token) throw new ApiError(400, 'Missing auth token');
+
+    if (!(typeof token === 'string')) throw new ApiError(400, 'Token has wrong type.');
+
+    if (verifyAdminToken(token)) {
       next();
     } else {
       throw new ApiError(400, 'You need to be an admin to access this endpoint.');

@@ -14,6 +14,7 @@ import { checkPassword } from '../auth/credentials';
 import config from '../config';
 
 import verifyAdminToken from './middleware/verifyAdminToken';
+import verifyToken from './middleware/verifyToken';
 
 import getUser from '../database/getUser';
 import setUser from '../database/setUser';
@@ -95,7 +96,16 @@ const addUser = async (req: Request, res: Response) => {
   }
 };
 
+const checkToken = async (req: Request, res: Response) => {
+  try {
+    res.json({});
+  } catch (e) {
+    onError(e, req, res);
+  }
+};
+
 router.post('/login', verifyDatabaseAccess, login);
 router.post('/add-user', verifyDatabaseAccess, verifyAdminToken, addUser);
+router.post('/check-token', verifyToken, checkToken);
 
 export default router;

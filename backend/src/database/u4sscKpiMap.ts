@@ -21,11 +21,11 @@ export const u4sscKpiMap = new Map([
   ['EC: ICT: ES: 2A', 'electricity_supply_ict_mon'],
   ['EC: I: ES: 1C', 'electricity_system_outage_freq'],
   ['SC: EH: ED: 5A', 'electronic_health_records'],
-  ['SC: SH: SA: 5C', 'emergency_response_time'],
+  ['SC: SH: SA: 5A', 'emergency_response_time'],
   ['SC: SH: HO: 2A', 'expenditure_housing'],
   ['SC: SH: SA: 7C', 'fire_service'],
   ['EC: ICT: ICT: 2C', 'fixed_broadband'],
-  ['SC: SH: FS: 1C', 'food_production'],
+  ['SC: SH: FS: 1A', 'food_production'],
   ['EN: EN: WS: 4C', 'wastewater_treatment'],
   ['SC: SH: SI: 1C', 'gender_income_equality'],
   ['SC: SH: SI: 2C', 'gini_coefficient'],
@@ -33,7 +33,7 @@ export const u4sscKpiMap = new Map([
   ['EN: EN: PSN: 1C', 'green_areas'],
   ['SC: EH: ED: 3C', 'higher_education_degrees'],
   ['EC: I: WS: 5C', 'household_sanitation'],
-  ['EC: P: EM: 4C', 'ict_sector_employment'],
+  ['EC: P: EM: 4A', 'ict_sector_employment'],
   ['SC: EH: H: 4A', 'in_patient_hospital_beds'],
   ['SC: SH: HO: 1C', 'informal_settlements'],
   ['EC: I: B: 2A', 'integrated_building_management_systems'],
@@ -71,7 +71,7 @@ export const u4sscKpiMap = new Map([
   ['EC: I: WA: 1C', 'solid_waste_collection'],
   ['EN: EN: WA: 1C', 'solid_waste_treatment'],
   ['SC: EH: ED: 1C', 'student_ICT_access'],
-  ['EC: P: EM: 3C', 'tourism_industry_employment'],
+  ['EC: P: EM: 3A', 'tourism_industry_employment'],
   ['SC: SH: SA: 9C', 'traffic_fatalities'],
   ['EC: ICT: T: 2C', 'traffic_mon'],
   ['EC: I: T: 4A', 'transportation_mode_share'],
@@ -90,6 +90,19 @@ export const u4sscKpiMap = new Map([
   ['EC: ICT: ICT: 4C', 'wireless_broadband_coverage'],
   ['EC: P: EM: 2C', 'youth_unemployment_rate'],
   ['EN: EN: WS: 3C', 'freshwater_consumption'],
+]);
+
+export const u4sscKpiDataseries = new Map([
+  ['EC: ICT: ICT: 4C', new Set(['3g', '4g'])],
+  ['EC: ICT: PS: 1A', new Set(['number', 'percent'])],
+  ['EC: I: T: 4A', new Set(['cycling', 'public', 'private', 'walking', 'para'])],
+  ['EC: I: UP: 2A', new Set(['compact', 'connected', 'integrated', 'inclusive', 'resilient'])],
+  ['EN: EN: AQ: 1C', new Set(['pm_10', 'pm_2.5', 'no2', 'so2', 'o3'])],
+  ['EN: EN: WS: 4C', new Set(['primary', 'secondary', 'tertiary'])],
+  [
+    'EN: EN: WA: 1C',
+    new Set(['landfill', 'burnt', 'incinerated', 'open_dump', 'recycled', 'other']),
+  ],
 ]);
 
 export const u4sscKpiToCategory = new Map([
@@ -115,8 +128,8 @@ export const u4sscKpiToCategory = new Map([
   ['EC: P: IN: 3A', 'EC: P: IN'],
   ['EC: P: EM: 1C', 'EC: P: EM'],
   ['EC: P: EM: 2C', 'EC: P: EM'],
-  ['EC: P: EM: 3C', 'EC: P: EM'],
-  ['EC: P: EM: 4C', 'EC: P: EM'],
+  ['EC: P: EM: 3A', 'EC: P: EM'],
+  ['EC: P: EM: 4A', 'EC: P: EM'],
   ['EC: I: WS: 1C', 'EC: I: WS'],
   ['EC: I: WS: 2C', 'EC: I: WS'],
   ['EC: I: WS: 3C', 'EC: I: WS'],
@@ -159,7 +172,7 @@ export const u4sscKpiToCategory = new Map([
   ['SC: EH: ED: 2C', 'SC: EH: ED'],
   ['SC: EH: ED: 3C', 'SC: EH: ED'],
   ['SC: EH: ED: 4C', 'SC: EH: ED'],
-  ['SC: EH: ED: 5A', 'SC: EH: ED'],
+  ['SC: EH: ED: 5A', 'SC: EH: H'],
   ['SC: EH: H: 1C', 'SC: EH: H'],
   ['SC: EH: H: 2C', 'SC: EH: H'],
   ['SC: EH: H: 3C', 'SC: EH: H'],
@@ -178,12 +191,12 @@ export const u4sscKpiToCategory = new Map([
   ['SC: SH: SA: 2C', 'SC: SH: SA'],
   ['SC: SH: SA: 3A', 'SC: SH: SA'],
   ['SC: SH: SA: 4A', 'SC: SH: SA'],
-  ['SC: SH: SA: 5C', 'SC: SH: SA'],
+  ['SC: SH: SA: 5A', 'SC: SH: SA'],
   ['SC: SH: SA: 6C', 'SC: SH: SA'],
   ['SC: SH: SA: 7C', 'SC: SH: SA'],
   ['SC: SH: SA: 8C', 'SC: SH: SA'],
   ['SC: SH: SA: 9C', 'SC: SH: SA'],
-  ['SC: SH: FS: 1C', 'SC: SH: FS'],
+  ['SC: SH: FS: 1A', 'SC: SH: FS'],
 ]);
 
 export const u4sscCategoryToSubdomain = new Map([
@@ -249,8 +262,8 @@ export const u4sscKpis = [
   'EC: P: IN: 3A',
   'EC: P: EM: 1C',
   'EC: P: EM: 2C',
-  'EC: P: EM: 3C',
-  'EC: P: EM: 4C',
+  'EC: P: EM: 3A',
+  'EC: P: EM: 4A',
   'EC: I: WS: 1C',
   'EC: I: WS: 2C',
   'EC: I: WS: 3C',
@@ -316,10 +329,21 @@ export const u4sscKpis = [
   'SC: SH: SA: 2C',
   'SC: SH: SA: 3A',
   'SC: SH: SA: 4A',
-  'SC: SH: SA: 5C',
+  'SC: SH: SA: 5A',
   'SC: SH: SA: 6C',
   'SC: SH: SA: 7C',
   'SC: SH: SA: 8C',
   'SC: SH: SA: 9C',
-  'SC: SH: FS: 1C',
+  'SC: SH: FS: 1A',
 ];
+
+export const TKTransform = new Map([
+  // Errors in spec
+  ['SC: EH: ED:1C', 'SC: EH: ED: 1C'],
+  ['SC: EH: ED:2C', 'SC: EH: ED: 2C'],
+  ['SC: EH: H:1C', 'SC: EH: H: 1C'],
+  ['SC: EH: H:3C', 'SC: EH: H: 3C'],
+
+  // Errors by TK
+  ['SC: EH: H: 6A', 'SC: EH: ED: 5A'],
+]);
