@@ -6,7 +6,7 @@ services:
       service: graphdb
   api:
     depends_on: ['graphdb']
-    image: fredrbus/tk_sdg_api:1.0
+    image: fredrbus/tk_sdg_api:1.1
     ports:
       - '3001:3001'
     env_file:
