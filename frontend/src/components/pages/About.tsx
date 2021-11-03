@@ -16,15 +16,18 @@ const About = () => (
       <Heading as="h2" size="lg">
         Om prosjektet
       </Heading>
-      <Text fontSize="md" align="center">
-        Dette er en prototype laget for Trondheim kommune i forbindelse med bacheloroppgave i
-        informatikk. Applikasjonen gir mulighet til å utforske bærekraftsmålene og finne
-        sammenhenger og relasjoner til ulike perspektiver satt av Trondheim kommune. Dataen i
-        applikasjonen er lagret og hentet fra en ontologi, som også definerer relasjonene mellom
-        disse.
+      <Text fontSize="md" align="left">
+        Dette er en videreutvikling av en prototype laget for Trondheim kommune. Arbeidet er gjort i
+        forbindelse med faget TDT4290 Kundestyrt prosjekt. Videreutviklingen realiserer
+        funksjonalitet som søker å umiddelbart forbedre verktøyene tilgjengelig for datadrevet
+        bærekraft ved å forbedre visualisering av historisk ytelse samt antatt fremtidig ytelse.
+        <br />
+        <br />
+        Videreutviklingen har funnet sted på toppen av en eksisterende prototype utviklet som del av
+        en batcheloroppgave i informatikk.
       </Text>
       <Link
-        href="https://github.com/ntnu-informatikk-2021/SDG-ontology-visualizer"
+        href="https://github.com/TDT4290-SDG-Ontology/SDG-ontology-visualizer/"
         isExternal
         color="white"
         _hover={{ opacity: '75%' }}

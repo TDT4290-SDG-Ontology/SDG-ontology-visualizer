@@ -95,42 +95,200 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
     setLoadingCorrelated(false);
   };
 
-  const dataIsIndicatorScore = (data as IndicatorScore).goal !== undefined;
-  const compareIsIndicatorScore =
-    compareData !== undefined && (compareData as IndicatorScore).goal !== undefined;
+  const populateTableCells = (score: IndicatorScore | IndicatorWithoutGoal | undefined) => {
+    if (score === undefined) {
+      return {
+        points: null,
+        score: null,
+        projectedCompletion: null,
+        willComplete: null,
+        currentCAGR: null,
+        requiredCAGR: null,
 
-  const dummyGrowth = { value: 0, startYear: year, endYear: year };
-  const bestGrowth =
-    data.yearlyGrowth.length > 0 ? data.yearlyGrowth[data.yearlyGrowth.length - 1] : dummyGrowth;
-  const worstGrowth = data.yearlyGrowth.length > 0 ? data.yearlyGrowth[0] : dummyGrowth;
+        bestCAGR: null,
+        bestCompletion: null,
 
-  const currentValue = data.historicalData[data.historicalData.length - 1].value;
-  const currentYear = data.historicalData[data.historicalData.length - 1].year;
+        worstCAGR: null,
+        worstCompletion: null,
 
-  let bestCompletion = -1;
-  let worstCompletion = -1;
-  if (dataIsIndicatorScore && data.yearlyGrowth.length > 1) {
-    bestCompletion =
-      currentYear +
-      Math.log((data as IndicatorScore).goal.target / currentValue) /
-        Math.log(bestGrowth.value + 1.0);
-    worstCompletion =
-      currentYear +
-      Math.log((data as IndicatorScore).goal.target / currentValue) /
-        Math.log(worstGrowth.value + 1.0);
+        diffMean: null,
+        diffStd: null,
+        trendMean: null,
+        trendStd: null,
+      };
+    }
 
-    // If the completion dates are in the past, double check against score to make sure
-    // they acutally are completed, and the municipality isn't just doing *extremely* badly!
-    if (bestCompletion < currentYear && (data as IndicatorScore).score < CUTOFF_DONE_PCT)
-      bestCompletion = -1;
+    const isIndicatorScore = (score as IndicatorScore).goal !== undefined;
 
-    if (worstCompletion < currentYear && (data as IndicatorScore).score < CUTOFF_DONE_PCT)
-      worstCompletion = -1;
+    const dummyGrowth = { value: 0, startYear: year, endYear: year };
+    const bestGrowth =
+      score.yearlyGrowth.length > 0
+        ? score.yearlyGrowth[score.yearlyGrowth.length - 1]
+        : dummyGrowth;
+    const worstGrowth = score.yearlyGrowth.length > 0 ? score.yearlyGrowth[0] : dummyGrowth;
+
+    let pointsOutput: number | string = 'N/A';
+    let scoreOutput: number | string = 'N/A';
+    let projectedCompletionOutput: number | string = 'N/A';
+    let willCompleteOutput: number | string = 'N/A';
+    let requiredCAGROutput: number | string = 'N/A';
+    let diffMeanOutput: number | string = 'N/A';
+    let diffStdOutput: number | string = 'N/A';
+    let bestCompletionOutput: number | string = 'N/A';
+    let worstCompletionOutput: number | string = 'N/A';
+
+    const currentCAGROutput = (100.0 * score.currentCAGR).toFixed(2);
+
+    if (isIndicatorScore) {
+      const currentYear = score.historicalData[score.historicalData.length - 1].year;
+
+      pointsOutput = (score as IndicatorScore).points;
+      scoreOutput = (score as IndicatorScore).score.toFixed(2);
+      willCompleteOutput = (score as IndicatorScore).willCompleteBeforeDeadline ? 'Yes' : 'No';
+
+      if (currentYear < (score as IndicatorScore).goal.deadline) {
+        requiredCAGROutput = (100.0 * (score as IndicatorScore).requiredCAGR).toFixed(2);
+      }
+
+      diffMeanOutput = (score as IndicatorScore).diffMean.toFixed(2);
+      diffStdOutput = (score as IndicatorScore).diffStd.toFixed(2);
+
+      if (score.historicalData.length > 1) {
+        const currentValue = score.historicalData[score.historicalData.length - 1].value;
+
+        let bestCompletionYear =
+          currentYear +
+          Math.log((score as IndicatorScore).goal.target / currentValue) /
+            Math.log(bestGrowth.value + 1.0);
+
+        let worstCompletionYear =
+          currentYear +
+          Math.log((score as IndicatorScore).goal.target / currentValue) /
+            Math.log(worstGrowth.value + 1.0);
+
+        // If the completion dates are in the past, double check against score to make sure
+        // they acutally are completed, and the municipality isn't just doing *extremely* badly!
+        if (bestCompletionYear < currentYear && (score as IndicatorScore).score < CUTOFF_DONE_PCT)
+          bestCompletionYear = -1;
+
+        if (worstCompletionYear < currentYear && (score as IndicatorScore).score < CUTOFF_DONE_PCT)
+          worstCompletionYear = -1;
+
+        if (
+          (score as IndicatorScore).projectedCompletion < currentYear &&
+          (score as IndicatorScore).score >= CUTOFF_DONE_PCT
+        ) {
+          projectedCompletionOutput = 'Attained';
+        } else {
+          projectedCompletionOutput =
+            (score as IndicatorScore).projectedCompletion < 0
+              ? 'Never'
+              : (score as IndicatorScore).projectedCompletion.toFixed(0);
+        }
+
+        if (
+          bestCompletionYear < currentYear &&
+          (score as IndicatorScore).score >= CUTOFF_DONE_PCT
+        ) {
+          bestCompletionOutput = 'Attained';
+        } else {
+          bestCompletionOutput = bestCompletionYear < 0 ? 'Never' : bestCompletionYear.toFixed(0);
+        }
+
+        if (
+          worstCompletionYear < currentYear &&
+          (score as IndicatorScore).score >= CUTOFF_DONE_PCT
+        ) {
+          worstCompletionOutput = 'Attained';
+        } else {
+          worstCompletionOutput =
+            worstCompletionYear < 0 ? 'Never' : worstCompletionYear.toFixed(0);
+        }
+      }
+    }
+
+    return {
+      points: (
+        <Td isNumeric pl="0">
+          {pointsOutput}
+        </Td>
+      ),
+      score: (
+        <Td isNumeric pl="0">
+          {scoreOutput}
+        </Td>
+      ),
+      projectedCompletion: (
+        <Td isNumeric pl="0">
+          {projectedCompletionOutput}
+        </Td>
+      ),
+      willComplete: (
+        <Td isNumeric pl="0">
+          {willCompleteOutput}
+        </Td>
+      ),
+      currentCAGR: <Td isNumeric pl="0">{`${currentCAGROutput} %`}</Td>,
+      requiredCAGR: <Td isNumeric pl="0">{`${requiredCAGROutput} %`}</Td>,
+
+      bestCAGR: (
+        <Td isNumeric pl="0">
+          {`${(100.0 * bestGrowth.value).toFixed(2)} %`}
+          <br />
+          {`(${bestGrowth.startYear} to ${bestGrowth.endYear})`}
+        </Td>
+      ),
+      bestCompletion: (
+        <Td isNumeric pl="0">
+          {bestCompletionOutput}
+        </Td>
+      ),
+
+      worstCAGR: (
+        <Td isNumeric pl="0">
+          {`${(100.0 * worstGrowth.value).toFixed(2)} %`}
+          <br />
+          {`(${worstGrowth.startYear} to ${worstGrowth.endYear})`}
+        </Td>
+      ),
+      worstCompletion: (
+        <Td isNumeric pl="0">
+          {worstCompletionOutput}
+        </Td>
+      ),
+
+      diffMean: (
+        <Td isNumeric pl="0">
+          {diffMeanOutput}
+        </Td>
+      ),
+      diffStd: (
+        <Td isNumeric pl="0">
+          {diffStdOutput}
+        </Td>
+      ),
+      trendMean: <Td isNumeric pl="0">{`${(100.0 * score.trendMean).toFixed(2)} %`}</Td>,
+      trendStd: <Td isNumeric pl="0">{`${(100.0 * score.trendStd).toFixed(2)} %`}</Td>,
+    };
+  };
+
+  let statsHeaders = (
+    <Th minWidth="155px" isNumeric pl="0">
+      Value
+    </Th>
+  );
+  if (compareData !== undefined) {
+    statsHeaders = (
+      <>
+        <Th minWidth="155px" isNumeric pl="0">
+          {municipality}
+        </Th>
+        <Th minWidth="155px" isNumeric pl="0">
+          {compareMunicipality}
+        </Th>
+      </>
+    );
   }
-
-  const projectedCompletion = dataIsIndicatorScore
-    ? +(data as IndicatorScore).projectedCompletion.toFixed(1)
-    : -1;
 
   let correlatedTable = null;
   if (correlatedKPIs !== undefined && correlatedKPIs !== null) {
@@ -197,235 +355,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
     );
   }
 
-  let statsHeaders = (
-    <Th minWidth="155px" isNumeric>
-      Value
-    </Th>
-  );
-  let compPoints = null;
-  let compScore = null;
-  let compCompletion = null;
-  let compWillComplete = null;
-  let compCurrentCAGR = null;
-  let compRequiredCAGR = null;
-  let compBestCAGR = null;
-  let compWorstCAGR = null;
-  let compMean = null;
-  let compStd = null;
-  let compTrendMean = null;
-  let compTrendStd = null;
-  let compBestCompletion = null;
-  let compWorstCompletion = null;
-  if (compareData !== undefined) {
-    const compBestGrowth =
-      compareData.yearlyGrowth.length > 0
-        ? compareData.yearlyGrowth[compareData.yearlyGrowth.length - 1]
-        : dummyGrowth;
-    const compWorstGrowth =
-      compareData.yearlyGrowth.length > 0 ? compareData.yearlyGrowth[0] : dummyGrowth;
-    const compProjectedCompletion = compareIsIndicatorScore
-      ? +(compareData as IndicatorScore).projectedCompletion.toFixed(1)
-      : -1;
-
-    const compCurrentValue =
-      compareData.historicalData[compareData.historicalData.length - 1].value;
-    const compCurrentYear = compareData.historicalData[compareData.historicalData.length - 1].year;
-    let compBestCompletionYear = -1;
-    let compWorstCompletionYear = -1;
-    if (compareIsIndicatorScore && compareData.yearlyGrowth.length > 1) {
-      compBestCompletionYear =
-        compCurrentYear +
-        Math.log((compareData as IndicatorScore).goal.target / compCurrentValue) /
-          Math.log(compBestGrowth.value + 1.0);
-      compWorstCompletionYear =
-        compCurrentYear +
-        Math.log((compareData as IndicatorScore).goal.target / compCurrentValue) /
-          Math.log(compWorstGrowth.value + 1.0);
-
-      if (
-        compBestCompletionYear < compCurrentYear &&
-        (compareData as IndicatorScore).score < CUTOFF_DONE_PCT
-      )
-        compBestCompletionYear = -1;
-
-      if (
-        compWorstCompletionYear < compCurrentYear &&
-        (compareData as IndicatorScore).score < CUTOFF_DONE_PCT
-      )
-        compWorstCompletionYear = -1;
-    }
-
-    statsHeaders = (
-      <>
-        <Th minWidth="155px" isNumeric pl="0">
-          {municipality}
-        </Th>
-        <Th minWidth="155px" isNumeric pl="0">
-          {compareMunicipality}
-        </Th>
-      </>
-    );
-
-    let compPointsOutput: number | string = 'N/A';
-    let compScoreOutput: number | string = 'N/A';
-    let compProjectedCompletionOutput: number | string = 'N/A';
-    let compWillCompleteOutput: number | string = 'N/A';
-    let compRequiredCAGROutput: number | string = 'N/A';
-    let compDiffMeanOutput: number | string = 'N/A';
-    let compDiffStdOutput: number | string = 'N/A';
-    let compBestCompletionOutput: number | string = 'N/A';
-    let compWorstCompletionOutput: number | string = 'N/A';
-    if (compareIsIndicatorScore) {
-      compPointsOutput = (compareData as IndicatorScore).points;
-      compScoreOutput = (compareData as IndicatorScore).score.toFixed(2);
-      compWillCompleteOutput = (compareData as IndicatorScore).willCompleteBeforeDeadline
-        ? 'Yes'
-        : 'No';
-
-      if (compCurrentYear < (compareData as IndicatorScore).goal.deadline) {
-        compRequiredCAGROutput = (100.0 * (compareData as IndicatorScore).requiredCAGR).toFixed(2);
-      }
-
-      compDiffMeanOutput = (compareData as IndicatorScore).diffMean.toFixed(2);
-      compDiffStdOutput = (compareData as IndicatorScore).diffStd.toFixed(2);
-
-      if (
-        compProjectedCompletion < compCurrentYear &&
-        (compareData as IndicatorScore).score >= CUTOFF_DONE_PCT
-      ) {
-        compProjectedCompletionOutput = 'Attained';
-      } else {
-        compProjectedCompletionOutput =
-          compProjectedCompletion < 0 ? 'Never' : compProjectedCompletion.toFixed(1);
-      }
-
-      if (
-        compBestCompletionYear < compCurrentYear &&
-        (compareData as IndicatorScore).score >= CUTOFF_DONE_PCT
-      ) {
-        compBestCompletionOutput = 'Attained';
-      } else {
-        compBestCompletionOutput =
-          compBestCompletionYear < 0 ? 'Never' : compBestCompletionYear.toFixed(1);
-      }
-
-      if (
-        compWorstCompletionYear < compCurrentYear &&
-        (compareData as IndicatorScore).score >= CUTOFF_DONE_PCT
-      ) {
-        compWorstCompletionOutput = 'Attained';
-      } else {
-        compWorstCompletionOutput =
-          compWorstCompletionYear < 0 ? 'Never' : compWorstCompletionYear.toFixed(1);
-      }
-    }
-
-    const compCurrentCAGROutput = (100.0 * compareData.currentCAGR).toFixed(2);
-
-    compPoints = (
-      <Td isNumeric pl="0">
-        {compPointsOutput}
-      </Td>
-    );
-    compScore = (
-      <Td isNumeric pl="0">
-        {compScoreOutput}
-      </Td>
-    );
-    compCompletion = (
-      <Td isNumeric pl="0">
-        {compProjectedCompletionOutput}
-      </Td>
-    );
-    compWillComplete = (
-      <Td isNumeric pl="0">
-        {compWillCompleteOutput}
-      </Td>
-    );
-    compCurrentCAGR = <Td isNumeric pl="0">{`${compCurrentCAGROutput} %`}</Td>;
-    compRequiredCAGR = <Td isNumeric pl="0">{`${compRequiredCAGROutput} %`}</Td>;
-    compBestCAGR = (
-      <Td isNumeric pl="0">
-        {`${(100.0 * compBestGrowth.value).toFixed(2)} %`}
-        <br />
-        {`(${compBestGrowth.startYear} to ${compBestGrowth.endYear})`}
-      </Td>
-    );
-
-    compBestCompletion = (
-      <Td isNumeric pl="0">
-        {compBestCompletionOutput}
-      </Td>
-    );
-
-    compWorstCAGR = (
-      <Td isNumeric pl="0">
-        {`${(100.0 * compWorstGrowth.value).toFixed(2)} %`}
-        <br />
-        {`(${compWorstGrowth.startYear} to ${compWorstGrowth.endYear})`}
-      </Td>
-    );
-
-    compWorstCompletion = (
-      <Td isNumeric pl="0">
-        {compWorstCompletionOutput}
-      </Td>
-    );
-
-    compMean = (
-      <Td isNumeric pl="0">
-        {compDiffMeanOutput}
-      </Td>
-    );
-    compStd = (
-      <Td isNumeric pl="0">
-        {compDiffStdOutput}
-      </Td>
-    );
-    compTrendMean = <Td isNumeric pl="0">{`${(100.0 * compareData.trendMean).toFixed(2)} %`}</Td>;
-    compTrendStd = <Td isNumeric pl="0">{`${(100.0 * compareData.trendStd).toFixed(2)} %`}</Td>;
-  }
-
-  let pointsOutput: number | string = 'N/A';
-  let scoreOutput: number | string = 'N/A';
-  let projectedCompletionOutput: number | string = 'N/A';
-  let willCompleteOutput: number | string = 'N/A';
-  let requiredOutput: number | string = 'N/A';
-  let diffMeanOutput: number | string = 'N/A';
-  let diffStdOutput: number | string = 'N/A';
-  let bestCompletionOutput: number | string = 'N/A';
-  let worstCompletionOutput: number | string = 'N/A';
-  if (dataIsIndicatorScore) {
-    pointsOutput = (data as IndicatorScore).points;
-    scoreOutput = (data as IndicatorScore).score.toFixed(2);
-    willCompleteOutput = (data as IndicatorScore).willCompleteBeforeDeadline ? 'Yes' : 'No';
-
-    if (currentYear < (data as IndicatorScore).goal.deadline) {
-      requiredOutput = (100.0 * (data as IndicatorScore).requiredCAGR).toFixed(2);
-    }
-
-    diffMeanOutput = (data as IndicatorScore).diffMean.toFixed(2);
-    diffStdOutput = (data as IndicatorScore).diffStd.toFixed(2);
-
-    if (projectedCompletion < currentYear && (data as IndicatorScore).score >= CUTOFF_DONE_PCT) {
-      projectedCompletionOutput = 'Attained';
-    } else {
-      projectedCompletionOutput =
-        projectedCompletion < 0 ? 'Never' : projectedCompletion.toFixed(1);
-    }
-
-    if (bestCompletion < currentYear && (data as IndicatorScore).score >= CUTOFF_DONE_PCT) {
-      bestCompletionOutput = 'Attained';
-    } else {
-      bestCompletionOutput = bestCompletion < 0 ? 'Never' : bestCompletion.toFixed(1);
-    }
-
-    if (worstCompletion < currentYear && (data as IndicatorScore).score >= CUTOFF_DONE_PCT) {
-      worstCompletionOutput = 'Attained';
-    } else {
-      worstCompletionOutput = worstCompletion < 0 ? 'Never' : worstCompletion.toFixed(1);
-    }
-  }
+  const compareOutput = populateTableCells(compareData);
+  const muniOutput = populateTableCells(data);
 
   return (
     <Stack spacing={4} w={{ base: '800px', '2xl': '1350px' }}>
@@ -454,10 +385,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">U4SSC points</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">
-                  {pointsOutput}
-                </Td>
-                {compPoints}
+                {muniOutput.points}
+                {compareOutput.points}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -465,10 +394,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">Raw score</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">
-                  {scoreOutput}
-                </Td>
-                {compScore}
+                {muniOutput.score}
+                {compareOutput.score}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -476,10 +403,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">Projected completion</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">
-                  {projectedCompletionOutput}
-                </Td>
-                {compCompletion}
+                {muniOutput.projectedCompletion}
+                {compareOutput.projectedCompletion}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -487,10 +412,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">Will complete within deadline?</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">
-                  {willCompleteOutput}
-                </Td>
-                {compWillComplete}
+                {muniOutput.willComplete}
+                {compareOutput.willComplete}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -498,8 +421,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">Overall trend</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">{`${(100.0 * data.currentCAGR).toFixed(2)} %`}</Td>
-                {compCurrentCAGR}
+                {muniOutput.currentCAGR}
+                {compareOutput.currentCAGR}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -509,8 +432,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">Required trend</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">{`${requiredOutput} %`}</Td>
-                {compRequiredCAGR}
+                {muniOutput.requiredCAGR}
+                {compareOutput.requiredCAGR}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -518,12 +441,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">Best trend</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">
-                  {`${(100.0 * bestGrowth.value).toFixed(2)} %`}
-                  <br />
-                  {`(${bestGrowth.startYear} to ${bestGrowth.endYear})`}
-                </Td>
-                {compBestCAGR}
+                {muniOutput.bestCAGR}
+                {compareOutput.bestCAGR}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -531,10 +450,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">Best case completion</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">
-                  {bestCompletionOutput}
-                </Td>
-                {compBestCompletion}
+                {muniOutput.bestCompletion}
+                {compareOutput.bestCompletion}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -542,12 +459,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">Worst trend</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">
-                  {`${(100.0 * worstGrowth.value).toFixed(2)} %`}
-                  <br />
-                  {`(${worstGrowth.startYear} to ${worstGrowth.endYear})`}
-                </Td>
-                {compWorstCAGR}
+                {muniOutput.worstCAGR}
+                {compareOutput.worstCAGR}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -555,10 +468,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">Worst case completion</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">
-                  {worstCompletionOutput}
-                </Td>
-                {compWorstCompletion}
+                {muniOutput.worstCompletion}
+                {compareOutput.worstCompletion}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -566,8 +477,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">Mean of trends</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">{`${(100.0 * data.trendMean).toFixed(2)} %`}</Td>
-                {compTrendMean}
+                {muniOutput.trendMean}
+                {compareOutput.trendMean}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -575,8 +486,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">Standard deviation of trends</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">{`${(100.0 * data.trendStd).toFixed(2)} %`}</Td>
-                {compTrendStd}
+                {muniOutput.trendStd}
+                {compareOutput.trendStd}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -584,10 +495,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     <Text decoration="underline dotted">Mean difference of estimated value</Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">
-                  {diffMeanOutput}
-                </Td>
-                {compMean}
+                {muniOutput.diffMean}
+                {compareOutput.diffMean}
               </Tr>
               <Tr>
                 <Td pr="0">
@@ -597,10 +506,8 @@ const GDCView: React.FC<GDCPanelProps> = (props: GDCPanelProps) => {
                     </Text>
                   </Tooltip>
                 </Td>
-                <Td isNumeric pl="0">
-                  {diffStdOutput}
-                </Td>
-                {compStd}
+                {muniOutput.diffStd}
+                {compareOutput.diffStd}
               </Tr>
             </Tbody>
           </Table>

@@ -1,6 +1,9 @@
 import { Router, Request, Response } from 'express';
 import _ from 'lodash';
-import { u4sscKpiMap } from '../database/u4sscKpiMap';
+import multer from 'multer';
+
+import { parseCSV, detectSeparator } from '../utils/csv';
+import { u4sscKpiMap, u4sscKpiDataseries, TKTransform } from '../database/u4sscKpiMap';
 
 import setData from '../database/setData';
 import getDataSeries from '../database/getDataSeries';
@@ -27,16 +30,18 @@ const insertData = async (req: Request, res: Response) => {
     const year = parseInt(req.body.year, 10);
     if (Number.isNaN(year)) throw new ApiError(400, 'Year not an int.');
 
+    const isDummy = req.body.isDummy !== undefined && JSON.parse(req.body.isDummy);
     const indicatorName: string | undefined = u4sscKpiMap.get(req.body.indicator);
     if (indicatorName === undefined || !(typeof indicatorName === 'string'))
       throw new ApiError(400, 'Unknown indicator');
+
     const newDataPoint = {
       indicatorId: req.body.indicator,
       indicatorName,
       municipality: req.body.municipality,
       data: req.body.data,
       year,
-      isDummy: req.body.isDummy !== undefined && req.body.isDummy,
+      isDummy,
       dataseries: req.body.dataseries,
     };
 
@@ -52,7 +57,7 @@ const insertData = async (req: Request, res: Response) => {
 
 const insertBulkData = async (req: Request, res: Response) => {
   try {
-    const isDummy = req.body.isDummy !== undefined && req.body.isDummy;
+    const isDummy = req.body.isDummy !== undefined && JSON.parse(req.body.isDummy);
     const { municipality } = req.body;
     const year = parseInt(req.body.year, 10);
     if (Number.isNaN(year)) throw new ApiError(400, 'Year not an int.');
@@ -64,7 +69,8 @@ const insertBulkData = async (req: Request, res: Response) => {
 
     req.body.data.forEach((dp) => {
       const indicatorName = u4sscKpiMap.get(dp.indicator);
-      if (indicatorName === undefined) throw new ApiError(400, '!');
+      if (indicatorName === undefined)
+        throw new ApiError(400, `Unknown indicator: ${dp.indicator}`);
 
       const datapoint: DataPoint = {
         municipality,
@@ -137,11 +143,110 @@ const availableYears = async (req: Request, res: Response) => {
   }
 };
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+type CSVErrorMessage = {
+  data: any;
+  message: string;
+};
+
+const dataUploadCSV = async (req: Request, res: Response) => {
+  try {
+    const { municipality } = req.body;
+    if (!municipality) throw new ApiError(401, 'Missing municipality');
+
+    const validMunicipality = await CheckMunicipalityByCode(municipality);
+    if (validMunicipality === 0) throw new ApiError(400, 'Invalid municipality id');
+
+    const year = parseInt(req.body.year, 10);
+    if (Number.isNaN(year) || year <= 0)
+      throw new ApiError(401, 'Invalid year (must be a positive integer)');
+
+    const isDummy = req.body.isDummy !== undefined && JSON.parse(req.body.isDummy);
+
+    const { buffer } = (req as any).file;
+    const str = buffer.toString();
+
+    const header = str.split('\n')[0].trim();
+    const separator = detectSeparator(header);
+
+    // validate that headers are correct
+    const fields = header.split(separator);
+    const requiredFields = new Set(['indicator', 'dataseries', 'data']);
+    fields.forEach((field) => {
+      if (!requiredFields.has(field)) throw new ApiError(401, `Unrecognized CSV field: '${field}'`);
+      else requiredFields.delete(field);
+    });
+
+    if (requiredFields.size !== 0)
+      throw new ApiError(
+        401,
+        `Missing required CSV fields: ${Array.from(requiredFields).map((f) => `${f}, `)}`,
+      );
+
+    const data = await parseCSV(buffer, { separator });
+
+    // Validate datapoints
+    const datapoints: DataPoint[] = [];
+    const errors: CSVErrorMessage[] = [];
+    data.forEach((dp) => {
+      let { indicator } = dp;
+      const tkTransform = TKTransform.get(indicator);
+      if (tkTransform) indicator = tkTransform;
+
+      const indicatorName = u4sscKpiMap.get(indicator);
+      if (!indicatorName) errors.push({ data: dp, message: 'Unrecognized KPI' });
+      else {
+        const dataseries = u4sscKpiDataseries.get(indicator);
+        if (dataseries && !dataseries.has(dp.dataseries)) {
+          errors.push({ data: dp, message: 'Missing / unrecognized required data series' });
+        } else if (!dataseries && dp.dataseries !== '') {
+          errors.push({ data: dp, message: 'Dataseries present in indicator not having one' });
+        } else {
+          const value = JSON.parse(dp.data);
+          const valueAsNumber = Number(value);
+          if (Number.isNaN(valueAsNumber))
+            errors.push({
+              data: dp,
+              message: `Value is in an incompatible format: '${typeof value}'`,
+            });
+
+          const datapoint: DataPoint = {
+            municipality,
+            indicatorId: indicator,
+            indicatorName,
+            data: valueAsNumber,
+            year,
+            isDummy,
+            dataseries: dp.dataseries === '' ? 'main' : dp.dataseries,
+          };
+
+          datapoints.push(datapoint);
+        }
+      }
+    });
+
+    if (errors.length > 0) {
+      throw new ApiError(401, `Data errors: ${JSON.stringify(errors)}`);
+    }
+
+    await bulkDeleteDataPoints(datapoints);
+    await bulkInsertDataPoints(municipality, datapoints);
+
+    res.json({});
+  } catch (e) {
+    onError(e, req, res);
+  }
+};
+
 router.post('/insert', verifyDatabaseAccess, verifyToken, insertData);
 router.post('/insert-bulk', verifyDatabaseAccess, verifyToken, insertBulkData);
 router.post('/get', verifyDatabaseAccess, getData);
 router.post('/get-all-dataseries', verifyDatabaseAccess, getAllData);
 
 router.get('/available-years/:municipality', verifyDatabaseAccess, availableYears);
+
+router.post('/upload', verifyToken, verifyDatabaseAccess, upload.single('csv'), dataUploadCSV);
 
 export default router;

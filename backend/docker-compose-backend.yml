@@ -7,6 +7,7 @@ services:
       dockerfile: 'graphdb.Dockerfile'
     ports:
       - '7200:7200'
+    command: '/opt/graphdb/dist/bin/loadrdf -c /opt/graphdb/dist/conf/TK_SDG-config.ttl -m parallel /opt/graphdb/home/ontology'
   api:
     depends_on: ['graphdb']
     build:
