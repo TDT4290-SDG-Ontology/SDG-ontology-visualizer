@@ -5,7 +5,7 @@ Further developments should make this utility unnecessary by implementing a user
 
 ## Usage
 
-`python make_user.py [username] [password]` (replace `[username]` with the username, and `[password]` with the password).
+`python make_user.py [username] [password] [role]` (replace `[username]` with the username, `[password]` with the password, and `[role]` with the role (either `dataentry` or `admin`)).
 
 ## Requirements
 

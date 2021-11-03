@@ -572,8 +572,14 @@ const GDCDataEntry: React.FC = () => {
   };
 
   useEffect(() => {
-    loadToken();
-    loadMunicipalities();
+    if (!reducer.getState().login.token) {
+      loadToken();
+    }
+
+    if (municipalities === undefined) {
+      loadMunicipalities();
+      console.log(selectedDataMunicipality);
+    }
   });
 
   const onSubmitData = async () => {
