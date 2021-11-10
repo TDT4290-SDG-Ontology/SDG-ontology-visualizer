@@ -16,7 +16,7 @@ const Navbar = () => {
       <Box>
         <h1>
           <Link fontWeight="bold" color="cyan.700" fontSize="1.5em" as={RouteLink} to="/">
-            SDG-Ontology.no
+            sdgqa.trondheim.kommune.no
           </Link>
         </h1>
       </Box>

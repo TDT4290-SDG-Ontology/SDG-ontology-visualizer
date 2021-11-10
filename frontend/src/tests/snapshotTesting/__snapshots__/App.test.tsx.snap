@@ -16,7 +16,7 @@ exports[`renders when there are no items 1`] = `
           href="/"
           onClick={[Function]}
         >
-          SDG-Ontology.no
+          sdgqa.trondheim.kommune.no
         </a>
       </h1>
     </div>
