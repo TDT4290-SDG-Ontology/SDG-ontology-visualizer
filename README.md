@@ -8,4 +8,4 @@ A tool for visualizing ontologies related to UN's sustainable development goals
 
 ## Installation
 
-For installation, see the [installation guide](https://github.com/TDT4290-SDG-Ontology/SDG-ontology-visualizer/blob/main/docs/installation_gruide.pdf) extracted from the project report.
+For installation, see the [installation guide](https://github.com/TDT4290-SDG-Ontology/SDG-ontology-visualizer/blob/main/docs/installation_guide.pdf) extracted from the project report.
