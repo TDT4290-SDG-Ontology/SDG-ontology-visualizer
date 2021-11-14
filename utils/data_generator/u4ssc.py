@@ -408,7 +408,7 @@ friendly_names = dict([
 	('SC: SH: HO: 2A', 'expenditure_housing'),
 	('SC: SH: SA: 7C', 'fire_service'),
 	('EC: ICT: ICT: 2C', 'fixed_broadband'),
-	('SC: SH: SA: 1A', 'food_production'),
+	('SC: SH: FS: 1A', 'food_production'),
 	('EN: EN: WS: 4C', 'wastewater_treatment'),
 	('SC: SH: SI: 1C', 'gender_income_equality'),
 	('SC: SH: SI: 2C', 'gini_coefficient'),
